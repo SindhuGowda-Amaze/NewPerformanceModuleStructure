@@ -8,6 +8,8 @@ import { SupportticketsComponent } from './supporttickets/supporttickets.compone
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+
 
 
 
@@ -22,14 +24,17 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     FormsModule,
     SharedRoutingModule,
     NgxPaginationModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    NgxDropzoneModule
+    
   
   ],
   exports: [
     FormsModule,
     SharedRoutingModule,
     NgxPaginationModule,
-
+    Ng2SearchPipeModule,
+    NgxDropzoneModule
   ],
   providers: [
     // {
