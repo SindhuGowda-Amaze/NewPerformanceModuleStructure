@@ -1,0 +1,20 @@
+.Dashboard{
+    color:#3247D5;
+    font-size: 19px;
+  }
+  
+  .filter{
+    margin-left: 15px;
+    font-size: 13px;
+  }
+  .Add{
+    background-color: #3247D5;
+    color:white;
+    border-radius: 5px;
+    border:none;
+    width:50%;
+  }
+  .manager{
+    margin-left: 20px;
+  }
+  

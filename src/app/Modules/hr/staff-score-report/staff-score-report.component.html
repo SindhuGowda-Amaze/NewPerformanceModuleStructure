@@ -1,0 +1,232 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-11">
+            <br>
+            <p class="headings">Appraisal Detailed Report</p>
+        </div>
+        <div class="col-lg-1">
+            <br>
+            <p class="count">Count:{{count}}</p>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="card">
+
+        <div class="row FilterClass ">
+            <div class="col-lg-1">
+                <p class="filter">Filter By</p>
+            </div>
+
+            <div class="col-lg-3">
+                <!-- <select class="dropdown form-control" id="ratingvalue" name="ratingvalue" [(ngModel)]="ratingvalue"
+                    (change)="Getratingvalue($event)" required>
+                    <option value="0">Select Rating</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select> -->
+                <select class="form-control" id="departmentid" name="departmentid" [(ngModel)]="departmentid"
+                    (change)='getdepartmentID($event)' (change)="GetFilteredDepartment()">
+                    <option value="0">Select Department</option>
+                    <option *ngFor="let details of departmentList" value="{{details.id}}">{{details.departmentName}}
+                    </option>
+                </select>
+            </div>
+            <div class="col-lg-2">
+                <select class="form-control" id="roleTypeid" name="roleTypeid" [(ngModel)]="roleTypeid"
+                    (change)="getRoleID($event)" (change)="GetFilteredRoleType()">
+                    <option value="0">Select Position</option>
+                    <option *ngFor="let details of roleTypeList" value="{{details.id}}">{{details.short}}
+                    </option>
+                </select>
+            </div>
+            <div class="col-lg-2 ">
+                <select class="form-control" id="manager" name="manager" [(ngModel)]="manager"
+                    (change)="getManager($event)" (change)="GetFilteredManager()">
+                    <option value="0">Select Manager</option>
+                    <option *ngFor="let details of managerList1" value="{{details.name}}">{{details.name}}
+                    </option>
+                </select>
+            </div>
+            <div class="col-lg-3">
+                <input type="search" class="form-control search" placeholder="Search for Name.." [(ngModel)]="search">
+            </div>
+            <!-- <div class="col-lg-1"></div> -->
+        </div>
+
+    </div> <br>
+
+
+    <div class="card">
+
+        <div class="row">
+            <div class="col-lg-2">
+                <p class="filter">Select Appraisal Cycle:</p>
+            </div>
+            <div class="col-lg-3">
+                <select class="form-control" id="appraisalCycleName" name="appraisalCycleName"
+                    [(ngModel)]="appraisalCycleName" (change)="GetApprisalcycle($event)">
+                    <option value="0">Select Appraisal Cycle</option>
+                    <option *ngFor="let item of Apprisalcyclelist" value="{{item.appraisalCycleName}}">
+                        {{item.appraisalCycleName}}
+                    </option>
+                </select>
+            </div>
+            <div class="col-lg-2" *ngIf="appraisalCycleName!=0">
+                <button class="btn-primary" data-toggle="collapse" data-target="#demo">Fetch Details</button>
+            </div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-3">
+                <p>Total Employees to be Appraised:
+                    <span>Employee Submitted:</span><br>
+                    <span>Manager Submitted:</span><br>
+                    <span>SBU Submitted:</span><br>
+                    <span>HR Submitted:</span><br>
+                    <span>Total Appraisal Pending:</span>
+
+                </p>
+            </div>
+            <div class="col-lg-1">
+                <p style="color:green">{{appraisalcount}}
+                    <br> <span *ngIf=" appraisalcount!=0">{{employeSubmissionDate}}</span>
+                    <span *ngIf=" appraisalcount==0">0</span><br>
+
+                    <span *ngIf=" appraisalcount!=0">{{managerSubmittedCount}}</span>
+                    <span *ngIf=" appraisalcount==0">0</span><br>
+
+                    <span *ngIf=" appraisalcount!=0">{{sbuSubmittedCount}}</span>
+                    <span *ngIf=" appraisalcount==0">0</span><br>
+
+                    <span *ngIf=" appraisalcount!=0">{{hrSubmittedCount}}</span>
+                    <span *ngIf=" appraisalcount==0">0</span><br>
+
+                    <span style="color: red;" *ngIf=" appraisalcount!=0">{{appraisalPendingCount}}</span>
+                    <span style="color: red;" *ngIf=" appraisalcount==0">0</span>
+
+
+
+
+
+                </p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <span *ngIf="appraisalPendingCount==0 && appraisalClose==0 && appraisalcount!=0"><button class="btn btn-success"
+            (click)="CloseAppraisal()">Complete Appraisal</button></span><br>
+    <span *ngIf="appraisalPendingCount==0 && appraisalClose==1 && appraisalcount!=0" style="color: red;">Appraisal Cycle
+        is
+        Closed</span><br><br>
+    <span *ngIf="appraisalcount==0" style="color: red;">Appraisal Cycle Not Started</span><br><br>
+
+    <div class="container-fluid" id="demo" class="collapse" *ngIf="appraisalCycleName!=0">
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table">
+                    <thead>
+                        <tr *ngIf="(FilteredStaffAppraisalList | filter: search).length > 0; else noResults">
+                            <th>Appraisal Cycle</th>
+                            <th>Department</th>
+                            <th>Position</th>
+                            <th>Employee Name</th>
+                            <th>Manager Name</th>
+                            <!-- <th>Appraisal Date</th>
+                            <th>Cycle Start Date</th>
+                            <th>Cycle End Date</th> -->
+                            <th>Employee Rating </th>
+                            <th>Manager Rating</th>
+                            <th>SBU Rating</th>
+                            <th>HR Rating</th>
+                            <th>Total Average</th>
+                            <th>Action </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            *ngFor="let details of FilteredStaffAppraisalList |paginate: { itemsPerPage: count1, currentPage: p}|filter:search">
+                            <td>{{details.appraisalCycleName}}</td>
+                            <td>{{details.departmentName}}</td>
+                            <td>{{details.role}}</td>
+                            <td>{{details.name}}</td>
+                            <td>{{details.managername}}</td>
+                            <td>{{details.avgSelfScore}}
+                                <p *ngIf="details.avgSelfScore==null" style="color: red;">Pending</p>
+                            </td>
+
+                            <td>
+                                <p  *ngIf="details.managerSubmittedDate!=null">{{details.avgGroupHeadScores}}</p>
+                            
+                                <p *ngIf="details.avgGroupHeadScores==null || details.managerSubmittedDate==null" style="color: red;">Pending</p>
+                            </td>
+                            <td>
+                                <p  *ngIf="details.sbuSubmittedDate!=null">{{details.avgDivisionScores}}</p>
+                             
+                                <p *ngIf="details.avgDivisionScores==null || details.sbuSubmittedDate==null" style="color: red;">Pending</p>
+                            </td>
+                            <td>
+                                <p *ngIf="details.hrSubmittedDate!=null ">{{details.avgCIOScores}}</p>
+                                <p *ngIf="details.avgCIOScores==null ||details.hrSubmittedDate==null"
+                                    style="color: red;">Pending</p>
+                            </td>
+                            <td>
+                                <p
+                                    *ngIf="details.bellcurveScore==null && details.avgCIOScores!=null && details.hrSubmittedDate!=null">
+                                    {{((details.avgGroupHeadScores+details.avgCIOScores)/2)|number:"1.0-0"}}
+                                <p *ngIf="details.bellcurveScore!=null">{{details.bellcurveScore}}</p>
+                                <p *ngIf="details.avgCIOScores==null || details.hrSubmittedDate==null">NA</p>
+                            </td>
+                            <!-- <td>{{details.appraisalSubmitionDate|date}}</td>
+                            <td>{{details.cycleStartDate|date}}</td>    
+                            <td>{{details.cycleEndDate|date}}</td> -->
+                            <td>
+                                <button class="btn btn-primary editable-table-button btn-xs"
+                                    (click)="ViewScores(details)">View Details
+                                </button>
+                            </td>
+                            <!-- <td>
+                                <button class="edit" data-toggle="modal" data-target="#exampleModal" >Change Rating </button>
+                            </td> -->
+                        </tr>
+                    </tbody>
+                </table>
+                <ng-template #noResults>
+                    <div class="card">
+                        <p class="NoResultShow"> No results found </p>
+                    </div>
+                </ng-template>
+                <!-- <span *ngIf="FilteredStaffAppraisalList.length==0">No data</span> -->
+
+                <div class="text-right">
+                    <br>
+                    <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document" style="width:800px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New Rating </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body scroll">
+                    <div class="col-lg-12">
+                        <p></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
+                </div>
+            </div>
+        </div>
+    </div>

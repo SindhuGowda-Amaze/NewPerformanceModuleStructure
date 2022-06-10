@@ -1,0 +1,39 @@
+/* .columnname{
+    margin-left: 15px;
+} */
+.button{
+    background-color: #3247D5;
+    color:white;
+    width:100%;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.button1{
+    background-color: #3247D5;
+    color:white;
+    width:100%;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    float:left;
+}
+
+
+.table, tr, td {
+    border: none !important;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    color: #0C275A;
+    /* height: 92%; */
+    text-align: left;
+}
+.card{
+    background: #FFFFFF;
+    box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+    padding: 10px;
+    }

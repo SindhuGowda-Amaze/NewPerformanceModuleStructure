@@ -11,9 +11,11 @@ import { LoaderComponent } from './Pages/CommonPages/loader/loader.component';
 import { LoginComponent } from './Pages/login/login.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { SharedModule } from './Modules/shared/shared.module';
+
 import { NgxPaginationModule } from 'ngx-pagination';
 import { DatePipe } from '@angular/common';
+import { SharedModule } from './Modules/shared/shared.module';
+
 
 
 @NgModule({
@@ -24,7 +26,8 @@ import { DatePipe } from '@angular/common';
     SidebarComponent,
     FooterComponent,
     LoaderComponent,
-    LoginComponent
+    LoginComponent,
+
   ],
   imports: [
     BrowserModule,
