@@ -7,6 +7,7 @@ import { HelpComponent } from './help/help.component';
 import { SupportticketsComponent } from './supporttickets/supporttickets.component';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 
@@ -21,7 +22,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FormsModule,
     SharedRoutingModule,
     NgxPaginationModule,
-    
+    Ng2SearchPipeModule
   
   ],
   exports: [

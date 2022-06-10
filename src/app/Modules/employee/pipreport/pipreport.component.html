@@ -1,0 +1,516 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-10">
+            <br>
+            <p class="headings">PIP Report</p>
+        </div>
+    </div>
+
+    <!-- <div class="card">
+        <div class="row">
+            <div class="col-lg-3 ">
+                <p>Employee Name</p>
+                <select class="form-control" id="employee" name="employee" [(ngModel)]="employee"
+                    (change)="getEmployee($event)">
+                    <option value="0">Select Employee</option>
+                    <option *ngFor="let details of StaffAppraisalList" value="{{details.id}}">{{details.name}}
+                    </option>
+                </select>
+            </div>
+            <div class="col-lg-3 ">
+                <p>Department</p>
+                <input class="form-control" id="department" name="department" [(ngModel)]="department"
+                    placeholder="department">
+            </div>
+            <div class="col-lg-3 ">
+                <p>Position</p>
+                <input class="form-control" id="role" name="role" [(ngModel)]="role" placeholder="Position">
+            </div>
+            <div class="col-lg-3 ">
+                <p>Rate</p>
+                <input class="form-control" id="rate" name="rate" [(ngModel)]="rate" placeholder="rate">
+            </div>
+
+        </div><br>
+        <div class="row">
+            <div class="col-lg-4">
+                <p>Comments</p>
+                <textarea class="form-control" id="comments" name="comments" [(ngModel)]="comments"
+                    placeholder="comments"></textarea>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-lg-6"></div>
+            <div class="col-lg-2">
+                <button class="form-control addbtn" id="remove" name="remove" [(ngModel)]="remove"
+                    placeholder="remove">Remove</button>
+            </div>
+            <div class="col-lg-2">
+                <button class="form-control addbtn" id="updaterate" name="updaterate" [(ngModel)]="updaterate"
+                    placeholder="updaterate">Update Rate</button>
+            </div>
+            <div class="col-lg-2">
+                <button class="form-control addbtn" id="separation" name="separation" [(ngModel)]="separation"
+                    placeholder="separation">Separation</button>
+            </div>
+
+        </div>
+    </div> -->
+    <br>
+</div>
+
+
+<!-- <div class="row">
+        <div class="col-lg-10"></div>
+        <div class="col-lg-2">
+            <button class="edit" (click)="exportexcel()">Export To Excel </button>
+        </div>
+    </div> <br>  -->
+
+<div class="container-fluid">
+    <div class="row">
+        <br />
+        <div class="col-lg-10 dashbutton bttn">
+            <div class="tab-slider--nav">
+                <ul class="tab-slider--tabs">
+                    <li class="tab-slider--trigger" [class.active]="viewMode == 'tab1'" rel="tab1"
+                        (click)="viewMode ='tab1'">
+                        Assigned</li>
+                    <li class="tab-slider--trigger" [class.active]="viewMode == 'tab2'" rel="tab2"
+                        (click)="viewMode ='tab2'">Removed from PIP</li>
+                    <li class="tab-slider--trigger" [class.active]="viewMode == 'tab3'" rel="tab3"
+                        (click)="viewMode ='tab3'">Relieved from Organisation</li>
+                </ul>
+            </div>
+        </div>
+       
+    </div>
+    <br>
+
+    <div class="row" *ngIf="roleid=='4'||roleid=='3'">
+        <div class="row">
+            <div class="tab-slider--container" [ngSwitch]="viewMode">
+                <div *ngSwitchCase="'tab1'" id="tab1">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <p class="show3res">SHOWING <span>{{StaffPIPActionItemList.length}}</span> RESULTS</p>
+                        </div>
+                        <!-- <div class="col-md-2">
+                            <button class="form-control requestbtn" routerLink="/ApplyOT">Apply</button>
+                        </div> -->
+                    </div>
+                    <div class="col-lg-12">
+                        <table class="table" id="download">
+                            <thead>
+                                <tr>
+                                    <th>Appraisal Cycle</th>
+                                    <th>Employee Name</th>
+                                    <th>Position</th>
+                                    <th>Department</th>
+                                    <th *ngIf="roleid==3">Manager Name</th>
+                                    <th>Final Rating </th>
+                             
+                                    <!-- <th *ngIf="roleid=='4'">Action</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    *ngFor="let details of StaffAppraisalList| paginate: { itemsPerPage: count1, currentPage: p}|filter:search">
+                                    <td>{{details.appraisalCycleName}}</td>
+                                    <td>{{details.name}}</td>
+                                    <td>{{details.role}}</td>
+                                    <td>{{details.departmentName}}</td>
+                                    <td *ngIf="roleid==3">{{details.managername}}</td>
+            
+                                    <td>
+                                        <p
+                                            *ngIf="details.bellcurveScore==null && details.avgCIOScores!=null && details.hrSubmittedDate!=null">
+                                            {{((details.avgGroupHeadScores+details.avgCIOScores)/2)|number:"1.0-0"}}
+            
+                                        <p *ngIf="details.bellcurveScore!=null">{{details.bellcurveScore}}</p>
+            
+                                        <p *ngIf="details.avgCIOScores==null || details.hrSubmittedDate==null">NA</p>
+            
+                                        <!-- {{details.finalrating}} -->
+                                    </td>
+                                    <!-- <td>
+                                        <p *ngIf="details.pipComments!=null"> {{details.pipComments}}<br>
+                                       <img src="{{details.pipAttachment}}"> 
+                                        </p>
+                                        <p *ngIf="details.pipComments==null" style="color: red">Pending</p>
+                                    </td> -->
+                                    <!-- <td *ngIf="roleid=='4'">
+                                        <button class="btn btn-primary editable-table-button btn-xs" data-toggle="modal"
+                                        data-target="#exampleModal" (click)="ViewScores(details)">Relieve from Organisation
+                                    </button><br><br>
+                                    <button class="btn btn-primary editable-table-button btn-xs" data-toggle="modal"
+                                        data-target="#viewbellcurve" (click)="ViewScores(details)">Remove from PIP
+                                    </button><br><br>
+                                        <button class="btn btn-primary editable-table-button btn-xs" data-toggle="modal"
+                                            data-target="#exampleModal" >View Employee Comments
+                                        </button><br><br>
+                                        <button class="btn btn-primary editable-table-button btn-xs" data-toggle="modal"
+                                            data-target="#exampleModal">View PIP Details
+                                        </button><br><br>
+                                    </td> -->
+            
+                                </tr>
+                            </tbody>
+                        </table>
+                        <span *ngIf="StaffAppraisalList.length==0">No Data </span>
+                        <div class="text-right">
+                            <br>
+                            <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
+                        </div>
+                    </div>
+                </div>
+                <div *ngSwitchCase="'tab2'" id="tab2">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <br>
+                            <p class="show3res">SHOWING <span>{{RemovedFromPIPList.length}}</span> RESULTS</p>
+                        </div>
+                        <!-- <div class="col-md-2">
+                            <button class="form-control requestbtn" routerLink="/ApplyOT">Apply</button>
+                        </div> -->
+                    </div>
+                    <div class="col-lg-12">
+                        <table class="table" id="download">
+                            <thead>
+                                <tr>
+                                    <th>Appraisal Cycle</th>
+                                    <th>Employee Name</th>
+                                    <th>Position</th>
+                                    <th>Department</th>
+                                    <th *ngIf="roleid==3">Manager Name</th>
+                                    <th>Final Rating </th>
+                             
+                                    <!-- <th *ngIf="roleid=='4'">Action</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    *ngFor="let details of RemovedFromPIPList| paginate: { itemsPerPage: count1, currentPage: p}|filter:search">
+                                    <td>{{details.appraisalCycleName}}</td>
+                                    <td>{{details.name}}</td>
+                                    <td>{{details.role}}</td>
+                                    <td>{{details.departmentName}}</td>
+                                    <td *ngIf="roleid==3">{{details.managername}}</td>
+            
+                                    <td>
+                                        <p
+                                            *ngIf="details.bellcurveScore==null && details.avgCIOScores!=null && details.hrSubmittedDate!=null">
+                                            {{((details.avgGroupHeadScores+details.avgCIOScores)/2)|number:"1.0-0"}}
+            
+                                        <p *ngIf="details.bellcurveScore!=null">{{details.bellcurveScore}}</p>
+            
+                                        <p *ngIf="details.avgCIOScores==null || details.hrSubmittedDate==null">NA</p>
+            
+                                        <!-- {{details.finalrating}} -->
+                                    </td>
+                                    <!-- <td>
+                                        <p *ngIf="details.pipComments!=null"> {{details.pipComments}}<br>
+                                       <img src="{{details.pipAttachment}}"> 
+                                        </p>
+                                        <p *ngIf="details.pipComments==null" style="color: red">Pending</p>
+                                    </td> -->
+                                    <!-- <td *ngIf="roleid=='4'">
+                                        <button class="btn btn-primary editable-table-button btn-xs" data-toggle="modal"
+                                        data-target="#exampleModal" (click)="ViewScores(details)">Relieve from Organisation
+                                    </button><br><br>
+                                    <button class="btn btn-primary editable-table-button btn-xs" data-toggle="modal"
+                                        data-target="#viewbellcurve" (click)="ViewScores(details)">Remove from PIP
+                                    </button><br><br>
+                                        <button class="btn btn-primary editable-table-button btn-xs" data-toggle="modal"
+                                            data-target="#exampleModal" >View Employee Comments
+                                        </button><br><br>
+                                        <button class="btn btn-primary editable-table-button btn-xs" data-toggle="modal"
+                                            data-target="#exampleModal">View PIP Details
+                                        </button><br><br>
+                                    </td> -->
+            
+                                </tr>
+                            </tbody>
+                        </table>
+                        <span *ngIf="StaffAppraisalList.length==0">No Data </span>
+                        <div class="text-right">
+                            <br>
+                            <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
+                        </div>
+                    </div>
+                </div>
+                <div *ngSwitchCase="'tab3'" id="tab3">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <p class="show3res">SHOWING <span>{{RelivedfromOrgPIPList.length}}</span> RESULTS</p>
+                        </div>
+                        <!-- <div class="col-md-2">
+                            <button class="form-control requestbtn" routerLink="/ApplyOT">Apply</button>
+                        </div> -->
+                    </div>
+                    <div class="col-lg-12">
+                        <table class="table" id="download">
+                            <thead>
+                                <tr>
+                                    <th>Appraisal Cycle</th>
+                                    <th>Employee Name</th>
+                                    <th>Position</th>
+                                    <th>Department</th>
+                                    <th *ngIf="roleid==3">Manager Name</th>
+                                    <th>Final Rating </th>
+                             
+                                    <!-- <th *ngIf="roleid=='4'">Action</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    *ngFor="let details of RelivedfromOrgPIPList| paginate: { itemsPerPage: count1, currentPage: p}|filter:search">
+                                    <td>{{details.name}}</td>
+                                    <td>{{details.emprole}}</td>
+                                    <td>{{details.department_name}}</td>
+                                    <td *ngIf="roleid==3">{{details.manager}}</td>
+            
+                                    <!-- <td>
+                                        <p
+                                            *ngIf="details.bellcurveScore==null && details.avgCIOScores!=null && details.hrSubmittedDate!=null">
+                                            {{((details.avgGroupHeadScores+details.avgCIOScores)/2)|number:"1.0-0"}}
+            
+                                        <p *ngIf="details.bellcurveScore!=null">{{details.bellcurveScore}}</p>
+            
+                                        <p *ngIf="details.avgCIOScores==null || details.hrSubmittedDate==null">NA</p>
+            
+                                       
+                                    </td> -->
+                                    <!-- <td>
+                                        <p *ngIf="details.pipComments!=null"> {{details.pipComments}}<br>
+                                       <img src="{{details.pipAttachment}}"> 
+                                        </p>
+                                        <p *ngIf="details.pipComments==null" style="color: red">Pending</p>
+                                    </td> -->
+                                    <!-- <td *ngIf="roleid=='4'">
+                                        <button class="btn btn-primary editable-table-button btn-xs" data-toggle="modal"
+                                        data-target="#exampleModal" (click)="ViewScores(details)">Relieve from Organisation
+                                    </button><br><br>
+                                    <button class="btn btn-primary editable-table-button btn-xs" data-toggle="modal"
+                                        data-target="#viewbellcurve" (click)="ViewScores(details)">Remove from PIP
+                                    </button><br><br>
+                                        <button class="btn btn-primary editable-table-button btn-xs" data-toggle="modal"
+                                            data-target="#exampleModal" >View Employee Comments
+                                        </button><br><br>
+                                        <button class="btn btn-primary editable-table-button btn-xs" data-toggle="modal"
+                                            data-target="#exampleModal">View PIP Details
+                                        </button><br><br>
+                                    </td> -->
+            
+                                </tr>
+                            </tbody>
+                        </table>
+                        <span *ngIf="StaffAppraisalList.length==0">No Data </span>
+                        <div class="text-right">
+                            <br>
+                            <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
+                        </div>
+                    </div>
+                </div>
+    
+    
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+     
+    </div>
+
+
+    <div class="row" *ngIf="roleid=='2'">
+        <div class="col-lg-12">
+            <table class="table" id="download">
+                <thead>
+                    <tr>
+                        <!-- <th>Department</th>
+                        <th>Employee</th> -->
+                        <th>PIP Action Items</th>
+                        <th>Attachment</th>
+                        <th>Exit Criteria</th>
+                        <th>Training</th>
+                        <!-- <th>Comments</th> -->
+
+                        <th>Last Submission Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let details of StaffPIPActionItemList">
+                        <td>{{details.pipActionItem}}</td>
+                        <td>
+                            <img src="{{details.actionAttachment}}" style="width:50px;height: 50px;"
+                                *ngIf="details.actionAttachment!=null">
+                            <p *ngIf="details.actionAttachment==null">No Attachment</p>
+                        </td>
+                        <td>{{details.exitCriteria}}</td>
+                        <td>{{details.trainingname}}</td>
+
+                        <td>{{details.lastDateOfSubmission|date}}</td>
+                        <td>
+                            <button *ngIf="submitted!=1" class="button" data-toggle="modal"
+                                (click)="getpipActionID(details)" data-target="#commentModel">Update PIP Activity</button>
+                            <p *ngIf="submitted==1">Submitted</p>
+                        </td>
+
+
+                    </tr>
+
+
+                </tbody>
+            </table>
+            <span *ngIf="StaffPIPActionItemList.length==0">No Data </span>
+            <div class="text-right">
+                <br>
+                <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Reason for Removal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <p>Type</p>
+                    </div>
+                    <div class="col-lg-7">
+                        <select class="form-control inputfield" id="Type" name="Type" [(ngModel)]="Type">
+                            <option value="Select Type">Select Type</option>
+                            <option value="1">Retirement</option>
+                            <option value="2">Resignation </option>
+                            <option value="3">Terminated </option>
+                            <option value="4">From PIP</option>
+                        </select>
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <p>Reason</p>
+                    </div>
+                    <div class="col-lg-7">
+                        <textarea rows="3" id="Notes" name="Notes" [(ngModel)]="Notes" type="text" class="form-control"
+                            placeholder="Comments"></textarea>
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <p>Last working Day</p>
+                    </div>
+                    <div class="col-lg-7">
+                        <input type="date" id="lastworkingdate" name="lastworkingdate" [(ngModel)]="lastworkingdate"
+                            class="form-control">
+                    </div>
+                </div><br>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="remove()" data-dismiss="modal">Remove</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="modal fade" id="viewbellcurve" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Rating</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body scroll">
+
+                <div class="row">
+                    <div class="col-lg-1">
+                    </div>
+                    <div class="col-lg-3">
+                        <p style="padding:5px">
+                            Rating <span style="color: red;">*</span> </p>
+                    </div>
+                    <div class="col-lg-7">
+                        <select class="dropdown form-control" id="Score" name="Score" [(ngModel)]="Score" required>
+                            <option value="0">Select Rating</option>
+
+                            <!-- <td>{{((details.avgGroupHeadScores+details.avgCIOScores)/2)|number:"1.0-0"}}</td> -->
+
+                            <option *ngFor="let value of list" value="{{value.id}}">{{value.score}} - {{value.answers}}
+                            </option>
+                        </select>
+                    </div>
+                </div><br>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="update()">Update
+                    Rating</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="commentModel" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Employee Comments</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+
+            </div>
+            <div class="modal-body">
+                <p>Comments</p>
+                <textarea class="form-control" rows="5" id="empComments" name="empComments"
+                    [(ngModel)]="empComments"></textarea>
+                <br>
+                <p>Attachment</p>
+                <!-- <ngx-dropzone (change)="onSelect($event)" style="height: 60px;">
+                    <ngx-dropzone-label>Drop it here!</ngx-dropzone-label>
+                    <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                    </ngx-dropzone-preview>
+                </ngx-dropzone> -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                    (click)="UpdatePipEmployeeKraMap()">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
