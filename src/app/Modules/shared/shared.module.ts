@@ -9,6 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { EmployeeDashboardComponent } from './employee-dashboard/employee-dashboard.component';
+import { MyApprasailComponent } from './my-apprasail/my-apprasail.component';
 
 
 
@@ -17,7 +19,9 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
   declarations: [
     SharedComponent,
     HelpComponent,
-    SupportticketsComponent
+    SupportticketsComponent,
+    EmployeeDashboardComponent,
+    MyApprasailComponent
   ],
   imports: [
     CommonModule,
