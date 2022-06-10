@@ -1,0 +1,299 @@
+/* .bg {
+    background-image: url("assets/bg_login_blue.jpg");
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+} */
+.loginbtn {
+    width: 100px;
+    height: 30px;
+    border: none;
+    background-color: #6ca3d8;
+    color: white;
+    border-radius: 5px;
+  }
+  
+  .fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    /* background-image: url("../../../assets/Images/office.2.png"); */
+    background-color: aquamarine;
+  
+  }
+  
+  .field-icon {
+    float: right;
+    margin-left: -25px;
+    margin-top: -25px;
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* .bg {
+      background-image: url("assets/bg_login_blue.jpg");
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 100vh;
+  } */
+  .loginbtn {
+    height: 50px;
+    width: 240px;
+    left: 0px;
+    top: 0px;
+    border-radius: 5px;
+    background: #3247D5;
+    color: #FFFFFF;
+    border: none;
+  }
+  
+  .fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    /* background-image: url("../../assets/images/office.1.png"); */
+    ;
+    background-color: #95A0E2;
+  
+  }
+  
+  .field-icon {
+    position: relative;
+    bottom: 7%;
+    /* text-align: revert; */
+    left: 35%;
+  }
+  
+  .inndercard {
+    position: absolute;
+    width: 550px;
+    height: 599px;
+    background: #FFFFFF;
+    border-top-left-radius: 15px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom-left-radius: 15px;
+  }
+  
+  .inputclass {
+    height: 46px;
+    width: 420px;
+    left: 306px;
+    top: 316px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    border: 2px solid #C7C7C7;
+    outline: none;
+    padding-left: 20px;
+    Font: 'Poppins';
+  
+  
+  }
+  
+  .inputclass1 {
+  
+    color: #3247D5;
+    Font: 'Poppins';
+  
+  
+  }
+  
+  .btnalign {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10%;
+    width: 76%;
+    align-items: center;
+  }
+  
+  .imgdiv {
+    height: 599px;
+    width: 408px;
+    margin-left: 38%;
+  
+  
+  }
+  
+  .maindiv {
+    display: flex;
+    align-content: center;
+    align-items: stretch;
+    /* height: 100vh; */
+    margin-top: 4%;
+    margin-left: 250px;
+  
+  }
+  
+  .toggle-password {
+    margin: 0px;
+  }
+  
+  .companycode {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    /* identical to box height, or 125% */
+  
+  
+    color: #3247D5;
+  
+  
+  }
+  
+  input:focus~.floating-label,
+  input:not(:focus):valid~.floating-label {
+    top: 8px;
+    bottom: 10px;
+    left: 20px;
+    font-size: 11px;
+    opacity: 1;
+  }
+  
+  .inputText {
+    font-size: 14px;
+    width: 200px;
+    height: 35px;
+  }
+  
+  .floating-label {
+    position: absolute;
+    pointer-events: none;
+    left: 20px;
+    top: 18px;
+    transition: 0.2s ease all;
+  }
+  
+  
+  .defalutplace {
+    position: relative;
+    top: 5px;
+  }
+  
+  input:focus~.defalutplace {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 10px;
+    top: 0px;
+    line-height: 15px;
+    color: #3247D5;
+  
+  }
+  
+  .enter-your-name {
+  
+    /* margin: 10px 0px 0px 0px; */
+  
+    padding: 20px 10px 10px 25px;
+  
+    border-radius: 50px;
+  
+    border: solid 1px #dae7ec;
+  
+    background-color: #ffffff;
+  
+    outline: none;
+  
+    width: 100%;
+  
+    font-size: 14px;
+  
+    /* height: 75px; */
+  
+    height: 50px;
+  
+  }
+  
+  .input-group {
+  
+    position: relative;
+  
+    margin-left: 143px;
+  
+  }
+  
+  
+  
+  .input-group input:focus {
+  
+    font-size: 14px;
+  
+    outline: #999;
+  
+    padding: 20px 10px 10px 25px;
+  
+    box-shadow: 0 0 16px 0 #d4dbdd;
+  
+  }
+  
+  
+  
+  .input-group input:valid {
+  
+    font-size: 14px;
+  
+    outline: #999;
+  
+    padding: 20px 10px 10px 25px;
+  
+  }
+  
+  
+  
+  .input-group input:focus~label {
+  
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    /* identical to box height, or 125% */
+  
+  
+    color: #3247D5;
+    top: 5px;
+  
+  }
+  
+  .input-group label {
+  
+    color: #000000;
+  
+    font-size: 14px;
+    font-family: 'Poppins';
+  
+    font-weight: normal;
+  
+    position: absolute;
+  
+    pointer-events: none;
+  
+    left: 26px;
+  
+    top: 2px;
+  
+    transition: 0.2s ease all;
+  
+    -moz-transition: 0.2s ease all;
+  
+  }
+  
+  .placeholder {
+    display: inline-block;
+    min-height: 1em;
+    vertical-align: middle;
+    cursor: wait;
+    /* background-color: currentColor; */
+    opacity: .5;
+  }
+  

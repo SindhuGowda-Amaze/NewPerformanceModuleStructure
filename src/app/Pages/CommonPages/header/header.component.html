@@ -1,0 +1,128 @@
+<!-- <div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2">       
+            <img class="image"  class="logo" src="assets/Images/Logo_digiOffice_White.png">
+        </div> 
+        <div class="col-lg-2" style="display: flex;align-items: center;margin-top: -10px;
+        flex-wrap: nowrap;justify-content: start;">
+      <div class="time">
+      <p class="time1">{{hh}} </p> 
+      </div>     
+      <div class="time">
+      <p class="time1">{{mm}}</p>
+       </div>
+   <div class="time">
+      <p class="time1">{{ampm}}</p> 
+     </div>
+     </div>
+        <div class="col-lg-4"></div>
+         <div class="col-lg-1">
+             <img class="image"  src="assets/Images/noti.png">
+         </div>
+
+        <div class="col-lg-2">
+            <p class="user" style="color:white;font-size:16px;margin-top:25px;">Hii 
+                {{userName}} 
+            </p>
+        </div> 
+         <div class="col-lg-1">
+            <img (click)="logout()" class="logout" src="assets/Images/Logo_out.1.png">
+        </div>
+    
+     
+    </div>
+</div> -->
+
+
+<div class="container-fluid" *ngIf="temp=='1'" style="background: #3247D5; height:70px;">
+    <div class="row">
+        <div class="col-lg-3">
+            <img src="assets/Images/Logo_digiOffice_White.png" class="logo" alt="logo" routerLink="/CompanyDashboard">
+        </div>
+  
+        <div class="col-lg-2" style="display: flex;align-items: center;
+        flex-wrap: nowrap;justify-content: start;">
+      <div class="time">
+      <p class="time1">{{hh}} </p> 
+      </div>     
+      <div class="time">
+      <p class="time1">{{mm}}</p>
+       </div>
+   <div class="time">
+      <p class="time1">{{ampm}}</p> 
+     </div>
+     </div>
+        <div class="col-lg-3"></div>  
+        
+        <div class="col-lg-4" style="display: flex;
+        /* align-content: stretch; */
+        justify-content: flex-end;">
+            <div class="d-flex align-items-center" style="margin-right:10px">
+                <a data-toggle="dropdown">
+                    <img src="assets/Images/notification.png" style="width: 30px;">
+                  
+                </a>
+                <span style="color: red;padding-bottom: 30px;padding-right: 20px;">
+                    <div class="card" style="padding: 3px;border-radius: 20px;"><b>{{notificationCount}}</b></div></span>
+                <ul class="dropdown dropdown-menu" style="overflow-y: auto;
+        width: 330px;
+        height: 304px;
+        margin-top: 20px;
+        margin-left: -60px;
+        position: absolute;
+        will-change: transform;
+        top: 0px;
+        left: 0px;
+        transform: translate3d(15px, -5px, 0px);">
+                  
+                    <button style="margin-left: 235px;" (click)="ClearNotification()" type="button"
+                        class="btn-sm btn-danger ">Clear
+                        All</button>
+<br>
+                    <div class="container-fluid contain" style="font-family: 'Poppins';">
+                        <!-- <h6>No Notification Today !</h6> -->
+                        <div class="row" *ngFor="let item of notificationslist" [style.background]="item.seenColorCode" (click)="seennotification(item.id)">
+                            <div class="col-lg-4" >
+                           
+                                {{item.date|date}} <br><br><br>
+
+                            </div>
+                            <div class="col-lg-8">
+                                <h6 *ngIf="unseen!=1"  (click)="seen()">{{item.message}}</h6>
+                                <h6 *ngIf="unseen==1">{{item.message}}</h6>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12" style="overflow: auto;">
+
+                            </div>
+                        </div>
+
+                        <li class="divider"></li>
+                    </div>
+                </ul>
+                <div style="width: 160px;
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly; ">      
+                    <img src="assets/Images/usr.png">
+                    <p class="user">Hi {{userName}} </p>
+                    <img src="assets/Images/Logo_out.1.png" class="logout" (click)="logout()" >
+                </div>
+            </div>
+        </div>
+      <!-- 
+        <div class="col-lg-1">
+            <img  class="notification" src="assets/Images/notification.png">        
+        </div>
+        <div class="col-lg-2">
+            <img class="imageicon" src="assets/Images/usr.png">
+            <p class="user">Hi {{userName}}</p>        
+        </div>
+        <div class="col-lg-1">
+            <img src="assets/Images/Logo_out.1.png" class="logout" (click)="logout()" class="logout">
+        </div> -->
+    </div>
+</div>

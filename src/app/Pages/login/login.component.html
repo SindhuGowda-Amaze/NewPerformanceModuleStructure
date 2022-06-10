@@ -1,0 +1,68 @@
+<div class="container-fluid bg fullscreen" >
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10 maindiv">
+            <div class="inndercard">
+                <img src="assets/Images/Logo_digiOffice_Colored.png" style="width: 40%;margin-bottom: 5%;">
+
+                <!-- <div class="input-group ">
+
+                    <input type="text" class="inputclass" [(ngModel)]="companycode" (ngModelChange)="getcompanycode()"
+                        name="companycode">
+
+                    <span class="highlight"></span>
+
+                    <span class="bar"></span>
+
+                    <label class="placeholder">Company Code</label>
+
+                </div> -->
+                
+                <div class="input-group ">
+                    <select class="inputclass" (change)="getroleid($event)">
+                        <option selected>Select</option>
+                        <!-- <option value="1">Admin</option> -->
+                        <!-- <option value="2">Manager</option> -->
+                        <option value="2">Employee</option>
+                        <option value="3">HR</option> 
+                        <option value="4">Manager</option>
+                        <option value="5">SBU</option>
+                   </select>
+
+                </div>
+                <div class="input-group ">
+                    <input type="text" class="inputclass" [(ngModel)]="userName" name="userName">
+                    <label >Username</label>
+                </div>
+                <div class="input-group">
+                    <input *ngIf="showpassword==0" type="password" class="inputclass" [(ngModel)]="passWord"
+                    name="password" /> 
+                <input *ngIf="showpassword==1" type="text" class="inputclass" [(ngModel)]="passWord"
+                    name="password" />                
+                    <span class="fa fa-fw fa-eye field-icon toggle-password" style="color: #3247D5;
+                    margin-left: -224px;
+                    margin-top: 18px;" (click)="Showhidepassword()"></span>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Password</label>
+                </div>
+                <div class="btnalign">
+                    <a style=" color: #3247D5;"> Forgot Password</a>
+                    <button type="button" class="loginbtn" (click)="login()">Login</button>
+                </div>
+            </div>
+            <div class="imgdiv">
+                <!-- style="background-color: #5162cf; -->
+                <img src="assets/Images/MaskGroup.png">
+
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>

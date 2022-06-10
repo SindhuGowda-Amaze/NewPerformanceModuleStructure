@@ -1,0 +1,114 @@
+.sidenav {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: -0.6%;
+    left: 0;
+    background: #FFFFFF;
+    /* ContainerWhite_DropShadow */
+    box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding-top: 10px;
+    font-size: 11px;
+   
+  }
+  
+  
+  a.active {
+    color:#3247D5;
+    width: 100%;
+    font-size: 11px;
+  }
+  
+  
+  .icon28{
+    font-size: 11px;
+    color: #949393;
+  
+  }
+  
+  
+  .Active1 {
+  display: inline-flex;
+  color: #3247D5;
+  font-size: 11px;
+  }
+  .Active2 {
+  display: none;
+  color: #949393;
+  font-size: 11px;
+  }
+  
+  
+  .Active3 {
+  color: #949393;
+      font-size: 11px;
+  }
+  
+  .Active4 {
+    display: inline-flex;
+   color: #3247D5;
+        font-size: 11px;
+    }
+  
+  
+  .iconblue{
+    font-size: 11px;
+    color: #3247D5;
+  }
+  
+  
+  .icon{
+    color: #3247D5;
+    font-size: 11px;
+  }
+  
+  .sidenav a {
+    padding: 24px 0px 9px 0px;
+    text-decoration: none;
+    font-size: 15px;
+    color: gray;
+    display: block;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    color: #949393;
+    border-bottom: 1px solid gray;
+  
+  
+  }
+  
+  .sidenav a:hover {
+    color: #3247D5;
+    cursor: pointer;
+    font-size: 11px;
+  }
+  
+  .togglebtn{
+   /* background-color: #343536; */
+   border: none;
+   color: aliceblue;
+   font-size: 15px;
+   padding-left: 7%;
+   width: 100%;
+   text-align: left;
+  }
+  .sidebar{
+    height: 90vh;
+    margin-top: 75px;
+    position: fixed;
+    overflow-y: scroll;
+    font-size: 11px;
+  }
+  .image{
+    width: 13%; 
+     margin-right: 17px;
+  }
+  
+  
+  
+  
