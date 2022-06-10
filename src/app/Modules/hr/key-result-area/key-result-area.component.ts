@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PerformancemanagementService } from 'src/app/Pages/Services/performancemanagement.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-key-result-area',
@@ -9,7 +10,7 @@ import { PerformancemanagementService } from 'src/app/Pages/Services/performance
 export class KeyResultAreaComponent implements OnInit {
 
   
-  constructor(private PerformanceManagementService: PerformanceManagementService) { }
+  constructor(private PerformanceManagementService: PerformancemanagementService) { }
 
   keyresultlist: any;
   count: any;

@@ -7,7 +7,7 @@ import { PerformancemanagementService } from 'src/app/Pages/Services/performance
   styleUrls: ['./hr-dashboard.component.css']
 })
 export class HrDashboardComponent implements OnInit {
-  constructor(private PerformanceManagementService: PerformanceManagementService) { }
+  constructor(private PerformanceManagementService: PerformancemanagementService) { }
 
   countList: any;
   StaffID: any;

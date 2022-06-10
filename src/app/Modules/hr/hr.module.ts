@@ -15,6 +15,7 @@ import { StaffScoreReportComponent } from './staff-score-report/staff-score-repo
 import { ApprasialReportComponent } from './apprasial-report/apprasial-report.component';
 import { SalaryIncrementLetterComponent } from './salary-increment-letter/salary-increment-letter.component';
 import { HrDashboardComponent } from './hr-dashboard/hr-dashboard.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { HrDashboardComponent } from './hr-dashboard/hr-dashboard.component';
   ],
   imports: [
     CommonModule,
-    HrRoutingModule
+    HrRoutingModule,
+    SharedModule
   ]
 })
 export class HrModule { }

@@ -11,9 +11,11 @@ import { LoaderComponent } from './Pages/CommonPages/loader/loader.component';
 import { LoginComponent } from './Pages/login/login.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { SharedModule } from './Modules/shared/shared.module';
+
 import { NgxPaginationModule } from 'ngx-pagination';
-import { ApprasialCycleComponent } from './Modules/apprasial-cycle/apprasial-cycle.component';
+import { DatePipe } from '@angular/common';
+import { SharedModule } from './Modules/shared/shared.module';
+
 
 
 @NgModule({
@@ -25,20 +27,17 @@ import { ApprasialCycleComponent } from './Modules/apprasial-cycle/apprasial-cyc
     FooterComponent,
     LoaderComponent,
     LoginComponent,
-    ApprasialCycleComponent
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     SharedModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    HttpClientModule,
   ],
-  providers: [
-    {
-      provide: HttpClientModule
-    },
-  ],
+  providers: [DatePipe ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
