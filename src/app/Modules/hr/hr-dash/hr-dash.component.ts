@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HrDashComponent implements OnInit {
 
-  constructor(private PerformanceManagementService: PerformanceManagementService) { }
+  constructor(private PerformanceManagementService: PerformancemanagementService) { }
 
   stafflist: any;
   term: any;

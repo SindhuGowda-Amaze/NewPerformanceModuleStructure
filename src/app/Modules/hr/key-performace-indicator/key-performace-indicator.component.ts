@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 })
 export class KeyPerformaceIndicatorComponent implements OnInit {
 
-  constructor(private PerformanceManagementService:PerformanceManagementService) { }
+  constructor(private PerformanceManagementService:PerformancemanagementService) { }
 
 
 

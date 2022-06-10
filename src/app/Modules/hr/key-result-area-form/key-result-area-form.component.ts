@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PerformancemanagementService } from 'src/app/Pages/Services/performancemanagement.service';
 import { ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-key-result-area-form',
@@ -9,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class KeyResultAreaFormComponent implements OnInit {
 
-  constructor(private PerformanceManagementService: PerformanceManagementService,
+  constructor(private PerformanceManagementService: PerformancemanagementService,
     private ActivatedRoute: ActivatedRoute) { }
 
   kraName: any;
