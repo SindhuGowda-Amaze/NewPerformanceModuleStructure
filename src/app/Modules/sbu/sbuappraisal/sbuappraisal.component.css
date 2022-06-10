@@ -1,0 +1,11 @@
+.btn{
+    background: #3247D5;
+}
+.bggreen{
+    background: rgb(93, 228, 93);
+}
+.scroll{
+    overflow-y: auto;
+    height:270px;
+    float: right;
+}
