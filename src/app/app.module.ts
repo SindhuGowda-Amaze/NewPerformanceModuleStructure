@@ -13,6 +13,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from './Modules/shared/shared.module';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -30,13 +31,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FormsModule,
     AppRoutingModule,
     SharedModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    HttpClientModule,
   ],
-  providers: [
-    {
-      provide: HttpClientModule
-    },
-  ],
+  providers: [DatePipe ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
