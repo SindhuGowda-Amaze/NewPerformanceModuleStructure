@@ -25,8 +25,6 @@ export class SidebarComponent implements OnInit {
 
     this.GetPiPActionItemsForStaff();
 
-    
-
   }
   public GetPiPActionItemsForStaff() {
     debugger
@@ -35,7 +33,6 @@ export class SidebarComponent implements OnInit {
         debugger;
         let temp: any = res.filter(x=>x.staffID==this.StaffID)
           this.StaffPIPActionItemList = temp
-      
       }
     )
   }
