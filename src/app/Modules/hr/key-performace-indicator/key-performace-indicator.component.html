@@ -1,0 +1,74 @@
+ 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-11">
+            <br>
+            <p class="headings">Performance Indicator Dashboard</p>
+        </div>
+        <div class="col-lg-1">
+            <br>
+            <p class="count">Count:{{count}} </p>
+        </div>
+    </div>
+    <br>
+   <div class="card">
+       <br>
+    <div class="row FilterClass ">
+        <div class="col-lg-1">
+            <p class="filter">Filter By</p>
+        </div>
+        <div class="col-lg-3">
+                <input type="search" class="form-control search" [(ngModel)]="search"  placeholder="Search for Name..">
+        </div>
+       <div class="col-lg-3">
+        <select class="form-control columnname" [(ngModel)]="kraid" name="kraid" (change)="getkraid($event)">
+            <option value="0">Select By  Goal</option>
+            <option *ngFor="let details of kratypelist"  value="{{details.kraName}}">{{details.kraName}}</option>
+       
+        </select>
+        </div>
+    </div><br>
+</div> <br>
+    <div class="row">
+        <div class="col-lg-11"></div>
+        <div class="col-lg-1">
+            <button class="form-control Add" routerLink="/KeyPerformanceIndicatorform">Add</button>
+        </div>
+    </div> <br>
+ 
+        <div class="row">
+            <div class="col-lg-12">
+                    <table class="table">
+                    <thead>
+                        <tr *ngIf="(indicatorlist | filter: search).length > 0; else noResults">
+                            <th>Goal Type</th>
+                            <th>Goal Name</th>
+                            <th>KPI Name</th>
+                            <th>Description</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>    
+                        <tr *ngFor="let details of indicatorlist |filter:search">
+                            <td>{{details.kraTypeID}}</td>
+                            <td>{{details.kraName}}</td>                        
+                            <td>{{details.kpiName}}</td>
+                            <td>{{details.description}}</td>
+                            <td>
+                                <button class="form-control edit" [routerLink]="['/KeyPerformanceIndicatorform', details.id]" >Edit</button>
+                                <button class="form-control edit" (click)="delete(details.id)">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- <span *ngIf="indicatorlist.length==0">No data Found</span> -->
+                <ng-template #noResults>
+                    <div class="card">
+                        <p class="NoResultShow"> No results found </p>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    
+
+</div>

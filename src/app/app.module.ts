@@ -13,6 +13,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from './Modules/shared/shared.module';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ApprasialCycleComponent } from './Modules/apprasial-cycle/apprasial-cycle.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     SidebarComponent,
     FooterComponent,
     LoaderComponent,
-    LoginComponent
+    LoginComponent,
+    ApprasialCycleComponent
   ],
   imports: [
     BrowserModule,

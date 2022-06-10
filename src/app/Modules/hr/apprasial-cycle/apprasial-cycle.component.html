@@ -1,0 +1,89 @@
+    
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-11">
+            <br>
+            <p class="headings">Appraisal Cycle </p>
+        </div>
+        <div class="col-lg-1">
+            <br>
+            <p class="count">Count:{{count}}</p>
+        </div>
+    </div>
+    <br>
+   <div class="card">
+      
+    <div class="row FilterClass ">
+        <div class="col-lg-1">
+            <p class="filter">Filter By</p>
+        </div>
+        <div class="col-lg-5">
+                <input type="search" class="form-control search" [(ngModel)]="search"  placeholder="Search for Name..">
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</div> <br>
+    <div class="row">
+        <div class="col-lg-11"></div>
+        <div class="col-lg-1">
+            <button class="form-control Add" routerLink="/AppraisalCycleform">Add</button>
+        </div>
+    </div> <br>
+  <div>
+        <div class="row">
+            <div class="col-lg-12">
+                    <table class="table">
+                    <thead>
+                        <tr *ngIf="(appraisallist | filter: search).length > 0; else noResults"
+                            >
+                            <th>Appraisal Cycle Name</th>
+                            <th>Frequency Type</th>
+                            <th>Cycle Start Date</th>
+                            <th>Cycle End Date</th>
+                            <th>Goal Setting Last Date</th>
+                            <th>Employee Submission Last Date</th>
+                            <th>Manager Review Last Date</th>
+                            <th>SBU Review Last Date</th>
+                            <th>HR Review Last Date</th>
+                            <th>Appraisal Closing Last Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>    
+                        <tr *ngFor="let details of appraisallist | filter:search">
+                            <td>{{details.appraisalCycleName}}</td>
+                            <td>{{details.frequencyName}}</td>
+                            <td>{{details.cycleStartDate}}</td>
+                            <td>{{details.cycleEndDate}}</td>
+                            <td>{{details.goalSettingDate}}</td>
+                            <td>{{details.employeeSubmissionDate}}</td>
+                            <td>{{details.managerReviewLastDate}}</td>
+                            <td>{{details.sbuReviewLastDate}}</td>
+                            <td>{{details.hrReviewLastDate}}</td>
+                            <td>{{details.appraisalClosingLastDate}}</td>
+                            <td>
+                                <br>
+                                <button class="form-control Add"  [routerLink]="['/AppraisalCycleform', details.id]">Edit</button><br>
+                                <button class=" form-control  Add"  (click)="delete(details.id)" >Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span *ngIf="appraisallist.length==0">No data Found</span>
+                <ng-template #noResults>
+                    <div class="card">
+                        <p class="NoResultShow"> No results found </p>
+                    </div>
+                </ng-template>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

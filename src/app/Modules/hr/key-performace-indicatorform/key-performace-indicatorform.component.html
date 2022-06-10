@@ -1,0 +1,78 @@
+<div class="container-fluid">
+    <br>
+    <div class="row">
+        <br>
+        <div class="col-lg-4">
+            <p class="headings">Key Performance Indicator Details </p>
+        </div>
+        <div class="col-lg-8"></div>
+    </div>
+    <div class="card">
+        <form #kpiform="ngForm">
+            <br>
+            <div class="row ">
+                <div class="col-lg-2">
+                   <p class="columnname">Goal Type <span style="color: red;">*</span> </p>
+               </div>
+                <div class="col-lg-2 ">
+                    <p class="columnname">Goal<span style="color: red;">*</span> </p>
+                </div>
+                <div class="col-lg-3">
+                    <p class="columnname">KPI Name <span style="color: red;">*</span></p>
+                </div>
+                <!-- <div class="col-lg-2">
+                <p class="columnname">Performance Indicator </p>
+               </div> -->
+                <div class="col-lg-4">
+                    <p class="columnname">Description <span style="color: red;">*</span> </p>
+                </div>
+            </div>
+            <div class="row header">
+                <div class="col-lg-2">
+                    <select class="form-control columnname" [(ngModel)]="goaltypeid" name="goaltypeid" id="goaltypeid" required
+                        (change)="getgoaltype($event)">
+                        <option value="">Select Goal Type</option>
+                        <option *ngFor="let details of goaltypelist" value="{{details.kraType}}">{{details.kraType}}</option>
+                    </select>
+                </div>
+                <div class="col-lg-2">
+                    <select class="form-control columnname" [(ngModel)]="kraid" name="kraid" required
+                        (change)="getkraid($event)">
+                        <option value="0">Select Goal</option>
+                        <option *ngFor="let details of kratypelist" value="{{details.id}}">{{details.kraName}}</option>
+                    </select>
+                </div>
+                <div class="col-lg-3 columnname">
+                    <textarea class="form-control" placeholder="KPI Name" type="text" required
+                        [(ngModel)]="kpiName" name="kpiName"></textarea>
+                </div>
+
+                <!-- <div class="col-lg-2">
+                <select class="form-control columnname" [(ngModel)]="indicatorid" name="indicatorid" (change)="getindicatorid($event)">
+                    <option value="0">Select KraResult</option>
+                   <option *ngFor="let details of performancelist"  value="{{details.id}}">{{details.rating}}</option>              
+                </select>
+            </div> -->
+                <div class="col-lg-4 column">
+                    <textarea class="form-control" placeholder="Description" type="text" required
+                        [(ngModel)]="description" name="description"></textarea>
+                </div>
+
+
+
+            </div> <br>
+            <div class="row">
+                <div class="col-lg-9"></div>
+                <div class="col-lg-1">
+                    <button class="form-control edit" *ngIf="id==undefined" [disabled]="kpiform.form.invalid"
+                        (click)="save()">Save</button>
+                    <button class="form-control edit" *ngIf="id!= undefined" (click)="Update()">Update</button>
+                </div>
+                <div class="col-lg-1">
+                    <button class="form-control edit" (click)="cancel()">Cancel</button>
+                </div>
+            </div>
+            <br>
+
+        </form>
+    </div>

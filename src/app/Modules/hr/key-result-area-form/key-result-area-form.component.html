@@ -1,0 +1,94 @@
+<div class="container-fluid">
+    <br>
+    <div class="row">
+        <br>
+        <div class="col-lg-4">
+            <p class="headings">Goal Details </p>
+        </div>
+        <div class="col-lg-8"></div>
+    </div>
+    <div class="card">
+        <form #Kraform="ngForm">
+            <br>
+            <div class="row ">
+                <div class="col-lg-2">
+                    <p>Goal Type<span style="color: red;">*</span></p>
+                </div>
+                <div class="col-lg-2 ">
+                    <p>Goal Name <span style="color: red;">*</span></p>
+                </div> 
+                <div class="col-lg-2">
+                <p class="columnname">Select Position <span style="color: red;">*</span> </p>
+            </div>
+                <div class="col-lg-2">
+                    <p>Description <span style="color: red;">*</span></p>
+                </div>
+            </div>
+            <div class="row header">
+                <div class="col-lg-2">
+                    <select class="form-control"  [(ngModel)]="kratypeid" name="kratypeid"  (change)="getkratypeid($event)"  required>
+                        <option value="">Select Goal Type</option>
+                        <option *ngFor="let details of kratypelist" value="{{details.kraType}}">{{details.kraType}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-lg-2 ">
+                    <input class="form-control" placeholder="Goal Name " [(ngModel)]="kraName" required name="kraName">
+                </div>
+                <div class="col-lg-2">
+                    <select class="form-control" id="roleTypeid" name="roleTypeid" required [(ngModel)]="roleTypeid"
+                        (change)="getRoleID($event)">
+                        <option value="">Select Position</option>
+                        <option *ngFor="let details of roleTypeList" value="{{details.id}}">{{details.short}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-lg-3 ">
+                    <textarea class="form-control" id="description"  [(ngModel)]="description" name="description" required
+                        placeholder="Write here.."></textarea>
+                </div>
+
+            </div> <br>
+            <div class="row">
+                <div class="col-lg-9"></div>
+                <div class="col-lg-1">
+                    <button class="form-control cancel" *ngIf="id==undefined" [disabled]="Kraform.form.invalid" (click)="Add()">Add</button>
+                    <button class="form-control cancel" *ngIf="id!=undefined" (click)="Update()">Update</button>
+                </div>
+                <div class="col-lg-1">
+                    <button class="form-control cancel" (click)="cancel()">Cancel</button>
+                </div>
+            </div>
+            <br>
+
+            <div class="row" *ngIf="tablecount==1">
+                <div class="col-lg-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Goal Name</th>
+                                <th>Goal Type</th>
+                                <th>Position</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr *ngFor="let details of keyresultArray">
+                                <td>{{details.KRAName}}</td>
+                                <td>{{details.KraTypeID}}</td>
+                                <td>{{details.Type}}</td>
+                                <td>{{details.Description}}</td>
+                            </tr>
+                        </thead>
+                    </table>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-11"></div>
+                        <div class="col-lg-1">
+                            <button class="form-control button" (click)="save()"> Save</button><br>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+  
+   </form>
+</div>
