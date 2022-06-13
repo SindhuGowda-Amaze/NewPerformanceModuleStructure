@@ -1,1 +1,113 @@
-<p>supporttickets works!</p>
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-lg-11">
+            <br>
+            <p class="headings">Support Tickets</p>
+        </div>
+    </div><br>
+    <!-- <hr> -->
+    <div class="card">
+        <div class="row head">
+            <div class="col-lg-3">
+                <p>Date</p>
+            </div>
+            <div class="col-lg-3">
+                <p>Time</p>
+            </div>
+            <div class="col-lg-3">
+                <p>Type Of Issues</p>
+            </div>
+            <div class="col-lg-3">
+                <p>Priority</p>
+            </div>          
+        </div>
+        
+        <div class="row header">
+            <div class="col-lg-3">
+                <input class="form-control" type="date" name="date" id="date" [(ngModel)]="date" min="{{todaydate}}" max="{{todaydate}}">
+            </div>
+            <div class="col-lg-3">
+              <input class="form-control" type="time"  name="time" id="time" [(ngModel)]="time" >
+            </div>
+            <div class="col-lg-3">       
+                <select class="form-control" name="typeofiisue" id="typeofissue" [(ngModel)]="typeofissue">
+                    <option value="0">Select Issue</option>
+                    <option  value="UI Issue">UI Issue</option>
+                    <option  value="Data Issue">Data Issue</option>
+                    <option  value="Functionality Issue">Functionality Issue</option>
+                </select>
+            </div>
+            <div class="col-lg-3">       
+                <select class="form-control" name="prority" id="prority" [(ngModel)]="prority" >
+                    <option value="0">Select Priority Type</option>
+                    <option  value="P1">P1</option>
+                    <option  value="P2">P2</option>
+                    <option  value="P3">P3</option>
+                </select>
+            </div>         
+        </div> <br><br>
+        <div class="row">
+            <div class="col-lg-3" *ngIf="id==null || id==undefined" >
+                <p>Upload Issue Images</p>
+            </div>
+            <div class="col-lg-4">
+                <p>Comments</p>
+            </div>
+           <!-- <div class="col-lg-3">
+               <p>Status</p>
+           </div> -->
+         
+        </div>
+        <div class="row">
+            <div class="col-lg-3" *ngIf="id==null || id==undefined" >
+                <ngx-dropzone (change)="onSelect($event)" [(ngModel)]="screenShot" style="width:100% ;height: auto; text-align: center;">
+                    <ngx-dropzone-label>Please Attach Photo!</ngx-dropzone-label>
+                    <ngx-dropzone-preview *ngFor="let f of files1" [removable]="true" (removed)="onRemove(f)">
+                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                    </ngx-dropzone-preview>
+                </ngx-dropzone>
+            </div>
+            <div class="col-lg-4">
+                <textarea class="form-control" placeholder="Comments" rows="5" name="comments" id="comments" [(ngModel)]="comments"></textarea>
+            </div>
+            <!-- <div class="col-lg-3">
+                <input class="form-control" placeholder="Status"  name="status" id="status" [(ngModel)]="status">
+            </div> -->
+            
+              
+        </div><br>
+         
+        <!-- <div class="row">
+            <div class="col-lg-3">
+                <p>Company Name</p>
+            </div>
+            <div class="col-lg-3">
+                <p>Application Name </p>
+            </div>
+        </div> -->
+       
+        <div class="row">
+            <!-- <div class="col-lg-3">
+                <input class="form-control" placeholder="Company Name" name="companyname" id="companyname" [(ngModel)]="companyname">
+            </div>
+            <div class="col-lg-3">
+                <input class="form-control" placeholder="Application Name" name="applicationName" id="applicationName" [(ngModel)]="applicationName">
+            </div> -->
+           
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-10"></div>
+            <div class="col-lg-1">
+                <!-- <button class="form-control button1">Save</button> -->
+                <button class="form-control cancel" *ngIf="id==null || id==undefined" (click)="save()">Save</button>
+                <button class="form-control cancel" *ngIf="id!=null || id!=undefined" (click)="Update()">Update</button>
+            </div>
+            <div class="col-lg-1">
+                <button class="form-control  cancel " (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+

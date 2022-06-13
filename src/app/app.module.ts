@@ -18,6 +18,7 @@ import { SharedModule } from './Modules/shared/shared.module';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +37,7 @@ import { SharedModule } from './Modules/shared/shared.module';
     SharedModule,
     NgxPaginationModule,
     HttpClientModule,
+
   ],
   providers: [DatePipe ],
   bootstrap: [AppComponent]

@@ -39,16 +39,18 @@ import { MyApprasailComponent } from './my-apprasail/my-apprasail.component';
     NgxPaginationModule,
     Ng2SearchPipeModule,
     NgxDropzoneModule
+
+
   ],
   providers: [
     // {
-    //   provide: ConnectionServiceOptionsToken,
-    //   useValue: <ConnectionServiceOptions>{
-    //     enableHeartbeat: false,
-    //     heartbeatUrl: '/assets/ping.json',
-    //     requestMethod: 'get',
-    //     heartbeatInterval: 3000
-    //   }
+    //   // provide: ConnectionServiceOptionsToken,
+    //   // useValue: <ConnectionServiceOptions>{
+    //   //   enableHeartbeat: false,
+    //   //   heartbeatUrl: '/assets/ping.json',
+    //   //   requestMethod: 'get',
+    //   //   heartbeatInterval: 3000
+    //   // }
     // },
     DatePipe,
     
