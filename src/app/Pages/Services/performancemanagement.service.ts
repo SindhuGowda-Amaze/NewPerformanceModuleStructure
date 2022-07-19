@@ -8,13 +8,16 @@ export class PerformancemanagementService {
 
    //public baseURL1 = "http://localhost:4199/";
  //  public baseURL = "http://103.133.214.197/PerformanceManagement/";
- public baseURL= "http://103.133.214.197/PerformanceDemoAPI/";
-
+ public baseURL= "http://23.101.22.93/PerformanceDemoAPI/";
+ public host = "https://23.101.22.93//DigiOfficeCoreHRAPI"
+ public host1=" https://asticom.digiofficeapp.com/SupportAPI/"
+ public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
 
  // public host = "https://digioffice.amazeone.co/DigiOfficeAsticomAPI";
- public host = "https://digioffice.amazeone.co/DigiOfficeAPI"
- public host1="https://support.amazeone.co/SupportAPI/";
- public hoet2 = "http://103.133.214.197/LearningandDevelopment/";
+
+//  public host1="https://support.amazeone.co/SupportAPI/";
+
+//  public hoet2 = "http://103.133.214.197/LearningandDevelopment/";
 
  url: any;
  constructor(private http: HttpClient) {
