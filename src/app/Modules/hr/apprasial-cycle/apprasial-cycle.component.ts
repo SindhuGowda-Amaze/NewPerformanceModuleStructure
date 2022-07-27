@@ -52,9 +52,4 @@ export class ApprasialCycleComponent implements OnInit {
       }
     })
   }
-
-
-
-
-
 }

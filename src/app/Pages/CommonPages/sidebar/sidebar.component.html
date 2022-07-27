@@ -33,7 +33,7 @@
 
         <div id="goalset" class="collapse" style="padding-left: 7%;">
 
-            <a routerLink="/hr/AppraisalCycle" class="tablinks" (click)="highlight($event)" (click)="Appraisal()"
+            <a routerLink="/hr/ApprasialCycle" class="tablinks" (click)="highlight($event)" (click)="Appraisal()"
                 *ngIf="roleid=='3'">
                 <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 17px;"
                     [ngClass]="active != 'AppraisalCycle' ? 'Active1' : 'Active2'" />
@@ -50,7 +50,7 @@
                 &nbsp;
                 <span [ngClass]="active == 'course' ? 'Active1' : 'Active3'"> Goals </span>
             </a>
-            <a routerLink="/hr/KeyPerformanceIndicator" class="tablinks" (click)="highlight($event)" (click)="Kpi()">
+            <a routerLink="/hr/KeyPerformaceIndicator" class="tablinks" (click)="highlight($event)" (click)="Kpi()">
                 <!-- <img  class="dashboard" src="assets/Images/Vector.png" /> -->
                 <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 17px;"
                     [ngClass]="active != 'kpi' ? 'Active1' : 'Active2'" />
@@ -80,7 +80,7 @@
         <span [ngClass]="active == 'Bell' ? 'Active1' : 'Active3'">Bell Curve Fitting</span>
     </a>
 
-            <a class="togglebtn button" *ngIf="roleid=='3'" routerLink="/StaffScoreReport" class="tablinks"
+            <a class="togglebtn button" *ngIf="roleid=='3'" routerLink="/hr/StaffScoreReport" class="tablinks"
             (click)="highlight($event)" (click)="StaffScore()">
             <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
                 [ngClass]="active != 'StaffScore' ? 'Active1' : 'Active2'" />
@@ -93,7 +93,7 @@
     
 
 
-    <a class="togglebtn button" routerLink="/hr/AppraisalReport" class="tablinks" (click)="highlight($event)"
+    <a class="togglebtn button" routerLink="/hr/ApprasialReport" class="tablinks" (click)="highlight($event)"
         (click)="AppraisalReport()" *ngIf="roleid=='3'|| roleid=='4'">
         <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
             [ngClass]="active != 'AppraisalReport' ? 'Active1' : 'Active2'" />

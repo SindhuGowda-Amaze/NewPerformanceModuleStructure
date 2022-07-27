@@ -190,7 +190,7 @@ export class ApprasialCycleFormComponent implements OnInit {
       this.PerformanceManagementService.InsertAppraisalCycle(json).subscribe(
         data => {
           Swal.fire("Successfully Submitted...!");
-          location.href = "#/AppraisalCycle"
+          location.href = "#/hr/ApprasialCycle"
         })
     }
   
@@ -219,12 +219,12 @@ export class ApprasialCycleFormComponent implements OnInit {
         debugger
         let appraisallist = data;
         Swal.fire("Updated Successfully");
-        location.href = "#/AppraisalCycle";
+        location.href = "#/hr/ApprasialCycle"
       })
   }
 
   Cancel() {
-    location.href = "#/AppraisalCycle";
+    location.href = "#/hr/ApprasialCycle"
   }
 
 
