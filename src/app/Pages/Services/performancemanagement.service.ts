@@ -8,16 +8,15 @@ export class PerformancemanagementService {
 
    //public baseURL1 = "http://localhost:4199/";
  //  public baseURL = "http://103.133.214.197/PerformanceManagement/";
- public baseURL= "http://23.101.22.93/PerformanceDemoAPI/";
- public host = "https://23.101.22.93//DigiOfficeCoreHRAPI"
- public host1=" https://asticom.digiofficeapp.com/SupportAPI/"
- public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
-
  // public host = "https://digioffice.amazeone.co/DigiOfficeAsticomAPI";
-
 //  public host1="https://support.amazeone.co/SupportAPI/";
-
 //  public hoet2 = "http://103.133.214.197/LearningandDevelopment/";
+
+
+baseURL = "http://23.101.22.93/CoreDigiPerformanceManagementAPI";
+public host = "https://23.101.22.93/DigiOfficeCoreHRAPI"
+public host1=" https://asticom.digiofficeapp.com/SupportAPI/"
+public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
 
  url: any;
  constructor(private http: HttpClient) {
@@ -492,7 +491,19 @@ public GetStaffExitFormality() {
 }
 
 
+public InsertExceptionLogs(data: any) {
+  debugger;
+  this.url = this.host + '/Master/InsertExceptionLogs';
+  return this.http.post(this.url, data);
 
+}
+
+public GetExceptionLogs() {
+  return this.http.get<any[]>(
+    this.host + "/Master/GetExceptionLogs"
+
+  );
+}
 
 
 

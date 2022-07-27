@@ -1,0 +1,668 @@
+/* .card1 {
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    box-shadow: 0 2px 3px 0 rgb(0 0 0 / 10%);
+    border-radius: 15px;
+    background-color:white; 
+     height: 325px;
+     width: 275px;
+   
+  }
+  .front, .back {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    backface-visibility: hidden;
+  }
+
+  .title_outer1 {
+    float: right;
+    width: 276px;
+    height:80px;
+    top: 90px;
+    margin: -21px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+    background-color: #02CFFF ;
+  }
+
+  .top4{
+    background: #02CFFF  ;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+   }
+
+   .calend{
+    height: 20.01px;
+   left: 20.94%;
+   right: 81.67%;
+   margin-top: 30px;
+   color:white;
+   margin-left: 15px;
+ }
+
+ .font{
+    color:white;
+    font-size: 19px;
+    line-height: 15px;
+    margin-top: 30px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.Number{
+    text-align: center;
+  padding-top: 22px;
+  color: gray;
+  font-size: 60px;
+  font-weight: 700;
+}
+.clickbutton1 {
+    border: 2px solid;
+    background-color: #3247D5;
+    font-size: 13px;
+    border-radius: 5px;
+    padding: 4px;
+    width: 150px;
+    margin-top: -10px;
+    color: white; 
+  } */
+
+  
+  .Number{
+    text-align: center;
+  padding-top: 22px;
+  color: gray;
+  font-size: 62px;
+  font-weight: 700;
+  }
+  .CloseBTN{
+  background-color:#3247D5;
+  border:none;
+  border-radius: 5px;
+  color:white
+  }
+  body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  }
+  
+  div {
+  width: 100%;
+  
+  }
+  
+  .container {
+  margin: 20px;
+  width: 500px;
+  height: auto;
+  perspective: 1000px;
+  }
+  
+  .card {
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  box-shadow: 0 2px 3px 0 rgb(0 0 0 / 10%);
+  border-radius: 10px;
+  width: 275px;
+  height: 325px;
+  overflow-y: scroll;
+  }
+  
+  .attendance-day {
+  font-size: 14px;
+  text-transform: uppercase;
+  }
+  
+  .card1 {
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  box-shadow: 0 2px 3px 0 rgb(0 0 0 / 10%);
+  border-radius: 15px;
+  background-color:white; 
+   height: 325px;
+   width: 275px;
+  
+  }
+  
+  .backflip {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: -6px;
+  }
+  
+  .backflip1 {
+  display: flex;
+  justify-content: space-between;
+  }
+  
+  .bcakbtn {
+  width: 80px;
+  height: 33px;
+  border: none;
+  border-radius: 5px;
+  font-size: 12px;
+  background-color: #939598;
+  font-weight: white;
+  color: white;
+  }
+  
+  .viewall {
+  width: 80px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 12px;
+  background-color: #3247D5;
+  font-weight: white;
+  color: white;
+  cursor: pointer;
+  
+  }
+  
+  
+  .front, .back {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+  }
+  
+  
+  .front1, .back1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+  }
+  
+  .clickbutton {
+  border: 1px solid;
+  background-color: white;
+  font-size: 12px;
+  border-radius: 6px;
+  padding: 4px;
+  width: 150px;
+  }
+  
+  .clickbutton1 {
+  border: 2px solid;
+  background-color: #3247D5;
+  font-size: 13px;
+  border-radius: 5px;
+  padding: 4px;
+  width: 150px;
+  margin-top: -10px;
+  color: white; 
+  }
+  
+  .backtext {
+  margin-bottom: 11.5rem;
+  }
+  
+  .completetext {
+  color: #2F87CC;
+  font-size: 14px;
+  }
+  
+  .back {
+  transform: rotateY(180deg);
+  
+  }
+  
+  td {
+  text-align: center;
+  border-right: solid 1px #b5b4b4;
+  border-left: solid 1px #b5b4b4;
+  border-bottom: solid 1px #b5b4b4;
+  border-top: solid 1px #b5b4b4;
+  height: 10px;
+  }
+  
+  .tdred {
+  color: red;
+  }
+  
+  .text-center {
+  text-align: center;
+  }
+  
+  .vertical-middle, .vertical-middle .table-cell {
+  vertical-align: middle;
+  }
+  
+  .fixed-layout {
+  table-layout: fixed;
+  }
+  
+  .table-layout {
+  display: table;
+  width: 100%;
+  height: 13%;
+  border-collapse: collapse;
+  margin: 3px;
+  
+  }
+  
+  .count-size {
+  font-size: 14px;
+  clear: both;
+  font-family: 'Poppins';
+  color: #555;
+  line-height: 20px;
+  }
+  
+  .din-regular {
+  font-family: 'Poppins';
+  font-size: 14px;
+  }
+  
+  .din-Bold {
+  font-family: 'Poppins';
+  font-size: 14px;
+  }
+  
+  
+  .title_outer {
+  float: left;
+  max-width: 78%;
+  padding: 3px 0;
+  }
+  
+  .title_outer1 {
+  float: left;
+  width: 276px;
+  height:80px;
+  top: 90px;
+  margin: -21px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: #02CFFF ;
+  }
+  
+  .card_title {
+  font-size: 18px;
+  color: #555;
+  line-height: 22px;
+  margin: 0;
+  }
+  
+  .sub-title-small {
+  font-weight: lighter;
+  font-size: 12px;
+  display: block;
+  clear: both;
+  margin: 5px 0;
+  }
+  
+  .top{
+  background: #02CFFF ;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  }
+  
+  .top1{
+  background: #FBB584 ;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  }
+  
+  .top2{
+  background: #95A0E2 ;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  }
+  
+  .top3{
+  background: #FF756D ;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  }
+  
+  .top4{
+  background: #02CFFF  ;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  }
+  
+  
+  .font{
+  color:white;
+  font-size: 19px;
+  line-height: 15px;
+  margin-top: 30px;
+  font-weight: bold;
+  margin-left: 20px;
+  }
+  
+  .backbtn {
+  
+  color: #777 !important;
+  font-size: 12px;
+  font-family: 'Poppins';
+  line-height: 14px;
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  z-index: 1;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  border-radius: 10px;
+  height: 30px;
+  width: 80px;
+  }
+  
+  .Hiliday_list li {
+  display: table-row;
+  }
+  
+  .Hiliday_list li:first-child .holidayName_cell {
+  border-top: none;
+  }
+  
+  .Hiliday_list li .holiday_cell {
+  border-top: black;
+  vertical-align: middle;
+  }
+  
+  .Hiliday_list li .holiday_cell .holiday-icon-sheet, .Hiliday_list li .holiday_cell .holidayName {
+  vertical-align: middle;
+  }
+  
+  .holiday-icon-sheet {
+  width: 35px;
+  height: 35px;
+  display: inline-block;
+  
+  }
+  
+  li {
+  margin-left: 40px;
+  float: inline-end;
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  width: 80%;
+  border-bottom: 1px solid rgba(0, 0, 0, .7);
+  
+  }
+  
+  .holidayflow {
+  
+  flex-flow: column-reverse;
+  height: 235px;
+  overflow-y: scroll;
+  }
+  
+  
+  
+  ::-webkit-scrollbar {
+  width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+  background: #2F87CC;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  }
+  
+  .holidayName {
+  color: #777;
+  font-size: 16px;
+  font-family: 'Poppins';
+  display: inline-block;
+  width: 83%;
+  margin-left: 10px;
+  }
+  
+  .holiday-date-day-name {
+  color: #777;
+  font-size: 12px;
+  font-family: 'Poppins';
+  display: block;
+  clear: both;
+  line-height: 20px;
+  margin-left: 40px;
+  margin-top: -14px;
+  }
+  
+  .count-size {
+  font-size: 20px;
+  clear: both;
+  font-family: 'Poppins';
+  color: #555;
+  line-height: 20px;
+  }
+  
+  .din-regular1 {
+  font-family: 'Poppins';
+  font-size: 14px;
+  }
+  
+  .leavetble {
+  border-right-style: hidden;
+  width: 272px;
+  border-left-style: hidden;
+  margin-top: 10px
+  }
+  
+  .leavetble1{
+  border-right-style: hidden;
+    width: 272px;
+    border-left-style: hidden;
+    margin-top: -10px;
+    height: 56px;
+  }
+  
+  .count-size {
+  font-size: 20px;
+  clear: both;
+  font-family: 'Poppins';
+  color: #555;
+  line-height: 20px;
+  }
+  
+  .name{
+  font-family: 'Poppins';
+  font-size: 13px;
+  margin-top: 3px;
+  margin-left: -5px;
+  
+  }
+  
+  .name1{
+  font-family: 'Poppins';
+  font-size: 13px;
+  margin-top: 3px;
+  
+  }
+  
+  .upload{
+  margin-left: -19px;
+  border-radius: 6px;
+  height: 28px;
+  background-color: #36acdd;
+  color:white
+  }
+  
+  .calend{
+  height: 20.01px;
+  left: 20.94%;
+  right: 81.67%;
+  margin-top: 30px;
+  color:white;
+  margin-left: 15px;
+  }
+  
+  .din-Medium {
+  font-family: 'Poppins';
+  font-size: 13px;
+  margin-top: -3px;
+  }
+  
+  .din-Medium1{
+  font-family: 'Poppins';
+  font-size: 11px;
+  margin-top: -3px;
+  
+  } 
+  
+  hr.new4 {
+  border: 1px solid whitesmoke;
+  width:230px;
+  margin-top:3px;
+  }
+  
+  
+  .anniversary{
+  transform: rotate(90deg);
+  margin-top: 10px;
+  background-color: #36acdd;
+  color: white;
+  border-top-left-radius: 12px;
+  }
+  
+  .newjoinee{
+  transform: rotate(90deg);
+      width: 149px;
+      margin-top: 20px;
+      margin-left: -30px;
+      background-color: #36acdd;
+      color: white;
+      border-top-right-radius: 14px;
+  }
+  
+  .wish{
+  color: #555;
+  font-size: 20px;
+  margin-top: -40px;
+  margin-left: -30px;
+  }
+  
+  .wishdate{
+  margin-top: -19px;
+  margin-left: -21px;
+  }
+  
+  
+  .din-regular23{
+  
+  font-family: 'Poppins';
+  font-size: 11px;
+  padding: 5px;
+  
+  }
+  .card-header{
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: .5px;
+  margin-top: 10px;
+  }
+  
+  .cardhead {
+  position: absolute;
+  width: 286px;
+  height: 80px;
+  left: 222px;
+  top: 90px;
+  background: #02CFFF;
+  border-radius: 15px;
+  }
+  
+  .chaptername{
+  font-size: 12px;
+  }
+  
+  table, tr, td {
+  border: none !important;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  /* font-size: 13px; */
+  /* line-height: 17px; */
+  color: #0C275A;
+  }
+  
+  .Appraisal {
+  
+    color: white;
+    font-size: 19px;
+    line-height: 23px;
+    margin-top: 17px;
+    font-weight: bold;
+    margin-left: 61px;
+    text-align: center;
+  
+  }
+  .Submitted{
+    color: white;
+    font-size: 19px;
+    line-height: 23px;
+    margin-top: 21px;
+    font-weight: bold;
+    text-align: center;
+  }
+  .Manager{
+    color: white;
+    font-size: 19px;
+    line-height: 24px;
+    margin-top: 16px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  
+  .Review{
+    color: white;
+    font-size: 19px;
+    line-height: 24px;
+    margin-top: 27px;
+    font-weight: bold;
+    text-align: center;
+  }
+  .Total{
+    color: white;
+    font-size: 19px;
+    line-height: 24px;
+    margin-top: 14px;
+    font-weight: bold;
+    /* margin-left: 6px; */
+    text-align: center;
+  }
+  
+  .font{
+    color:white;
+    font-size: 19px;
+    line-height: 15px;
+    margin-top: 30px;
+    font-weight: bold;
+    /* margin-left: 20px; */
+    text-align: center;
+  }
+  
+  

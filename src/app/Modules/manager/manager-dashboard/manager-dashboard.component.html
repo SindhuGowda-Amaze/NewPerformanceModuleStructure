@@ -1,0 +1,331 @@
+<div class="container-fluid">
+    <br>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="card1">
+                <div class="front">
+                    <br>
+                    <div class="row title_outer1 top1">
+                        <!-- <div class="col-lg-1"></div>
+                        <div class="col-lg-1">
+                            <i class="fa fa-calendar calend" aria-hidden="true"></i>
+                        </div> -->
+                        <div class="col-lg-12">
+                            <p class="font">Team Count</p>
+                        </div>
+                    </div><br><br>
+                    <div class="row">
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4" style="text-align: center;">
+                            <h6 class="Number">{{employeCount}}</h6>
+                        </div>
+                        <div class="col-lg-4"></div>
+                    </div><br><br><br>
+                    <button class="clickbutton1" routerLink="/EmployeeDashboard">VIEW DETAILS</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card1">
+                <div class="front">
+                    <br>
+                    <div class="row title_outer1 top2">
+                        <!-- <div class="col-lg-1"></div>
+                        <div class="col-lg-1">
+                            <i class="fa fa-calendar calend" aria-hidden="true"></i>
+                        </div> -->
+                        <div class="col-lg-9">
+                            <p class="Appraisal">Goal Setting Completed</p>
+                        </div>
+                    </div><br><br>
+                    <div class="row">
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4" style="text-align: center;">
+                            <h6 class="Number">{{count}}</h6>
+                        </div>
+                        <div class="col-lg-4"></div>
+                    </div><br><br><br>
+                    <button class="clickbutton1" routerLink="/EmployeeKraMappingdashboard">VIEW DETAILS</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card1">
+                <div class="front">
+                    <br>
+                    <div class="row title_outer1 top3">
+                        <!-- <div class="col-lg-1"></div>
+                        <div class="col-lg-1">
+                            <i class="fa fa-calendar calend" aria-hidden="true"></i>
+                        </div> -->
+                        <div class="col-lg-12">
+                            <p class="Submitted">Appraisal Submitted By Employee</p>
+                        </div>
+                    </div><br><br>
+                    <div class="row">
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4" style="text-align: center;">
+                            <h6 class="Number">{{employeSubmissionDate}}</h6>
+                        </div>
+                        <div class="col-lg-4"></div>
+                    </div><br><br><br>
+                    <button class="clickbutton1" routerLink="/Managerratingdash">VIEW DETAILS</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card1">
+                <div class="front">
+                    <br>
+                    <div class="row title_outer1 top4">
+                        <!-- <div class="col-lg-1"></div>
+                        <div class="col-lg-1">
+                            <i class="fa fa-calendar calend" aria-hidden="true"></i>
+                        </div> -->
+                        <div class="col-lg-12">
+                            <p class="Manager">Manager Review Completed</p>
+                        </div>
+                    </div><br><br>
+                    <div class="row">
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4" style="text-align: center;">
+                            <h6 class="Number">{{managerSubmittedCount}}</h6>
+                        </div>
+                        <div class="col-lg-4"></div>
+                    </div><br><br><br>
+                    <button class="clickbutton1"routerLink="/Managerratingdash">VIEW DETAILS</button>
+                </div>
+            </div>
+        </div>
+    </div>
+      <br>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="card1">
+                <div class="front">
+                    <br>
+                    <div class="row title_outer1 top3">
+                        <!-- <div class="col-lg-1"></div>
+                        <div class="col-lg-1">
+                            <i class="fa fa-calendar calend" aria-hidden="true"></i>
+                        </div> -->
+                        <div class="col-lg-12">
+                            <p class="Review">SBU Review Completed</p>
+                        </div>
+                    </div><br><br>
+                    <div class="row">
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4" style="text-align: center;">
+                            <h6 class="Number">{{sbuSubmittedCount}}</h6>
+                        </div>
+                        <div class="col-lg-4"></div>
+                    </div><br><br><br>
+                    <button class="clickbutton1"   data-toggle="modal" data-target="#exampleModal11">VIEW DETAILS</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card1">
+                <div class="front">
+                    <br>
+                    <div class="row title_outer1 top3">
+                        <!-- <div class="col-lg-1"></div>
+                        <div class="col-lg-1">
+                            <i class="fa fa-calendar calend" aria-hidden="true"></i>
+                        </div> -->
+                        <div class="col-lg-12">
+                            <p class="Review">HR Review Completed</p>
+                        </div>
+                    </div><br><br>
+                    <div class="row">
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4" style="text-align: center;">
+                            <h6 class="Number">{{hrSubmittedCount}}</h6>
+                        </div>
+                        <div class="col-lg-4"></div>
+                    </div><br><br><br>
+                    <button class="clickbutton1"   data-toggle="modal" data-target="#exampleModal">VIEW DETAILS</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card1">
+                <div class="front">
+                    <br>
+                    <div class="row title_outer1 top1">
+                        <!-- <div class="col-lg-1"></div> -->
+                        <!-- <div class="col-lg-1">
+                            <i class="fa fa-calendar calend" aria-hidden="true"></i>
+                        </div> -->
+                        <div class="col-lg-12">
+                            <p class="Total">Total Appraisal Completed</p>
+                        </div>
+                    </div><br><br>
+                    <div class="row">
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4" style="text-align: center;">
+                            <h6 class="Number">{{totalAppraisalCount}}</h6>
+                        </div>
+                        <div class="col-lg-4"></div>
+                    </div><br><br><br>
+                    <button class="clickbutton1" data-toggle="modal" data-target="#exampleModal1">VIEW DETAILS</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="width:800px">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">HR Review Completed</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" >
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table" >
+                    <thead>
+                        <tr>
+                            <th>Employee Name</th>
+                            <th>Position</th>
+                            <th>Appraisal Start Date</th>
+                            <th>Appraisal End Date</th>
+                            <th>Last Submission Date</th>
+                            <th>Employee Submitted Date</th>
+                            <th>Manager Submitted Date</th>
+                            <th>SBU Submitted Date</th>
+                           
+                        </tr>
+                        <tr *ngFor="let details of hrSubmittedlist">
+                            <td>{{details.name}}</td>
+                            <td>{{details.departmentName}}</td>
+                            <td>{{details.cycleStartDate|date}}</td>
+                            <td>{{details.cycleEndDate|date}}</td>
+                            <td>{{details.appraisalSubmitionDate|date}}</td>
+                            <td>{{details.employeeSubmittedDate}}</td>
+                            <td>{{details.managerSubmittedDate}}</td>
+                            <td>{{details.sbuSubmittedDate}}</td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal11" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="width:800px">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">SBU Review Completed</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" >
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table" >
+                    <thead>
+                        <tr>
+                            <th>Employee Name</th>
+                            <th>Position</th>
+                            <th>Appraisal Start Date</th>
+                            <th>Appraisal End Date</th>
+                            <th>Last Submission Date</th>
+                            <th>Employee Submitted Date</th>
+                            <th>Manager Submitted Date</th>
+                           
+                        </tr>
+                        <tr *ngFor="let details of sbuSubmittedlist">
+                            <td>{{details.name}}</td>
+                            <td>{{details.departmentName}}</td>
+                            <td>{{details.cycleStartDate|date}}</td>
+                            <td>{{details.cycleEndDate|date}}</td>
+                            <td>{{details.appraisalSubmitionDate|date}}</td>
+                            <td>{{details.employeeSubmittedDate}}</td>
+                            <td>{{details.managerSubmittedDate}}</td>
+
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="width:800px">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Total Appraisal Completed</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" >
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table" >
+                    <thead>
+                        <tr>
+                            <th>Employee Name</th>
+                            <th>Position</th>
+                            <th>Appraisal Start Date</th>
+                            <th>Appraisal End Date</th>
+                            <th>Last Submission Date</th>
+                            <th>Employee Submitted Date</th>
+                            <th>Manager Submitted Date</th>
+                        </tr>
+                        <tr *ngFor="let details of totalAppraisallist">
+                            <td>{{details.name}}</td>
+                            <td>{{details.departmentName}}</td>
+                            <td>{{details.cycleStartDate|date}}</td>
+                            <td>{{details.cycleEndDate|date}}</td>
+                            <td>{{details.appraisalSubmitionDate|date}}</td>
+                            <td>{{details.employeeSubmittedDate}}</td>
+                            <td>{{details.managerSubmittedDate}}</td>
+
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+

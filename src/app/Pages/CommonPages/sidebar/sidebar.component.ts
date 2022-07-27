@@ -170,13 +170,13 @@ export class SidebarComponent implements OnInit {
     localStorage.setItem("clickname", "dashboard")
     if(this.roleid==2)
     {
-      this.router.navigate(['/EmployeeTileDashboard']);
+      this.router.navigate(['/employee/EmployeeTileDashboard']);
     }
     else if(this.roleid==3){
-      this.router.navigate(['/HRDashboard']);
+      this.router.navigate(['/hr/HRDashboard']);
     }
     else {
-      this.router.navigate(['/ManagerDashboard']);
+      this.router.navigate(['/manager/ManagerDashboard']);
     }
    
   }

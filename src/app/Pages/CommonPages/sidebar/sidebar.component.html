@@ -33,7 +33,7 @@
 
         <div id="goalset" class="collapse" style="padding-left: 7%;">
 
-            <a routerLink="/AppraisalCycle" class="tablinks" (click)="highlight($event)" (click)="Appraisal()"
+            <a routerLink="/hr/AppraisalCycle" class="tablinks" (click)="highlight($event)" (click)="Appraisal()"
                 *ngIf="roleid=='3'">
                 <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 17px;"
                     [ngClass]="active != 'AppraisalCycle' ? 'Active1' : 'Active2'" />
@@ -42,7 +42,7 @@
                 &nbsp;
                 <span [ngClass]="active == 'AppraisalCycle' ? 'Active1' : 'Active3'"> Appraisal Cycle </span>
             </a>
-            <a routerLink="/KeyResultArea" class="tablinks" (click)="highlight($event)" (click)="kra()">
+            <a routerLink="/hr/KeyResultArea" class="tablinks" (click)="highlight($event)" (click)="kra()">
                 <img src="assets/Images/64 Blue/Staff.png" style="width:13% ;margin-right: 17px;"
                     [ngClass]="active == 'course' ? 'Active1' : 'Active2'" />
                 <img [ngClass]="active != 'course' ? 'Active1' : 'Active2'" src="assets/Images/64/Staff.png"
@@ -50,7 +50,7 @@
                 &nbsp;
                 <span [ngClass]="active == 'course' ? 'Active1' : 'Active3'"> Goals </span>
             </a>
-            <a routerLink="/KeyPerformanceIndicator" class="tablinks" (click)="highlight($event)" (click)="Kpi()">
+            <a routerLink="/hr/KeyPerformanceIndicator" class="tablinks" (click)="highlight($event)" (click)="Kpi()">
                 <!-- <img  class="dashboard" src="assets/Images/Vector.png" /> -->
                 <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 17px;"
                     [ngClass]="active != 'kpi' ? 'Active1' : 'Active2'" />
@@ -60,7 +60,7 @@
                 <span [ngClass]="active == 'kpi' ? 'Active1' : 'Active3'"> KPI </span>
             </a>
 
-            <a class="togglebtn button" *ngIf="roleid=='3'" routerLink="/HrDash" class="tablinks"
+            <a class="togglebtn button" *ngIf="roleid=='3'" routerLink="/hr/HrDash" class="tablinks"
             (click)="highlight($event)" (click)="TeamAppraisal()">
             <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
                 [ngClass]="active != 'TeamAppraisal' ? 'Active1' : 'Active2'" />
@@ -70,7 +70,7 @@
             <span [ngClass]="active == 'TeamAppraisal' ? 'Active1' : 'Active3'"> Team Appraisal</span>
         </a>
 
-        <a class="togglebtn button" routerLink="/BellCurveFitting" class="tablinks" (click)="highlight($event)"
+        <a class="togglebtn button" routerLink="/hr/BellCurveFitting" class="tablinks" (click)="highlight($event)"
         (click)="BellCurve()" *ngIf="roleid=='3'">
         <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
             [ngClass]="active != 'Bell' ? 'Active1' : 'Active2'" />
@@ -93,7 +93,7 @@
     
 
 
-    <a class="togglebtn button" routerLink="/AppraisalReport" class="tablinks" (click)="highlight($event)"
+    <a class="togglebtn button" routerLink="/hr/AppraisalReport" class="tablinks" (click)="highlight($event)"
         (click)="AppraisalReport()" *ngIf="roleid=='3'|| roleid=='4'">
         <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
             [ngClass]="active != 'AppraisalReport' ? 'Active1' : 'Active2'" />
@@ -103,15 +103,10 @@
         <span [ngClass]="active == 'AppraisalReport' ? 'Active1' : 'Active3'">Appraisal Final Report</span>
     </a>
         </div>
-
-
         <div id="userapplications" class="collapse" style="padding-left: 7%;">
-
-
-
         </div>
 
-        <a class="togglebtn button" *ngIf="roleid=='3'||roleid=='4'||roleid=='5'" routerLink="/EmployeeDashboard"
+        <a class="togglebtn button" *ngIf="roleid=='3'||roleid=='4'||roleid=='5'" routerLink="/shared/EmployeeDashboard"
             class="tablinks" (click)="highlight($event)" (click)="Employee()">
             <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
                 [ngClass]="active != 'EmployeeDashboard' ? 'Active1' : 'Active2'" />

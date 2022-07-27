@@ -22,6 +22,7 @@ export class ApprasialCycleComponent implements OnInit {
 
 
   public GetAppraisalCycle() {
+    debugger
     this.PerformanceManagementService.GetAppraisalCycle().subscribe(
       data => {
         debugger

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { PerformancemanagementService } from '../Services/performancemanagement.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,7 +15,9 @@ export class LoginComponent implements OnInit {
   showpassword: any;
   result: any;
   admin:any;
-  constructor(private PerformanceManagementService: PerformancemanagementService) { }
+
+  loader: any;
+  constructor(private PerformanceManagementService: PerformancemanagementService ,public router: Router) { }
 
   ngOnInit(): void {
     this.admin="Admin"
@@ -46,7 +49,7 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem("roleid", this.roleId);
 
         sessionStorage.setItem("loginName", this.admin);
-        location.href = "#/AppraisalCycle";
+        location.href = "#/hr/AppraisalCycle";
         location.reload();
       }
       else {
@@ -67,7 +70,7 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem("loginName", this.result.name);
           sessionStorage.setItem("EmaployedID", this.result.id);
           sessionStorage.setItem("Type", this.result.type);
-          location.href = "#/MyAppraisal";
+          location.href = "#/hr/MyAppraisal";
           location.reload();
         }
         else {
@@ -92,7 +95,7 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem("loginName", this.result.name);
           sessionStorage.setItem("EmaployedID", this.result.id);
           sessionStorage.setItem("Type", this.result.type);
-          location.href = "#/ManagerDashboard";
+          location.href = "#/manager/ManagerDashboard";
           location.reload();
         }
         else {
@@ -100,9 +103,7 @@ export class LoginComponent implements OnInit {
           this.userName = "";
           this.passWord = "";
         }
-
       })
-
     }
 
     else if (this.roleId == 5) {
@@ -119,8 +120,8 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem("loginName", this.result.name);
           sessionStorage.setItem("EmaployedID", this.result.id);
           sessionStorage.setItem("Type", this.result.type);
-          location.href = "#/ManagerDashboard";
-          location.reload();
+          location.href = "#/manager/ManagerDashboard";
+      //    location.reload();
         }
         else {
           Swal.fire("Incorrect Username or Password")
@@ -133,10 +134,11 @@ export class LoginComponent implements OnInit {
 
 
     else if (this.roleId == '3') {
+      debugger
       this.PerformanceManagementService.GetMyDetails().subscribe(data => {
         console.log("data", data);
         let userNameCopy = this.userName.toLowerCase();
-        let temp: any = data.filter(x => (x.emailID.toLowerCase().includes(userNameCopy)  || x.phoneNo == this.userName) && x.password == this.passWord && x.role=='HR');
+        let temp: any = data.filter(x => (x.emailID.toLowerCase().includes(userNameCopy)  || x.phoneNo == this.userName) && x.password == this.passWord && x.type==9);
         this.result = temp[0];
         debugger;
         // this.loader = true;
@@ -146,8 +148,17 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem("loginName", this.result.name);
           sessionStorage.setItem("EmaployedID", this.result.id);
           sessionStorage.setItem("Type", this.result.type);
-          location.href = "#/HRDashboard";
-          location.reload();
+
+          this.router.navigate(['/hr/HrDashboard']).then(() => {
+            
+            this.loader = false;
+            location.reload();
+
+          });
+
+          
+         // location.href = "#/hr/HrDashboard";
+        //  location.reload();
         }
         else {
           Swal.fire("Incorrect Username or Password")

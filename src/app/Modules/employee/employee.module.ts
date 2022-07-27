@@ -6,10 +6,12 @@ import { EmployeeComponent } from './employee.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { EmployeeTileDashboardComponent } from './employee-tile-dashboard/employee-tile-dashboard.component';
 
 @NgModule({
   declarations: [
     EmployeeComponent,
+    EmployeeTileDashboardComponent,
    
   ],
   imports: [

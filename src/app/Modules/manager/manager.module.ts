@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { EmployeeKraMappingdashboardComponent } from './employee-kra-mappingdashboard/employee-kra-mappingdashboard.component';
 import { ManagerratingdashComponent } from './managerratingdash/managerratingdash.component';
 import { ManagerAppraisalComponent } from './manager-appraisal/manager-appraisal.component';
+import { ManagerDashboardComponent } from './manager-dashboard/manager-dashboard.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ManagerAppraisalComponent } from './manager-appraisal/manager-appraisal
     ManagerComponent,
     EmployeeKraMappingdashboardComponent,
     ManagerratingdashComponent,
-    ManagerAppraisalComponent
+    ManagerAppraisalComponent,
+    ManagerDashboardComponent
   ],
   imports: [
     CommonModule,
