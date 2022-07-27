@@ -28,7 +28,7 @@ border-radius: 12px;
     width:100%;
 }
 .inputclass{
-    Font: 'Poppins';
+    font-family: "Poppins" !important;
     background-color: transparent;
     border-color: grey;
     padding: 5px;

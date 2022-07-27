@@ -93,7 +93,7 @@
     border: 2px solid #C7C7C7;
     outline: none;
     padding-left: 20px;
-    Font: 'Poppins';
+    font-family: "Poppins" !important;
   
   
   }
@@ -101,7 +101,7 @@
   .inputclass1 {
   
     color: #3247D5;
-    Font: 'Poppins';
+    font-family: "Poppins" !important;
   
   
   }
@@ -137,7 +137,7 @@
   }
   
   .companycode {
-    font-family: Poppins;
+    font-family: "Poppins" !important;
     font-style: normal;
     font-weight: 600;
     font-size: 12px;
@@ -180,7 +180,7 @@
   }
   
   input:focus~.defalutplace {
-    font-family: 'Poppins';
+    font-family: "Poppins" !important;
     font-style: normal;
     font-weight: 600;
     font-size: 10px;
@@ -270,7 +270,7 @@
     color: #000000;
   
     font-size: 14px;
-    font-family: 'Poppins';
+    font-family: "Poppins" !important;
   
     font-weight: normal;
   
