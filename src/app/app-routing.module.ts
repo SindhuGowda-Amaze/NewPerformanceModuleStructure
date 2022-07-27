@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'hr', loadChildren: () => import('./Modules/hr/hr.module').then(m => m.HrModule) }];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{useHash:true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

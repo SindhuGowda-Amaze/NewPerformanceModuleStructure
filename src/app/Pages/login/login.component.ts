@@ -128,7 +128,7 @@ export class LoginComponent implements OnInit {
         console.log("data", data);
         let userNameCopy = this.userName.toLowerCase();
         let password = this.userName.toLowerCase();
-        let temp: any = data.filter(x => (x.emailID.toLowerCase().includes(userNameCopy)  || x.phoneNo == this.userName) && x.password == this.passWord );
+        let temp: any = data.filter(x => (x.emailID.toLowerCase().includes(userNameCopy)  || x.phoneNo == this.userName) && x.password == this.passWord && x.type==3742);
         this.result = temp[0];
         // this.loader = true;
         if (this.result != undefined || this.result != null) {

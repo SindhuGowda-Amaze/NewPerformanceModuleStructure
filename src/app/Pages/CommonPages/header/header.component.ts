@@ -47,9 +47,17 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
+    debugger
+   
+  
     sessionStorage.clear();
-    location.href = "#/Login";
-    location.reload();
+    localStorage.clear();
+   
+      location.href = "#/login";
+      location.reload();
+ 
+
+ 
 
   }
   notificationCount: any;
