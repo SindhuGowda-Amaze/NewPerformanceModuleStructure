@@ -47,10 +47,15 @@ export class LoginComponent implements OnInit {
       if (this.userName.toLowerCase().includes(adminCopy)  && this.passWord == 'welcome') {
         sessionStorage.setItem("temp", '1');
         sessionStorage.setItem("roleid", this.roleId);
-
         sessionStorage.setItem("loginName", this.admin);
-        location.href = "#/hr/AppraisalCycle";
-        location.reload();
+        this.router.navigate(['/hr/AppraisalCycle']).then(() => {
+          this.loader = false;
+          location.reload();
+
+        });
+
+        // location.href = "#/hr/AppraisalCycle";
+        // location.reload();
       }
       else {
         Swal.fire("Incorrect Username or Password")
@@ -70,8 +75,14 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem("loginName", this.result.name);
           sessionStorage.setItem("EmaployedID", this.result.id);
           sessionStorage.setItem("Type", this.result.type);
-          location.href = "#/hr/MyAppraisal";
-          location.reload();
+          this.router.navigate(['/hr/MyAppraisal']).then(() => {
+            this.loader = false;
+            location.reload();
+
+          });
+
+          // location.href = "#/hr/MyAppraisal";
+          // location.reload();
         }
         else {
           Swal.fire("Incorrect Username or Password")
@@ -95,8 +106,14 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem("loginName", this.result.name);
           sessionStorage.setItem("EmaployedID", this.result.id);
           sessionStorage.setItem("Type", this.result.type);
-          location.href = "#/manager/ManagerDashboard";
-          location.reload();
+          this.router.navigate(['/manager/ManagerDashboard']).then(() => {
+            this.loader = false;
+            location.reload();
+
+          });
+
+          // location.href = "#/manager/ManagerDashboard";
+          // location.reload();
         }
         else {
           Swal.fire("Incorrect Username or Password")
@@ -120,7 +137,12 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem("loginName", this.result.name);
           sessionStorage.setItem("EmaployedID", this.result.id);
           sessionStorage.setItem("Type", this.result.type);
-          location.href = "#/manager/ManagerDashboard";
+          this.router.navigate(['/manager/ManagerDashboard']).then(() => { 
+            this.loader = false;
+            location.reload();
+          });
+
+      //    location.href = "#/manager/ManagerDashboard";
       //    location.reload();
         }
         else {
@@ -130,7 +152,6 @@ export class LoginComponent implements OnInit {
         }
       })
     }
-
 
 
     else if (this.roleId == '3') {
@@ -148,12 +169,9 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem("loginName", this.result.name);
           sessionStorage.setItem("EmaployedID", this.result.id);
           sessionStorage.setItem("Type", this.result.type);
-
           this.router.navigate(['/hr/HrDashboard']).then(() => {
-            
             this.loader = false;
             location.reload();
-
           });
 
           
