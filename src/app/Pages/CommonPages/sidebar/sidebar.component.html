@@ -182,7 +182,7 @@
             &nbsp;
             <span [ngClass]="active == 'app' ? 'Active1' : 'Active3'">PIP</span>
         </a> -->
-        <a class="togglebtn button" *ngIf="roleid=='2'&& StaffPIPActionItemList.length>0" routerLink="/Pip" class="tablinks"
+        <a class="togglebtn button" *ngIf="roleid=='2'&& StaffPIPActionItemList.length>0" routerLink="/manager/Pip" class="tablinks"
             (click)="highlight($event)" (click)="app()">
             <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
                 [ngClass]="active != 'app' ? 'Active1' : 'Active2'" />
@@ -191,7 +191,7 @@
             &nbsp;
             <span [ngClass]="active == 'app' ? 'Active1' : 'Active3'">PIP</span>
         </a> 
-        <a class="togglebtn button" *ngIf="roleid=='4'||roleid=='3'" routerLink="/Pip" class="tablinks"
+        <a class="togglebtn button" *ngIf="roleid=='4'||roleid=='3'" routerLink="/manager/Pip" class="tablinks"
             (click)="highlight($event)" (click)="app()">
             <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
                 [ngClass]="active != 'app' ? 'Active1' : 'Active2'" />
@@ -201,7 +201,7 @@
             <span [ngClass]="active == 'app' ? 'Active1' : 'Active3'">PIP</span>
         </a>
 
-        <a class="togglebtn button" *ngIf="roleid=='4'||roleid=='3'" routerLink="/PIPReport" class="tablinks"
+        <a class="togglebtn button" *ngIf="roleid=='4'||roleid=='3'" routerLink="/manager/PIPReport" class="tablinks"
         (click)="highlight($event)" (click)="appreport()">
         <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
             [ngClass]="active != 'appreport' ? 'Active1' : 'Active2'" />
@@ -211,7 +211,7 @@
         <span [ngClass]="active == 'appreport' ? 'Active1' : 'Active3'">PIP Report</span>
     </a>
 
-        <a class="togglebtn button" *ngIf="roleid=='3'||roleid=='5'" routerLink="/ReviewRating" class="tablinks"
+        <a class="togglebtn button" *ngIf="roleid=='3'||roleid=='5'" routerLink="/sbu/ReviewRating" class="tablinks"
             (click)="highlight($event)" (click)="ReviewRating()">
             <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
                 [ngClass]="active != 'ReviewRating' ? 'Active1' : 'Active2'" />
