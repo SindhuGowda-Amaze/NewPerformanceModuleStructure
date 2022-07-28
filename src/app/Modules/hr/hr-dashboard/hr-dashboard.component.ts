@@ -21,8 +21,8 @@ export class HrDashboardComponent implements OnInit {
   totalAppraisalCount: any;
   hrSubmittedlist: any;
   totalAppraisalList: any;
-  employeCount:any;
-  managagerScore:any;
+  employeCount: any;
+  managagerScore: any;
   currentUrl: any
   ngOnInit(): void {
     this.currentUrl = window.location.href;
@@ -39,21 +39,21 @@ export class HrDashboardComponent implements OnInit {
         this.EmployeeKradash = data;
         this.count = this.EmployeeKradash.length;
         debugger
-        var list = data.filter(x => x.employeeSubmittedDate != null && x.selfScores != null && 
-         x.cycleStartDate !=null && x.cycleEndDate != null && x.appraisalSubmitionDate != null  && x.employeeSubmittedDate !=null )
+        var list = data.filter(x => x.employeeSubmittedDate != null && x.selfScores != null &&
+          x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null)
         this.employeSubmissionDate = list.length;
-  
-        var list1 = data.filter(x => x.managerSubmittedDate != null );
+
+        var list1 = data.filter(x => x.managerSubmittedDate != null);
         this.managerSubmittedCount = list1.length;
-  
-        var sbuSubmittedlist = data.filter(x => x.sbuSubmittedDate != null  && x.employeeSubmittedDate !=null  && x.managerSubmittedDate !=null );
+
+        var sbuSubmittedlist = data.filter(x => x.sbuSubmittedDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null);
         this.sbuSubmittedCount = sbuSubmittedlist.length;
-  
-        this.hrSubmittedlist = data.filter(x => x.hrSubmittedDate == null &&  x.cycleStartDate !=null && x.cycleEndDate != null && x.appraisalSubmitionDate != null  && x.employeeSubmittedDate !=null && x.managerSubmittedDate!= null );
-        console.log("data",data)
+
+        this.hrSubmittedlist = data.filter(x => x.hrSubmittedDate == null && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null);
+        console.log("data", data)
         console.log("hr", this.hrSubmittedlist)
         this.hrSubmittedCount = this.hrSubmittedlist.length
-    
+
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting ConductappraisalStaffList');
         // Insert error in Db Here//
@@ -73,7 +73,7 @@ export class HrDashboardComponent implements OnInit {
       next: (res: any[]) => {
         debugger
         let temp: any = res
-        this.totalAppraisalList = res.filter((x: { cioScores: any;managerSubmittedDate:any;employeeSubmittedDate:any }) => x.cioScores != null && x.managerSubmittedDate!=null &&  x.employeeSubmittedDate != null)
+        this.totalAppraisalList = res.filter((x: { cioScores: any; managerSubmittedDate: any; employeeSubmittedDate: any }) => x.cioScores != null && x.managerSubmittedDate != null && x.employeeSubmittedDate != null)
         this.totalAppraisalCount = this.totalAppraisalList.length;
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting ConductappraisalStaffList');
@@ -93,8 +93,8 @@ export class HrDashboardComponent implements OnInit {
     this.PerformanceManagementService.GetMyDetails().subscribe({
       next: data => {
         debugger
-        var list4=data;
-        this.employeCount=list4.length
+        var list4 = data;
+        this.employeCount = list4.length
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting MyDetails');
         // Insert error in Db Here//

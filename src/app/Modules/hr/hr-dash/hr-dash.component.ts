@@ -32,15 +32,15 @@ export class HrDashComponent implements OnInit {
   roleTypeid: any;
   roleTypeList: any;
   EmployeeKradash: any
-  status:any; 
-  currentUrl : any
+  status: any;
+  currentUrl: any
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
 
     this.departmentid = 0;
     this.roleTypeid = "";
-    this.status=0;
+    this.status = 0;
     this.appraisalCycleName = 0;
     this.PerformanceManagementService.GetMyDetails().subscribe({
       next: data => {
@@ -107,9 +107,9 @@ export class HrDashComponent implements OnInit {
       next: data => {
         debugger
         this.EmployeeKradash = data.filter(x => x.approver2 == sessionStorage.getItem('EmaployedID') && x.selfScores != null
-        && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null && x.sbuSubmittedDate != null);
+          && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null && x.sbuSubmittedDate != null);
 
-      this.count = this.EmployeeKradash.length;
+        this.count = this.EmployeeKradash.length;
 
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting ConductappraisalStaffList');
@@ -156,7 +156,7 @@ export class HrDashComponent implements OnInit {
       next: data => {
         debugger
         this.EmployeeKradash = data.filter(x => x.type == this.roleTypeid && x.approver2 == sessionStorage.getItem('EmaployedID') && x.selfScores != null
-        && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null && x.sbuSubmittedDate != null)
+          && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null && x.sbuSubmittedDate != null)
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting ConductappraisalStaffList');
         // Insert error in Db Here//
@@ -183,7 +183,7 @@ export class HrDashComponent implements OnInit {
       next: data => {
         debugger
         this.EmployeeKradash = data.filter(x => x.department == this.departmentid && x.approver2 == sessionStorage.getItem('EmaployedID') && x.selfScores != null
-        && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null && x.sbuSubmittedDate != null)
+          && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null && x.sbuSubmittedDate != null)
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting ConductappraisalStaffList');
         // Insert error in Db Here//
@@ -250,15 +250,15 @@ export class HrDashComponent implements OnInit {
   }
 
 
-  public statuschange(event:any){
-    if(event.target.value == 'Open'){
+  public statuschange(event: any) {
+    if (event.target.value == 'Open') {
       debugger
       this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
         next: data => {
           debugger
           this.EmployeeKradash = data.filter(x => x.approver2 == sessionStorage.getItem('EmaployedID') && x.selfScores != null
-          && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null && x.sbuSubmittedDate != null && x.hrSubmittedDate==null);
-        this.count = this.EmployeeKradash.length;
+            && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null && x.sbuSubmittedDate != null && x.hrSubmittedDate == null);
+          this.count = this.EmployeeKradash.length;
         }, error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in Geting tConductappraisalStaffList');
           // Insert error in Db Here//
@@ -279,9 +279,9 @@ export class HrDashComponent implements OnInit {
       this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
         next: data => {
           debugger
-          this.EmployeeKradash = data.filter(x => x.approver2 == sessionStorage.getItem('EmaployedID')  && x.selfScores != null
-          && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null && x.sbuSubmittedDate != null );
-        this.count = this.EmployeeKradash.length;
+          this.EmployeeKradash = data.filter(x => x.approver2 == sessionStorage.getItem('EmaployedID') && x.selfScores != null
+            && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null && x.sbuSubmittedDate != null);
+          this.count = this.EmployeeKradash.length;
         }, error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in Getting ConductappraisalStaffList');
           // Insert error in Db Here//
@@ -297,35 +297,35 @@ export class HrDashComponent implements OnInit {
         }
       })
     }
- 
-    
+
+
   }
 
   public GetFilteredAppraisalCycle() {
     this.PerformanceManagementService.GetConductappraisalStaffList()
-  
-    .subscribe({
-      next: data => {
-        debugger
-        this.EmployeeKradash = data.filter(x => x.appraisalCycleName == this.appraisalCycleName && x.approver2 == sessionStorage.getItem('EmaployedID') && x.selfScores != null
-        && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null && x.sbuSubmittedDate != null)
-      }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting ConductappraisalStaffList');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
-    
 
-    
+      .subscribe({
+        next: data => {
+          debugger
+          this.EmployeeKradash = data.filter(x => x.appraisalCycleName == this.appraisalCycleName && x.approver2 == sessionStorage.getItem('EmaployedID') && x.selfScores != null
+            && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null && x.sbuSubmittedDate != null)
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting ConductappraisalStaffList');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+
+
+
 
   }
 }

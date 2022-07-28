@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 })
 export class KeyResultAreaComponent implements OnInit {
 
-  
+
   constructor(private PerformanceManagementService: PerformancemanagementService) { }
 
   keyresultlist: any;
@@ -19,13 +19,13 @@ export class KeyResultAreaComponent implements OnInit {
   roleTypeList: any;
   newrolelist: any;
   short: any;
-  currentUrl : any
+  currentUrl: any
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
     this.GetKeyResultArea();
     this.GetRoleType();
-    this.roleTypeid=0;
+    this.roleTypeid = 0;
 
   }
 
@@ -34,7 +34,7 @@ export class KeyResultAreaComponent implements OnInit {
     debugger
     if (even.target.value != 0) {
       this.keyresultlist = this.dummkeyresultlist.filter((x: { role: any; }) => x.role == this.roleTypeid);
-      this.count=this.keyresultlist.length;
+      this.count = this.keyresultlist.length;
     }
     else {
       this.GetKeyResultArea()
@@ -71,7 +71,7 @@ export class KeyResultAreaComponent implements OnInit {
   public GetKeyResultArea() {
     debugger
     this.PerformanceManagementService.GetKeyResultArea()
-  
+
       .subscribe({
         next: data => {
           debugger

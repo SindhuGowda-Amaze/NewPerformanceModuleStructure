@@ -36,8 +36,8 @@ export class ApprasialReportComponent implements OnInit {
 
     this.StaffID = sessionStorage.getItem('EmaployedID')
     this.roleid = sessionStorage.getItem('roleid');
-    this.departmentid=0;
-    this. GetDepartment() ;
+    this.departmentid = 0;
+    this.GetDepartment();
     this.GetRoleType();
     this.GetMyDetails();
     this.ConductappraisalStaffList();
@@ -84,7 +84,7 @@ export class ApprasialReportComponent implements OnInit {
     this.manager = even.target.value;
   }
 
-  
+
 
   getdepartmentID(even: any) {
     this.departmentid = even.target.value;
@@ -112,7 +112,7 @@ export class ApprasialReportComponent implements OnInit {
   }
 
   public GetDepartment() {
-    this.PerformanceManagementService.GetDepartmentMaster() .subscribe({
+    this.PerformanceManagementService.GetDepartmentMaster().subscribe({
       next: data => {
         debugger
         this.departmentAppraisalList = data;
@@ -138,7 +138,7 @@ export class ApprasialReportComponent implements OnInit {
     this.PerformanceManagementService.GetMyDetails().subscribe({
       next: data => {
         debugger
-        this.managerList = data.filter(x =>(x.supervisor == null || x.supervisor != null)  && x.role=='Manager')     // 10422 HR is taken as manager for all managers 
+        this.managerList = data.filter(x => (x.supervisor == null || x.supervisor != null) && x.role == 'Manager')     // 10422 HR is taken as manager for all managers 
         const key = 'manager';
         const key1 = 'month'
         this.uniquelist = [...new Map(this.managerList.map((item: { [x: string]: any; }) =>
@@ -254,9 +254,9 @@ export class ApprasialReportComponent implements OnInit {
 
   public FilterAttendence() {
     debugger
-  
+
     let searchCopy = this.search.toLowerCase();
-    this.StaffAppraisalList = this.dumpmanagerList.filter((x: { name: string }) =>x.name.toLowerCase().includes(searchCopy));
+    this.StaffAppraisalList = this.dumpmanagerList.filter((x: { name: string }) => x.name.toLowerCase().includes(searchCopy));
     this.count = this.StaffAppraisalList.length;
   }
 }

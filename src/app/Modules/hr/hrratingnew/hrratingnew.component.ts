@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 })
 export class HrratingnewComponent implements OnInit {
 
- 
+
   constructor(private PerformanceManagementService: PerformancemanagementService, private router: Router, private route: ActivatedRoute, private datepipe: DatePipe) { }
 
   stafflist: any;
@@ -39,7 +39,7 @@ export class HrratingnewComponent implements OnInit {
   departmentName: any;
   HrSubmittedDate: any;
   hrattachment: any;
-  appraislid:any;
+  appraislid: any;
   ngOnInit(): void {
     this.Score = 0;
     this.showbtn = false;
@@ -56,7 +56,7 @@ export class HrratingnewComponent implements OnInit {
 
         this.PerformanceManagementService.GetKRAByStaffID(this.StaffID).subscribe(data => {
           debugger
-          this.ResultAreaList = data.filter((x: { managerSubmittedDate: any; employeeSubmittedDate: any;appraiselID: any; }) => x.managerSubmittedDate != null && x.employeeSubmittedDate != null  && x.appraiselID == this.appraislid);
+          this.ResultAreaList = data.filter((x: { managerSubmittedDate: any; employeeSubmittedDate: any; appraiselID: any; }) => x.managerSubmittedDate != null && x.employeeSubmittedDate != null && x.appraiselID == this.appraislid);
 
           this.Name = this.ResultAreaList[0].name
           this.role = this.ResultAreaList[0].role
@@ -64,7 +64,7 @@ export class HrratingnewComponent implements OnInit {
           this.HrSubmittedDate = this.ResultAreaList[0].hrSubmittedDate
           this.managerattachment = this.ResultAreaList[0].mPhoto
           this.sbuAttachment = this.ResultAreaList[0].sbuPhoto
-          console.log("resultarea",this.ResultAreaList)
+          console.log("resultarea", this.ResultAreaList)
 
           this.ResultAreaList.forEach((element: { hrupdate: any; }) => {
             if (element.hrupdate != 1) {
@@ -138,7 +138,7 @@ export class HrratingnewComponent implements OnInit {
   }
 
   public SaveDetails() {
-    if (this.Score == undefined || this.SelfComments == undefined ||this.Score==0||this.SelfComments==null) {
+    if (this.Score == undefined || this.SelfComments == undefined || this.Score == 0 || this.SelfComments == null) {
       Swal.fire("Please Enter the Mandatory Fields");
     }
     else {
@@ -187,7 +187,7 @@ export class HrratingnewComponent implements OnInit {
   }
 
   managerattachment: any;
-  sbuattachment:any;
+  sbuattachment: any;
   public GetKPIIDetails(details: any) {
     debugger
     this.PerformanceManagementService.GetEmployeeKraMap().subscribe(data => {
@@ -198,7 +198,7 @@ export class HrratingnewComponent implements OnInit {
       this.hrattachment = details.hPhoto;
       this.managerattachment = details.mPhoto;
       this.sbuattachment = details.sbuPhoto;
-      this.attachment=details.hrattachment
+      this.attachment = details.hrattachment
 
     })
     this.photoid = details.id;
@@ -310,7 +310,7 @@ export class HrratingnewComponent implements OnInit {
     this.attachment = details.photo;
     this.managerattachment = details.mPhoto;
     // this.selfattachment = details.photo;
-    this.sbuAttachment= details.sbuPhoto;
+    this.sbuAttachment = details.sbuPhoto;
     this.hrattachment = details.hPhoto;
 
 
@@ -334,7 +334,7 @@ export class HrratingnewComponent implements OnInit {
 
       this.PerformanceManagementService.GetKRAByStaffID(this.StaffID).subscribe(data => {
         debugger
-        this.ResultAreaList = data.filter((x: { managerSubmittedDate: any; employeeSubmittedDate: any;appraiselID: any; }) => x.managerSubmittedDate != null && x.employeeSubmittedDate != null  && x.appraiselID == this.appraislid);
+        this.ResultAreaList = data.filter((x: { managerSubmittedDate: any; employeeSubmittedDate: any; appraiselID: any; }) => x.managerSubmittedDate != null && x.employeeSubmittedDate != null && x.appraiselID == this.appraislid);
 
 
         console.log("Result area", this.ResultAreaList);
