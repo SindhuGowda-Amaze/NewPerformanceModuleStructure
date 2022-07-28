@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-staff-score-report',
-  templateUrl: './staff-score-report.component.html',
+  templateUrl:'./staff-score-report.component.html',
   styleUrls: ['./staff-score-report.component.css']
 })
 export class StaffScoreReportComponent implements OnInit {
