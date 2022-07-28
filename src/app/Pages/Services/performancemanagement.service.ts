@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 })
 export class PerformancemanagementService {
 
-   //public baseURL1 = "http://localhost:4199/";
+ //  public baseURL = "http://localhost:4199/";
  //  public baseURL = "http://103.133.214.197/PerformanceManagement/";
  // public host = "https://digioffice.amazeone.co/DigiOfficeAsticomAPI";
 //  public host1="https://support.amazeone.co/SupportAPI/";
@@ -31,32 +31,32 @@ public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
 
  public InsertAppraisalCycle(data: any) {
    debugger;
-   this.url = this.baseURL + 'Master/InsertAppraisalCycle';
+   this.url = this.baseURL + '/Master/InsertAppraisalCycle';
    return this.http.post(this.url, data);
  }
 
  
  public SubmitManagerAppraisal(data: any) {
    debugger;
-   this.url = this.baseURL + 'Master/UpdateManagerSubmitted';
+   this.url = this.baseURL + '/Master/UpdateManagerSubmitted';
    return this.http.post(this.url, data);
  }
 
  public SubmitHrAppraisal(data: any) {
    debugger;
-   this.url = this.baseURL + 'Master/UpdateHrSubmitted';
+   this.url = this.baseURL + '/Master/UpdateHrSubmitted';
    return this.http.post(this.url, data);
  }
 
  public UpdateSbuSubmitted(data: any) {
    debugger;
-   this.url = this.baseURL + 'Master/UpdateSbuSubmitted';
+   this.url = this.baseURL + '/Master/UpdateSbuSubmitted';
    return this.http.post(this.url, data);
  }
 
  public SubmitEmployeeAppraisal(data: any) {
    debugger;
-   this.url = this.baseURL + 'Master/UpdateEmployeeSubmitted';
+   this.url = this.baseURL + '/Master/UpdateEmployeeSubmitted';
    return this.http.post(this.url, data);
  }
 
@@ -89,7 +89,7 @@ public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
 
  public UpdateAppraisalCycle(json: any) {
    debugger
-   let APIURL = this.baseURL + "Master/UpdateAppraisalCycle";
+   let APIURL = this.baseURL + "/Master/UpdateAppraisalCycle";
    return this.http.post<any[]>(APIURL, json);
  }
 
@@ -110,7 +110,7 @@ public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
 
  public InsertKeyResultArea(data: any) {
    debugger;
-   this.url = this.baseURL + 'Master/InsertKeyResultArea';
+   this.url = this.baseURL + '/Master/InsertKeyResultArea';
    return this.http.post(this.url, data);
  }
 
@@ -167,7 +167,7 @@ public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
 
  public InsertKPI(data: any) {
    debugger;
-   this.url = this.baseURL + 'Master/InsertKPI';
+   this.url = this.baseURL + '/Master/InsertKPI';
    return this.http.post(this.url, data);
  }
 
@@ -175,7 +175,7 @@ public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
 
  public UpdateKPI(json: any) {
    debugger
-   let APIURL = this.baseURL + "Master/UpdateKPI";
+   let APIURL = this.baseURL + "/Master/UpdateKPI";
    return this.http.post<any[]>(APIURL, json);
  }
 
@@ -231,7 +231,7 @@ public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
 
  public InsertEmployeeKraMap(data: any) {
    debugger;
-   this.url = this.baseURL + 'Master/InsertEmployeeKraMap';
+   this.url = this.baseURL + '/Master/InsertEmployeeKraMap';
    return this.http.post(this.url, data);
  }
 
@@ -246,12 +246,12 @@ public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
  }
  public InsertStaffScores(data: any) {
    debugger;
-   this.url = this.baseURL + 'Master/InsertStaffScores';
+   this.url = this.baseURL + '/Master/InsertStaffScores';
    return this.http.post(this.url, data);
  }
  public UpdateGroupHeadStaffScores(data: any) {
    debugger;
-   this.url = this.baseURL + 'Master/UpdateGroupHeadStaffScores';
+   this.url = this.baseURL + '/Master/UpdateGroupHeadStaffScores';
    return this.http.post(this.url, data);
  }
  public GetStaffScores() {
@@ -262,13 +262,13 @@ public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
 
  public UpdateCIOStaffScores(data: any) {
    debugger;
-   this.url = this.baseURL + 'Master/UpdateCIOStaffScores';
+   this.url = this.baseURL + '/Master/UpdateCIOStaffScores';
    return this.http.post(this.url, data);
  }
 
  public UpdateReAppraisalHRrating(data: any) {
    debugger;
-   this.url = this.baseURL + 'Master/UpdateReAppraisalHRrating';
+   this.url = this.baseURL + '/Master/UpdateReAppraisalHRrating';
    return this.http.post(this.url, data);
  }
 
@@ -277,18 +277,18 @@ public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
  }
  public InsertStaffScoresByHR(data: any) {
    debugger;
-   this.url = this.baseURL + 'Master/InsertStaffScoresByHR';
+   this.url = this.baseURL + '/Master/InsertStaffScoresByHR';
    return this.http.post(this.url, data);
  }
  public InsertStaffScoresByManager(data: any) {
    debugger;
-   this.url = this.baseURL + 'Master/InsertStaffScoresByManager';
+   this.url = this.baseURL + '/Master/InsertStaffScoresByManager';
    return this.http.post(this.url, data);
  }
 
  public InsertStaffScoresBySBU(data: any) {
    debugger;
-   this.url = this.baseURL + 'Master/InsertStaffScoresBySBU';
+   this.url = this.baseURL + '/Master/InsertStaffScoresBySBU';
    return this.http.post(this.url, data);
  }
 
@@ -316,7 +316,7 @@ public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
 
  public UpdateStaffScores(data: any) {
    debugger;
-   this.url = this.baseURL + 'Master/UpdateStaffScores';
+   this.url = this.baseURL + '/Master/UpdateStaffScores';
    return this.http.post(this.url, data);
  }
 
@@ -329,20 +329,20 @@ public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
 
  public UpdateEmployeeSelfRating(data: any) {
    debugger;
-   this.url = this.baseURL + 'Master/UpdateEmployeeSelfRating';
+   this.url = this.baseURL + '/Master/UpdateEmployeeSelfRating';
    return this.http.post(this.url, data);
  }
 
 
  public UpdateHrSelfAttachment(data: any) {
    debugger;
-   this.url = this.baseURL + 'Master/UpdateHrSelfAttachment';
+   this.url = this.baseURL + '/Master/UpdateHrSelfAttachment';
    return this.http.post(this.url, data);
  }
 
  public UpdateSbuSelfAttachment(data: any) {
    debugger;
-   this.url = this.baseURL + 'Master/UpdateSbuSelfAttachment';
+   this.url = this.baseURL + '/Master/UpdateSbuSelfAttachment';
    return this.http.post(this.url, data);
  }
 
@@ -355,7 +355,7 @@ public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
 
  public Updatekranew(data: any) {
    debugger;
-   this.url = this.baseURL + 'Master/Updatekranew';
+   this.url = this.baseURL + '/Master/Updatekranew';
    return this.http.post(this.url, data);
  }
 
@@ -377,14 +377,14 @@ public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
 
  public UpdateNotificationSeen(data: any) {
    debugger;
-   this.url = this.baseURL + 'Master/UpdateNotificationSeen';
+   this.url = this.baseURL + '/Master/UpdateNotificationSeen';
    return this.http.post(this.url, data);
  }
 
  
  public CloseAppraisalCycle(json: any) {
    debugger
-   let APIURL = this.baseURL + "Master/CloseAppraisalCycle";
+   let APIURL = this.baseURL + "/Master/CloseAppraisalCycle";
    return this.http.post<any[]>(APIURL, json);
  }
 
@@ -427,7 +427,7 @@ public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
    }
    
    debugger
-   let APIURL = this.host1 + "Master/UploadImages/";
+   let APIURL = this.host1 + "/Master/UploadImages/";
    return this.http.post(APIURL, formdata);
  }
 
@@ -455,13 +455,13 @@ public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
 
  public UpdateStaffReviewRating(json: any) {
    debugger
-   let APIURL = this.host + "Announcement/UpdateStaffReviewRating";
+   let APIURL = this.host + "/Announcement/UpdateStaffReviewRating";
    return this.http.post<any[]>(APIURL, json);
  }
 
  public UpdateSalaryIncrementByHR(json: any) {
    debugger
-   let APIURL = this.host + "Announcement/UpdateSalaryIncrementByHR";
+   let APIURL = this.host + "/Announcement/UpdateSalaryIncrementByHR";
    return this.http.post<any[]>(APIURL, json);
  }
 
@@ -480,7 +480,7 @@ public InsertPiPActionItemsForStaff(data: any) {
 
 public UpdatePipEmployeeComments(json: any) {
  debugger
- let APIURL = this.baseURL + "Master/UpdatePipEmployeeComments";
+ let APIURL = this.baseURL + "/Master/UpdatePipEmployeeComments";
  return this.http.post<any[]>(APIURL, json);
 }
 
@@ -504,9 +504,6 @@ public GetExceptionLogs() {
 
   );
 }
-
-
-
 
 
 }

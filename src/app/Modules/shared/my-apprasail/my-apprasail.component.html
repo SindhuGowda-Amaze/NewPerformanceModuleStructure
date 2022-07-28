@@ -54,10 +54,10 @@
                             <td *ngIf="roleid==2">{{details.frequencyName}}</td>
                             <td>{{details.employeeSubmissionLastDate|date}}</td>
                             <td>
-                                <button [routerLink]="['/SelfRatingPagenew', details.id,details.appraiselID ]"    *ngIf="details.employeeSubmittedDate==null"                              
+                                <button [routerLink]="['/shared/SelfRatingPagenew', details.id,details.appraiselID ]"    *ngIf="details.employeeSubmittedDate==null"                              
                                     class=" btn btn-primary editable-table-button btn-xs Add">Self Appraisal</button>
 
-                                    <button [routerLink]="['/SelfRatingPagenew', details.id,details.appraiselID ]"    *ngIf="details.employeeSubmittedDate!=null"                              
+                                    <button [routerLink]="['/shared/SelfRatingPagenew', details.id,details.appraiselID ]"    *ngIf="details.employeeSubmittedDate!=null"                              
                                     class=" btn btn-primary editable-table-button btn-xs Add1">View Appraisal</button>
 
 
