@@ -58,7 +58,9 @@ export class StaffScoreReportComponent implements OnInit {
   appraisalClose:any;
   ratingvalue: any;
   AppraisalCycleID1:any;
+  currentUrl : any
   ngOnInit() {
+    this.currentUrl = window.location.href
     this.pending=0;
     this.GetRoleType();
     this.GetDepartment();
@@ -82,10 +84,25 @@ export class StaffScoreReportComponent implements OnInit {
 
  
 
-    this.PerformanceManagementService.GetAppraisalCycle().subscribe(data => {
-      debugger
-      this.Apprisalcyclelist = data;
-    });
+    this.PerformanceManagementService.GetAppraisalCycle().subscribe({
+      next: data => {
+        debugger
+        this.Apprisalcyclelist = data;
+
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting AppraisalCycle');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
   }
 
   public Getratingvalue(event: any) {
@@ -93,37 +110,59 @@ export class StaffScoreReportComponent implements OnInit {
     this.ratingvalue = event.target.value;
 
     if (this.ratingvalue == 0) {
-      this.PerformanceManagementService.GetConductappraisalStaffList().subscribe(
-        res => {
-          debugger;
+      this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
+        next: (res: any) => {
+          debugger
           let temp: any = res
           this.StaffAppraisalList = temp;
           this.FilteredStaffAppraisalList = this.StaffAppraisalList
           this.count = this.FilteredStaffAppraisalList.length;
-
+        }, error: (err) => {
+          Swal.fire('Issue in Getting ConductappraisalStaffList');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-      )
+      })
     } else {
-      this.PerformanceManagementService.GetConductappraisalStaffList().subscribe(
-        res => {
-          debugger;
+      this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
+        next: (res: any) => {
+          debugger
+          let teamexpnes: any = res.filter((x: { supervisor: string | null; }) => x.supervisor == sessionStorage.getItem('staffid'));
           let temp: any = res
           this.StaffAppraisalList = temp;
       
           this.FilteredStaffAppraisalList = this.StaffAppraisalList.filter((x: { avgGroupHeadScores: any; avgCIOScores: any; }) => ((x.avgGroupHeadScores + x.avgCIOScores) / 2) == this.ratingvalue)
           this.count = this.FilteredStaffAppraisalList.length;
-     
-
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting ConductappraisalStaffList');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-      )
+      })
     }
    
   }
 
   public ConductappraisalStaffList() {
-    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe(
-      res => {
-        debugger;
+    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
+      next: (res: any) => {
+        debugger
         let temp: any = res
         this.StaffAppraisalList = temp;
         this.appraisalClose=this.StaffAppraisalList[0].appraisalClose
@@ -131,8 +170,20 @@ export class StaffScoreReportComponent implements OnInit {
         this.FilteredStaffAppraisalList = this.StaffAppraisalList.filter((x: { cioScores: null; }) => x.cioScores != null)
         this.count = this.FilteredStaffAppraisalList.length;
         this.managerList = this.dumpmanagerList.filter((x: { manager: any; })=>x.manager==this.manager);
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting ConductappraisalStaffList');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-    )
+    })
   }
 
 
@@ -185,31 +236,71 @@ export class StaffScoreReportComponent implements OnInit {
   }
 
   public GetRoleType() {
-    this.PerformanceManagementService.GetRoleType().subscribe(
-      data => {
+    this.PerformanceManagementService.GetRoleType().subscribe({
+      next: data => {
+        debugger
         this.roleTypeList = data;
         console.log("type", this.roleTypeList);
         this.roleTypeid = 0;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting RoleType');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-    )
+    })
   }
   getdepartmentID(even: any) {
     this.departmentid = even.target.value;
   }
 
   public GetDepartment() {
-    this.PerformanceManagementService.GetDepartmentMaster().subscribe(
-      data => {
+    this.PerformanceManagementService.GetDepartmentMaster().subscribe({
+      next: data => {
+        debugger
         this.departmentList = data;
         console.log("departmentName", this.departmentList);
-        // this.roleTypeid = 0;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting DepartmentMaster');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-    )
+    })
   }
   public GetFilteredDepartment() {
-    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe(data => {
-      debugger
-      this.FilteredStaffAppraisalList = data.filter(x => x.department == this.departmentid)
+    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
+      next: data => {
+        debugger
+        this.FilteredStaffAppraisalList = data.filter(x => x.department == this.departmentid)
+
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting ConductappraisalStaffList');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
   }
 
@@ -220,82 +311,152 @@ export class StaffScoreReportComponent implements OnInit {
 
   public GetMyDetails() {
     debugger
-    this.PerformanceManagementService.GetMyDetails().subscribe(
-      data => {
+    this.PerformanceManagementService.GetMyDetails().subscribe({
+      next: data => {
         debugger
         this.managerList1 = data.filter(x=>x.supervisor==null && x.role=='Manager')     // 10422 HR is taken as manager for all managers 
-         const key = 'manager';
-         const key1 = 'month'
-         this.uniquelist = [...new Map(this.managerList.map((item: { [x: string]: any; }) =>
- 
-           [(item[key]), item])).values()]
-      
+        const key = 'manager';
+        const key1 = 'month'
+        this.uniquelist = [...new Map(this.managerList.map((item: { [x: string]: any; }) =>
+
+          [(item[key]), item])).values()]
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting MyDetails');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-    )
+    })
   }
 
   public GetFilteredManager(){
     if (this.ratingvalue == 0) {
-      this.PerformanceManagementService.GetConductappraisalStaffList().subscribe(
-        res => {
-          debugger;
+      this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
+        next: (res: any[]) => {
+          debugger
           let temp: any = res
           this.StaffAppraisalList = temp;
           this.FilteredStaffAppraisalList = this.StaffAppraisalList
           this.FilteredStaffAppraisalList = res.filter((x: { managername: any; })=>x.managername==this.manager )
           this.count = this.FilteredStaffAppraisalList.length;
-
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting ConductappraisalStaffList');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-      )
+      })
     } else {
-      this.PerformanceManagementService.GetConductappraisalStaffList().subscribe(
-        res => {
-          debugger;
+      this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
+        next: (res: any) => {
+          debugger
           let temp: any = res
           this.StaffAppraisalList = temp;
       
           this.FilteredStaffAppraisalList = this.StaffAppraisalList.filter((x: { avgGroupHeadScores: any; avgCIOScores: any; managername:any;}) => ((x.avgGroupHeadScores + x.avgCIOScores) / 2) == this.ratingvalue && x.managername==this.manager)
           this.count = this.FilteredStaffAppraisalList.length;
-     
-
+        }, error: (err) => {
+          Swal.fire('Issue in Getting ConductappraisalStaffList');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-      )
+      })
     }
   } 
 
   public GetFilteredRoleType(){
     if (this.ratingvalue == 0) {
-      this.PerformanceManagementService.GetConductappraisalStaffList().subscribe(
-        res => {
-          debugger;
+      this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
+        next: res => {
+          debugger
           let temp: any = res
           this.StaffAppraisalList = temp;
           this.FilteredStaffAppraisalList = this.StaffAppraisalList
           this.FilteredStaffAppraisalList = res.filter((x: { managername: any; type:any})=> x.type==this.roleTypeid )
           this.count = this.FilteredStaffAppraisalList.length;
-
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting ConductappraisalStaffList');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-      )
+      })
     } else {
-      this.PerformanceManagementService.GetConductappraisalStaffList().subscribe(
-        res => {
-          debugger;
+      this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
+        next: (res: any) => {
+          debugger
           let temp: any = res
           this.StaffAppraisalList = temp;
       
           this.FilteredStaffAppraisalList = this.StaffAppraisalList.filter((x: { avgGroupHeadScores: any; avgCIOScores: any; managername:any;type:any}) => ((x.avgGroupHeadScores + x.avgCIOScores) / 2) == this.ratingvalue && x.type==this.roleTypeid )
           this.count = this.FilteredStaffAppraisalList.length;
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting ConductappraisalStaffList');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-      )
+      })
     }
 
 
 
 
 
-    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe(data => {
-      debugger
-      this.FilteredStaffAppraisalList = data.filter(x=>x.type==this.roleTypeid )
+    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
+      next: data => {
+        debugger
+        this.FilteredStaffAppraisalList = data.filter(x=>x.type==this.roleTypeid )
+
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting ConductappraisalStaffList');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
   }
 
@@ -306,9 +467,10 @@ export class StaffScoreReportComponent implements OnInit {
   public GetApprisalcycle(event: any) {
     debugger
     this.appraisalCycleName=event.target.value;
-    this.PerformanceManagementService.GetAppraisalCycle().subscribe(data => {
-      debugger
-      let temp: any = data.filter(x => x.appraisalCycleName ==this.appraisalCycleName );
+    this.PerformanceManagementService.GetAppraisalCycle().subscribe({
+      next: data => {
+        debugger
+        let temp: any = data.filter(x => x.appraisalCycleName ==this.appraisalCycleName );
       this.AppraisalSubmitionDate = temp[0].employeeSubmissionDate;
       this.AppraisalCycleID1=temp[0].id
       this.appraisalCycleName=temp[0].appraisalCycleName
@@ -316,48 +478,76 @@ export class StaffScoreReportComponent implements OnInit {
       this.eDate = temp[0].cycleEndDate;
       debugger
       this.GetFilteredAppraisalCycle()
-    });
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting AppraisalCycle');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
   }
 
   public GetFilteredAppraisalCycle() {
-    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe(data => {
-      debugger
-      this.FilteredStaffAppraisalList = data.filter(x => x.appraisalCycleName == this.appraisalCycleName )
+    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
+      next: data => {
+        debugger
+        this.FilteredStaffAppraisalList = data.filter(x => x.appraisalCycleName == this.appraisalCycleName )
 
 
       
-      this.appraisalcount = this.FilteredStaffAppraisalList.length;
-      this.appraisalClose=this.FilteredStaffAppraisalList[0].appraisalClose
+        this.appraisalcount = this.FilteredStaffAppraisalList.length;
+        this.appraisalClose=this.FilteredStaffAppraisalList[0].appraisalClose
+        
+        var list = data.filter(x => x.employeeSubmittedDate != null && x.selfScores != null && x.appraisalCycleName == this.appraisalCycleName &&
+         x.cycleStartDate !=null && x.cycleEndDate != null && x.appraisalSubmitionDate != null  && x.employeeSubmittedDate !=null )
+        this.employeSubmissionDate = list.length;
+    
+        var list1 = data.filter(x => x.managerSubmittedDate != null && x.appraisalCycleName == this.appraisalCycleName);
+        this.managerSubmittedCount = list1.length;
+  
+        var sbuSubmittedlist = data.filter(x => x.sbuSubmittedDate != null && x.appraisalCycleName == this.appraisalCycleName);
+        this.sbuSubmittedCount = sbuSubmittedlist.length;
+  
+    
+        this.hrSubmittedlist = data.filter(x => x.hrSubmittedDate != null &&  x.cycleStartDate !=null && x.cycleEndDate != null && x.appraisalSubmitionDate != null  && x.employeeSubmittedDate !=null && x.managerSubmittedDate!= null && x.sbuSubmittedDate!=null && x.appraisalCycleName == this.appraisalCycleName );
+        console.log("data",data)
+        console.log("hr", this.hrSubmittedlist)
+        this.hrSubmittedCount = this.hrSubmittedlist.length;
+  
+        this.hrSubmittedlist = data.filter(x => x.hrSubmittedDate == null &&  x.cycleStartDate !=null && x.cycleEndDate != null && x.appraisalSubmitionDate != null  && x.appraisalCycleName == this.appraisalCycleName);
+        console.log("data",data)
+        console.log("hr", this.hrSubmittedlist)
+        this.appraisalPendingCount = this.hrSubmittedlist.length;
       
-      var list = data.filter(x => x.employeeSubmittedDate != null && x.selfScores != null && x.appraisalCycleName == this.appraisalCycleName &&
-       x.cycleStartDate !=null && x.cycleEndDate != null && x.appraisalSubmitionDate != null  && x.employeeSubmittedDate !=null )
-      this.employeSubmissionDate = list.length;
-  
-      var list1 = data.filter(x => x.managerSubmittedDate != null && x.appraisalCycleName == this.appraisalCycleName);
-      this.managerSubmittedCount = list1.length;
-
-      var sbuSubmittedlist = data.filter(x => x.sbuSubmittedDate != null && x.appraisalCycleName == this.appraisalCycleName);
-      this.sbuSubmittedCount = sbuSubmittedlist.length;
-
-  
-      this.hrSubmittedlist = data.filter(x => x.hrSubmittedDate != null &&  x.cycleStartDate !=null && x.cycleEndDate != null && x.appraisalSubmitionDate != null  && x.employeeSubmittedDate !=null && x.managerSubmittedDate!= null && x.sbuSubmittedDate!=null && x.appraisalCycleName == this.appraisalCycleName );
-      console.log("data",data)
-      console.log("hr", this.hrSubmittedlist)
-      this.hrSubmittedCount = this.hrSubmittedlist.length;
-
-      this.hrSubmittedlist = data.filter(x => x.hrSubmittedDate == null &&  x.cycleStartDate !=null && x.cycleEndDate != null && x.appraisalSubmitionDate != null  && x.appraisalCycleName == this.appraisalCycleName);
-      console.log("data",data)
-      console.log("hr", this.hrSubmittedlist)
-      this.appraisalPendingCount = this.hrSubmittedlist.length;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting ConductappraisalStaffList');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
   }
 
 
   public Conductappraisalcounts(){
-    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe(
-      res => {
-        debugger
-        let temp: any = res
+    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
+        next: (res: any[]) => {
+          debugger
+          let temp: any = res
         this.StaffAppraisalList = temp;
         this.appraisalcount = this.StaffAppraisalList.length;
         var list = res.filter(x => x.employeeSubmittedDate != null && x.selfScores != null && 
@@ -379,8 +569,21 @@ export class StaffScoreReportComponent implements OnInit {
         console.log("data",res)
         console.log("hr", this.hrSubmittedlist)
         this.appraisalPendingCount = this.hrSubmittedlist.length;
-        
-      });
+
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting ConductappraisalStaffList');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
 
   }
 
@@ -417,11 +620,25 @@ export class StaffScoreReportComponent implements OnInit {
           var obj={
             'appraiselID':this.AppraisalCycleID1
           }
-          this.PerformanceManagementService.CloseAppraisalCycle(obj).subscribe(data => {
-            debugger
-            Swal.fire('Appraisal Cycle Closed Successfully!!')
+          this.PerformanceManagementService.CloseAppraisalCycle(obj).subscribe({
+            next: data => {
+              debugger
+              Swal.fire('Appraisal Cycle Closed Successfully!!')
             location.reload();
-          }) 
+            }, error: (err: { error: { message: any; }; }) => {
+              Swal.fire('Issue in Closing AppraisalCycle');
+              // Insert error in Db Here//
+              var obj = {
+                'PageName': this.currentUrl,
+                'ErrorMessage': err.error.message
+              }
+              this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+                data => {
+                  debugger
+                },
+              )
+            }
+          })
         }
         else{
           Swal.fire('Appraisal Cycle Closed Already!!')
