@@ -261,13 +261,6 @@ export class ApprasialReportComponent implements OnInit {
   }
 }
 
-
-
-
-
-
-
-
 function x(x: any, manager: any): any {
   throw new Error('Function not implemented.');
 }
