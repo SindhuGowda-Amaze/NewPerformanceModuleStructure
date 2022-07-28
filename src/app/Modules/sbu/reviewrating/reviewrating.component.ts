@@ -47,6 +47,7 @@ export class ReviewratingComponent implements OnInit {
     this.appraisalCycleName = 0;
     this.Department = "";
     this.RoleType = "";
+    
     this.PerformanceManagementService.GetMyDetails().subscribe(data => {
       debugger
       this.stafflist = data;

@@ -26,70 +26,156 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
   kraid: any;
   indicatorlist: any;
   dummindicatorlist: any;
-  StaffID:any;
-  search:any;
+  StaffID: any;
+  search: any;
   EmployeeKradash: any
 
-  Apprisalcyclelist:any;
-  AppraisalSubmitionDate:any;
-  sDate:any;
-  eDate:any;
-  appraisalCycleName:any
+  Apprisalcyclelist: any;
+  AppraisalSubmitionDate: any;
+  sDate: any;
+  eDate: any;
+  appraisalCycleName: any
 
 
-  kratypeid:any;
-  dropdownList1:any;
-  GoalTypelist:any;
-  kpilist:any;
-kpitypelist:any;
+  kratypeid: any;
+  dropdownList1: any;
+  GoalTypelist: any;
+  kpilist: any;
+  kpitypelist: any;
+  currentUrl: any
 
   ngOnInit(): void {
-    this.kraid="";
+    this.currentUrl = window.location.href;
+    this.kraid = "";
     this.StaffID = sessionStorage.getItem('EmaployedID');
     this.GetKPI();
     this.StaffID = sessionStorage.getItem('EmaployedID')
-    this.kraid="";
+    this.kraid = "";
     this.GetKeyResultArea();
-    this.kratypeid="";
+    this.kratypeid = "";
     this.Department = "";
     this.RoleType = "";
-    this.appraisalCycleName=0;
-  
-    this.PerformanceManagementService.GetMyDetails().subscribe(data => {
-      debugger
-      this.stafflist = data;
-      this.stafflistCopy = this.stafflist
+    this.appraisalCycleName = 0;
 
-    });
-
-    this.PerformanceManagementService.GetDepartment().subscribe(data => {
-      debugger
-      this.Departmentlist = data;
-    });
-
-    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe(data => {
-      debugger
-      this.EmployeeKradash = data.filter(x=>x.approver1==this.StaffID);
-      this.count = this.EmployeeKradash.length;
-      console.log("list",this.EmployeeKradash);
-    });
-
-    this.PerformanceManagementService.GetAppraisalCycle().subscribe(data => {
-      debugger
-      this.Apprisalcyclelist = data.filter(x=>x.appraisalClose!=1);
-    });
-
-    this.PerformanceManagementService.GetKraMaster().subscribe(data => {
-      debugger
-      this.GoalTypelist = data;
-    });
-    this.PerformanceManagementService.GetKPI().subscribe(
-      data=>{
-        this.indicatorlist=data;
+    this.PerformanceManagementService.GetMyDetails().subscribe({
+      next: data => {
+        debugger
+        this.stafflist = data;
+        this.stafflistCopy = this.stafflist
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting MyDetails');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-    )
+    })
 
-   
+    this.PerformanceManagementService.GetDepartment().subscribe({
+      next: data => {
+        debugger
+        this.Departmentlist = data;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Department');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
+    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
+      next: data => {
+        debugger
+        this.EmployeeKradash = data.filter(x => x.approver1 == this.StaffID);
+        this.count = this.EmployeeKradash.length;
+        console.log("list", this.EmployeeKradash);
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting ConductappraisalStaffList');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
+    this.PerformanceManagementService.GetAppraisalCycle().subscribe({
+      next: data => {
+        debugger
+        this.Apprisalcyclelist = data.filter(x => x.appraisalClose != 1);
+
+      }, error: (err) => {
+        Swal.fire('Issue in Getting AppraisalCycle');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
+    this.PerformanceManagementService.GetKraMaster().subscribe({
+      next: data => {
+        debugger
+        this.GoalTypelist = data;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting KraMaster');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+    this.PerformanceManagementService.GetKPI().subscribe({
+      next: data => {
+        debugger
+        this.indicatorlist = data;
+
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting KPI');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
+
   }
 
   getkpiid(event: any) {
@@ -101,14 +187,27 @@ kpitypelist:any;
 
   public GetKPI() {
     debugger
-    this.PerformanceManagementService.GetKPI().subscribe(
-      data => {
+    this.PerformanceManagementService.GetKPI().subscribe({
+      next: data => {
+        debugger
         this.indicatorlist = data;
         this.dummindicatorlist = data;
         this.count = this.indicatorlist.length;
         console.log("kpilist", this.indicatorlist);
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting KPI');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-    )
+    })
   }
 
 
@@ -121,31 +220,75 @@ kpitypelist:any;
 
   public FilterRoleType() {
     debugger
-    this.PerformanceManagementService.GetMyDetails().subscribe(data => {
-      debugger
-      this.stafflist = data.filter(x => x.roleType == this.RoleType);
-      this.count = this.stafflist.length;
-    });
+    this.PerformanceManagementService.GetMyDetails().subscribe({
+      next: data => {
+        debugger
+        this.stafflist = data.filter(x => x.roleType == this.RoleType);
+        this.count = this.stafflist.length;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting MyDetails');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
 
   }
 
   public filterByDepartment() {
     debugger
-    this.PerformanceManagementService.GetMyDetails().subscribe(data => {
-      debugger
-      this.stafflist = data.filter(x => x.department == this.Department);
-      this.count = this.stafflist.length;
-    });
+    this.PerformanceManagementService.GetMyDetails().subscribe({
+      next: data => {
+        debugger
+        this.stafflist = data.filter(x => x.department == this.Department);
+        this.count = this.stafflist.length;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting MyDetails');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
 
   }
   Staffkra: any;
   public GetStaffKraDetails(details: any) {
     debugger
-    this.PerformanceManagementService.GetEmployeeKraMap().subscribe(data => {
-      debugger
-      this.Staffkra = data.filter(x => x.kpiName != null && x.staffName == details.staffid);
-      // .filter(x => x.staffName == details.staffid && x.kpiName != null);
-    });
+    this.PerformanceManagementService.GetEmployeeKraMap()
+
+      .subscribe({
+        next: data => {
+          debugger
+          this.Staffkra = data.filter(x => x.kpiName != null && x.staffName == details.staffid);
+
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting Expenses List Web');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
 
   }
 
@@ -153,12 +296,25 @@ kpitypelist:any;
 
   public GetKeyResultArea() {
     debugger
-    this.PerformanceManagementService.GetKeyResultArea().subscribe(
-      data => {
-        this.kratypelist = data.filter(x=>x.kraTypeID==this.kratypeid);
+    this.PerformanceManagementService.GetKeyResultArea().subscribe({
+      next: data => {
+        debugger
+        this.kratypelist = data.filter(x => x.kraTypeID == this.kratypeid);
         console.log("kratype", this.kratypelist);
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting KeyResultArea');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-    )
+    })
   }
 
 
@@ -179,21 +335,49 @@ kpitypelist:any;
 
   public GetApprisalcycle(event: any) {
     debugger
-    this.PerformanceManagementService.GetAppraisalCycle().subscribe(data => {
-      debugger
-      let temp: any = data.filter(x => x.id == event.target.value);
-      this.AppraisalSubmitionDate = temp[0].employeeSubmissionDate;
-      this.appraisalCycleName=temp[0].appraisalCycleName
-      this.sDate = temp[0].cycleStartDate;
-      this.eDate = temp[0].cycleEndDate;
-
-    });
+    this.PerformanceManagementService.GetAppraisalCycle().subscribe({
+      next: data => {
+        debugger
+        let temp: any = data.filter(x => x.id == event.target.value);
+        this.AppraisalSubmitionDate = temp[0].employeeSubmissionDate;
+        this.appraisalCycleName = temp[0].appraisalCycleName
+        this.sDate = temp[0].cycleStartDate;
+        this.eDate = temp[0].cycleEndDate;
+      }, error: (err) => {
+        Swal.fire('Issue in Getting AppraisalCycle');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
   }
 
   public GetFilteredAppraisalCycle() {
-    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe(data => {
-      debugger
-      this.EmployeeKradash = data.filter(x => x.appraisalCycleName == this.appraisalCycleName && x.approver1==this.StaffID)
+    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
+      next: data => {
+        debugger
+        this.EmployeeKradash = data.filter(x => x.appraisalCycleName == this.appraisalCycleName && x.approver1 == this.StaffID)
+
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting ConductappraisalStaffList');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
   }
 
@@ -201,23 +385,47 @@ kpitypelist:any;
     debugger
     this.kraid = details.kraid;
     this.kpiid = details.kpiid;
-    this.kratypeid=details.kraTypeID
+    this.kratypeid = details.kraTypeID
     this.ID = details.id;
     this.GetKPI();
     this.GetKeyResultArea();
-    this.PerformanceManagementService.GetKeyResultArea().subscribe(
-      data => {
+    this.PerformanceManagementService.GetKeyResultArea().subscribe({
+      next: data => {
+        debugger
         this.kratypelist = data;
-      
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting KeyResultArea');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-    )
-    this.PerformanceManagementService.GetKPI().subscribe(
-      data=>{
+    })
+    this.PerformanceManagementService.GetKPI().subscribe({
+      next: data => {
         debugger
-        this.kpitypelist=data.filter(x=>x.kraFilterid==this.kraid);
-        debugger
+        this.kpitypelist = data.filter(x => x.kraFilterid == this.kraid);
+
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting KPI');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-    )
+    })
   }
 
 
@@ -228,10 +436,12 @@ kpitypelist:any;
       "kraid": this.kraid,
       "kpiid": this.kpiid
     }
-    this.PerformanceManagementService.Updatekranew(entity).subscribe(
-      data => {
-      }
-    )
+    this.PerformanceManagementService.Updatekranew(entity)
+      .subscribe(
+        data => {
+        }
+      )
+
     Swal.fire("Updated Successfully");
   }
 
@@ -239,26 +449,51 @@ kpitypelist:any;
   getkratypeid(event: any) {
     debugger
     this.kratypeid = event.target.value;
-    this.PerformanceManagementService.GetKeyResultArea().subscribe(
-      data => {
-        this.kratypelist = data.filter(x=>x.kraTypeID==this.kratypeid);
+    this.PerformanceManagementService.GetKeyResultArea().subscribe({
+      next: data => {
+        debugger
+        this.kratypelist = data.filter(x => x.kraTypeID == this.kratypeid);
         console.log("kratype", this.kratypelist);
+      }, error: (err) => {
+        Swal.fire('Issue in Getting KeyResultArea');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-    )
+    })
   }
 
 
-  getgoaltype(event:any){
+  getgoaltype(event: any) {
     debugger
-    this.kraid=event.target.value;
+    this.kraid = event.target.value;
     debugger
-    this.PerformanceManagementService.GetKPI().subscribe(
-      data=>{
+    this.PerformanceManagementService.GetKPI().subscribe({
+      next: data => {
         debugger
-        this.kpitypelist=data.filter(x=>x.kraFilterid==this.kraid);
-        debugger
+        this.kpitypelist = data.filter(x => x.kraFilterid == this.kraid);
+
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting KPI');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-    )
+    })
   }
 
 
