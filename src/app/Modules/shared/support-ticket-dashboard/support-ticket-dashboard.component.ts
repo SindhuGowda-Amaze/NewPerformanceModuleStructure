@@ -9,15 +9,20 @@ import Swal from 'sweetalert2';
   styleUrls: ['./support-ticket-dashboard.component.css']
 })
 export class SupportTicketDashboardComponent implements OnInit {
-
-  constructor(public PerformanceManagementService:PerformancemanagementService) { }
-
+  
   ticketlist:any;
   search:any;
   count:any;
   staffID:any;
+  attachmentlist:any;
+  currentUrl: any;
+
+  constructor(public PerformanceManagementService:PerformancemanagementService) { }
+
+ 
   ngOnInit(): void {
     this.staffID = sessionStorage.getItem('EmaployedID');
+    this.currentUrl = window.location.href;
     this.GetSupportTickets();
   }
 
@@ -25,25 +30,55 @@ export class SupportTicketDashboardComponent implements OnInit {
 
   public GetSupportTickets(){
     debugger
-    this.PerformanceManagementService.GetSupportTickets().subscribe(
-      data=>{
-        this.ticketlist=data.filter(x=>x.applicationName=='Performance Management' && x.staffID==this.staffID );
-        this.count=this.ticketlist.length;
-      }
+    this.PerformanceManagementService.GetSupportTickets()
+    
+    
+.subscribe({
+  next: data => {
+    this.ticketlist=data.filter(x=>x.applicationName=='Performance Management' && x.staffID==this.staffID );
+    this.count=this.ticketlist.length;
+  }, error: (err) => { 
+    Swal.fire('Issue in Getting SupportTickets');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': err.error.message
+    }
+    this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+      data => {
+        debugger
+      },
     )
+  }
+})
+
   }
 
 
-  attachmentlist:any;
+ 
   image(id:any){
     debugger
-    this.PerformanceManagementService.GetSupportAttachment().subscribe(
-      data=>{
+    this.PerformanceManagementService.GetSupportAttachment()
+    
+.subscribe({
+  next: data => {
+    debugger
+    this.attachmentlist=data.filter(x=>x.ticketID==id);
+  }, error: (err) => {
+    Swal.fire('Issue in Getting SupportAttachment');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': err.error.message
+    }
+    this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+      data => {
         debugger
-       this.attachmentlist=data.filter(x=>x.ticketID==id);
-      
-      }
+      },
     )
+  }
+})
+
     
   }
 
@@ -58,11 +93,28 @@ export class SupportTicketDashboardComponent implements OnInit {
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.value == true) {
-        this.PerformanceManagementService.DeleteSupportTickets(ID).subscribe(data => {
-          debugger
+        this.PerformanceManagementService.DeleteSupportTickets(ID)
+        
+        
+.subscribe({
+  next: data => {
+    debugger
           Swal.fire('Deleted Successfully')
           location.reload();
-        })
+  }, error: (err) => {
+    Swal.fire('Issue in  DeleteSupportTickets');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': err.error.message
+    }
+    this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+      data => {
+        debugger
+      },
+    )
+  }
+})
       }
     })
   }
