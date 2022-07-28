@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class ManagerAppraisalComponent implements OnInit {
 
- 
+
   constructor(private PerformanceManagementService: PerformancemanagementService, private router: Router, private route: ActivatedRoute, private datepipe: DatePipe) { }
 
   stafflist: any;
@@ -34,16 +34,20 @@ export class ManagerAppraisalComponent implements OnInit {
   ResultAreaList: any;
   PerformanceLists1: any;
   showbtn: any;
-  showbtn1:any;
-  Name:any;
-  role:any;
-  departmentName:any;
-  managerSubmittedDate:any
-  selfAttachment:any;
+  showbtn1: any;
+  Name: any;
+  role: any;
+  departmentName: any;
+  managerSubmittedDate: any
+  selfAttachment: any;
   EmployeeId: any;
-  appraislid:any;
-  managerrating:any;
+  appraislid: any;
+  managerrating: any;
+  currentUrl: any
+
   ngOnInit(): void {
+    this.currentUrl = window.location.href;
+
     this.Score = 0;
     this.showbtn = false;
     this.showbtn1 = false;
@@ -57,24 +61,38 @@ export class ManagerAppraisalComponent implements OnInit {
         this.StaffID = params['id'];
         this.StaffTypeID = this.StaffType;
 
-        this.PerformanceManagementService.GetKRAByStaffID(this.StaffID).subscribe(data => {
-          debugger
-          this.ResultAreaList = data.filter((x: { emplosubmitdate: any; appraiselID: any;})=>x.emplosubmitdate!=null && x.appraiselID == this.appraislid);
-          console.log(this.ResultAreaList);
-          
-          this.Name=this.ResultAreaList[0].name
-          this.role=this.ResultAreaList[0].role
-          this.departmentName=this.ResultAreaList[0].departmentName
-          this.managerSubmittedDate=this.ResultAreaList[0].managerSubmittedDate
-          this.selfAttachment=this.ResultAreaList[0].Photo
-          this.ResultAreaList.forEach((element: { managerupdate: any; }) => {
-            if (element.managerupdate != 1 ) {
-              this.showbtn = false
-            } else {
-              this.showbtn = true
-            }
-          });
+        this.PerformanceManagementService.GetKRAByStaffID(this.StaffID).subscribe({
+          next: data => {
+            debugger
+            this.ResultAreaList = data.filter((x: { emplosubmitdate: any; appraiselID: any; }) => x.emplosubmitdate != null && x.appraiselID == this.appraislid);
+            console.log(this.ResultAreaList);
 
+            this.Name = this.ResultAreaList[0].name
+            this.role = this.ResultAreaList[0].role
+            this.departmentName = this.ResultAreaList[0].departmentName
+            this.managerSubmittedDate = this.ResultAreaList[0].managerSubmittedDate
+            this.selfAttachment = this.ResultAreaList[0].Photo
+            this.ResultAreaList.forEach((element: { managerupdate: any; }) => {
+              if (element.managerupdate != 1) {
+                this.showbtn = false
+              } else {
+                this.showbtn = true
+              }
+            });
+
+          }, error: (err) => {
+            Swal.fire('Issue in Getting KRAByStaffID');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
         })
         // this.GetStaffAppraisalByID(this.ParamID);
 
@@ -90,30 +108,72 @@ export class ManagerAppraisalComponent implements OnInit {
 
   public FilterRoleType() {
     debugger
-    this.PerformanceManagementService.GetMyDetails().subscribe(data => {
-      debugger
-      this.stafflist = data.filter(x => x.roleType == this.RoleType);
-      this.count = this.stafflist.length;
-    });
+    this.PerformanceManagementService.GetMyDetails().subscribe({
+      next: data => {
+        debugger
+        this.stafflist = data.filter(x => x.roleType == this.RoleType);
+        this.count = this.stafflist.length;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting MyDetails');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
 
   }
 
   public filterByDepartment() {
     debugger
-    this.PerformanceManagementService.GetMyDetails().subscribe(data => {
-      debugger
-      this.stafflist = data.filter(x => x.department == this.Department);
-      this.count = this.stafflist.length;
-    });
+    this.PerformanceManagementService.GetMyDetails().subscribe({
+      next: data => {
+        debugger
+        this.stafflist = data.filter(x => x.department == this.Department);
+        this.count = this.stafflist.length;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting MyDetailsb');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
 
   }
   Staffkra: any;
   public GetStaffKraDetails(details: any) {
     debugger
-    this.PerformanceManagementService.GetEmployeeKraMap().subscribe(data => {
-      debugger
-      this.Staffkra = data.filter(x => x.staffName == details.staffid);
-    });
+    this.PerformanceManagementService.GetEmployeeKraMap().subscribe({
+      next: data => {
+        debugger
+        this.Staffkra = data.filter(x => x.staffName == details.staffid);
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting EmployeeKraMap');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
 
   }
 
@@ -121,17 +181,32 @@ export class ManagerAppraisalComponent implements OnInit {
   SelfComments: any;
   public HighScore() {
     debugger
-    this.PerformanceManagementService.GetHighScores().subscribe(data => {
-      debugger
-      this.list = data;
+    this.PerformanceManagementService.GetHighScores().subscribe({
+      next: data => {
+        debugger
+        this.list = data;
+
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting HighScores');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
   }
   kpiid: any;
   Score: any;
   ResultAreaID: any;
-  ManagerSubmittedDate:any;
-  managerattachment:any
-    id: any;
+  ManagerSubmittedDate: any;
+  managerattachment: any
+  id: any;
   public GetKPIID(details: any) {
     this.id = details.id;
     this.kpiid = details.kpiid;
@@ -143,13 +218,13 @@ export class ManagerAppraisalComponent implements OnInit {
 
   public SaveDetails() {
     debugger
-    if(this.Score==undefined||this.Score==0||this.SelfComments==undefined||this.SelfComments==null){
+    if (this.Score == undefined || this.Score == 0 || this.SelfComments == undefined || this.SelfComments == null) {
       Swal.fire("Please Enter the Mandatory Fields");
     }
-    else{
+    else {
       debugger
       var entity = {
-        
+
         'SatffID': this.StaffID,
         'StaffType': this.StaffID,
         'Supervisor': this.id,
@@ -159,38 +234,39 @@ export class ManagerAppraisalComponent implements OnInit {
         'SelfComments': this.SelfComments,
         'Attachment': this.attchmentss
       }
-      this.PerformanceManagementService.InsertStaffScoresByManager(entity).subscribe(data => {
-        debugger
-        Swal.fire("Saved Successfully");
-        // var entity1 = {
-        //   'SatffID': this.StaffID,
-        //   'StaffType': this.StaffID,
-        //   // 'Supervisor': this.appraisalList[this.q].Supervisor,
-        //   'ResultAreaID': this.ResultAreaID,
-        //   'PerformaceIndicatorID': this.kpiid,
-        //   'GroupHeadScores': this.Score,
-        //   'GroupHeadComments': this.SelfComments,
-        // }
-        // this.PerformanceManagementService.UpdateGroupHeadStaffScores(entity1).subscribe(data => {
-        //   debugger
-  
-        // })
-        this.Score = "";
-        this.SelfComments = "";
-        this.attchmentss='';
-        this.files.length = 0;
-        const element1 = document.getElementById('close');
-  
-        if (element1 !== null) {
-  
-          element1.click();
-  
+      this.PerformanceManagementService.InsertStaffScoresByManager(entity).subscribe({
+        next: data => {
+          debugger
+          Swal.fire("Saved Successfully");
+
+          this.Score = "";
+          this.SelfComments = "";
+          this.attchmentss = '';
+          this.files.length = 0;
+          const element1 = document.getElementById('close');
+
+          if (element1 !== null) {
+
+            element1.click();
+
+          }
+          this.ngOnInit();
+        }, error: (err) => {
+          Swal.fire('Issue in Inserting StaffScoresByManager');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-        this.ngOnInit();
-  
       })
     }
-   
+
 
   }
 
@@ -206,65 +282,107 @@ export class ManagerAppraisalComponent implements OnInit {
       'PerformaceIndicatorID': this.kpiid,
       'SelfScores': this.Score,
       'SelfComments': this.SelfComments,
-       'Attachment': this.attchmentss
+      'Attachment': this.attchmentss
     }
-    this.PerformanceManagementService.InsertStaffScoresByManager(entity).subscribe(data => {
-      debugger
-      Swal.fire("Updated Successfully");
-      this.attchmentss = "";
-      const element1 = document.getElementById('close');
-      this.files.length = 0;
-      if (element1 !== null) {
+    this.PerformanceManagementService.InsertStaffScoresByManager(entity).subscribe({
+      next: data => {
+        debugger
+        Swal.fire("Updated Successfully");
+        this.attchmentss = "";
+        const element1 = document.getElementById('close');
+        this.files.length = 0;
+        if (element1 !== null) {
 
-        element1.click();
+          element1.click();
 
+        }
+        this.ngOnInit();
+
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Inserting StaffScoresByManager');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-      this.ngOnInit();
-
     })
   }
 
 
   public GetKPIIDetails(details: any) {
     debugger
-    this.managerattachment='';
-    this.PerformanceManagementService.GetEmployeeKraMap().subscribe(data => {
-      debugger
-      let temp: any = data.filter(x => x.id == details.id)
-      this.Score = temp[0].managerrating;
-      this.SelfComments = temp[0].managercomments;
-      // this.attachment=details.photo;
-      this.managerattachment=details.mPhoto;
-      this.id = temp[0].id;
-      this.kpiid = temp[0].kpiid;
-      this.ResultAreaID = temp[0].resultAreaID; 
-      this.attachment=details.managerattachment
-    
+    this.managerattachment = '';
+    this.PerformanceManagementService.GetEmployeeKraMap().subscribe({
+      next: data => {
+        debugger
+        let temp: any = data.filter(x => x.id == details.id)
+        this.Score = temp[0].managerrating;
+        this.SelfComments = temp[0].managercomments;
+        // this.attachment=details.photo;
+        this.managerattachment = details.mPhoto;
+        this.id = temp[0].id;
+        this.kpiid = temp[0].kpiid;
+        this.ResultAreaID = temp[0].resultAreaID;
+        this.attachment = details.managerattachment
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting EmployeeKraMap');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
 
-    this.photoid=details.id;
+    this.photoid = details.id;
   }
 
   files: File[] = [];
   attachmentsurl: any = []
-  attchmentss:any;
+  attchmentss: any;
   onSelect(event: any) {
     console.log(event);
     debugger
     this.files.push(...event.addedFiles);
-    this.PerformanceManagementService.ProjectAttachments(this.files).subscribe(res => {
-      debugger
-      if (res != undefined) {
-        this.attchmentss=res;
-        // this.attachmentsurl.push(res);
-     
-        alert('Attachment uploaded')
-       
+    this.PerformanceManagementService.ProjectAttachments(this.files).subscribe({
+      next: res => {
+        debugger
+        if (res != undefined) {
+          this.attchmentss = res;
+          // this.attachmentsurl.push(res);
+
+          alert('Attachment uploaded')
 
 
+
+        }
+        debugger
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in ProjectAttachments');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-      debugger
     })
+
 
   }
 
@@ -278,7 +396,7 @@ export class ManagerAppraisalComponent implements OnInit {
     this.empcomments = detials.empcomments
   }
 
-  
+
   public SubmitManagerAppraisal() {
     debugger
     Swal.fire({
@@ -294,38 +412,53 @@ export class ManagerAppraisalComponent implements OnInit {
         var entity = {
           'StaffID': this.StaffID,
         }
-        this.PerformanceManagementService.SubmitManagerAppraisal(entity).subscribe(data => {
-          debugger
-          Swal.fire("Submitted Appraisal Successfully");
-          this.ngOnInit();
-          //  this.showbtn=false;
-          //  this.showbtn1=true
-          this.InsertNotificationHR();
-          this.InsertNotificationEmployeeAppraisalSubmit();
+        this.PerformanceManagementService.SubmitManagerAppraisal(entity).subscribe({
+          next: data => {
+            debugger
+            Swal.fire("Submitted Appraisal Successfully");
+            this.ngOnInit();
+            //  this.showbtn=false;
+            //  this.showbtn1=true
+            this.InsertNotificationHR();
+            this.InsertNotificationEmployeeAppraisalSubmit();
+          }, error: (err: { error: { message: any; }; }) => {
+            Swal.fire('Issue in Submitting ManagerAppraisal');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
         })
       }
     })
   }
-  attachment:any;
-  photoid:any;
-  getattachment(details:any){
+  attachment: any;
+  photoid: any;
+  getattachment(details: any) {
     debugger
-      this.selfAttachment=details.photo;
-      this.photoid=details.id;
-      this.attachmentsurl[0]=details.selfattachment
-    }
+    this.selfAttachment = details.photo;
+    this.photoid = details.id;
+    this.attachmentsurl[0] = details.selfattachment
+  }
 
-    update(){
-      debugger
-      var entity = {
-        'ID':this.photoid,
-        'Attachment': this.attchmentss
-      }
-      this.PerformanceManagementService.UpdateManagerSelfAttachment(entity).subscribe(data => {
+  update() {
+    debugger
+    var entity = {
+      'ID': this.photoid,
+      'Attachment': this.attchmentss
+    }
+    this.PerformanceManagementService.UpdateManagerSelfAttachment(entity).subscribe({
+      next: data => {
         debugger
         Swal.fire("Updated Successfully");
-        this.attachmentsurl=0;
-        this.attchmentss="";
+        this.attachmentsurl = 0;
+        this.attchmentss = "";
         this.PerformanceManagementService.GetKRAByStaffID(this.StaffID).subscribe(data => {
           debugger
           this.ResultAreaList = data;
@@ -333,15 +466,27 @@ export class ManagerAppraisalComponent implements OnInit {
           console.log("Result area", this.ResultAreaList);
 
         })
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Updating ManagerSelfAttachment');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
 
-      })
-    
-    }
-  cancel(){
-    location.href="/Selfratingnew";
+  }
+  cancel() {
+    location.href = "/Selfratingnew";
   }
 
-  
+
 
   public InsertNotification() {
     debugger
@@ -360,12 +505,26 @@ export class ManagerAppraisalComponent implements OnInit {
 
 
     }
-    this.PerformanceManagementService.InsertNotification(entity).subscribe(data => {
-      if (data != 0) {
+    this.PerformanceManagementService.InsertNotification(entity).subscribe({
+      next: data => {
+        debugger
+        if (data != 0) {
 
 
+        }
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Inserting Notification');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-
     })
   }
 
@@ -386,11 +545,25 @@ export class ManagerAppraisalComponent implements OnInit {
 
 
     }
-    this.PerformanceManagementService.InsertNotification(entity).subscribe(data => {
-      if (data != 0) {
+    this.PerformanceManagementService.InsertNotification(entity).subscribe({
+      next: data => {
+        debugger
+        if (data != 0) {
 
+        }
+      }, error: (err) => {
+        Swal.fire('Issue in Inserting Notification');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-
     })
   }
 
@@ -412,19 +585,27 @@ export class ManagerAppraisalComponent implements OnInit {
 
 
     }
-    this.PerformanceManagementService.InsertNotification(entity).subscribe(data => {
-      if (data != 0) {
+    this.PerformanceManagementService.InsertNotification(entity).subscribe({
+      next: data => {
+        debugger
+        if (data != 0) {
 
 
+        }
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Inserting Notification');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-
     })
   }
-
-
-
-
-
-  
 
 }

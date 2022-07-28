@@ -46,99 +46,99 @@ export class ApprasialCycleFormComponent implements OnInit {
 
 
     this.ActivatedRoute.params
-    .subscribe(params => {
-      this.id = params['id'];
-      if (this.id != undefined && this.id != null) {
-        this.GetAppraisalCycle();
-      }
-    })
+      .subscribe(params => {
+        this.id = params['id'];
+        if (this.id != undefined && this.id != null) {
+          this.GetAppraisalCycle();
+        }
+      })
   }
-  startingdate:any;
-  sbureviwdate:any;
-  hrreviewdate:any
-  employeereview:any;
-  managerriew:any;
-  goalsettinglastdate:any;
-  endingdate:any;
+  startingdate: any;
+  sbureviwdate: any;
+  hrreviewdate: any
+  employeereview: any;
+  managerriew: any;
+  goalsettinglastdate: any;
+  endingdate: any;
 
   public startingdatealert(even: any) {
-    this.startingdate= even.target.value;
+    this.startingdate = even.target.value;
   }
 
   public endingdatealert(even: any) {
-    this.endingdate= even.target.value;
-    if(this.endingdate < this.startingdate || this.enddate < this.startdate){
+    this.endingdate = even.target.value;
+    if (this.endingdate < this.startingdate || this.enddate < this.startdate) {
       Swal.fire("Cycle End date should be greater than Cycle Start date")
     }
   }
 
   public closingdatealert(event: any) {
-    this.closingdate= event.target.value;
-    if(this.closingdate < this.startingdate ){
+    this.closingdate = event.target.value;
+    if (this.closingdate < this.startingdate) {
       Swal.fire("Closing date should be greater than Cycle Start date")
-      this.appraisalClosingLastDate=0;
+      this.appraisalClosingLastDate = 0;
     }
-    else if(this.closingdate > this.endingdate){
+    else if (this.closingdate > this.endingdate) {
       Swal.fire("Closing date should be lesser than Cycle End date")
-      this.appraisalClosingLastDate=0;
+      this.appraisalClosingLastDate = 0;
     }
   }
   public goalsettinglastdatealert(event: any) {
-    this.goalsettinglastdate= event.target.value;
-    if(this.goalsettinglastdate < this.startingdate &&this.goalsettinglastdate< this.startingdate ){
+    this.goalsettinglastdate = event.target.value;
+    if (this.goalsettinglastdate < this.startingdate && this.goalsettinglastdate < this.startingdate) {
       Swal.fire("Goal Setting last date should be greater than Cycle Start date")
-      this.goalDate=0;
+      this.goalDate = 0;
     }
-    else if(this.goalsettinglastdate > this.endingdate){
+    else if (this.goalsettinglastdate > this.endingdate) {
       Swal.fire("Goal Setting date should be lesser than Cycle End date")
-      this.goalDate=0;
+      this.goalDate = 0;
     }
   }
 
   public employeereviewdatealert(event: any) {
-    this.employeereview= event.target.value;
-    if(this.employeereview < this.goalsettinglastdate || this.employeereview< this.startingdate ){
+    this.employeereview = event.target.value;
+    if (this.employeereview < this.goalsettinglastdate || this.employeereview < this.startingdate) {
       Swal.fire("Employee review last date should be greater than  goal setting last date")
-      this.empsubDate=0;
+      this.empsubDate = 0;
     }
-    else if(this.employeereview > this.endingdate){
+    else if (this.employeereview > this.endingdate) {
       Swal.fire("Employee review last date should be lesser than Cycle End date")
-      this.empsubDate=0;
+      this.empsubDate = 0;
     }
   }
 
   public managerreviewalert(event: any) {
-    this.managerriew= event.target.value;
-    if(this.managerriew < this.employeereview || this.managerriew < this.startingdate ){
+    this.managerriew = event.target.value;
+    if (this.managerriew < this.employeereview || this.managerriew < this.startingdate) {
       Swal.fire("Manager review last date should be greater than  Employee Review Last Date")
-      this.managerReviewDate=0
+      this.managerReviewDate = 0
     }
-    else if(this.managerriew > this.endingdate){
+    else if (this.managerriew > this.endingdate) {
       Swal.fire("Manager review last date should be lesser than Cycle End date")
-      this.managerReviewDate=0
+      this.managerReviewDate = 0
     }
   }
 
   public sbudatealert(event: any) {
-    this.sbureviwdate= event.target.value;
-    if(this.sbureviwdate < this.managerriew && this.sbureviwdate< this.startingdate ){
+    this.sbureviwdate = event.target.value;
+    if (this.sbureviwdate < this.managerriew && this.sbureviwdate < this.startingdate) {
       Swal.fire("SBU review last date should be greater than  Manager Review Last Date")
-      this.sbuReviewDate=0;
+      this.sbuReviewDate = 0;
     }
-    else if(this.sbureviwdate > this.endingdate){
+    else if (this.sbureviwdate > this.endingdate) {
       Swal.fire("SBU review last date should be lesser than Cycle End date")
-      this.sbuReviewDate=0;
+      this.sbuReviewDate = 0;
     }
   }
   public hrreviewdatealert(event: any) {
-    this.hrreviewdate= event.target.value;
-    if(this.hrreviewdate < this.sbudatealert && this.hrreviewdate< this.startingdate ){
+    this.hrreviewdate = event.target.value;
+    if (this.hrreviewdate < this.sbudatealert && this.hrreviewdate < this.startingdate) {
       Swal.fire("HR review last date should be greater than  SBU Review Last Date")
-      this.hrReviewDate=0;
+      this.hrReviewDate = 0;
     }
-    else if(this.hrreviewdate > this.endingdate){
+    else if (this.hrreviewdate > this.endingdate) {
       Swal.fire("HR review last date should be lesser than Cycle End date")
-      this.hrReviewDate=0;
+      this.hrReviewDate = 0;
     }
   }
 
@@ -183,13 +183,13 @@ export class ApprasialCycleFormComponent implements OnInit {
 
   Save() {
     debugger
-    if(this.appraisal==null || this.appraisal==undefined||this.frequencyid==null||this.frequencyid==undefined
-      || this.startdate==null||this.startdate==undefined||this.enddate==null||this.enddate==undefined||
-      this.goalDate==null||this.goalDate==undefined||this.empsubDate==null||undefined||this.managerReviewDate==null||this.managerReviewDate==undefined
-      ||this.hrReviewDate==null||this.hrReviewDate==undefined||this.sbuReviewDate==null||this.sbuReviewDate==undefined||this.appraisalClosingLastDate==null||this.appraisalClosingLastDate==undefined){
-        Swal.fire("Please fill all fields!");
+    if (this.appraisal == null || this.appraisal == undefined || this.frequencyid == null || this.frequencyid == undefined
+      || this.startdate == null || this.startdate == undefined || this.enddate == null || this.enddate == undefined ||
+      this.goalDate == null || this.goalDate == undefined || this.empsubDate == null || undefined || this.managerReviewDate == null || this.managerReviewDate == undefined
+      || this.hrReviewDate == null || this.hrReviewDate == undefined || this.sbuReviewDate == null || this.sbuReviewDate == undefined || this.appraisalClosingLastDate == null || this.appraisalClosingLastDate == undefined) {
+      Swal.fire("Please fill all fields!");
     }
-    else{
+    else {
       var json = {
         "AppraisalCycleName": this.appraisal,
         "FrequencyType": this.frequencyid,
@@ -203,30 +203,30 @@ export class ApprasialCycleFormComponent implements OnInit {
         "AppraisalClosingLastDate": this.appraisalClosingLastDate
       };
       this.PerformanceManagementService.InsertAppraisalCycle(json).subscribe({
-          next: data => {
-            debugger
-            Swal.fire("Successfully Submitted...!");
+        next: data => {
+          debugger
+          Swal.fire("Successfully Submitted...!");
           location.href = "#/hr/ApprasialCycle"
-          }, error: (err: { error: { message: any; }; }) => {
-            Swal.fire('Issue in Inserting Appraisal Cycle');
-            // Insert error in Db Here//
-            var obj = {
-              'PageName': this.currentUrl,
-              'ErrorMessage': err.error.message
-            }
-            this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-              data => {
-                debugger
-              },
-            )
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Inserting Appraisal Cycle');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
           }
-        })
-  
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+
 
 
 
     }
-  
+
   }
 
 
@@ -248,24 +248,24 @@ export class ApprasialCycleFormComponent implements OnInit {
     };
 
     this.PerformanceManagementService.UpdateAppraisalCycle(json).subscribe({
-        next: data => {
-          debugger
-          Swal.fire("Updated Successfully");
+      next: data => {
+        debugger
+        Swal.fire("Updated Successfully");
         location.href = "#/hr/ApprasialCycle"
-        }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in Getting Expenses List Web');
-          // Insert error in Db Here//
-          var obj = {
-            'PageName': this.currentUrl,
-            'ErrorMessage': err.error.message
-          }
-          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-            data => {
-              debugger
-            },
-          )
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Expenses List Web');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
         }
-      })
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
 
 
 
@@ -287,23 +287,23 @@ export class ApprasialCycleFormComponent implements OnInit {
 
   public GetFrequency() {
     this.PerformanceManagementService.GetFrequency().subscribe({
-        next: data => {
-          debugger
-          this.frequency = data;
-        }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in Getting Frequency');
-          // Insert error in Db Here//
-          var obj = {
-            'PageName': this.currentUrl,
-            'ErrorMessage': err.error.message
-          }
-          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-            data => {
-              debugger
-            },
-          )
+      next: data => {
+        debugger
+        this.frequency = data;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Frequency');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
         }
-      })
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
 
 
 

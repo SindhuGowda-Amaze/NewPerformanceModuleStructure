@@ -1,9 +1,8 @@
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-10">
             <br>
-            <p class="headings">My Team Appraisal</p>
+            <p class="headings">Team Appraisal</p>
         </div>
         <div class="col-lg-2">
             <br>
@@ -19,10 +18,10 @@
                     Position: <b>{{role}}</b></span>
         </div>
         <div class="col-lg-2">
-            <button type="button" *ngIf="showbtn && SbuSubmittedDate==null" class="btn btn-primary"
-                (click)="UpdateSbuSubmitted()">Submit
+            <button type="button" *ngIf="showbtn && HrSubmittedDate==null" class="btn btn-primary"
+                (click)="SubmitHrAppraisal()">Submit
                 Appraisal</button>
-            <p *ngIf="showbtn && SbuSubmittedDate!=null" style="color:green">Appraisal Submitted!!</p>
+            <p *ngIf="showbtn && HrSubmittedDate!=null" style="color:green">Appraisal Submitted!!</p>
             <button type="button" *ngIf="!showbtn" class="btn btn-primary" disabled>Submit
                 Appraisal</button>
         </div>
@@ -30,9 +29,9 @@
     </div>
     <br>
     <div>
-        <div class="row">
+        <div class="row" style=" overflow-x: scroll;">
             <div class="col-lg-12">
-                <table class="table">
+                <table class="table "style="width: 1260px; overflow-x: scroll;">
                     <thead>
                         <tr>
                             <th>Sr.No.</th>
@@ -44,28 +43,29 @@
                             <th>Manager Rating</th>
                             <th>Manager Comments</th>
                             <th>Manager Attachment</th>
-                            <!-- <th>HR Rating</th> -->
                             <th>SBU Rating</th>
+                            <th>SBU Comments</th>
+                            <th>SBU Attachment</th>
+                            <th>HR Rating</th>
                             <th>Action </th>
-                            <!-- <th>Status</th> -->
                         </tr>
                     </thead>
                     <tbody>
                         <tr
                             *ngFor="let details of ResultAreaList |paginate: { itemsPerPage: count1, currentPage: p} index as i">
-                            <td [ngClass]="{'bggreen':details.sbuUpdate==1 }">
+                            <td [ngClass]="{'bggreen':details.hrupdate==1 }">
                                 {{i+1}}</td>
-                            <td [ngClass]="{'bggreen':details.sbuUpdate==1 }">{{details.kraName}}
+                            <td [ngClass]="{'bggreen':details.hrupdate==1 }">{{details.kraName}}
                             </td>
-                            <td [ngClass]="{'bggreen':details.sbuUpdate==1 }">{{details.kpiName}}</td>
-                            <td [ngClass]="{'bg-warning':details.sbuUpdate==1 }" style="text-align: center;">
+                            <td [ngClass]="{'bggreen':details.hrupdate==1 }">{{details.kpiName}}</td>
+                            <td [ngClass]="{'bg-warning':details.hrupdate==1 }" style="text-align: center;">
                                 {{details.emprating}}</td>
-                            <td [ngClass]="{'bggreen':details.sbuUpdate==1 }">
+                            <td [ngClass]="{'bggreen':details.hrupdate==1 }">
                                 <button type="button" class="btn btn-success" data-toggle="modal"
                                     (click)="GetEmpComments(details)" data-target="#viewwmpcomments">View
                                 </button>
                             </td>
-                            <td [ngClass]="{'bggreen':details.sbuUpdate==1 }">
+                            <td [ngClass]="{'bggreen':details.hrupdate==1 }">
                                 <button class=" btn btn-primary action" data-toggle="modal" data-target="#exampleModal2"
                                     (click)="getattachment(details)"
                                     *ngIf="details.selfattachment!=null&&details.selfattachment!='0'&&details.selfattachment!=''">View
@@ -75,60 +75,69 @@
                                     No Attachments</p>
 
                             </td>
-                            <td [ngClass]="{'bg-warning':details.sbuUpdate==1 }" style="text-align: center;">
+                            <td [ngClass]="{'bg-warning':details.hrupdate==1 }" style="text-align: center;">
                                 {{details.managerrating}}</td>
-                            <td [ngClass]="{'bggreen':details.sbuUpdate==1 }">
+                            <td [ngClass]="{'bggreen':details.hrupdate==1 }">
                                 <button type="button" class="btn btn-success" data-toggle="modal"
                                     (click)="GEtmanagercomments(details)" data-target="#viewhrcomments">View
                                 </button>
                             </td>
-                            <td [ngClass]="{'bggreen':details.sbuUpdate==1 }">
+                            <td [ngClass]="{'bggreen':details.hrupdate==1 }">
                                 <button class=" btn btn-primary action" data-toggle="modal" data-target="#exampleModal3"
-                                    (click)="getattachment(details)" *ngIf="details.managerattachment!=null&&details.managerattachment!=''">View
+                                    (click)="getattachment(details)" *ngIf="details.managerattachment!=null&&details.managerattachment!='0'&&details.managerattachment!=''">View
                                     Attachments</button>
                                 <p *ngIf="details.managerattachment=='0'||details.managerattachment==null||details.managerattachment==''">No
                                     Attachments</p>
                             </td>
-                            <!-- <td [ngClass]="{'bg-warning':details.hrupdate==1 }" style="text-align: center;">
-                                {{details.sbuRating}}
-                                <p *ngIf="details.hrupdate!=1">NA</p>
-                            </td> -->
+<!-- sbu rating -->
 
-
-                            <td [ngClass]="{'bg-warning':details.sbuUpdate==1 }" style="text-align: center;">
-                                {{details.sbuRating}}
-                                <p *ngIf="details.sbuUpdate!=1">NA</p>
+                            <td [ngClass]="{'bg-warning':details.hrupdate==1 }" style="text-align: center;">
+                                {{details.sbuRating}}</td>
+                            <td [ngClass]="{'bggreen':details.hrupdate==1 }">
+                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                    (click)="GEtsbucomments(details)" data-target="#viewsbucomments">View
+                                </button>
+                            </td>
+                            <td [ngClass]="{'bggreen':details.hrupdate==1 }">
+                                <button class=" btn btn-primary action" data-toggle="modal" data-target="#exampleModal36"
+                                    (click)="getattachment(details)" *ngIf="details.sbuAttachment!=null&&details.sbuAttachment!='0' && details.sbuAttachment!=''">View
+                                    Attachments</button>
+                                <p *ngIf="details.sbuAttachment=='0'||details.sbuAttachment==null||details.sbuAttachment==''">No
+                                    Attachments</p>
                             </td>
 
 
-                            <td [ngClass]="{'bggreen':details.sbuUpdate==1 }">
 
-                                <button *ngIf="details.sbuUpdate!=1 &&details.managerupdate==1" type="button"
+
+
+
+                            <td [ngClass]="{'bg-warning':details.hrupdate==1 }" style="text-align: center;">
+                                {{details.hrrrating}}
+                                <p *ngIf="details.hrupdate!=1">NA</p>
+                            </td>
+                            <td [ngClass]="{'bggreen':details.hrupdate==1 }">
+
+                                <button *ngIf="details.hrupdate!=1 &&details.managerupdate==1" type="button"
                                     class="btn btn-primary" data-toggle="modal" (click)="GetKPIID(details)"
                                     data-target="#exampleModal">Rate Employee</button>
 
-                                <button *ngIf="details.sbuUpdate==1" type="button" class="btn btn-success"
+                                <button *ngIf="details.hrupdate==1" type="button" class="btn btn-success"
                                     data-toggle="modal" (click)="GetKPIIDetails(details)"
                                     data-target="#exampleModal1">View
                                     Details</button><br><br>
-                                    <p *ngIf="details.sbuUpdate==1 && (details.sbuAttachment==null||details.sbuAttachment=='')" >No Attachments</p>
+                                    <p *ngIf="details.hrupdate==1 && (details.hrattachment==null||details.hrattachment=='')" >No Attachments</p>
 
                                 <button class=" btn btn-primary action" data-toggle="modal" data-target="#exampleModal4"
                                     (click)="GetKPIIDetails(details)"
-                                    *ngIf="details.sbuAttachment!=null&&details.sbuAttachment!='0'&&details.sbuAttachment!='' ">View
+                                    *ngIf="details.hrattachment!=null&&details.hrattachment!='0'&&details.hrattachment!='' ">View
                                     Attachments</button>
                                 <!-- <p *ngIf="details.hrattachment==null and details.hrrrating!=null" >No Attachments</p> -->
                             </td>
-                            <!-- <td>
-                                <p *ngIf="details.sbuUpdate!=1 &&details.managerupdate==1">Open</p>
-                                <p *ngIf="details.sbuUpdate==1">Submitted</p>
-                            </td> -->
                         </tr>
                     </tbody>
                 </table>
 
                 <div class="text-right">
-                    <br>
                     <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
                 </div>
             </div>
@@ -144,7 +153,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="width: 800px;">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Employee Appraisal</h5>
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -229,7 +238,7 @@
                             Rating <span style="color: red;">*</span> </p>
                     </div>
                     <div class="col-lg-7">
-                        <select disabled class="dropdown form-control" id="Score" name="Score" [(ngModel)]="Score" required>
+                        <select  class="dropdown form-control" id="Score" name="Score" [(ngModel)]="Score" required>
                             <option value="0">Select Rating</option>
                             <option *ngFor="let value of list" value="{{value.id}}">{{value.score}} - {{value.answers}}
                             </option>
@@ -264,7 +273,7 @@
                 </div> -->
             </form>
             </div>
-            <div class="modal-footer" *ngIf="SbuSubmittedDate==null">
+            <div class="modal-footer" *ngIf="HrSubmittedDate==null">
                 <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
                 <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="UpdateDetails()">Update
                     changes</button>
@@ -331,6 +340,38 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="viewsbucomments" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width: 800px;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">SBU Comments</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body scroll">
+                <div class="row">
+                    <div class="col-lg-3">
+                    </div>
+                    <div class="col-lg-7  ">
+                        <p style="padding:5px" [innerHTML]="sbucomments">
+                        </p>
+                    </div>
+                    <div class="col-lg-3 ">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -392,7 +433,8 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+
+<div class="modal fade" id="exampleModal36" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="width: 800px;">
@@ -415,11 +457,41 @@
                     </div>
                 </div>
                 <br>
-                <div class="row" *ngIf="SbuSubmittedDate==null">
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width: 800px;">
+            <div class="modal-header">
+                <h5 class="modal-title related" id="exampleModalLabel">Related Attachments</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-1">
+                    </div>
+                    <div class="col-lg-3">
+                        <p *ngIf="hrattachment==null">No Attachments</p>
+                    </div>
+                    <div class="col-lg-3">
+                        <img src="{{hrattachment}}" style="width:400px;">
+                        <!-- <img src="http://103.133.214.197/digiofficeapi\Images\ProjectAttachments\AmazeLogo-20220214160917-20220228163117.jpg"> -->
+                    </div>
+                </div>
+                <br>
+                <div class="row" *ngIf="HrSubmittedDate==null">
                     <div class="col-lg-8"></div>
                     <div class="col-lg-2">
                         <button class="form-control cancel" data-toggle="modal" data-target="#exampleModal5"
-                            data-dismiss="modal" (click)="clear()">Update</button>
+                            data-dismiss="modal">Update</button>
                     </div>
                     <div class="col-lg-2">
                         <button class="form-control cancel" data-dismiss="modal">Cancel</button>
@@ -464,7 +536,7 @@
                 <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
                 <button type="button" class="btn btn-primary" (click)="update()" data-dismiss="modal">Update
                     Changes</button>
-            </div> 
+            </div>
         </div>
     </div>
 </div>
@@ -491,4 +563,3 @@
         </div>
     </div>
 </div> -->
-

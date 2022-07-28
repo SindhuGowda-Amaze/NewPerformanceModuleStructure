@@ -6,7 +6,7 @@ import { HrComponent } from './hr.component';
 import { ApprasialCycleComponent } from './apprasial-cycle/apprasial-cycle.component';
 import { ApprasialCycleFormComponent } from './apprasial-cycle-form/apprasial-cycle-form.component';
 import { KeyResultAreaComponent } from './key-result-area/key-result-area.component';
-import { KeyResultAreaFormComponent } from './key-result-area-form/key-result-area-form.component';
+// import { KeyResultAreaFormComponent } from './key-result-area-form/key-result-area-form.component';
 import { KeyPerformaceIndicatorComponent } from './key-performace-indicator/key-performace-indicator.component';
 import { KeyPerformaceIndicatorformComponent } from './key-performace-indicatorform/key-performace-indicatorform.component';
 import { HrDashComponent } from './hr-dash/hr-dash.component';
@@ -16,6 +16,8 @@ import { ApprasialReportComponent } from './apprasial-report/apprasial-report.co
 import { HrDashboardComponent } from './hr-dashboard/hr-dashboard.component';
 import { SharedModule } from '../shared/shared.module';
 import { SalaryincrementletterDashComponent } from './salaryincrementletter-dash/salaryincrementletter-dash.component';
+import { StaffScoreFullDetailsComponent } from './staff-score-full-details/staff-score-full-details.component';
+import { HrratingnewComponent } from './hrratingnew/hrratingnew.component';
 
 
 @NgModule({
@@ -24,7 +26,7 @@ import { SalaryincrementletterDashComponent } from './salaryincrementletter-dash
     ApprasialCycleComponent,
     ApprasialCycleFormComponent,
     KeyResultAreaComponent,
-    KeyResultAreaFormComponent,
+    // KeyResultAreaFormComponent,
     KeyPerformaceIndicatorComponent,
     KeyPerformaceIndicatorformComponent,
     HrDashComponent,
@@ -33,7 +35,9 @@ import { SalaryincrementletterDashComponent } from './salaryincrementletter-dash
     ApprasialReportComponent,
  
     HrDashboardComponent,
-    SalaryincrementletterDashComponent
+    SalaryincrementletterDashComponent,
+    StaffScoreFullDetailsComponent,
+    HrratingnewComponent
   ],
   imports: [
     CommonModule,

@@ -40,31 +40,31 @@ export class BellCurveFittingComponent implements OnInit {
   StaffTypeID: any;
   departmentid: any;
   departmentList: any;
-  Apprisalcyclelist:any;
-  AppraisalSubmitionDate:any;
-  sDate:any;
-  eDate:any;
-  appraisalCycleName:any
-  pending:any;
-  sbuSubmittedCount:any
+  Apprisalcyclelist: any;
+  AppraisalSubmitionDate: any;
+  sDate: any;
+  eDate: any;
+  appraisalCycleName: any
+  pending: any;
+  sbuSubmittedCount: any
 
-  employeSubmissionDate:any;
-  managerSubmittedCount:any;
-  hrSubmittedlist:any;
-  hrSubmittedCount:any;
-  appraisalcount:any;
-  hrPendingCount:any;
-  EmployeePendingCount:any;
-  appraisalPendingCount:any;
-  appraisalClose:any;
-  AppraisalCycleID:any;
+  employeSubmissionDate: any;
+  managerSubmittedCount: any;
+  hrSubmittedlist: any;
+  hrSubmittedCount: any;
+  appraisalcount: any;
+  hrPendingCount: any;
+  EmployeePendingCount: any;
+  appraisalPendingCount: any;
+  appraisalClose: any;
+  AppraisalCycleID: any;
   currentUrl: any
   ngOnInit() {
     this.currentUrl = window.location.href;
-    this.pending=0;
+    this.pending = 0;
     this.roleid = sessionStorage.getItem('roleid');
     this.GetRoleType();
-    this. GetDepartment();
+    this.GetDepartment();
     this.HighScore();
     this.Conductappraisalcounts();
     this.YearID = 2020;
@@ -72,8 +72,8 @@ export class BellCurveFittingComponent implements OnInit {
     this.StaffTypeID = 0;
     this.StaffID = 0;
     this.Score = 0;
-    this.appraisalCycleName=0;
-    this.departmentid=0;
+    this.appraisalCycleName = 0;
+    this.departmentid = 0;
     this.GetMyDetails();
     this.manager = 0;
     this
@@ -157,20 +157,20 @@ export class BellCurveFittingComponent implements OnInit {
     }
   }
 
-  StaffAppraisalList1:any;
+  StaffAppraisalList1: any;
   public ConductappraisalStaffList() {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: (res: any) => {
         debugger
         let temp: any = res
         this.StaffAppraisalList = temp;
-      
-        this.AppraisalCycleID =this.StaffAppraisalList[0].appraiselID
-        this.appraisalClose=this.StaffAppraisalList1[0].appraisalClose
+
+        this.AppraisalCycleID = this.StaffAppraisalList[0].appraiselID
+        this.appraisalClose = this.StaffAppraisalList1[0].appraisalClose
         this.FilteredStaffAppraisalList = this.StaffAppraisalList.filter((x: { cioScores: null; }) => x.cioScores != null)
         this.count = this.FilteredStaffAppraisalList.length;
         this.managerList = this.dumpmanagerList.filter((x: { manager: any; }) => x.manager == this.manager);
-  
+
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting ConductappraisalStaffList');
         // Insert error in Db Here//
@@ -185,7 +185,7 @@ export class BellCurveFittingComponent implements OnInit {
         )
       }
     })
-   
+
   }
 
 
@@ -232,7 +232,7 @@ export class BellCurveFittingComponent implements OnInit {
       next: data => {
         debugger
         Swal.fire("Updated Successfully");
-      this.ngOnInit()
+        this.ngOnInit()
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Updating BellCurveFitting');
         // Insert error in Db Here//
@@ -461,14 +461,14 @@ export class BellCurveFittingComponent implements OnInit {
 
   public GetApprisalcycle(event: any) {
     debugger
-    this.appraisalCycleName=event.target.value;
+    this.appraisalCycleName = event.target.value;
     this.PerformanceManagementService.GetAppraisalCycle().subscribe({
       next: data => {
         debugger
-        let temp: any = data.filter(x => x.appraisalCycleName ==this.appraisalCycleName );
+        let temp: any = data.filter(x => x.appraisalCycleName == this.appraisalCycleName);
         this.AppraisalSubmitionDate = temp[0].employeeSubmissionDate;
-  
-        this.appraisalCycleName=temp[0].appraisalCycleName
+
+        this.appraisalCycleName = temp[0].appraisalCycleName
         this.sDate = temp[0].cycleStartDate;
         this.eDate = temp[0].cycleEndDate;
         debugger
@@ -493,29 +493,29 @@ export class BellCurveFittingComponent implements OnInit {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
         debugger
-        this.FilteredStaffAppraisalList = data.filter(x => x.appraisalCycleName == this.appraisalCycleName )
+        this.FilteredStaffAppraisalList = data.filter(x => x.appraisalCycleName == this.appraisalCycleName)
 
 
-      
+
         this.appraisalcount = this.FilteredStaffAppraisalList.length;
-        this.appraisalClose=this.FilteredStaffAppraisalList[0].appraisalClose
+        this.appraisalClose = this.FilteredStaffAppraisalList[0].appraisalClose
         var list = data.filter(x => x.employeeSubmittedDate != null && x.selfScores != null && x.appraisalCycleName == this.appraisalCycleName &&
-         x.cycleStartDate !=null && x.cycleEndDate != null && x.appraisalSubmitionDate != null  && x.employeeSubmittedDate !=null )
+          x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null)
         this.employeSubmissionDate = list.length;
-    
+
         var list1 = data.filter(x => x.managerSubmittedDate != null && x.appraisalCycleName == this.appraisalCycleName);
         this.managerSubmittedCount = list1.length;
-  
+
         var sbuSubmittedlist = data.filter(x => x.sbuSubmittedDate != null && x.appraisalCycleName == this.appraisalCycleName);
         this.sbuSubmittedCount = sbuSubmittedlist.length;
-    
-        this.hrSubmittedlist = data.filter(x => x.hrSubmittedDate != null &&  x.cycleStartDate !=null && x.cycleEndDate != null && x.appraisalSubmitionDate != null  && x.employeeSubmittedDate !=null && x.managerSubmittedDate!= null && x.sbuSubmittedDate!= null && x.appraisalCycleName == this.appraisalCycleName );
-        console.log("data",data)
+
+        this.hrSubmittedlist = data.filter(x => x.hrSubmittedDate != null && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null && x.sbuSubmittedDate != null && x.appraisalCycleName == this.appraisalCycleName);
+        console.log("data", data)
         console.log("hr", this.hrSubmittedlist)
         this.hrSubmittedCount = this.hrSubmittedlist.length;
-  
-        this.hrSubmittedlist = data.filter(x => x.hrSubmittedDate == null &&  x.cycleStartDate !=null && x.cycleEndDate != null && x.appraisalSubmitionDate != null  && x.appraisalCycleName == this.appraisalCycleName);
-        console.log("data",data)
+
+        this.hrSubmittedlist = data.filter(x => x.hrSubmittedDate == null && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.appraisalCycleName == this.appraisalCycleName);
+        console.log("data", data)
         console.log("hr", this.hrSubmittedlist)
         this.appraisalPendingCount = this.hrSubmittedlist.length;
       }, error: (err: { error: { message: any; }; }) => {
@@ -535,89 +535,89 @@ export class BellCurveFittingComponent implements OnInit {
   }
 
 
-  public Conductappraisalcounts(){
+  public Conductappraisalcounts() {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
-        next: (res: any[]) => {
-          debugger
-          let temp: any = res
-          this.StaffAppraisalList = temp;
-          this.appraisalcount = this.StaffAppraisalList.length;
-          var list = res.filter(x => x.employeeSubmittedDate != null && x.selfScores != null && 
-           x.cycleStartDate !=null && x.cycleEndDate != null && x.appraisalSubmitionDate != null  && x.employeeSubmittedDate !=null  )
-          this.employeSubmissionDate = list.length;
-      
-          var list1 = res.filter(x => x.managerSubmittedDate != null );
-          this.managerSubmittedCount = list1.length;
-  
-          var sbuSubmittedlist = res.filter(x => x.sbuSubmittedDate != null && x.appraisalCycleName == this.appraisalCycleName);
-          this.sbuSubmittedCount = sbuSubmittedlist.length;
-      
-          this.hrSubmittedlist = res.filter(x => x.hrSubmittedDate != null &&  x.cycleStartDate !=null && x.cycleEndDate != null && x.appraisalSubmitionDate != null  && x.employeeSubmittedDate !=null && x.managerSubmittedDate!= null && x.sbuSubmittedDate!= null );
-          console.log("data",res)
-          console.log("hr", this.hrSubmittedlist)
-          this.hrSubmittedCount = this.hrSubmittedlist.length;
-  
-          this.hrSubmittedlist = res.filter(x => x.hrSubmittedDate == null &&  x.cycleStartDate !=null && x.cycleEndDate != null && x.appraisalSubmitionDate != null  );
-          console.log("data",res)
-          console.log("hr", this.hrSubmittedlist)
-          this.appraisalPendingCount = this.hrSubmittedlist.length;
-        }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in Getting Conduct appraisalStaffList');
-          // Insert error in Db Here//
-          var obj = {
-            'PageName': this.currentUrl,
-            'ErrorMessage': err.error.message
-          }
-          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-            data => {
-              debugger
-            },
-          )
+      next: (res: any[]) => {
+        debugger
+        let temp: any = res
+        this.StaffAppraisalList = temp;
+        this.appraisalcount = this.StaffAppraisalList.length;
+        var list = res.filter(x => x.employeeSubmittedDate != null && x.selfScores != null &&
+          x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null)
+        this.employeSubmissionDate = list.length;
+
+        var list1 = res.filter(x => x.managerSubmittedDate != null);
+        this.managerSubmittedCount = list1.length;
+
+        var sbuSubmittedlist = res.filter(x => x.sbuSubmittedDate != null && x.appraisalCycleName == this.appraisalCycleName);
+        this.sbuSubmittedCount = sbuSubmittedlist.length;
+
+        this.hrSubmittedlist = res.filter(x => x.hrSubmittedDate != null && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null && x.sbuSubmittedDate != null);
+        console.log("data", res)
+        console.log("hr", this.hrSubmittedlist)
+        this.hrSubmittedCount = this.hrSubmittedlist.length;
+
+        this.hrSubmittedlist = res.filter(x => x.hrSubmittedDate == null && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null);
+        console.log("data", res)
+        console.log("hr", this.hrSubmittedlist)
+        this.appraisalPendingCount = this.hrSubmittedlist.length;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Conduct appraisalStaffList');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
         }
-      })
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
 
   }
 
-public CloseAppraisal(){
-  
-  debugger
-  Swal.fire({
-    title: 'Are you sure?',
-    text: 'You Want to Close the Appraisal Cycle.',
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonText: 'Yes, Close it!',
-    cancelButtonText: 'No, keep it'
-  }).then((result) => {
-    if (result.value == true) {
-      if(this.appraisalClose==null){
-        var obj={
-          'appraiselID':this.AppraisalCycleID
-        }
-        this.PerformanceManagementService.CloseAppraisalCycle(obj).subscribe({
-          next: data => {
-            debugger
-            Swal.fire('Appraisal Cycle Closed Successfully!!')
-          }, error: (err: { error: { message: any; }; }) => {
-            Swal.fire('Issue in Closing AppraisalCycle');
-            // Insert error in Db Here//
-            var obj = {
-              'PageName': this.currentUrl,
-              'ErrorMessage': err.error.message
-            }
-            this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-              data => {
-                debugger
-              },
-            )
+  public CloseAppraisal() {
+
+    debugger
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You Want to Close the Appraisal Cycle.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, Close it!',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.value == true) {
+        if (this.appraisalClose == null) {
+          var obj = {
+            'appraiselID': this.AppraisalCycleID
           }
-        })
+          this.PerformanceManagementService.CloseAppraisalCycle(obj).subscribe({
+            next: data => {
+              debugger
+              Swal.fire('Appraisal Cycle Closed Successfully!!')
+            }, error: (err: { error: { message: any; }; }) => {
+              Swal.fire('Issue in Closing AppraisalCycle');
+              // Insert error in Db Here//
+              var obj = {
+                'PageName': this.currentUrl,
+                'ErrorMessage': err.error.message
+              }
+              this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+                data => {
+                  debugger
+                },
+              )
+            }
+          })
+        }
+        else {
+          Swal.fire('Appraisal Cycle Closed Already!!')
+        }
       }
-      else{
-        Swal.fire('Appraisal Cycle Closed Already!!')
-      }
-    }
-  })
-}
+    })
+  }
 }
 

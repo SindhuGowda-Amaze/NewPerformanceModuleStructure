@@ -1,0 +1,293 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-11">
+            <br>
+            <p class="headings">Appraisal Dashboard</p>
+        </div>
+        <div class="col-lg-1">
+            <br>
+            <p class="count">Count:{{StaffScoresLists.length}}</p>
+        </div>
+    </div>
+    <hr>
+    <!-- <div class="card">
+        <br>
+        <div class="row FilterClass ">
+            <div class="col-lg-1">
+
+                
+                <p class="filter">Filter By</p>
+            </div>
+            <div class="col-lg-5">
+                <input type="search" class="form-control search" placeholder="Search for Name.." [(ngModel)]="search">
+            </div>
+            <div class="col-lg-3">
+                <select class="form-control" id="goal" name="goal" [(ngModel)]="goal" (ngModelChange)="Filtergoals()">
+                <option value="0">Select Goal</option>
+                <option *ngFor="let details of goallist" value="{{details.kraName}}">{{details.kraName}}
+                </option>
+            </select>
+            </div>
+            <div class="col-lg-1"></div>
+        </div><br>
+    </div> <br> -->
+    <!-- <div class="card">
+        <div class="row">
+            <div class="col-lg-12">
+                <p class="avg">Average</p>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <p class="col-lg-3 text1">Self Assessment Avg : {{overallScore}}</p>
+            <div class="col-lg-9">
+            </div>
+        </div>
+        <div class="row">
+            <p class="col-lg-3 text1" *ngIf="groupHeadAvgScores!=null">Manager Avg : {{groupHeadAvgScores}}</p>
+            <div class="col-lg-9">
+            </div>
+        </div>
+        <div class="row">
+            <p class="col-lg-3 text1" *ngIf="cioAvgScores!=null">HR Avg : {{cioAvgScores}}</p>
+            <div class="col-lg-9">
+            </div>
+        </div>
+        <div class="row">
+            <p class="col-lg-3 text1" *ngIf="cioAvgScores!=null">Total Avg : {{(groupHeadAvgScores+cioAvgScores)/2}}</p>
+            <div class="col-lg-9">
+            </div>
+        </div>
+    </div> -->
+
+
+
+
+    <div class="row">
+        <div class="col-lg-9">
+        </div>
+        <p class="col-lg-3">Self Assessment Avg : {{overallScore}}</p>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-9">
+        </div>
+        <p class="col-lg-3" *ngIf="groupHeadAvgScores!=null">Manager Avg : {{groupHeadAvgScores}}</p>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-9">
+        </div>
+        <p class="col-lg-3" *ngIf="cioAvgScores!=null">HR Avg : {{cioAvgScores}}</p>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-9">
+        </div>
+        <p class="col-lg-3" *ngIf="cioAvgScores!=null">Total Avg : {{(groupHeadAvgScores+cioAvgScores)/2|number:"1.0-0"}}</p>
+    </div>
+    <div class="container-fluid">
+        <!-- <div class="row">
+            <div class="col-lg-12">
+                <p class="Appraisal">Employee Appraisal Details </p>
+            </div>
+        </div>
+        <hr> -->
+        <div class="card">
+        <div class="row">
+            <div class="col-lg-12">
+                    <p class="text1">Staff ID : <b>{{StaffID}} </b>
+                        <span  class="text2">Staff Name : <b>{{EmployeeName}}</b> </span>
+                        <span class="text2">Department : <b>{{DepartmentName}}</b></span>
+                        <span class="text2">Position : <b>{{Role}}</b></span>
+                        <!-- <span class="text2">Manager : <b>Kumar</b></span> -->
+                    </div>
+            <!-- <div class="col-lg-3">
+            <p>Staff Type:{{StaffType}} </p>
+          </div> -->
+          
+        </div><hr>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p style="margin-left: 14px;">Appraisal Cycle Start Date: <b>{{StartDate|date}}</b>
+                        <span *ngIf="StartDate==null"><b>NA</b></span>
+
+                        <span class="text2">Appraisal Cycle End Date: <b>{{EndDate|date}}</b></span>
+                        <span *ngIf="EndDate==null"><b>NA</b></span>
+
+                        <span class="text2">Employee Submission Date: <b>{{EmployeeSubmittedDate|date}}</b></span>
+                        <span *ngIf="EmployeeSubmittedDate==null"><b>NA</b></span>
+                </div>
+              
+               
+            <div class="row">
+                <div class="col-lg-12">                    
+                        <p style="margin-left: 30px;">Manager Submission Date: <b>{{ManagerSubmittedDate|date}}</b>
+                        <span *ngIf="ManagerSubmittedDate==null"><b>NA</b></span>
+                        <span style="margin-left: 40px;">HR Submission Date: <b>{{HrSubmittedDate|date}}</b></span>
+                        <span *ngIf="HrSubmittedDate==null"><b>NA</b></span>
+                        <span style="margin-left: 80px;" *ngIf="HrSubmittedDate!=null">Bell Curve Fitting Date: <b>NA</b></span>
+                        <!-- <b>{{HrSubmittedDate|date}}</b> -->
+                        <span style="margin-left: 160px;" *ngIf="HrSubmittedDate==null">Bell Curve Fitting Date: <b>NA</b></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Goal Name </th>
+                        <th>Performance Indicator</th>
+                        <th>Employee Score</th>
+                        <th>Employee Comments</th>
+                        <th>Manager Score</th>
+                        <th>Manager Comments</th>
+                        <th>SBU Score</th>
+                        <th>SBU Comments</th>
+                        <th>HR Score</th>
+                        <th>HR Comments</th>
+                    </tr>
+                    <tr
+                        *ngFor="let Scores of StaffScoresLists|paginate: { itemsPerPage: count1, currentPage: p}|filter:search">
+                        <td>{{Scores.resultAreaName}}</td>
+                        <td>{{Scores.performanceindicator}}</td>
+                        <td class="align">{{Scores.selfScores}}</td>
+                        <!-- <td>{{Scores.selfComments}}</td> -->
+                        <td>
+                            <button class="form-control edit" (click)="viewself(Scores)" data-toggle="modal"
+                                data-target="#exampleModal">View</button>
+                        </td>
+                        <td>
+                            <p class="align" *ngIf="Scores.groupHeadScores!=null">{{Scores.groupHeadScores}}</p>
+                            <p *ngIf="Scores.groupHeadScores==null">NA</p>
+                        </td>
+                        <td>
+                            <button *ngIf="Scores.groupHeadScores!=null" class="form-control edit" (click)="manager(Scores)"
+                                data-toggle="modal" data-target="#exampleModal1">View</button>
+                                <p *ngIf="Scores.groupHeadScores==null">NA</p>
+                        </td>
+                        <td *ngIf="Scores.divisionScores!=null">{{Scores.divisionScores}}</td>
+                        <td>
+                            <button  *ngIf="Scores.divisionScores!=null" class="form-control edit" (click)="sbu(Scores)"
+                            data-toggle="modal" data-target="#exampleModal11">View</button>
+                            <p *ngIf="Scores.divisionScores==null">NA</p>
+                            
+                        <!-- <td *ngIf="Scores.groupHeadScores!=null">{{Scores.groupHeadComments}}</td> -->
+                        <td>
+                            <p class="align" *ngIf="Scores.cscores!=null">{{Scores.cscores}}</p>
+                            <p *ngIf="Scores.cscores==null">NA</p>
+                        </td>
+                        <td>
+                            <button *ngIf="Scores.cscores!=null" class="form-control edit" (click)="hrcomments(Scores)"
+                                data-toggle="modal" data-target="#exampleModal2">View</button>
+                                <p *ngIf="Scores.cscores==null">NA</p>
+                        </td>
+                        <!-- <td *ngIf="Scores.cscores!=null">{{Scores.cioComments}}</td> -->
+                  
+                    </tr>
+                </thead>
+            </table>
+            <div class="text-right">
+                <br>
+                <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document" style="width:800px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Employee Comments</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body scroll">
+                <div class="col-lg-12">
+                    <p [innerHTML]=selfcomment></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document" style="width:800px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Manager Comments</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body scroll">
+                <div class="col-lg-12">
+                    <p [innerHTML]= managercomments></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal11" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document" style="width:800px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">SBU Comments</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body scroll">
+                <div class="col-lg-12">
+                    <p [innerHTML]= divisionComments></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document" style="width:800px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">HR Comments</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body scroll">
+                <div class="col-lg-12">
+                    <p [innerHTML]= hrcomment></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
+            </div>
+        </div>
+    </div>
+</div>

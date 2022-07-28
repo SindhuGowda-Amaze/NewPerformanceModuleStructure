@@ -14,7 +14,7 @@ import { MyApprasailComponent } from './my-apprasail/my-apprasail.component';
 import { SupportTicketDashboardComponent } from './support-ticket-dashboard/support-ticket-dashboard.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { SelfratingnewComponentComponent } from './selfratingnew-component/selfratingnew-component.component';
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { CKEditorModule } from 'ckeditor4-angular';
 
 
 

@@ -323,7 +323,7 @@ export class SelfratingnewComponentComponent implements OnInit {
     this.PerformanceManagementService.UpdateEmployeeSelfRating(entity).subscribe(
       data => {
 
-        Swal.fire("Updated Sucessfully");
+        Swal.fire("Updated Successfully");
         this.ngOnInit();
       }
     )
@@ -334,7 +334,7 @@ export class SelfratingnewComponentComponent implements OnInit {
     debugger
     this.PerformanceManagementService.DeleteStaffScores(this.photoid).subscribe(
       data => {
-        Swal.fire("Deleted Sucussfully");
+        Swal.fire("Deleted Successfully");
         this.ngOnInit();
       }
     )
@@ -343,7 +343,7 @@ export class SelfratingnewComponentComponent implements OnInit {
 
 
   cancel() {
-    location.href = "/Selfratingnew";
+    location.href = "/shared/Selfratingnew";
   }
 }
 
