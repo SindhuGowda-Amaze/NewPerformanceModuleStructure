@@ -107,7 +107,7 @@ export class ManagerDashboardComponent implements OnInit {
             this.countList = data[0];
           }
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in Getting AllCounts');
+          // Swal.fire('Issue in Getting AllCounts');
           // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,
@@ -129,7 +129,7 @@ export class ManagerDashboardComponent implements OnInit {
             this.countList = data[0];
           }
         }, error: (err) => {
-          Swal.fire('Issue in Getting AllCounts');
+          // Swal.fire('Issue in Getting AllCounts');
           // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,

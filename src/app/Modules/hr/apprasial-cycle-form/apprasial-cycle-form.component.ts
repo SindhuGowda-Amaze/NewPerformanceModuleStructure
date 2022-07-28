@@ -14,15 +14,12 @@ import { PerformancemanagementService } from 'src/app/Pages/Services/performance
 import { ActivatedRoute } from '@angular/router';
 import { formatDate } from '@angular/common';
 import Swal from 'sweetalert2';
-
-
 @Component({
   selector: 'app-apprasial-cycle-form',
   templateUrl: './apprasial-cycle-form.component.html',
   styleUrls: ['./apprasial-cycle-form.component.css']
 })
 export class ApprasialCycleFormComponent implements OnInit {
-
   constructor(private PerformanceManagementService: PerformancemanagementService, private ActivatedRoute: ActivatedRoute) { }
   //Variable Declerations//
   appraisal: any;
@@ -48,7 +45,7 @@ export class ApprasialCycleFormComponent implements OnInit {
   managerriew: any;
   goalsettinglastdate: any;
   endingdate: any;
-
+  frequency:any;
 
   ngOnInit(): void {
       //Variable Initialisation and Default Method Calls//
@@ -75,14 +72,12 @@ export class ApprasialCycleFormComponent implements OnInit {
   public startingdatealert(even: any) {
     this.startingdate = even.target.value;
   }
-
   public endingdatealert(even: any) {
     this.endingdate = even.target.value;
     if (this.endingdate < this.startingdate || this.enddate < this.startdate) {
       Swal.fire("Cycle End date should be greater than Cycle Start date")
     }
   }
-
   public closingdatealert(event: any) {
     this.closingdate = event.target.value;
     if (this.closingdate < this.startingdate) {
@@ -252,7 +247,6 @@ export class ApprasialCycleFormComponent implements OnInit {
       "SbuReviewLastDate": this.sbuReviewDate,
       "AppraisalClosingLastDate": this.appraisalClosingLastDate
     };
-
     this.PerformanceManagementService.UpdateAppraisalCycle(json).subscribe({
       next: data => {
         debugger
@@ -279,10 +273,7 @@ export class ApprasialCycleFormComponent implements OnInit {
     location.href = "#/hr/ApprasialCycle"
   }
 
-
-
-
-  frequency: any;
+ 
 
 
   public GetFrequency() {

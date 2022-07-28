@@ -18,14 +18,12 @@ import Swal from 'sweetalert2';
   styleUrls: ['./apprasial-cycle.component.css']
 })
 export class ApprasialCycleComponent implements OnInit {
-
   constructor(private PerformanceManagementService: PerformancemanagementService) { }
   //Variable Declerations//
   appraisallist: any;
   count: any;
   search: any;
   currentUrl: any
-
   ngOnInit(): void {
 
     //Variable Initialisation and Default Method Calls//
@@ -56,7 +54,6 @@ export class ApprasialCycleComponent implements OnInit {
         )
       }
     })
-
   }
 
   //Method to Delete Appraisal Cycle Details from AppraisalCycle Table//
