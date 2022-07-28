@@ -9,34 +9,34 @@ import Swal from 'sweetalert2';
 })
 export class KeyPerformaceIndicatorComponent implements OnInit {
 
-  constructor(private PerformanceManagementService:PerformancemanagementService) { }
+  constructor(private PerformanceManagementService: PerformancemanagementService) { }
 
 
 
-  indicatorlist:any;
-  count:any;
-  search:any;
-  kratypelist:any;
-  kraid:any;
-  dummindicatorlist:any;
-  kraName:any;
+  indicatorlist: any;
+  count: any;
+  search: any;
+  kratypelist: any;
+  kraid: any;
+  dummindicatorlist: any;
+  kraName: any;
 
 
   ngOnInit(): void {
     this.GetKPI();
     this.GetKeyResultArea();
-    this.kraid=0;
+    this.kraid = 0;
 
   }
 
-  public GetKPI(){
+  public GetKPI() {
     debugger
     this.PerformanceManagementService.GetKPI().subscribe(
-      data=>{
-        this.indicatorlist=data;
-        this.dummindicatorlist=data;
-        this.count=this.indicatorlist.length;
-        console.log("kpilist",this.indicatorlist);
+      data => {
+        this.indicatorlist = data;
+        this.dummindicatorlist = data;
+        this.count = this.indicatorlist.length;
+        console.log("kpilist", this.indicatorlist);
       }
     )
   }
@@ -54,37 +54,37 @@ export class KeyPerformaceIndicatorComponent implements OnInit {
     }).then((result) => {
       if (result.value == true) {
         this.PerformanceManagementService.DeleteKPI(ID).subscribe(
-          data=>{
-          debugger
-          Swal.fire('Deleted Successfully')
-          location.reload();
-        })
+          data => {
+            debugger
+            Swal.fire('Deleted Successfully')
+            location.reload();
+          })
       }
     })
   }
 
 
 
-  
- 
-  public GetKeyResultArea(){
+
+
+  public GetKeyResultArea() {
     this.PerformanceManagementService.GetKeyResultArea().subscribe(
-      data=>{
-        this.kratypelist=data;
-        console.log("kratype",this.kratypelist);
+      data => {
+        this.kratypelist = data;
+        console.log("kratype", this.kratypelist);
       }
     )
   }
 
-  getkraid(even:any){
+  getkraid(even: any) {
     debugger
-    this.kraid=even.target.value;
+    this.kraid = even.target.value;
     debugger
-    if(even.target.value !=0){
-      this.indicatorlist=this.dummindicatorlist.filter((x:{ kraName:any ;}) => x.kraName ==this.kraid);
-      this.count=this.indicatorlist.length;
+    if (even.target.value != 0) {
+      this.indicatorlist = this.dummindicatorlist.filter((x: { kraName: any; }) => x.kraName == this.kraid);
+      this.count = this.indicatorlist.length;
     }
-    else{
+    else {
       this.GetKPI();
     }
   }

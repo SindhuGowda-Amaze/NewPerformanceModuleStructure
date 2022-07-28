@@ -8,7 +8,7 @@ import { PerformancemanagementService } from 'src/app/Pages/Services/performance
 })
 export class SalaryincrementletterDashComponent implements OnInit {
 
- 
+
   constructor(private PerformanceManagementService: PerformancemanagementService) { }
 
   stafflist: any;
@@ -32,10 +32,10 @@ export class SalaryincrementletterDashComponent implements OnInit {
   EmployeeKradash: any
   Promotion: any;
   level: any;
-  role:any;
-  roleid:any;
-  stafflist1:any 
-  currentUrl : any
+  role: any;
+  roleid: any;
+  stafflist1: any
+  currentUrl: any
   ngOnInit(): void {
     this.currentUrl = window.location.href;
 
@@ -70,8 +70,8 @@ export class SalaryincrementletterDashComponent implements OnInit {
     this.PerformanceManagementService.GetMyDetailsForReiewRating().subscribe({
       next: data => {
         debugger
-        this.stafflist1 = data.filter(x=>x.salaryIncrement==1);
-      this.stafflistCopy = this.stafflist
+        this.stafflist1 = data.filter(x => x.salaryIncrement == 1);
+        this.stafflistCopy = this.stafflist
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting MyDetailsForReiewRating');
         // Insert error in Db Here//
@@ -133,7 +133,7 @@ export class SalaryincrementletterDashComponent implements OnInit {
       next: data => {
         debugger
         this.EmployeeKradash = data.filter(x => x.approver1 == sessionStorage.getItem('EmaployedID') && x.selfScores != null && x.employeeSubmittedDate != null);
-      this.count = this.EmployeeKradash.length;
+        this.count = this.EmployeeKradash.length;
       }, error: (err) => {
         Swal.fire('Issue in Getting ConductappraisalStaffList');
         // Insert error in Db Here//
@@ -209,7 +209,7 @@ export class SalaryincrementletterDashComponent implements OnInit {
       next: data => {
         debugger
         this.stafflist = data.filter(x => x.department == this.Department);
-      this.count = this.stafflist.length;
+        this.count = this.stafflist.length;
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting MyDetails');
         // Insert error in Db Here//
@@ -259,10 +259,10 @@ export class SalaryincrementletterDashComponent implements OnInit {
       next: data => {
         debugger
         let temp: any = data.filter(x => x.id == event.target.value);
-      this.AppraisalSubmitionDate = temp[0].employeeSubmissionDate;
-      this.appraisalCycleName = temp[0].appraisalCycleName
-      this.sDate = temp[0].cycleStartDate;
-      this.eDate = temp[0].cycleEndDate;
+        this.AppraisalSubmitionDate = temp[0].employeeSubmissionDate;
+        this.appraisalCycleName = temp[0].appraisalCycleName
+        this.sDate = temp[0].cycleStartDate;
+        this.eDate = temp[0].cycleEndDate;
       }, error: (err) => {
         Swal.fire('Issue in Getting AppraisalCycle');
         // Insert error in Db Here//
@@ -304,11 +304,11 @@ export class SalaryincrementletterDashComponent implements OnInit {
   }
 
 
-  RecommendedBonusAmountOrPercent:any
-  RecommendedSalaryIncreaseOrPercent:any;
-  Level:any;
-  Type:any;
-  staffid:any;
+  RecommendedBonusAmountOrPercent: any
+  RecommendedSalaryIncreaseOrPercent: any;
+  Level: any;
+  Type: any;
+  staffid: any;
 
   public getstaffid(event: any) {
     debugger
@@ -336,27 +336,27 @@ export class SalaryincrementletterDashComponent implements OnInit {
         }
 
         this.PerformanceManagementService.UpdateStaffReviewRating(entity)
-      
-        .subscribe({
-          next: data => {
-            debugger
-            Swal.fire('Approved Successfully')
-            location.reload();
-          }, error: (err: { error: { message: any; }; }) => {
-            Swal.fire('Issue in Updating StaffReviewRating');
-            // Insert error in Db Here//
-            var obj = {
-              'PageName': this.currentUrl,
-              'ErrorMessage': err.error.message
+
+          .subscribe({
+            next: data => {
+              debugger
+              Swal.fire('Approved Successfully')
+              location.reload();
+            }, error: (err: { error: { message: any; }; }) => {
+              Swal.fire('Issue in Updating StaffReviewRating');
+              // Insert error in Db Here//
+              var obj = {
+                'PageName': this.currentUrl,
+                'ErrorMessage': err.error.message
+              }
+              this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+                data => {
+                  debugger
+                },
+              )
             }
-            this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-              data => {
-                debugger
-              },
-            )
-          }
-        })
-  
+          })
+
       }
     })
   }
@@ -382,7 +382,7 @@ export class SalaryincrementletterDashComponent implements OnInit {
             debugger
             Swal.fire('Approved Successfully')
             location.reload();
-          
+
           }, error: (err) => {
             Swal.fire('Issue in Updating StaffReviewRating');
             // Insert error in Db Here//
@@ -399,7 +399,7 @@ export class SalaryincrementletterDashComponent implements OnInit {
         })
       }
     })
-    
+
 
   }
 

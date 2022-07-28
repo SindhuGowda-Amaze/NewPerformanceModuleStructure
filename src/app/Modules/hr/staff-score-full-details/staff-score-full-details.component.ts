@@ -22,34 +22,34 @@ export class StaffScoreFullDetailsComponent implements OnInit {
   CIOHead: any;
   p: any = 1;
   count1: any = 25;
-  search:any
+  search: any
   StaffDetailsBYConductAppraisals: any;
-  selfcomment:any;
-  managercomments:any;
-  hrcomment:any;
-  DepartmentName:any;
-  Role:any;
-  HrSubmittedDate:any;
-  ManagerSubmittedDate:any;
-  EmployeeSubmittedDate:any;
-  goallist:any;
-  StaffScoresListsCopy:any;
-  goal:any;
-  appraislid:any;
+  selfcomment: any;
+  managercomments: any;
+  hrcomment: any;
+  DepartmentName: any;
+  Role: any;
+  HrSubmittedDate: any;
+  ManagerSubmittedDate: any;
+  EmployeeSubmittedDate: any;
+  goallist: any;
+  StaffScoresListsCopy: any;
+  goal: any;
+  appraislid: any;
   ngOnInit() {
-   
-    this.goal="0"
+
+    this.goal = "0"
     this.route.params.subscribe(params => {
       debugger;
-       // this.StaffType = params['StaffID'];
-       this.appraislid = params['StaffID'];
+      // this.StaffType = params['StaffID'];
+      this.appraislid = params['StaffID'];
       if (params['StaffTypeID'] != undefined) {
         this.StaffID = params['StaffTypeID'];
         this.PerformanceManagementService.GetConductappraisalStaffList().subscribe(
           res => {
             debugger;
             let temp: any = res
-            this.StaffDetailsBYConductAppraisals = temp.filter((x: { id: any;}) => x.id == this.StaffID );
+            this.StaffDetailsBYConductAppraisals = temp.filter((x: { id: any; }) => x.id == this.StaffID);
             this.EmployeeName = this.StaffDetailsBYConductAppraisals[0].name;
             this.StartDate = this.StaffDetailsBYConductAppraisals[0].cycleStartDate;
             this.EndDate = this.StaffDetailsBYConductAppraisals[0].cycleEndDate;
@@ -61,14 +61,14 @@ export class StaffScoreFullDetailsComponent implements OnInit {
             this.ManagerSubmittedDate = this.StaffDetailsBYConductAppraisals[0].managerSubmittedDate
             this.EmployeeSubmittedDate = this.StaffDetailsBYConductAppraisals[0].employeeSubmittedDate
 
-          
+
           }
         )
         this.PerformanceManagementService.GetStaffScoresByStaffandYear(2021, this.StaffID).subscribe(data => {
           debugger;
           let temp: any = data
-          this.StaffScoresLists = temp.filter((x:{apprisalID: any;} )=> x.apprisalID== this.appraislid)
-          this.StaffScoresListsCopy= this.StaffScoresLists
+          this.StaffScoresLists = temp.filter((x: { apprisalID: any; }) => x.apprisalID == this.appraislid)
+          this.StaffScoresListsCopy = this.StaffScoresLists
           this.StaffType = temp[0].staffType;
           //  this.Appraisaldate = data[0].appraisalDate;
           //  this.StartDate = data[0].fromDate;
@@ -117,26 +117,26 @@ export class StaffScoreFullDetailsComponent implements OnInit {
     this.PerformanceManagementService.GetKeyResultArea().subscribe(
       res => {
         debugger;
-      this.goallist=res
+        this.goallist = res
       }
     )
-    
+
   }
 
   public Filtergoals() {
     debugger
-   
+
     let searchCopy = this.goal.toLowerCase();
-    if(searchCopy==0){
-     this.ngOnInit();
+    if (searchCopy == 0) {
+      this.ngOnInit();
     }
-    else{
+    else {
       this.StaffScoresLists = this.StaffScoresListsCopy.filter((x: { resultAreaName: string; }) => x.resultAreaName.toLowerCase().includes(searchCopy));
     }
-   
+
   }
 
- 
+
 
   Stafflist1: any;
   EmployeeID: any;
@@ -177,26 +177,26 @@ export class StaffScoreFullDetailsComponent implements OnInit {
       res => {
         debugger;
         let temp: any = res
-       this.StaffAppraisalList = temp
+        this.StaffAppraisalList = temp
       }
     )
   }
 
-  viewself(Scores:any){
-  this.selfcomment=Scores.selfComments;
+  viewself(Scores: any) {
+    this.selfcomment = Scores.selfComments;
   }
 
-  manager(Scores:any){
-    this.managercomments=Scores.groupHeadComments;
+  manager(Scores: any) {
+    this.managercomments = Scores.groupHeadComments;
   }
 
-  divisionComments:any;
-  sbu(Scores:any){
-    this.divisionComments=Scores.divisionComments;
+  divisionComments: any;
+  sbu(Scores: any) {
+    this.divisionComments = Scores.divisionComments;
   }
 
-  hrcomments(Scores:any){
-    this.hrcomment=Scores.cioComments;
+  hrcomments(Scores: any) {
+    this.hrcomment = Scores.cioComments;
   }
 
 

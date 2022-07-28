@@ -10,13 +10,13 @@ import Swal from 'sweetalert2';
 })
 export class ApprasialCycleComponent implements OnInit {
 
-  constructor(private PerformanceManagementService:PerformancemanagementService ) { }
+  constructor(private PerformanceManagementService: PerformancemanagementService) { }
 
-  appraisallist:any;
-  count:any;
-  search:any;
-  currentUrl : any
- 
+  appraisallist: any;
+  count: any;
+  search: any;
+  currentUrl: any
+
   ngOnInit(): void {
     this.currentUrl = window.location.href;
     this.GetAppraisalCycle();
@@ -26,24 +26,24 @@ export class ApprasialCycleComponent implements OnInit {
   public GetAppraisalCycle() {
     debugger
     this.PerformanceManagementService.GetAppraisalCycle().subscribe({
-        next: data => {
-          debugger
-          this.appraisallist=data;
-      this.count=this.appraisallist.length;
-        }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in Getting Appraisal Cycle');
-          // Insert error in Db Here//
-          var obj = {
-            'PageName': this.currentUrl,
-            'ErrorMessage': err.error.message
-          }
-          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-            data => {
-              debugger
-            },
-          )
+      next: data => {
+        debugger
+        this.appraisallist = data;
+        this.count = this.appraisallist.length;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Appraisal Cycle');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
         }
-      })
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
 
   }
 
@@ -58,7 +58,7 @@ export class ApprasialCycleComponent implements OnInit {
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.value == true) {
-        this.PerformanceManagementService.DeleteAppraisalCycle(ID) .subscribe({
+        this.PerformanceManagementService.DeleteAppraisalCycle(ID).subscribe({
           next: data => {
             debugger
             Swal.fire('Deleted Successfully')
