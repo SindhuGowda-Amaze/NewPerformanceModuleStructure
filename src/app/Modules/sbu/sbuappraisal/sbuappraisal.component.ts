@@ -11,10 +11,6 @@ import Swal from 'sweetalert2';
 })
 export class SbuappraisalComponent implements OnInit {
 
-
-
-  constructor(private PerformanceManagementService: PerformancemanagementService, private router: Router, private route: ActivatedRoute, private datepipe: DatePipe) { }
-
   stafflist: any;
   term: any;
   p: any = 1;
@@ -27,7 +23,6 @@ export class SbuappraisalComponent implements OnInit {
   count: any;
   attachment: any;
   description: any;
-
   ParamID: any;
   EmployeeKradash: any
   StaffType: any;
@@ -42,11 +37,19 @@ export class SbuappraisalComponent implements OnInit {
   HrSubmittedDate: any;
   hrattachment: any;
   appraislid: any;
-  SbuSubmittedDate: any
+  SbuSubmittedDate: any;
+  currentUrl: any;
+
+
+  constructor(private PerformanceManagementService: PerformancemanagementService, private router: Router, private route: ActivatedRoute, private datepipe: DatePipe) { }
+
+
   ngOnInit(): void {
+    this.currentUrl = window.location.href;
+    this.GetKRAByStaffID();
     this.Score = 0;
     this.showbtn = false;
-
+    this.GetKRAByStaffID();
     this.HighScore();
     this.route.params.subscribe(params => {
       debugger;
@@ -57,32 +60,58 @@ export class SbuappraisalComponent implements OnInit {
         this.StaffID = params['id'];
         this.StaffTypeID = this.StaffType;
 
-        this.PerformanceManagementService.GetKRAByStaffID(this.StaffID).subscribe(data => {
-          debugger
-          this.ResultAreaList = data.filter((x: { managerSubmittedDate: any; employeeSubmittedDate: any; appraiselID: any; }) => x.managerSubmittedDate != null && x.employeeSubmittedDate != null && x.appraiselID == this.appraislid);
-
-          this.Name = this.ResultAreaList[0].name
-          this.role = this.ResultAreaList[0].role
-          this.departmentName = this.ResultAreaList[0].departmentName
-          this.SbuSubmittedDate = this.ResultAreaList[0].sbuSubmittedDate
-          this.managerattachment = this.ResultAreaList[0].mPhoto
-
-          console.log("resultarea", this.ResultAreaList)
-
-          this.ResultAreaList.forEach((element: { sbuUpdate: any; }) => {
-            if (element.sbuUpdate != 1) {
-              this.showbtn = false
-            } else {
-              this.showbtn = true
-            }
-          });
-        })
+      
         // this.GetStaffAppraisalByID(this.ParamID);
 
       }
     }
     );
   }
+
+public GetKRAByStaffID(){
+
+  this.PerformanceManagementService.GetKRAByStaffID(this.StaffID)
+  .subscribe({
+          next: data => {
+            debugger
+            this.ResultAreaList = data.filter((x: { managerSubmittedDate: any; employeeSubmittedDate: any; appraiselID: any; }) => x.managerSubmittedDate != null && x.employeeSubmittedDate != null && x.appraiselID == this.appraislid);
+        
+            this.Name = this.ResultAreaList[0].name
+            this.role = this.ResultAreaList[0].role
+            this.departmentName = this.ResultAreaList[0].departmentName
+            this.SbuSubmittedDate = this.ResultAreaList[0].sbuSubmittedDate
+            this.managerattachment = this.ResultAreaList[0].mPhoto
+        
+            console.log("resultarea", this.ResultAreaList)
+        
+            this.ResultAreaList.forEach((element: { sbuUpdate: any; }) => {
+              if (element.sbuUpdate != 1) {
+                this.showbtn = false
+              } else {
+                this.showbtn = true
+              }
+            });
+          }, error: (err) => {
+            Swal.fire('Issue in Getting KRAByStaffID');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
+        })
+
+
+}
+
+
+
+
 
   public getRoleType(event: any) {
     debugger
@@ -91,41 +120,109 @@ export class SbuappraisalComponent implements OnInit {
 
   public FilterRoleType() {
     debugger
-    this.PerformanceManagementService.GetMyDetails().subscribe(data => {
-      debugger
-      this.stafflist = data.filter(x => x.roleType == this.RoleType);
-      this.count = this.stafflist.length;
-    });
-
+    this.PerformanceManagementService.GetMyDetails()
+    
+    
+.subscribe({
+  next: data => {
+    debugger
+    this.stafflist = data.filter(x => x.roleType == this.RoleType);
+    this.count = this.stafflist.length;
+  }, error: (err) => {
+    Swal.fire('Issue in Getting MyDetails');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': err.error.message
+    }
+    this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+      data => {
+        debugger
+      },
+    )
+  }
+})
+  
   }
 
   public filterByDepartment() {
     debugger
-    this.PerformanceManagementService.GetMyDetails().subscribe(data => {
-      debugger
-      this.stafflist = data.filter(x => x.department == this.Department);
-      this.count = this.stafflist.length;
-    });
-
+    this.PerformanceManagementService.GetMyDetails()
+    
+    
+.subscribe({
+  next: data => {
+    debugger
+    this.stafflist = data.filter(x => x.department == this.Department);
+    this.count = this.stafflist.length;
+  }, error: (err) => {
+    Swal.fire('Issue in Getting MyDetails');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': err.error.message
+    }
+    this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+      data => {
+        debugger
+      },
+    )
   }
+})
+    
+  }
+
   Staffkra: any;
   public GetStaffKraDetails(details: any) {
     debugger
-    this.PerformanceManagementService.GetEmployeeKraMap().subscribe(data => {
-      debugger
+    this.PerformanceManagementService.GetEmployeeKraMap()
+.subscribe({
+        next: data => {
+          debugger
       this.Staffkra = data.filter(x => x.staffName == details.staffid);
-    });
-
+        }, error: (err) => {
+          Swal.fire('Issue in Getting Expenses List Web');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+    
   }
 
   list: any;
   SelfComments: any;
   public HighScore() {
     debugger
-    this.PerformanceManagementService.GetHighScores().subscribe(data => {
-      debugger
+    this.PerformanceManagementService.GetHighScores()
+    
+.subscribe({
+  next: data => {
+    debugger
       this.list = data;
-    })
+  }, error: (err) => {
+    Swal.fire('Issue in Getting Expenses List Web');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': err.error.message
+    }
+    this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+      data => {
+        debugger
+      },
+    )
+  }
+})
+    
+
   }
   kpiid: any;
   Score: any;
@@ -156,7 +253,16 @@ export class SbuappraisalComponent implements OnInit {
         'SelfComments': this.SelfComments,
         'Attachment': this.attchmentss
       }
-      this.PerformanceManagementService.InsertStaffScoresBySBU(entity).subscribe(data => {
+      this.PerformanceManagementService.InsertStaffScoresBySBU(entity)
+      
+      
+      
+      
+      
+      
+      
+      
+      .subscribe(data => {
         debugger
         Swal.fire("Saved Successfully");
         // var entity1 = {
@@ -196,7 +302,20 @@ export class SbuappraisalComponent implements OnInit {
   sbuAttachment: any
   public GetKPIIDetails(details: any) {
     debugger
-    this.PerformanceManagementService.GetEmployeeKraMap().subscribe(data => {
+    this.PerformanceManagementService.GetEmployeeKraMap()
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    .subscribe(data => {
       debugger
       let temp: any = data.filter(x => x.id == details.id)
       this.Score = temp[0].sbuRating;
@@ -219,7 +338,22 @@ export class SbuappraisalComponent implements OnInit {
     this.attchmentss = 0
     debugger
     this.files.push(...event.addedFiles);
-    this.PerformanceManagementService.ProjectAttachments(this.files).subscribe(res => {
+    this.PerformanceManagementService.ProjectAttachments(this.files)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    .subscribe(res => {
       debugger
       if (res != undefined) {
         this.attchmentss = res;
@@ -261,7 +395,19 @@ export class SbuappraisalComponent implements OnInit {
       'SelfComments': this.SelfComments,
       'Attachment': this.attchmentss
     }
-    this.PerformanceManagementService.InsertStaffScoresBySBU(entity).subscribe(data => {
+    this.PerformanceManagementService.InsertStaffScoresBySBU(entity)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+    .subscribe(data => {
       debugger
       Swal.fire("Updated Successfully");
       this.attchmentss = "";
@@ -295,7 +441,22 @@ export class SbuappraisalComponent implements OnInit {
         var entity = {
           'StaffID': this.StaffID,
         }
-        this.PerformanceManagementService.UpdateSbuSubmitted(entity).subscribe(data => {
+        this.PerformanceManagementService.UpdateSbuSubmitted(entity)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        .subscribe(data => {
           debugger
           Swal.fire("Appraisal Submitted Successfully");
           this.ngOnInit();
@@ -320,7 +481,21 @@ export class SbuappraisalComponent implements OnInit {
       'Attachment': this.attchmentss
 
     }
-    this.PerformanceManagementService.UpdateSbuSelfAttachment(entity).subscribe(data => {
+    this.PerformanceManagementService.UpdateSbuSelfAttachment(entity)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    .subscribe(data => {
       debugger
       Swal.fire("Updated Successfully");
       this.attachment = 0;
