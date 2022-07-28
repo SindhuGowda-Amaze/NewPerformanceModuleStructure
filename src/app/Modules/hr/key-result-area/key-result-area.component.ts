@@ -19,8 +19,10 @@ export class KeyResultAreaComponent implements OnInit {
   roleTypeList: any;
   newrolelist: any;
   short: any;
+  currentUrl : any
 
   ngOnInit(): void {
+    this.currentUrl = window.location.href;
     this.GetKeyResultArea();
     this.GetRoleType();
     this.roleTypeid=0;
@@ -40,13 +42,26 @@ export class KeyResultAreaComponent implements OnInit {
   }
 
   public GetRoleType() {
-    this.PerformanceManagementService.GetRoleType().subscribe(
-      data => {
+    this.PerformanceManagementService.GetRoleType().subscribe({
+      next: data => {
+        debugger
         this.roleTypeList = data;
         console.log("type", this.roleTypeList);
         this.roleTypeid = 0;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting RoleType');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-    )
+    })
   }
 
 
@@ -55,12 +70,28 @@ export class KeyResultAreaComponent implements OnInit {
 
   public GetKeyResultArea() {
     debugger
-    this.PerformanceManagementService.GetKeyResultArea().subscribe(
-      data => {
-        this.keyresultlist = data;
-        this.dummkeyresultlist = data;
-        this.count = this.keyresultlist.length;
-        console.log("result", this.keyresultlist);
+    this.PerformanceManagementService.GetKeyResultArea()
+  
+      .subscribe({
+        next: data => {
+          debugger
+          this.keyresultlist = data;
+          this.dummkeyresultlist = data;
+          this.count = this.keyresultlist.length;
+          console.log("result", this.keyresultlist);
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting KeyResultArea');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
       })
   }
 
@@ -77,11 +108,24 @@ export class KeyResultAreaComponent implements OnInit {
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.value == true) {
-        this.PerformanceManagementService.DeleteKeyResultArea(ID).subscribe(
-          data=>{
-          debugger
-          Swal.fire('Deleted Successfully')
-          this.GetKeyResultArea();
+        this.PerformanceManagementService.DeleteKeyResultArea(ID).subscribe({
+          next: data => {
+            debugger
+            Swal.fire('Deleted Successfully')
+            this.GetKeyResultArea();
+          }, error: (err: { error: { message: any; }; }) => {
+            Swal.fire('Issue in Deleting KeyResultArea');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
         })
       }
     })

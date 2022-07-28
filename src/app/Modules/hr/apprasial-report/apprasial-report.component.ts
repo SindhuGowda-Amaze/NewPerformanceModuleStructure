@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PerformancemanagementService } from 'src/app/Pages/Services/performancemanagement.service';
+import Swal from 'sweetalert2';
 import * as XLSX from 'xlsx';
 
 @Component({
@@ -28,7 +29,11 @@ export class ApprasialReportComponent implements OnInit {
   departmentAppraisalList: any;
   departmentid: any;
   count1: any = 10;
+  currentUrl: any
   ngOnInit(): void {
+    this.currentUrl = window.location.href;
+
+
     this.StaffID = sessionStorage.getItem('EmaployedID')
     this.roleid = sessionStorage.getItem('roleid');
     this.departmentid=0;
@@ -47,13 +52,30 @@ export class ApprasialReportComponent implements OnInit {
   }
 
   public GetRoleType() {
-    this.PerformanceManagementService.GetRoleType().subscribe(
-      data => {
+    this.PerformanceManagementService.GetRoleType().subscribe({
+      next: data => {
+        debugger
         this.roleTypeList = data;
         console.log("type", this.roleTypeList);
         this.roleTypeid = 0;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting RoleType');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-    )
+    })
+
+
+
+
   }
 
 
@@ -69,26 +91,52 @@ export class ApprasialReportComponent implements OnInit {
   }
 
   public GetFilteredDepartment() {
-    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe(data => {
-      debugger
-      this.StaffAppraisalList = data.filter(x => x.department == this.departmentid)
+    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
+      next: data => {
+        debugger
+        this.StaffAppraisalList = data.filter(x => x.department == this.departmentid)
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Conduct appraisal StaffList');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
   }
 
   public GetDepartment() {
-    this.PerformanceManagementService.GetDepartmentMaster().subscribe(
-      data => {
+    this.PerformanceManagementService.GetDepartmentMaster() .subscribe({
+      next: data => {
+        debugger
         this.departmentAppraisalList = data;
         console.log("departmentName", this.departmentAppraisalList);
-        // this.roleTypeid = 0;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Department Master');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-    )
+    })
   }
 
   public GetMyDetails() {
     debugger
-    this.PerformanceManagementService.GetMyDetails().subscribe(
-      data => {
+    this.PerformanceManagementService.GetMyDetails().subscribe({
+      next: data => {
         debugger
         this.managerList = data.filter(x =>(x.supervisor == null || x.supervisor != null)  && x.role=='Manager')     // 10422 HR is taken as manager for all managers 
         const key = 'manager';
@@ -96,15 +144,29 @@ export class ApprasialReportComponent implements OnInit {
         this.uniquelist = [...new Map(this.managerList.map((item: { [x: string]: any; }) =>
 
           [(item[key]), item])).values()]
-
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting MyDetails');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-    )
+    })
+
+
+
   }
 
   public ConductappraisalStaffList() {
-    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe(
-      res => {
-        debugger;
+    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
+      next: res => {
+        debugger
         let temp: any = res
         if (this.roleid == 3) {
           this.StaffAppraisalList = temp;
@@ -118,8 +180,20 @@ export class ApprasialReportComponent implements OnInit {
           this.StaffAppraisalList = this.dumpmanagerList.filter((x: { approver1: any }) => x.approver1 == this.StaffID)
 
         }
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Conduct appraisal StaffList');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-    )
+    })
   }
 
 
@@ -136,17 +210,45 @@ export class ApprasialReportComponent implements OnInit {
   }
 
   public GetFilteredRoleType() {
-    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe(data => {
-      debugger
-      this.StaffAppraisalList = data.filter(x => x.type == this.roleTypeid)
+    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
+      next: data => {
+        debugger
+        this.StaffAppraisalList = data.filter(x => x.type == this.roleTypeid)
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Conduct appraisal StaffList');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
   }
 
 
   public GetFilteredManager() {
-    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe(data => {
-      debugger
-      this.StaffAppraisalList = data.filter(x => x.managername == this.manager)
+    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
+      next: data => {
+        debugger
+        this.StaffAppraisalList = data.filter(x => x.managername == this.manager)
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Conduct appraisal StaffList');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
   }
 
