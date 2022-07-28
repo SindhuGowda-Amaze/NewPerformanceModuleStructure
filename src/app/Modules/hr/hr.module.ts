@@ -6,7 +6,7 @@ import { HrComponent } from './hr.component';
 import { ApprasialCycleComponent } from './apprasial-cycle/apprasial-cycle.component';
 import { ApprasialCycleFormComponent } from './apprasial-cycle-form/apprasial-cycle-form.component';
 import { KeyResultAreaComponent } from './key-result-area/key-result-area.component';
-import { KeyResultAreaFormComponent } from './key-result-area-form/key-result-area-form.component';
+// import { KeyResultAreaFormComponent } from './key-result-area-form/key-result-area-form.component';
 import { KeyPerformaceIndicatorComponent } from './key-performace-indicator/key-performace-indicator.component';
 import { KeyPerformaceIndicatorformComponent } from './key-performace-indicatorform/key-performace-indicatorform.component';
 import { HrDashComponent } from './hr-dash/hr-dash.component';
@@ -26,7 +26,7 @@ import { HrratingnewComponent } from './hrratingnew/hrratingnew.component';
     ApprasialCycleComponent,
     ApprasialCycleFormComponent,
     KeyResultAreaComponent,
-    KeyResultAreaFormComponent,
+    // KeyResultAreaFormComponent,
     KeyPerformaceIndicatorComponent,
     KeyPerformaceIndicatorformComponent,
     HrDashComponent,

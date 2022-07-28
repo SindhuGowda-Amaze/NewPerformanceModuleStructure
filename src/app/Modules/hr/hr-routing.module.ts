@@ -10,7 +10,7 @@ import { HrComponent } from './hr.component';
 import { HrratingnewComponent } from './hrratingnew/hrratingnew.component';
 import { KeyPerformaceIndicatorComponent } from './key-performace-indicator/key-performace-indicator.component';
 import { KeyPerformaceIndicatorformComponent } from './key-performace-indicatorform/key-performace-indicatorform.component';
-import { KeyResultAreaFormComponent } from './key-result-area-form/key-result-area-form.component';
+// import { KeyResultAreaFormComponent } from './key-result-area-form/key-result-area-form.component';
 import { KeyResultAreaComponent } from './key-result-area/key-result-area.component';
 import { SalaryincrementletterDashComponent } from './salaryincrementletter-dash/salaryincrementletter-dash.component';
 import { StaffScoreFullDetailsComponent } from './staff-score-full-details/staff-score-full-details.component';
@@ -36,8 +36,8 @@ const routes: Routes = [{ path: '', component: HrComponent },
 {path:'KeyPerformaceIndicatorform?:id',component:KeyPerformaceIndicatorformComponent},
 
 {path:'KeyResultArea',component:KeyResultAreaComponent},
-{path:'KeyResultAreaForm',component:KeyResultAreaFormComponent},
-{path:'KeyResultAreaForm/:id',component:KeyResultAreaFormComponent},
+// {path:'KeyResultAreaForm',component:KeyResultAreaFormComponent},
+// {path:'KeyResultAreaForm/:id',component:KeyResultAreaFormComponent},
 {path:'SalaryincrementletterDash',component:SalaryincrementletterDashComponent},
 {path:'StaffScoreReport',component:StaffScoreReportComponent},
 { path: 'StaffScoreFullDetails/:StaffTypeID/:StaffID', component: StaffScoreFullDetailsComponent },
