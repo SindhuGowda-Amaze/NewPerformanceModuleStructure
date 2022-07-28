@@ -119,7 +119,7 @@
      
 
 
-        <a class="togglebtn button" *ngIf="roleid=='4'" routerLink="/EmployeeKraMappingdashboard" class="tablinks"
+        <a class="togglebtn button" *ngIf="roleid=='4'" routerLink="/manager/EmployeeKraMappingdashboard" class="tablinks"
             (click)="highlight($event)" (click)="Employeekramapping()">
             <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
                 [ngClass]="active != 'Settings' ? 'Active1' : 'Active2'" />
@@ -130,7 +130,7 @@
         </a>
 
 
-        <a class="togglebtn button" *ngIf="roleid!='1'" routerLink="/MyAppraisal" class="tablinks"
+        <a class="togglebtn button" *ngIf="roleid!='1'" routerLink="/shared/MyApprasail" class="tablinks"
             (click)="highlight($event)" (click)="Myappraisal()">
             <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
                 [ngClass]="active != 'MyAppraisalDashboard' ? 'Active1' : 'Active2'" />
@@ -140,7 +140,7 @@
             <span [ngClass]="active == 'MyAppraisalDashboard' ? 'Active1' : 'Active3'" style="font-size: 11px;">My
                 Appraisal </span>
         </a>
-        <a class="togglebtn button" *ngIf="roleid=='4'" routerLink="/Managerratingdash" class="tablinks"
+        <a class="togglebtn button" *ngIf="roleid=='4'" routerLink="/manager/Managerratingdash" class="tablinks"
             (click)="highlight($event)" (click)="TeamAppraisal()">
             <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
                 [ngClass]="active != 'TeamAppraisal' ? 'Active1' : 'Active2'" />
@@ -233,7 +233,7 @@
             <span [ngClass]="active == 'salaryIncrement' ? 'Active1' : 'Active3'">Salary Increment Letter</span>
         </a>
 
-        <a routerLink="/Help" class="tablinks" (click)="highlight($event)" (click)="help()">
+        <a routerLink="/shared/Help" class="tablinks" (click)="highlight($event)" (click)="help()">
             <img src="assets/Images/64 Blue/ATTENDANCE/POLICIES.png" style="width:13% ;margin-right: 17px;"
                 [ngClass]="active == 'help' ? 'Active1' : 'Active2'" />
             <img [ngClass]="active != 'help' ? 'Active1' : 'Active2'" src="assets/Images/64/ATTENDANCE/POLICIES.png"
@@ -243,7 +243,7 @@
             &nbsp;
         </a>
 
-        <a routerLink="/SupportTicketDashboard" class="tablinks" (click)="highlight($event)" (click)="SupportTickets()">
+        <a routerLink="/shared/SupportTicketDashboard" class="tablinks" (click)="highlight($event)" (click)="SupportTickets()">
             <img src="assets/Images/64 Blue/Anoncement.png" style="width:13% ;margin-right: 17px;"
                 [ngClass]="active == 'SupportTickets' ? 'Active1' : 'Active2'" />
             <img [ngClass]="active != 'SupportTickets' ? 'Active1' : 'Active2'" src="assets/Images/64/Anoncement.png"

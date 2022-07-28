@@ -11,6 +11,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { EmployeeDashboardComponent } from './employee-dashboard/employee-dashboard.component';
 import { MyApprasailComponent } from './my-apprasail/my-apprasail.component';
+import { SupportTicketDashboardComponent } from './support-ticket-dashboard/support-ticket-dashboard.component';
 
 
 
@@ -21,7 +22,8 @@ import { MyApprasailComponent } from './my-apprasail/my-apprasail.component';
     HelpComponent,
     SupportticketsComponent,
     EmployeeDashboardComponent,
-    MyApprasailComponent
+    MyApprasailComponent,
+    SupportTicketDashboardComponent
   ],
   imports: [
     CommonModule,
