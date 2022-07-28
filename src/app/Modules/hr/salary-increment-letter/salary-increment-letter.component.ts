@@ -34,8 +34,10 @@ export class SalaryIncrementLetterComponent implements OnInit {
   level: any;
   role:any;
   roleid:any;
-  stafflist1:any
+  stafflist1:any 
+  currentUrl : any
   ngOnInit(): void {
+    this.currentUrl = window.location.href;
     this.staffID = sessionStorage.getItem('EmaployedID');
     this.roleid = sessionStorage.getItem('roleid');
     this.Promotion = 0;
@@ -43,40 +45,123 @@ export class SalaryIncrementLetterComponent implements OnInit {
     this.appraisalCycleName = 0;
     this.Department = "";
     this.RoleType = "";
-    this.PerformanceManagementService.GetMyDetails().subscribe(data => {
-      debugger
-      this.stafflist = data;
+    this.PerformanceManagementService.GetMyDetails().subscribe({
+      next: data => {
+        debugger
+        this.stafflist = data;
       this.stafflistCopy = this.stafflist
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting MyDetails');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
 
-    });
+    this.PerformanceManagementService.GetMyDetailsForReiewRating().subscribe({
+      next: data => {
+        debugger
+        this.stafflist1 = data.filter(x=>x.salaryIncrement==1);
+        this.stafflistCopy = this.stafflist
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting MyDetailsForReiewRating');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
 
-    this.PerformanceManagementService.GetMyDetailsForReiewRating().subscribe(data => {
-      debugger
-      this.stafflist1 = data.filter(x=>x.salaryIncrement==1);
-      this.stafflistCopy = this.stafflist
+    this.PerformanceManagementService.GetDepartment().subscribe({
+      next: data => {
+        debugger
+        this.Departmentlist = data;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Department');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
 
-    });
+    this.PerformanceManagementService.GetRoleType().subscribe({
+      next: data => {
+        debugger
+        this.RoleTypeList = data;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting RoleType');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
 
-    this.PerformanceManagementService.GetDepartment().subscribe(data => {
-      debugger
-      this.Departmentlist = data;
-    });
+    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
+      next: data => {
+        debugger
+        this.EmployeeKradash = data.filter(x => x.approver1 == sessionStorage.getItem('EmaployedID') && x.selfScores != null && x.employeeSubmittedDate != null);
+        this.count = this.EmployeeKradash.length;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting ConductappraisalStaffList');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
 
-    this.PerformanceManagementService.GetRoleType().subscribe(data => {
-      debugger
-      this.RoleTypeList = data;
-    });
+    this.PerformanceManagementService.GetAppraisalCycle().subscribe({
+      next: data => {
+        debugger
+        this.Apprisalcyclelist = data;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting AppraisalCycle');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
 
-    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe(data => {
-      debugger
-      this.EmployeeKradash = data.filter(x => x.approver1 == sessionStorage.getItem('EmaployedID') && x.selfScores != null && x.employeeSubmittedDate != null);
-      this.count = this.EmployeeKradash.length;
-    });
-
-    this.PerformanceManagementService.GetAppraisalCycle().subscribe(data => {
-      debugger
-      this.Apprisalcyclelist = data;
-    });
 
   }
 
@@ -87,51 +172,120 @@ export class SalaryIncrementLetterComponent implements OnInit {
 
   public FilterRoleType() {
     debugger
-    this.PerformanceManagementService.GetMyDetails().subscribe(data => {
-      debugger
-      this.stafflist = data.filter(x => x.roleType == this.RoleType);
-      this.count1 = this.stafflist.length;
-    });
+    this.PerformanceManagementService.GetMyDetails().subscribe({
+      next: data => {
+        debugger
+        this.stafflist = data.filter(x => x.roleType == this.RoleType);
+        this.count1 = this.stafflist.length;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting MyDetails');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
 
   }
 
   public filterByDepartment() {
     debugger
-    this.PerformanceManagementService.GetMyDetails().subscribe(data => {
-      debugger
-      this.stafflist = data.filter(x => x.department == this.Department);
+    this.PerformanceManagementService.GetMyDetails().subscribe({
+      next: data => {
+        debugger
+        this.stafflist = data.filter(x => x.department == this.Department);
       this.count = this.stafflist.length;
-    });
-
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting MyDetails');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
   }
   Staffkra: any;
   public GetStaffKraDetails(details: any) {
     debugger
-    this.PerformanceManagementService.GetEmployeeKraMap().subscribe(data => {
-      debugger
-      this.Staffkra = data.filter(x => x.staffName == details.staffid);
-    });
+    this.PerformanceManagementService.GetEmployeeKraMap().subscribe({
+      next: data => {
+        debugger
+        this.Staffkra = data.filter(x => x.staffName == details.staffid);
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting EmployeeKraMap');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
 
   }
 
   public GetApprisalcycle(event: any) {
     debugger
-    this.PerformanceManagementService.GetAppraisalCycle().subscribe(data => {
-      debugger
-      let temp: any = data.filter(x => x.id == event.target.value);
-      this.AppraisalSubmitionDate = temp[0].employeeSubmissionDate;
-      this.appraisalCycleName = temp[0].appraisalCycleName
-      this.sDate = temp[0].cycleStartDate;
-      this.eDate = temp[0].cycleEndDate;
-
-    });
+    this.PerformanceManagementService.GetAppraisalCycle().subscribe({
+      next: data => {
+        debugger
+        let temp: any = data.filter(x => x.id == event.target.value);
+        this.AppraisalSubmitionDate = temp[0].employeeSubmissionDate;
+        this.appraisalCycleName = temp[0].appraisalCycleName
+        this.sDate = temp[0].cycleStartDate;
+        this.eDate = temp[0].cycleEndDate;
+  
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting AppraisalCycle');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
   }
 
   public GetFilteredAppraisalCycle() {
-    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe(data => {
-      debugger
-      this.EmployeeKradash = data.filter(x => x.appraisalCycleName == this.appraisalCycleName && x.approver1 == this.staffID && x.selfScores != null && x.employeeSubmittedDate != null)
-      // &&
+    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
+      next: data => {
+        debugger
+        this.EmployeeKradash = data.filter(x => x.appraisalCycleName == this.appraisalCycleName && x.approver1 == this.staffID && x.selfScores != null && x.employeeSubmittedDate != null)
+
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting ConductappraisalStaffList');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
   }
 
@@ -167,10 +321,24 @@ export class SalaryIncrementLetterComponent implements OnInit {
           'Type': this.Type,
         }
 
-        this.PerformanceManagementService.UpdateStaffReviewRating(entity).subscribe(data => {
-          debugger
-          Swal.fire('Approved Successfully')
-          location.reload();
+        this.PerformanceManagementService.UpdateStaffReviewRating(entity).subscribe({
+          next: data => {
+            debugger
+            Swal.fire('Approved Successfully')
+            location.reload();
+          }, error: (err: { error: { message: any; }; }) => {
+            Swal.fire('Issue in Updating StaffReviewRating');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
         })
       }
     })
@@ -192,10 +360,24 @@ export class SalaryIncrementLetterComponent implements OnInit {
           'SatffID': this.staffid,
         }
 
-        this.PerformanceManagementService.UpdateStaffReviewRating(entity).subscribe(data => {
-          debugger
-          Swal.fire('Approved Successfully')
+        this.PerformanceManagementService.UpdateStaffReviewRating(entity).subscribe({
+          next: data => {
+            debugger
+            Swal.fire('Approved Successfully')
           location.reload();
+          }, error: (err: { error: { message: any; }; }) => {
+            Swal.fire('Issue in Updating StaffReviewRating');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
         })
       }
     })

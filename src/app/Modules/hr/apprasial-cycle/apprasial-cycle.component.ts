@@ -15,20 +15,36 @@ export class ApprasialCycleComponent implements OnInit {
   appraisallist:any;
   count:any;
   search:any;
+  currentUrl : any
  
   ngOnInit(): void {
+    this.currentUrl = window.location.href;
     this.GetAppraisalCycle();
   }
 
 
   public GetAppraisalCycle() {
     debugger
-    this.PerformanceManagementService.GetAppraisalCycle().subscribe(
-      data => {
-        debugger
-      this.appraisallist=data;
+    this.PerformanceManagementService.GetAppraisalCycle().subscribe({
+        next: data => {
+          debugger
+          this.appraisallist=data;
       this.count=this.appraisallist.length;
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting Appraisal Cycle');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
       })
+
   }
 
   public delete(ID: any) {
@@ -42,13 +58,28 @@ export class ApprasialCycleComponent implements OnInit {
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.value == true) {
-        this.PerformanceManagementService.DeleteAppraisalCycle(ID).subscribe(
-          data=>{
-          debugger
-          Swal.fire('Deleted Successfully')
-          this.GetAppraisalCycle();
-          // location.reload();
+        this.PerformanceManagementService.DeleteAppraisalCycle(ID) .subscribe({
+          next: data => {
+            debugger
+            Swal.fire('Deleted Successfully')
+            this.GetAppraisalCycle();
+          }, error: (err: { error: { message: any; }; }) => {
+            Swal.fire('Issue in Deleting Appraisal Cycle');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
         })
+
+
+
       }
     })
   }

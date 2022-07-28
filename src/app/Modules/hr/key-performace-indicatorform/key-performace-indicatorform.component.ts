@@ -31,9 +31,12 @@ export class KeyPerformaceIndicatorformComponent implements OnInit {
   kraType:any
   dumpgoallist:any;
   kratypeid:any;
+  currentUrl : any
 
 
   ngOnInit(): void {
+    this.currentUrl = window.location.href;
+
     this.kraid=0;
     this.GetKPI();
     this.GetKeyResultArea();
@@ -55,8 +58,8 @@ export class KeyPerformaceIndicatorformComponent implements OnInit {
 
   
   GetKPI(){
-    this.PerformanceManagementService.GetKPI().subscribe(
-      data=>{
+    this.PerformanceManagementService.GetKPI().subscribe({
+      next: data => {
         debugger
         this.kpilist=data;
       	this.kpilist=this.kpilist.filter((x: { id: any; })=>x.id==Number(this.id));
@@ -69,19 +72,44 @@ export class KeyPerformaceIndicatorformComponent implements OnInit {
         console.log("Kpilist",this.kpilist);
         this.GetKraMaster();
         this.GetKeyResultArea();
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting KPI');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-    )
+    })
   }
 
 
 
   public GetKeyResultArea(){
-    this.PerformanceManagementService.GetKeyResultArea().subscribe(
-      data=>{
+    this.PerformanceManagementService.GetKeyResultArea().subscribe({
+      next: data => {
+        debugger
         this.kratypelist=data;
         console.log("kratype",this.kratypelist);
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting KeyResultArea');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-    )
+    })
   }
 
   getkraid(even:any){
@@ -98,12 +126,25 @@ export class KeyPerformaceIndicatorformComponent implements OnInit {
 
   
   public GetPerformanceIndicatorMaster(){
-    this.PerformanceManagementService.GetPerformanceIndicatorMaster().subscribe(
-      data=>{
+    this.PerformanceManagementService.GetPerformanceIndicatorMaster().subscribe({
+      next: data => {
+        debugger
         this.performancelist=data;
         console.log("performancetype",this.performancelist);
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting PerformanceIndicatorMaster');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-    )
+    })
   }
 
 
@@ -119,10 +160,24 @@ export class KeyPerformaceIndicatorformComponent implements OnInit {
      "PerformanceIndicatorId":this.indicatorid
       
       };
-      this.PerformanceManagementService.InsertKPI(json).subscribe(
-        data => {
-          Swal.fire("Successfully Submitted...!");
+      this.PerformanceManagementService.InsertKPI(json).subscribe({
+          next: data => {
+            debugger
+            Swal.fire("Successfully Submitted...!");
           location.href="#/KeyPerformanceIndicator"
+          }, error: (err: { error: { message: any; }; }) => {
+            Swal.fire('Issue in Inserting KPI');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
         })
   }
 
@@ -138,12 +193,25 @@ export class KeyPerformaceIndicatorformComponent implements OnInit {
 
       };
     
-      this.PerformanceManagementService.UpdateKPI(json).subscribe(
-        data => {
-        debugger
-        let indicatorlist = data;
-        Swal.fire("Updated Successfully");
-        location.href="#/KeyPerformanceIndicator";
+      this.PerformanceManagementService.UpdateKPI(json).subscribe({
+        next: data => {
+          debugger
+          let indicatorlist = data;
+          Swal.fire("Updated Successfully");
+          location.href="#/KeyPerformanceIndicator";
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Updating KPI');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
       })
   }
 
@@ -156,21 +224,47 @@ export class KeyPerformaceIndicatorformComponent implements OnInit {
  getgoaltype(event:any){
    this.goaltypeid=event.target.value;  
 
-   this.PerformanceManagementService.GetKeyResultArea().subscribe(
-     data=>{
-       this.kratypelist=data.filter(x => x.kraTypeID == this.goaltypeid);
-     }
-   )
+   this.PerformanceManagementService.GetKeyResultArea().subscribe({
+    next: data => {
+      debugger
+      this.kratypelist=data.filter(x => x.kraTypeID == this.goaltypeid);
+    }, error: (err: { error: { message: any; }; }) => {
+      Swal.fire('Issue in Getting KeyResultArea');
+      // Insert error in Db Here//
+      var obj = {
+        'PageName': this.currentUrl,
+        'ErrorMessage': err.error.message
+      }
+      this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+        data => {
+          debugger
+        },
+      )
+    }
+  })
  }
 
 
 
  public GetKraMaster(){
-  this.PerformanceManagementService.GetKraMaster().subscribe(
-    data=>{
-      this.goaltypelist=data;     
+  this.PerformanceManagementService.GetKraMaster().subscribe({
+    next: data => {
+      debugger
+      this.goaltypelist=data;   
+    }, error: (err: { error: { message: any; }; }) => {
+      Swal.fire('Issue in Getting KraMaster');
+      // Insert error in Db Here//
+      var obj = {
+        'PageName': this.currentUrl,
+        'ErrorMessage': err.error.message
+      }
+      this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+        data => {
+          debugger
+        },
+      )
     }
-  )
+  })
  
 }
 

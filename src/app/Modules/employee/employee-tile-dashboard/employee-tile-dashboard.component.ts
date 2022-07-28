@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PerformancemanagementService } from 'src/app/Pages/Services/performancemanagement.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-employee-tile-dashboard',
   templateUrl: './employee-tile-dashboard.component.html',
@@ -29,32 +30,81 @@ export class EmployeeTileDashboardComponent implements OnInit {
   appraisallist:any;
   GoalSettingDate:any;
   SbuSubmittedDate:any;
+  currentUrl : any
 
   ngOnInit(): void {
+    this.currentUrl = window.location.href;
 
     this.Department = "";
     this.RoleType = "";
-    this.PerformanceManagementService.GetMyDetails().subscribe(data => {
-      debugger
-      this.stafflist = data;
-      this.stafflistCopy = this.stafflist
-      this.count = this.stafflist.length;
-    });
+    this.PerformanceManagementService.GetMyDetails().subscribe({
+      next: data => {
+        debugger
+        this.stafflist = data;
+        this.stafflistCopy = this.stafflist
+        this.count = this.stafflist.length;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting MyDetails');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
 
-    this.PerformanceManagementService.GetDepartment().subscribe(data => {
-      debugger
-      this.Departmentlist = data;
-    });
 
-    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe(data => {
-      debugger
-      this.EmployeeKradash = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID'));
-    });
+    this.PerformanceManagementService.GetDepartment().subscribe({
+      next: data => {
+        debugger
+        this.Departmentlist = data;
+
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Department');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
 
 
-    this.PerformanceManagementService.GetKRAByStaffID(sessionStorage.getItem('EmaployedID')).subscribe(data => {
-      debugger
-      this.ResultAreaList = data;
+    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
+      next: data => {
+        debugger
+        this.EmployeeKradash = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID'));
+
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Conductappraisal StaffList');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
+
+    this.PerformanceManagementService.GetKRAByStaffID(sessionStorage.getItem('EmaployedID')).subscribe({
+      next: data => {
+        debugger
+        this.ResultAreaList = data;
       this.CycleStartDate=this.ResultAreaList[0].cycleStartDate
       this.CycleEndDate=this.ResultAreaList[0].cycleEndDate
       this.ManagerSubmittedDate=this.ResultAreaList[0].managerSubmittedDate
@@ -63,18 +113,42 @@ export class EmployeeTileDashboardComponent implements OnInit {
       this.SbuSubmittedDate=this.ResultAreaList[0].sbuSubmittedDate
 
       this.AppraisalSubmitionDate=this.ResultAreaList[0].appraisalSubmitionDate
-
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting KRABy StaffID');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
     })
 
-
-
-      this.PerformanceManagementService.GetAppraisalCycle().subscribe(
-        data => {
-          debugger
-        this.appraisallist=data;
-        this.GoalSettingDate=this.appraisallist[0].goalSettingDate
-        this.count=this.appraisallist.length;
+      this.PerformanceManagementService.GetAppraisalCycle().subscribe({
+          next: data => {
+            debugger
+            this.appraisallist=data;
+            this.GoalSettingDate=this.appraisallist[0].goalSettingDate
+            this.count=this.appraisallist.length;
+          }, error: (err: { error: { message: any; }; }) => {
+            Swal.fire('Issue in Getting Appraisal Cycle');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
         })
+
 
   }
 
@@ -85,37 +159,75 @@ export class EmployeeTileDashboardComponent implements OnInit {
 
   public FilterRoleType() {
     debugger
-    this.PerformanceManagementService.GetMyDetails().subscribe(data => {
-      debugger
-      this.stafflist = data.filter(x => x.roleType == this.RoleType);
-      this.count = this.stafflist.length;
-    });
+    this.PerformanceManagementService.GetMyDetails().subscribe({
+      next: data => {
+        debugger
+        this.stafflist = data.filter(x => x.roleType == this.RoleType);
+        this.count = this.stafflist.length;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting MyDetails');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
 
   }
 
   public filterByDepartment() {
     debugger
-    this.PerformanceManagementService.GetMyDetails().subscribe(data => {
-      debugger
-      this.stafflist = data.filter(x => x.department == this.Department);
+    this.PerformanceManagementService.GetMyDetails().subscribe({
+      next: data => {
+        debugger
+        this.stafflist = data.filter(x => x.department == this.Department);
       this.count = this.stafflist.length;
-    });
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting MyDetails');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
 
   }
   Staffkra: any;
   CycleStartDate:any;
   public GetStaffKraDetails(details: any) {
     debugger
-    this.PerformanceManagementService.GetEmployeeKraMap().subscribe(data => {
-      debugger
-      this.Staffkra = data.filter(x => x.staffName == details.staffid);
-      this.count = this.Staffkra.length;
-    });
+    this.PerformanceManagementService.GetEmployeeKraMap().subscribe({
+      next: data => {
+        debugger
+        this.Staffkra = data.filter(x => x.staffName == details.staffid);
+        this.count = this.Staffkra.length;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Employee KraMap');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
   }
-
-
-
-  
-
 
 }

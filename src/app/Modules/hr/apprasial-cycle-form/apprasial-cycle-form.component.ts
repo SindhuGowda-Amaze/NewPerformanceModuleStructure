@@ -29,9 +29,11 @@ export class ApprasialCycleFormComponent implements OnInit {
   todaydate: any;
   sbuReviewDate: any;
   closingdate: any;
+  currentUrl: any
 
 
   ngOnInit(): void {
+    this.currentUrl = window.location.href;
     const format = 'yyyy-MM-dd';
 
     const myDate = new Date();
@@ -43,7 +45,8 @@ export class ApprasialCycleFormComponent implements OnInit {
     this.frequencyid = "";
 
 
-    this.ActivatedRoute.params.subscribe(params => {
+    this.ActivatedRoute.params
+    .subscribe(params => {
       this.id = params['id'];
       if (this.id != undefined && this.id != null) {
         this.GetAppraisalCycle();
@@ -145,8 +148,8 @@ export class ApprasialCycleFormComponent implements OnInit {
 
 
   GetAppraisalCycle() {
-    this.PerformanceManagementService.GetAppraisalCycle().subscribe(
-      data => {
+    this.PerformanceManagementService.GetAppraisalCycle().subscribe({
+      next: data => {
         debugger
         this.appraisallist = data;
         this.appraisallist = this.appraisallist.filter((x: { id: any; }) => x.id == Number(this.id));
@@ -160,9 +163,21 @@ export class ApprasialCycleFormComponent implements OnInit {
         this.hrReviewDate = this.appraisallist[0].hrReviewLastDate;
         this.sbuReviewDate = this.appraisallist[0].sbuReviewLastDate;
         this.appraisalClosingLastDate = this.appraisallist[0].appraisalClosingLastDate;
-
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting Appraisal Cycle');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-    )
+    })
+
   }
 
 
@@ -187,11 +202,29 @@ export class ApprasialCycleFormComponent implements OnInit {
         "SbuReviewLastDate": this.sbuReviewDate,
         "AppraisalClosingLastDate": this.appraisalClosingLastDate
       };
-      this.PerformanceManagementService.InsertAppraisalCycle(json).subscribe(
-        data => {
-          Swal.fire("Successfully Submitted...!");
+      this.PerformanceManagementService.InsertAppraisalCycle(json).subscribe({
+          next: data => {
+            debugger
+            Swal.fire("Successfully Submitted...!");
           location.href = "#/hr/ApprasialCycle"
+          }, error: (err: { error: { message: any; }; }) => {
+            Swal.fire('Issue in Inserting Appraisal Cycle');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
         })
+  
+
+
+
     }
   
   }
@@ -214,13 +247,32 @@ export class ApprasialCycleFormComponent implements OnInit {
 
     };
 
-    this.PerformanceManagementService.UpdateAppraisalCycle(json).subscribe(
-      data => {
-        debugger
-        let appraisallist = data;
-        Swal.fire("Updated Successfully");
+    this.PerformanceManagementService.UpdateAppraisalCycle(json).subscribe({
+        next: data => {
+          debugger
+          Swal.fire("Updated Successfully");
         location.href = "#/hr/ApprasialCycle"
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting Expenses List Web');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
       })
+
+
+
+
+
+
+
   }
 
   Cancel() {
@@ -234,11 +286,28 @@ export class ApprasialCycleFormComponent implements OnInit {
 
 
   public GetFrequency() {
-    this.PerformanceManagementService.GetFrequency().subscribe(
-      data => {
-        debugger
-        this.frequency = data;
+    this.PerformanceManagementService.GetFrequency().subscribe({
+        next: data => {
+          debugger
+          this.frequency = data;
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting Frequency');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
       })
+
+
+
+
   }
 
   getfrequency(even: any) {
