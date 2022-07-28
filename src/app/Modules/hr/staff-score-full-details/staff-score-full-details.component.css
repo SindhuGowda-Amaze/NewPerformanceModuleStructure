@@ -1,0 +1,74 @@
+.Dashboard {
+    color: #3247D5;
+    font-size: 19px;
+  }
+  
+  .card {
+    background: #FFFFFF;
+    box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+    padding: 10px;
+  }
+  
+  .filter {
+    margin-left: 15px;
+    font-size: 13px;
+  }
+  
+  .Add {
+    background-color: #3247D5;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    width: 50%;
+  }
+  
+  .scroll {
+    overflow-y: auto;
+    height: 200px;
+  }
+  
+  .cmmnt {
+    color: #3247D5;
+    font-size: 19px;
+  }
+  
+  .text {
+    color: #0C275A;
+  
+  
+  }
+  
+  .sideheading {
+    margin-left: 20px;
+  }
+  
+  .avg {
+    color: #3247D5;
+    font-size: 19px;
+    margin-left: 15px;
+    text-align: center;
+    margin-top: 5px;
+  
+  }
+  
+  .text1 {
+    color: #0C275A;
+    margin-left: 15px;
+  }
+  .text2{
+    margin-left: 50px;
+  }
+  
+  .Appraisal {
+    color: #3247D5;
+    font-size: 19px;
+    margin-left: 15px;
+  }
+  
+  .txt{
+    float:left;
+  }
+  .align{
+    text-align: center;
+  }

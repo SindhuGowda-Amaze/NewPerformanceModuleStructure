@@ -16,6 +16,8 @@ import { ApprasialReportComponent } from './apprasial-report/apprasial-report.co
 import { HrDashboardComponent } from './hr-dashboard/hr-dashboard.component';
 import { SharedModule } from '../shared/shared.module';
 import { SalaryincrementletterDashComponent } from './salaryincrementletter-dash/salaryincrementletter-dash.component';
+import { StaffScoreFullDetailsComponent } from './staff-score-full-details/staff-score-full-details.component';
+import { HrratingnewComponent } from './hrratingnew/hrratingnew.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { SalaryincrementletterDashComponent } from './salaryincrementletter-dash
     ApprasialReportComponent,
  
     HrDashboardComponent,
-    SalaryincrementletterDashComponent
+    SalaryincrementletterDashComponent,
+    StaffScoreFullDetailsComponent,
+    HrratingnewComponent
   ],
   imports: [
     CommonModule,

@@ -89,11 +89,11 @@
                                 data-target="#myModal3" (click)="getlevel(details)">Successor</button>
                         </td>
                         <td>
-                            <button [routerLink]="['/SbuAppraisal', details.id,details.appraiselID ]"
+                            <button [routerLink]="['/sbu/SbuAppraisal', details.id,details.appraiselID ]"
                                 class=" btn btn-primary editable-table-button btn-xs Add"
                                 *ngIf="details.sbuSubmittedDate==null">Conduct Appraisal</button>
 
-                            <button [routerLink]="['/SbuAppraisal', details.id,details.appraiselID ]"
+                            <button [routerLink]="['/sbu/SbuAppraisal', details.id,details.appraiselID ]"
                                 class=" btn btn-primary editable-table-button btn-xs btncolor"
                                 *ngIf="details.sbuSubmittedDate!=null">View Appraisal</button>
                         </td>

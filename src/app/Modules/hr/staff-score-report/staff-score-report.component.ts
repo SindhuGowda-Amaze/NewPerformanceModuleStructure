@@ -227,7 +227,7 @@ export class StaffScoreReportComponent implements OnInit {
     let StaffTypeID = event.type;
     let appraisalid= event.appraiselID;
 
-    this.router.navigate(['/StaffScoreFullDetails', StaffID, appraisalid]);
+    this.router.navigate(['/hr/StaffScoreFullDetails', StaffID, appraisalid]);
 
   }
 
