@@ -11,6 +11,7 @@ import { ManagerAppraisalComponent } from './manager-appraisal/manager-appraisal
 import { ManagerDashboardComponent } from './manager-dashboard/manager-dashboard.component';
 import { PipComponent } from './pip/pip.component';
 import { PIPReportComponent } from './pipreport/pipreport.component';
+import { EmployeeKraMappingComponent } from './employee-kra-mapping/employee-kra-mapping.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { PIPReportComponent } from './pipreport/pipreport.component';
     ManagerAppraisalComponent,
     ManagerDashboardComponent,
     PipComponent,
-    PIPReportComponent
+    PIPReportComponent,
+    EmployeeKraMappingComponent
   ],
   imports: [
     CommonModule,

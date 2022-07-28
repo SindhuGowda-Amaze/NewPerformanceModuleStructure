@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem("loginName", this.result.name);
           sessionStorage.setItem("EmaployedID", this.result.id);
           sessionStorage.setItem("Type", this.result.type);
-          this.router.navigate(['/hr/MyAppraisal']).then(() => {
+          this.router.navigate(['/shared/MyAppraisal']).then(() => {
             this.loader = false;
             location.reload();
 

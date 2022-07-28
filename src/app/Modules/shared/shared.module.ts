@@ -12,6 +12,9 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { EmployeeDashboardComponent } from './employee-dashboard/employee-dashboard.component';
 import { MyApprasailComponent } from './my-apprasail/my-apprasail.component';
 import { SupportTicketDashboardComponent } from './support-ticket-dashboard/support-ticket-dashboard.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { SelfratingnewComponentComponent } from './selfratingnew-component/selfratingnew-component.component';
+
 
 
 
@@ -23,7 +26,8 @@ import { SupportTicketDashboardComponent } from './support-ticket-dashboard/supp
     SupportticketsComponent,
     EmployeeDashboardComponent,
     MyApprasailComponent,
-    SupportTicketDashboardComponent
+    SupportTicketDashboardComponent,
+    SelfratingnewComponentComponent
   ],
   imports: [
     CommonModule,
@@ -31,8 +35,9 @@ import { SupportTicketDashboardComponent } from './support-ticket-dashboard/supp
     SharedRoutingModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
-    NgxDropzoneModule
-    
+    NgxDropzoneModule,
+    NgMultiSelectDropDownModule.forRoot(),
+
   
   ],
   exports: [
@@ -40,7 +45,8 @@ import { SupportTicketDashboardComponent } from './support-ticket-dashboard/supp
     SharedRoutingModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
-    NgxDropzoneModule
+    NgxDropzoneModule,
+    NgMultiSelectDropDownModule
 
 
   ],

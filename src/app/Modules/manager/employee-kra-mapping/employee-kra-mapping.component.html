@@ -1,0 +1,131 @@
+<div class="container-fluid">
+    <br>
+    <div class="row">
+        <div class="col-lg-4">
+            <p class="headings">Employee Goal Settings </p>
+        </div>
+    </div>
+    <br>
+    <div class="card">
+        <form #Ekramap="ngForm">
+            <div class="row column">
+                <div class="col-lg-3">
+                    <p>Department<span style="color:red">*</span> </p>
+                </div>
+                <div class="col-lg-3">
+                    <p>Position <span style="color:red">*</span> </p>
+                </div>
+                <div class="col-lg-3">
+                    <p>Staff <span style="color:red">*</span></p>
+                </div>
+                <div class="col-lg-3">
+                    <p>Appraisal Cycle <span style="color:red">*</span></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <select class="form-control " name="Department"  id="departmentName" name="departmentName" required [(ngModel)]="departmentName" required>
+                        <option value="">Select Department</option>
+                        <option *ngFor="let details of Departmentlist" value="{{details.id}}">{{details.departmentName}}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="col-lg-3">
+                    <select class="form-control" id="RoleID" name="RoleID" required [(ngModel)]="RoleID" (change)="GetRoleID()">
+                        <option value="">Select Position</option>
+                        <option *ngFor="let item of RoleTypeList" value="{{item.id}}">{{item.short}}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="col-lg-3">
+                    <ng-multiselect-dropdown [placeholder]="'Select Staff'"  [settings]="dropdownSettings"
+                        [data]="dropdownList" [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event)">
+                    </ng-multiselect-dropdown>
+                </div>
+                <div class="col-lg-3">
+                    <select class="form-control" id="Apprisalcycle" (change)="GetApprisalcycle($event)"
+                        name="Apprisalcycle" required [(ngModel)]="Apprisalcycle">
+                        <option value="">Select Cycle</option>
+                        <option *ngFor="let item of Apprisalcyclelist" value="{{item.id}}">
+                            {{item.appraisalCycleName}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <br>
+            <div class="row column">                
+                <div class="col-lg-3">
+                    <p>Goal Type <span style="color:red">*</span></p>
+                </div>
+                
+                <div class="col-lg-3">
+                    <p>Goals <span style="color:red">*</span></p>
+                </div>
+                <div class="col-lg-3">
+                    <p>KPI <span style="color:red">*</span></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <select class="form-control"  (change)="getkratypeid($event)"  [(ngModel)]="kratypeid" name="kratypeid"  required>
+                        <option value="">Select Goal Type</option>
+                        <option *ngFor="let details of kratypelist" value="{{details.kraType}}">{{details.kraType}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-lg-3">
+                    <ng-multiselect-dropdown [placeholder]="'Select Goal'" [settings]="dropdownSettings1"
+                        [data]="dropdownList1" [(ngModel)]="selectedItems1" (onSelect)="onItemSelect1($event)">
+                    </ng-multiselect-dropdown>
+                </div>
+                <div class="col-lg-3">
+                    <ng-multiselect-dropdown [placeholder]="'Select KPI'" [settings]="dropdownSettings2"
+                        [(ngModel)]="selectedItems3" [data]="dropdownList2" (onSelect)="onItemSelect2($event)">
+                    </ng-multiselect-dropdown>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-10"></div>
+                <div class="col-lg-1">
+                    <button class="form-control cancel" (click)="SaveDetails()"  [disabled]="Ekramap.form.invalid">Add</button>
+                </div>
+
+                <div class="col-lg-1">
+                    <button class="form-control cancel" (click)="Cancel()">Cancel</button>
+                </div>
+            </div>
+            <br>
+
+            <div class="row" *ngIf="tablecount==1">
+                <div class="col-lg-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Goal Type</th>
+                                <th>Goal Name</th>
+                                <th>KPI </th>
+                            </tr>
+                            <tr *ngFor="let details of keyresultArray">
+                                <td>{{details.KraTypeID}}</td>
+                                <td>{{details.kraname}}</td>
+                                <td>{{details.kpiname}}</td>
+                            </tr>
+                        </thead>
+                    </table>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-10"></div>
+                        <div class="col-lg-2">
+                            <button class="form-control cancel" (click)="InsertDetails()">Save</button>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+            </div>
+        </form>
+    </div>
+</div>

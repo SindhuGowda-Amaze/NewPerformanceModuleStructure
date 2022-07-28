@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EmployeeKraMappingComponent } from './employee-kra-mapping/employee-kra-mapping.component';
 import { EmployeeKraMappingdashboardComponent } from './employee-kra-mappingdashboard/employee-kra-mappingdashboard.component';
 import { ManagerAppraisalComponent } from './manager-appraisal/manager-appraisal.component';
 import { ManagerDashboardComponent } from './manager-dashboard/manager-dashboard.component';
@@ -14,7 +15,8 @@ const routes: Routes = [{ path: '', component: ManagerComponent },
 {path:'PIPReport',component:PIPReportComponent},
 {path:'EmployeeKraMappingdashboard',component:EmployeeKraMappingdashboardComponent},
 {path:'ManagerAppraisal',component:ManagerAppraisalComponent},
-{path:'Managerratingdash',component:ManagerratingdashComponent}
+{path:'Managerratingdash',component:ManagerratingdashComponent},
+{path:'EmployeeKraMapping',component:EmployeeKraMappingComponent}
 ];
 
 @NgModule({

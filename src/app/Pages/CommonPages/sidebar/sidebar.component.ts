@@ -173,7 +173,7 @@ export class SidebarComponent implements OnInit {
       this.router.navigate(['/employee/EmployeeTileDashboard']);
     }
     else if(this.roleid==3){
-      this.router.navigate(['/hr/HRDashboard']);
+      this.router.navigate(['/hr/HrDashboard']);
     }
     else {
       this.router.navigate(['/manager/ManagerDashboard']);
