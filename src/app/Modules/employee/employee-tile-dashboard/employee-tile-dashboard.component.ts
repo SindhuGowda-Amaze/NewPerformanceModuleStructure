@@ -2,10 +2,10 @@
 //  Product :Digi PerformanceManagement System 1.0 
 // /Date : 1 March, 2022
 // --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
-// --Description :This page contains get data from Job_Requirements Table,get data from ClientStaff Table,get list of Selected Candidates from CandidateRegistration,search data by JobTitle,Get SlotsMaster Staff Details,Update CandidateInterviewSchedule,Open Pdf in new Window.
-// --Last Modified Date : 26 July , 2022
-// --Last Modified Changes :   Added comments
-// --Last Modified By : Manikanta
+// --Description :This page contains Employee's Appraisal Cycle Date's Dashboard and Filters
+// --Last Modified Date : 28 July , 2022
+// --Last Modified Changes : Addedd Commets and Exception Handling Code
+// --Last Modified By : Sindhu, Madhav
 // --Copyrights : AmazeINC-Bangalore-2022
 
 import { Component, OnInit } from '@angular/core';

@@ -1,3 +1,12 @@
+//  Product :Digi PerformanceManagement System 1.0 
+// /Date : 1 March, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains Code to Filter by role,appraisal cycle,Department, Conduct Apraisal by HR
+// --Last Modified Date : 28 July , 2022
+// --Last Modified Changes : Addedd Commets and Exception Handling Code
+// --Last Modified By : Sindhu, Madhav
+// --Copyrights : AmazeINC-Bangalore-2022
+
 import { Component, OnInit } from '@angular/core';
 import { PerformancemanagementService } from 'src/app/Pages/Services/performancemanagement.service';
 import { ActivatedRoute } from '@angular/router';
@@ -11,7 +20,8 @@ import Swal from 'sweetalert2';
 export class HrDashComponent implements OnInit {
 
   constructor(private PerformanceManagementService: PerformancemanagementService) { }
-
+  //Variable Declerations//
+  Staffkra: any;
   stafflist: any;
   term: any;
   p: any = 1;
@@ -36,51 +46,24 @@ export class HrDashComponent implements OnInit {
   currentUrl: any
 
   ngOnInit(): void {
+    //Variable Initialisation and Default Method Calls//
     this.currentUrl = window.location.href;
 
     this.departmentid = 0;
     this.roleTypeid = "";
     this.status = 0;
     this.appraisalCycleName = 0;
-    this.PerformanceManagementService.GetMyDetails().subscribe({
-      next: data => {
-        debugger
-        this.stafflist = data;
-        this.stafflistCopy = this.stafflist
-      }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting MyDetails');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
 
-    this.PerformanceManagementService.GetDepartmentMaster().subscribe({
-      next: data => {
-        debugger
-        this.departmentList = data;
-        console.log("departmentName", this.departmentList);
-      }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting DepartmentMaster');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
+    this.GetRoleType();
+    this.getDepartment();
+    this.GetMyDetails();
+    this.GetAppraisalCycle();
+    this.GetConductappraisalStaffList();
+  }
+
+
+  //Method to get Role Details//
+  public GetRoleType() {
 
     this.PerformanceManagementService.GetRoleType().subscribe({
       next: data => {
@@ -102,7 +85,76 @@ export class HrDashComponent implements OnInit {
         )
       }
     })
+  }
+  //Method to get Department Details//
+  public getDepartment() {
+    this.PerformanceManagementService.GetDepartmentMaster().subscribe({
+      next: data => {
+        debugger
+        this.departmentList = data;
+        console.log("departmentName", this.departmentList);
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting DepartmentMaster');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+  }
+  //Method to get Staff Details//
+  public GetMyDetails() {
+    this.PerformanceManagementService.GetMyDetails().subscribe({
+      next: data => {
+        debugger
+        this.stafflist = data;
+        this.stafflistCopy = this.stafflist
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting MyDetails');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+  }
+  //Method to get Appraisal Cycle Details//
+  public GetAppraisalCycle() {
 
+    this.PerformanceManagementService.GetAppraisalCycle().subscribe({
+      next: data => {
+        debugger
+        this.Apprisalcyclelist = data;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting AppraisalCycle');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+  }
+
+  //Method to get Employee Appraisal Details//
+  public GetConductappraisalStaffList() {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
         debugger
@@ -125,32 +177,15 @@ export class HrDashComponent implements OnInit {
         )
       }
     })
-
-    this.PerformanceManagementService.GetAppraisalCycle().subscribe({
-      next: data => {
-        debugger
-        this.Apprisalcyclelist = data;
-      }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting AppraisalCycle');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
-
-
   }
 
+
+  //method to get Role ID//
   getRoleID(even: any) {
     this.roleTypeid = even.target.value;
   }
+
+  //Method to filter by Role//
   public GetFilteredRoleType() {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
@@ -173,11 +208,13 @@ export class HrDashComponent implements OnInit {
     })
   }
 
+  //method to get Departmnet ID//
   getdepartmentID(even: any) {
     this.departmentid = even.target.value;
     this.GetFilteredDepartment();
   }
 
+  //Method to filter by Department//
   public GetFilteredDepartment() {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
@@ -199,7 +236,9 @@ export class HrDashComponent implements OnInit {
       }
     })
   }
-  Staffkra: any;
+
+
+  //Method to get Employee goal Setting Details//
   public GetStaffKraDetails(details: any) {
     debugger
     this.PerformanceManagementService.GetEmployeeKraMap().subscribe({
@@ -220,9 +259,9 @@ export class HrDashComponent implements OnInit {
         )
       }
     })
-
   }
 
+  //Method to get Apprasal Cycle Detals//
   public GetApprisalcycle(event: any) {
     debugger
     this.PerformanceManagementService.GetAppraisalCycle().subscribe({
@@ -249,7 +288,7 @@ export class HrDashComponent implements OnInit {
     })
   }
 
-
+  //Method to filter by Goal/Rating Status//
   public statuschange(event: any) {
     if (event.target.value == 'Open') {
       debugger
@@ -297,13 +336,12 @@ export class HrDashComponent implements OnInit {
         }
       })
     }
-
-
   }
 
+
+  //Method to filter by Appraisal Cycle//
   public GetFilteredAppraisalCycle() {
     this.PerformanceManagementService.GetConductappraisalStaffList()
-
       .subscribe({
         next: data => {
           debugger
@@ -323,9 +361,5 @@ export class HrDashComponent implements OnInit {
           )
         }
       })
-
-
-
-
   }
 }

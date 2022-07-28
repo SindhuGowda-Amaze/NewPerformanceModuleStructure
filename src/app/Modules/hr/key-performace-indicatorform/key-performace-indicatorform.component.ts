@@ -13,7 +13,6 @@ export class KeyPerformaceIndicatorformComponent implements OnInit {
   constructor(private PerformanceManagementService: PerformancemanagementService,
     private ActivatedRoute: ActivatedRoute) { }
 
-
   performanceIndicator: any;
   description: any;
   kpilist: any;
@@ -33,10 +32,8 @@ export class KeyPerformaceIndicatorformComponent implements OnInit {
   kratypeid: any;
   currentUrl: any
 
-
   ngOnInit(): void {
     this.currentUrl = window.location.href;
-
     this.kraid = 0;
     this.GetKPI();
     this.GetKeyResultArea();
@@ -50,11 +47,8 @@ export class KeyPerformaceIndicatorformComponent implements OnInit {
         this.GetKPI();
       }
     })
-
     this.performanceIndicatorId = 0;
   }
-
-
 
 
   GetKPI() {
@@ -112,13 +106,11 @@ export class KeyPerformaceIndicatorformComponent implements OnInit {
     })
   }
 
+
   getkraid(even: any) {
     debugger
     this.kraid = even.target.value;
-
   }
-
-
 
   getindicatorid(even: any) {
     this.indicatorid = even.target.value;
@@ -147,10 +139,6 @@ export class KeyPerformaceIndicatorformComponent implements OnInit {
     })
   }
 
-
-
-
-
   save() {
     var json = {
       "KraID": this.kraid,
@@ -164,7 +152,7 @@ export class KeyPerformaceIndicatorformComponent implements OnInit {
       next: data => {
         debugger
         Swal.fire("Successfully Submitted...!");
-        location.href = "#/KeyPerformanceIndicator"
+        location.href = "#/hr/KeyPerformanceIndicator"
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Inserting KPI');
         // Insert error in Db Here//
@@ -190,7 +178,6 @@ export class KeyPerformaceIndicatorformComponent implements OnInit {
       "Description": this.description,
       "KpiName": this.kpiName,
       "PerformanceIndicatorId": this.indicatorid
-
     };
 
     this.PerformanceManagementService.UpdateKPI(json).subscribe({
@@ -216,7 +203,7 @@ export class KeyPerformaceIndicatorformComponent implements OnInit {
   }
 
   cancel() {
-    location.href = "#/KeyPerformanceIndicator";
+    location.href = "#/hr/KeyPerformanceIndicator";
   }
 
 
@@ -245,7 +232,6 @@ export class KeyPerformaceIndicatorformComponent implements OnInit {
   }
 
 
-
   public GetKraMaster() {
     this.PerformanceManagementService.GetKraMaster().subscribe({
       next: data => {
@@ -265,8 +251,5 @@ export class KeyPerformaceIndicatorformComponent implements OnInit {
         )
       }
     })
-
   }
-
-
 }

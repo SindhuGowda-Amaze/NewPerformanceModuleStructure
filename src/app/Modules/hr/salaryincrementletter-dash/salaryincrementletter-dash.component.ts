@@ -28,7 +28,7 @@ export class SalaryincrementletterDashComponent implements OnInit {
   eDate: any;
   appraisalCycleName: any
   staffID: any;
-
+  Staffkra: any;
   EmployeeKradash: any
   Promotion: any;
   level: any;
@@ -36,6 +36,11 @@ export class SalaryincrementletterDashComponent implements OnInit {
   roleid: any;
   stafflist1: any
   currentUrl: any
+  RecommendedBonusAmountOrPercent: any
+  RecommendedSalaryIncreaseOrPercent: any;
+  Level: any;
+  Type: any;
+  staffid: any;
   ngOnInit(): void {
     this.currentUrl = window.location.href;
 
@@ -199,8 +204,6 @@ export class SalaryincrementletterDashComponent implements OnInit {
         )
       }
     })
-
-
   }
 
   public filterByDepartment() {
@@ -224,10 +227,10 @@ export class SalaryincrementletterDashComponent implements OnInit {
         )
       }
     })
-
-
   }
-  Staffkra: any;
+
+
+ 
   public GetStaffKraDetails(details: any) {
     debugger
     this.PerformanceManagementService.GetEmployeeKraMap().subscribe({
@@ -249,8 +252,6 @@ export class SalaryincrementletterDashComponent implements OnInit {
         )
       }
     })
-
-
   }
 
   public GetApprisalcycle(event: any) {
@@ -300,15 +301,7 @@ export class SalaryincrementletterDashComponent implements OnInit {
         )
       }
     })
-
   }
-
-
-  RecommendedBonusAmountOrPercent: any
-  RecommendedSalaryIncreaseOrPercent: any;
-  Level: any;
-  Type: any;
-  staffid: any;
 
   public getstaffid(event: any) {
     debugger
@@ -334,9 +327,7 @@ export class SalaryincrementletterDashComponent implements OnInit {
           'Level': this.Level,
           'Type': this.Type,
         }
-
         this.PerformanceManagementService.UpdateStaffReviewRating(entity)
-
           .subscribe({
             next: data => {
               debugger
@@ -356,7 +347,6 @@ export class SalaryincrementletterDashComponent implements OnInit {
               )
             }
           })
-
       }
     })
   }
@@ -399,8 +389,6 @@ export class SalaryincrementletterDashComponent implements OnInit {
         })
       }
     })
-
-
   }
 
 
@@ -428,8 +416,5 @@ export class SalaryincrementletterDashComponent implements OnInit {
       }
     })
   }
-
-
-
 }
 

@@ -187,8 +187,6 @@ export class StaffScoreReportComponent implements OnInit {
   }
 
 
-
-
   GetStaffTypeID(event: any) {
     this.StaffTypeID = event.target.value;
     if (this.StaffTypeID == 0) {
@@ -257,6 +255,7 @@ export class StaffScoreReportComponent implements OnInit {
       }
     })
   }
+
   getdepartmentID(even: any) {
     this.departmentid = even.target.value;
   }
@@ -282,6 +281,8 @@ export class StaffScoreReportComponent implements OnInit {
       }
     })
   }
+
+
   public GetFilteredDepartment() {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
@@ -434,10 +435,6 @@ export class StaffScoreReportComponent implements OnInit {
         }
       })
     }
-
-
-
-
 
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
@@ -604,6 +601,8 @@ export class StaffScoreReportComponent implements OnInit {
   //   const csvExporter = new ExportToCsv(Export_to_excel_options);
   //   csvExporter.generateCsv(this.StaffAppraisalList);
   // }
+
+
   public CloseAppraisal() {
 
     debugger
@@ -646,7 +645,5 @@ export class StaffScoreReportComponent implements OnInit {
       }
     })
   }
-
-
 }
 

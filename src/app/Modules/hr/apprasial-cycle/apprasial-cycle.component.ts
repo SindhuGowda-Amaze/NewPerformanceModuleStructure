@@ -1,7 +1,16 @@
+
+//  Product :Digi PerformanceManagement System 1.0 
+// /Date : 1 March, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains Code to Display and Delete Appraisal Cycle 
+// --Last Modified Date : 28 July , 2022
+// --Last Modified Changes : Addedd Commets and Exception Handling Code
+// --Last Modified By : Sindhu, Madhav
+// --Copyrights : AmazeINC-Bangalore-2022
+
 import { Component, OnInit } from '@angular/core';
 import { PerformancemanagementService } from 'src/app/Pages/Services/performancemanagement.service';
 import Swal from 'sweetalert2';
-
 
 @Component({
   selector: 'app-apprasial-cycle',
@@ -11,18 +20,21 @@ import Swal from 'sweetalert2';
 export class ApprasialCycleComponent implements OnInit {
 
   constructor(private PerformanceManagementService: PerformancemanagementService) { }
-
+  //Variable Declerations//
   appraisallist: any;
   count: any;
   search: any;
   currentUrl: any
 
   ngOnInit(): void {
+
+    //Variable Initialisation and Default Method Calls//
+
     this.currentUrl = window.location.href;
     this.GetAppraisalCycle();
   }
 
-
+  //Method to get Appraisal Cycle Details from AppraisalCycle Table//
   public GetAppraisalCycle() {
     debugger
     this.PerformanceManagementService.GetAppraisalCycle().subscribe({
@@ -47,6 +59,7 @@ export class ApprasialCycleComponent implements OnInit {
 
   }
 
+  //Method to Delete Appraisal Cycle Details from AppraisalCycle Table//
   public delete(ID: any) {
     debugger
     Swal.fire({
@@ -77,9 +90,6 @@ export class ApprasialCycleComponent implements OnInit {
             )
           }
         })
-
-
-
       }
     })
   }
