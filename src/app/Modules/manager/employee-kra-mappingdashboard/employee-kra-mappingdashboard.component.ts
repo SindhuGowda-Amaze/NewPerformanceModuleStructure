@@ -1,3 +1,19 @@
+//  Product :Digi PerformanceManagement System 1.0 
+// /Date : 1 March, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains get data from GetAppraisalCycle,GetRoleType,GetMyDetails in open Window 
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
+
+
+
+
+
+
+
 import { Component, OnInit } from '@angular/core';
 import { PerformancemanagementService } from 'src/app/Pages/Services/performancemanagement.service';
 import Swal from 'sweetalert2';
@@ -9,6 +25,7 @@ import Swal from 'sweetalert2';
 })
 export class EmployeeKraMappingdashboardComponent implements OnInit {
   constructor(private PerformanceManagementService: PerformancemanagementService) { }
+  //variable declaration
 
   kpiid: any;
   ID: any;
@@ -45,10 +62,17 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
   currentUrl: any
 
   ngOnInit(): void {
+    //Variable Initialisation and Default Method Calls//
+    this.GetMyDetails();
+    this.GetDepartment()
+    this.GetConductappraisalStaffList()
+    this.GetAppraisalCycle()
+    this.GetKraMaster()
+    this.GetKPI()
     this.currentUrl = window.location.href;
     this.kraid = "";
     this.StaffID = sessionStorage.getItem('EmaployedID');
-    this.GetKPI();
+    this.GetKPI1()
     this.StaffID = sessionStorage.getItem('EmaployedID')
     this.kraid = "";
     this.GetKeyResultArea();
@@ -57,6 +81,9 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
     this.RoleType = "";
     this.appraisalCycleName = 0;
 
+  }
+
+  public GetMyDetails(){
     this.PerformanceManagementService.GetMyDetails().subscribe({
       next: data => {
         debugger
@@ -76,7 +103,10 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
         )
       }
     })
+  }
 
+
+  public GetDepartment(){
     this.PerformanceManagementService.GetDepartment().subscribe({
       next: data => {
         debugger
@@ -96,6 +126,10 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
       }
     })
 
+  }
+
+
+  public GetConductappraisalStaffList(){
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
         debugger
@@ -117,6 +151,10 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
       }
     })
 
+  }
+
+
+  public GetAppraisalCycle(){
     this.PerformanceManagementService.GetAppraisalCycle().subscribe({
       next: data => {
         debugger
@@ -136,7 +174,9 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
         )
       }
     })
+  }
 
+  public GetKraMaster(){
     this.PerformanceManagementService.GetKraMaster().subscribe({
       next: data => {
         debugger
@@ -155,6 +195,10 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
         )
       }
     })
+  }
+
+  public GetKPI(){
+
     this.PerformanceManagementService.GetKPI().subscribe({
       next: data => {
         debugger
@@ -174,9 +218,11 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
         )
       }
     })
-
-
   }
+
+
+
+  
 
   getkpiid(event: any) {
     this.kpiid = event.target.value;
@@ -185,7 +231,7 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
   }
 
 
-  public GetKPI() {
+  public GetKPI1() {
     debugger
     this.PerformanceManagementService.GetKPI().subscribe({
       next: data => {

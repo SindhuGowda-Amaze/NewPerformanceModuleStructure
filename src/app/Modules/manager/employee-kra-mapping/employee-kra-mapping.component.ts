@@ -1,3 +1,16 @@
+//  Product :Digi PerformanceManagement System 1.0 
+// /Date : 1 March, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains get data from GetAppraisalCycle,GetRoleType,GetMyDetails in open Window 
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
+
+
+
+
 import { Component, OnInit } from '@angular/core';
 import { PerformancemanagementService } from 'src/app/Pages/Services/performancemanagement.service';
 import { ActivatedRoute } from '@angular/router';
@@ -12,7 +25,7 @@ export class EmployeeKraMappingComponent implements OnInit {
 
   constructor(private PerformanceManagementService: PerformancemanagementService, private ActivatedRoute: ActivatedRoute) { }
 
-
+//variable declaration
   Departmentlist: any;
   RoleTypeList: any;
   RoleID: any;
@@ -38,118 +51,38 @@ export class EmployeeKraMappingComponent implements OnInit {
   todaydate: any;
   staffName: any;
   currentUrl: any
-  ngOnInit(): void {
+  EmployeeId: any;
+  selectedstaff: any = [];
+  selectedstaffapprover1: any = [];
+  Apprisalcycle: any;
+  appraisalid: any;
+  goalSettingDate: any;
+  Approver1: any;
+  Approver2: any;
+  AppraisalSubmitionDate: any;
+  sDate: any;
+  eDate: any;
+  tablecount: any;
+  Approver3: any;
+   keyresultArray: any = [];
+  ngOnInit(): void 
+  {
+    //Variable Initialisation and Default Method Calls//
+    this.GetAppraisalCycle();
+    this.GetRoleType();
+    this.GetMyDetails();
     this.currentUrl = window.location.href;
-
     const format = 'yyyy-MM-dd';
     const myDate = new Date();
     const locale = 'en-US';
     var curr = new Date;
     this.todaydate = formatDate(myDate, format, locale);
-
     this.RoleID = "";
     this.departmentName = "";
     this.Apprisalcycle = "";
     this.kratypeid = "";
     this.selectedItems3.length = 0;
-
     this.loginName = sessionStorage.getItem('loginName');
-
-
-    this.PerformanceManagementService.GetAppraisalCycle().subscribe({
-      next: data => {
-        debugger
-        this.Apprisalcyclelist = data.filter(x => x.appraisalClose == 0);
-        let temp: any = data.filter(x => x.appraisalClose == 0);
-        this.AppraisalSubmitionDate = temp[0].employeeSubmissionDate;
-        this.sDate = temp[0].cycleStartDate;
-        this.eDate = temp[0].cycleEndDate;
-        this.goalSettingDate = temp[0].goalSettingDate;
-      }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting AppraisalCycle');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
-
-
-
-
-
-
-    this.PerformanceManagementService.GetRoleType().subscribe({
-      next: data => {
-        debugger
-        this.RoleTypeList = data;
-      }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting RoleType');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
-
-
-    this.PerformanceManagementService.GetMyDetails().subscribe({
-      next: data => {
-        debugger
-        this.dropdownList = data.filter(x => x.supervisor == sessionStorage.getItem('EmaployedID'));
-        this.staffName == this.dropdownList[0].name;
-        let temp: any = data.filter(x => x.id == sessionStorage.getItem('EmaployedID'));
-
-        this.Departmentid = temp[0].department;
-        this.PerformanceManagementService.GetDepartmentMaster().subscribe({
-          next: data => {
-            debugger
-            this.Departmentlist = data.filter(x => x.id == this.Departmentid);
-          }, error: (err: { error: { message: any; }; }) => {
-            Swal.fire('Issue in Getting DepartmentMaster');
-            // Insert error in Db Here//
-            var obj = {
-              'PageName': this.currentUrl,
-              'ErrorMessage': err.error.message
-            }
-            this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-              data => {
-                debugger
-              },
-            )
-          }
-        })
-      }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting MyDetails');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
-
-
-
-
-
     this.dropdownSettings2 = {
       singleSelection: false,
       idField: 'id',
@@ -179,20 +112,114 @@ export class EmployeeKraMappingComponent implements OnInit {
 
     this.GetEmployeeKraMap()
   }
-  EmployeeId: any;
-  selectedstaff: any = [];
-  selectedstaffapprover1: any = [];
+
+
+//Method to Displaying  AppraisalCycle Details
+public GetAppraisalCycle(){
+  this.PerformanceManagementService.GetAppraisalCycle().subscribe({
+    next: data => {
+      debugger
+      this.Apprisalcyclelist = data.filter(x => x.appraisalClose == 0);
+      let temp: any = data.filter(x => x.appraisalClose == 0);
+      this.AppraisalSubmitionDate = temp[0].employeeSubmissionDate;
+      this.sDate = temp[0].cycleStartDate;
+      this.eDate = temp[0].cycleEndDate;
+      this.goalSettingDate = temp[0].goalSettingDate;
+    }, error: (err: { error: { message: any; }; }) => {
+      Swal.fire('Issue in Getting AppraisalCycle');
+      // Insert error in Db Here//
+      var obj = {
+        'PageName': this.currentUrl,
+        'ErrorMessage': err.error.message
+      }
+      this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+        data => {
+          debugger
+        },
+      )
+    }
+  })
+ 
+}
+
+//Method to Displaying  Jobtitle Details
+public GetRoleType(){
+  this.PerformanceManagementService.GetRoleType().subscribe({
+    next: data => {
+      debugger
+      this.RoleTypeList = data;
+    }, error: (err: { error: { message: any; }; }) => {
+      Swal.fire('Issue in Getting RoleType');
+      // Insert error in Db Here//
+      var obj = {
+        'PageName': this.currentUrl,
+        'ErrorMessage': err.error.message
+      }
+      this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+        data => {
+          debugger
+        },
+      )
+    }
+  })
+}
+
+
+//Method to Displaying  dropdownList,staffName
+public GetMyDetails(){
+  this.PerformanceManagementService.GetMyDetails().subscribe({
+    next: data => {
+      debugger
+      this.dropdownList = data.filter(x => x.supervisor == sessionStorage.getItem('EmaployedID'));
+      this.staffName == this.dropdownList[0].name;
+      let temp: any = data.filter(x => x.id == sessionStorage.getItem('EmaployedID'));
+
+      this.Departmentid = temp[0].department;
+      this.PerformanceManagementService.GetDepartmentMaster().subscribe({
+        next: data => {
+          debugger
+          this.Departmentlist = data.filter(x => x.id == this.Departmentid);
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting DepartmentMaster');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+    }, error: (err: { error: { message: any; }; }) => {
+      Swal.fire('Issue in Getting MyDetails');
+      // Insert error in Db Here//
+      var obj = {
+        'PageName': this.currentUrl,
+        'ErrorMessage': err.error.message
+      }
+      this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+        data => {
+          debugger
+        },
+      )
+    }
+  })
+
+}
+
+
+
+
+ 
   onItemSelect(item: any) {
     debugger
     console.log(item);
 
     this.selectedstaff.push(item.id)
     //this.EmployeeId = item.id;
-
-
-
-
-
   }
   onItemSelect2(item1: any) {
     debugger
@@ -233,10 +260,8 @@ export class EmployeeKraMappingComponent implements OnInit {
     this.selectedItems2.splice(index, 1);
 
   }
-  Apprisalcycle: any;
-  appraisalid: any;
-  goalSettingDate: any;
 
+//method to get Apprisalcycle from Apprisalcycle
   public GetApprisalcycle(event: any) {
     debugger
     this.PerformanceManagementService.GetAppraisalCycle().subscribe({
@@ -264,7 +289,7 @@ export class EmployeeKraMappingComponent implements OnInit {
     })
   }
 
-
+//Method to get RoleID from MyDetails
   public GetRoleID() {
     this.PerformanceManagementService.GetMyDetails()
 
@@ -292,14 +317,8 @@ export class EmployeeKraMappingComponent implements OnInit {
     debugger
     location.href = "#/manager/EmployeeKraMappingdashboard";
   }
-  Approver1: any;
-  Approver2: any;
-  AppraisalSubmitionDate: any;
-  sDate: any;
-  eDate: any;
-  tablecount: any;
-  Approver3: any;
-
+  
+//Mthod to InsertDetails in EmployeeKraMap Table
   public InsertDetails() {
     debugger
     // if( this.goalSettingDate< this.todaydate ){
@@ -361,7 +380,7 @@ export class EmployeeKraMappingComponent implements OnInit {
 
   }
 
-
+//Method to insert Notification in Notification Table
   public InsertNotification() {
     debugger
 
@@ -399,7 +418,7 @@ export class EmployeeKraMappingComponent implements OnInit {
         }
       })
   }
-  public keyresultArray: any = [];
+  //Method to save the details
   public SaveDetails() {
     debugger
     if (this.selectedstaff.length == 0 || this.selectedItems2.length == 0 || this.selectedItems4.length == 0) {
@@ -476,7 +495,7 @@ export class EmployeeKraMappingComponent implements OnInit {
     })
   }
 
-
+//Method to get EmployeeKraMap from KraMaster Table
   public GetEmployeeKraMap() {
     this.PerformanceManagementService.GetKraMaster()
 
