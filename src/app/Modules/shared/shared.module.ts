@@ -14,6 +14,7 @@ import { MyApprasailComponent } from './my-apprasail/my-apprasail.component';
 import { SupportTicketDashboardComponent } from './support-ticket-dashboard/support-ticket-dashboard.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { SelfratingnewComponentComponent } from './selfratingnew-component/selfratingnew-component.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 
 
@@ -37,7 +38,7 @@ import { SelfratingnewComponentComponent } from './selfratingnew-component/selfr
     Ng2SearchPipeModule,
     NgxDropzoneModule,
     NgMultiSelectDropDownModule.forRoot(),
-
+    CKEditorModule
   
   ],
   exports: [
@@ -46,7 +47,8 @@ import { SelfratingnewComponentComponent } from './selfratingnew-component/selfr
     NgxPaginationModule,
     Ng2SearchPipeModule,
     NgxDropzoneModule,
-    NgMultiSelectDropDownModule
+    NgMultiSelectDropDownModule,
+    CKEditorModule
 
 
   ],

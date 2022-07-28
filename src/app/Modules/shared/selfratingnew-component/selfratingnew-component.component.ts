@@ -6,10 +6,11 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-selfratingnew-component',
   templateUrl: './selfratingnew-component.component.html',
-  styleUrls: ['./selfratingnew-component.component.css']
+  styleUrls: ['./selfratingnew-component.component.css'],
+  
 })
 export class SelfratingnewComponentComponent implements OnInit {
-
+  ckeditorContent: string = '<p>Some html</p>';
   constructor(private PerformanceManagementService: PerformancemanagementService, private router: Router, private route: ActivatedRoute, private datepipe: DatePipe) { }
 
   stafflist: any;

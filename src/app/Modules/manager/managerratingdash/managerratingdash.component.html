@@ -71,11 +71,11 @@
                             <p>NA</p>
                         </td>
                         <td>
-                            <button [routerLink]="['/ManagerAppraisal', details.id,details.appraiselID ]"
+                            <button [routerLink]="['/manager/ManagerAppraisal', details.id,details.appraiselID ]"
                                 class=" btn btn-primary editable-table-button btn-xs Add"
                                 *ngIf="details.managerSubmittedDate==null">Conduct Appraisal</button>
 
-                            <button [routerLink]="['/ManagerAppraisal', details.id,details.appraiselID ]"
+                            <button [routerLink]="['/manager/ManagerAppraisal', details.id,details.appraiselID ]"
                                 class=" btn btn-primary editable-table-button btn-xs btncolor"
                                 *ngIf="details.managerSubmittedDate!=null">View Appraisal</button>
 

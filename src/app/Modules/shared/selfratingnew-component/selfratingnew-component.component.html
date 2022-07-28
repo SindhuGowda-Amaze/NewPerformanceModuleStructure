@@ -214,8 +214,11 @@
                             Comments <span style="color: red;">*</span> </p>
                     </div>
                     <div class="col-lg-7">
-                        <ckeditor id="SelfComments" name="SelfComments" [(ngModel)]="SelfComments" required
-                            data="<p>Enter Answer Here !</p>"></ckeditor>
+                        <!-- <ckeditor id="SelfComments" name="SelfComments" [(ngModel)]="SelfComments" required
+                            data="<p>Enter Answer Here !</p>"></ckeditor> -->
+
+                            <textarea id="SelfComments" name="SelfComments" [(ngModel)]="SelfComments" required>
+                          Enter Answer Here !</textarea>
                     </div>
                 </div>
                 <br>

@@ -14,7 +14,7 @@ const routes: Routes = [{ path: '', component: ManagerComponent },
 {path:'Pip',component:PipComponent},
 {path:'PIPReport',component:PIPReportComponent},
 {path:'EmployeeKraMappingdashboard',component:EmployeeKraMappingdashboardComponent},
-{path:'ManagerAppraisal',component:ManagerAppraisalComponent},
+{path:'ManagerAppraisal/:id/:StaffID',component:ManagerAppraisalComponent},
 {path:'Managerratingdash',component:ManagerratingdashComponent},
 {path:'EmployeeKraMapping',component:EmployeeKraMappingComponent}
 ];
