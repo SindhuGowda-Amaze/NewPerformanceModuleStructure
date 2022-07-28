@@ -362,7 +362,7 @@ public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
 
  public UpdateBellCurveFitting(json: any) {
    debugger
-   let APIURL = this.baseURL + "Master/UpdateBellCurveFitting";
+   let APIURL = this.baseURL + "/Master/UpdateBellCurveFitting";
    return this.http.post<any[]>(APIURL, json);
  }
 

@@ -104,11 +104,11 @@
                             <p *ngIf="details.managerPromotionRecommendaton==0">No</p>
                         </td>
                         <td>
-                            <button [routerLink]="['/hrratingnew', details.id,details.appraiselID ] "
+                            <button [routerLink]="['/hr/hrratingnew', details.id,details.appraiselID ] "
                                 *ngIf="details.hrSubmittedDate==null"
                                 class=" btn btn-primary editable-table-button btn-xs">Conduct Appraisal</button>
 
-                            <button [routerLink]="['/hrratingnew', details.id,details.appraiselID] "
+                            <button [routerLink]="['/hr/hrratingnew', details.id,details.appraiselID] "
                                 *ngIf="details.hrSubmittedDate!=null"
                                 class=" btn btn-primary editable-table-button btn-xs btncolor">View
                                 Appraisal</button>
