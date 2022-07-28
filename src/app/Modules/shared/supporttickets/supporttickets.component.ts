@@ -11,7 +11,6 @@ import { formatDate } from '@angular/common';
 })
 export class SupportticketsComponent implements OnInit {
 
-  constructor(public PerformanceManagementService:PerformancemanagementService,public ActivatedRoute: ActivatedRoute) { }
   todaydate:any
   date: any;
   time: any;
@@ -25,16 +24,24 @@ export class SupportticketsComponent implements OnInit {
   id:any;
   staffID:any;
   ticketlist: any;
+  files: File[] = [];
+  files1: File[] = [];
+  ticketid: any;
+  currentUrl: any;
+
+  constructor(public PerformanceManagementService:PerformancemanagementService,public ActivatedRoute: ActivatedRoute) { }
+
   ngOnInit(): void {
+
+    
+    this.currentUrl = window.location.href;
     this.staffID = sessionStorage.getItem('EmaployedID');
     this.typeofissue="0";
     this.prority="0"
     const format = 'yyyy-MM-dd';
-
     const myDate = new Date();
     const locale = 'en-US';
     this.todaydate = formatDate(myDate, format, locale);
-
     this.ActivatedRoute.params.subscribe(params => {
       debugger
       this.id = params["id"];
@@ -46,23 +53,38 @@ export class SupportticketsComponent implements OnInit {
 
 
   public GetSupportTickets() {
-    this.PerformanceManagementService.GetSupportTickets().subscribe(
-      data => {
-        this.ticketlist = data.filter(x => x.applicationName == 'Performance Management' && x.id==this.id);
+    this.PerformanceManagementService.GetSupportTickets()
+    
+    
+.subscribe({
+  next: data => {
+    debugger
+    this.ticketlist = data.filter(x => x.applicationName == 'Performance Management' && x.id==this.id);
         this.date = this.ticketlist[0].date,
           this.time = this.ticketlist[0].time1,
           this.typeofissue = this.ticketlist[0].typeOfApplicationIssues,
           this.prority = this.ticketlist[0].priority,
           this.screenShot[0] = this.ticketlist[0].screenShot,
           this.comments = this.ticketlist[0].comment
-
-      }
+  }, error: (err) => {
+    Swal.fire('Issue in Getting SupportTickets');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': err.error.message
+    }
+    this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+      data => {
+        debugger
+      },
     )
+  }
+})
+    
   }
 
 
-  files: File[] = [];
-  files1: File[] = [];
+
   onSelect(event: { addedFiles: any; }) {
     debugger
     console.log(event);
@@ -75,12 +97,31 @@ export class SupportticketsComponent implements OnInit {
 
 
   AttachmentsUpload() {
-    this.PerformanceManagementService.AttachmentsUploadsss(this.files).subscribe(data => {
-      debugger
-      this.screenShot.push(data);
-      console.log( "data",this.screenShot);
-      this.files.length=0;
-    })
+    this.PerformanceManagementService.AttachmentsUploadsss(this.files)
+    
+    
+.subscribe({
+  next: data => {
+    debugger
+    this.screenShot.push(data);
+    console.log( "data",this.screenShot);
+    this.files.length=0;
+  }, error: (err) => {
+    Swal.fire('Issue in Getting AttachmentsUploadsss');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': err.error.message
+    }
+    this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+      data => {
+        debugger
+      },
+    )
+  }
+})
+    
+
   }
 
   onRemove(event: any) {
@@ -110,25 +151,41 @@ export class SupportticketsComponent implements OnInit {
       "StaffID":this.staffID
     }
     
-    this.PerformanceManagementService.InsertSupportTickets(entity).subscribe(
+    this.PerformanceManagementService.InsertSupportTickets(entity)
+    
+    
+.subscribe({
+  next: data => {
+    this.ticketid = data;
+    this.uploadmultipleimages()
+    Swal.fire("Saved Sucessfully");
+    location.href="#/SupportTicketDashboard";
+
+    this.date='';
+    this.time='';
+    this.typeofissue='';
+    this.prority='';
+    this.comments='';
+  }, error: (err) => {
+    Swal.fire('Issue in InsertSupportTickets');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': err.error.message
+    }
+    this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
       data => {
-        this.ticketid = data;
-        this.uploadmultipleimages()
-        Swal.fire("Saved Sucessfully");
-        location.href="#/SupportTicketDashboard";
-
-        this.date='';
-        this.time='';
-        this.typeofissue='';
-        this.prority='';
-        this.comments='';
-
-      }
+        debugger
+      },
     )
   }
+})
+    
+}   
+
   }
 
-  ticketid: any
+
   public uploadmultipleimages() {
       debugger
     for (let i = 0; i<this.screenShot.length; i++) {
@@ -136,12 +193,30 @@ export class SupportticketsComponent implements OnInit {
         "Attachment": this.screenShot[i],
         "TicketID": this.ticketid,
       }
-      this.PerformanceManagementService.InsertAttachment(entity).subscribe(
-        data => {
-          Swal.fire("Saved Successfully");
+      this.PerformanceManagementService.InsertAttachment(entity)
+      
+      
+.subscribe({
+  next: data => {
+    debugger
+    Swal.fire("Saved Successfully");
+  }, error: (err) => {
+    Swal.fire('Issue in Getting Expenses List Web');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': err.error.message
+    }
+    this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+      data => {
+        debugger
+      },
+    )
+  }
+})
+      
+      
 
-        }
-      )
     }
   }
 
@@ -159,22 +234,42 @@ export class SupportticketsComponent implements OnInit {
       "ApplicationName": 'Performance Management',
       "StaffID":this.staffID
     }
-    this.PerformanceManagementService.UpdateSupportTickets(entity).subscribe(
+    this.PerformanceManagementService.UpdateSupportTickets(entity)
+    
+    
+.subscribe({
+  next: data => {
+    this.ticketid = data;
+    this.uploadmultipleimages()
+    Swal.fire("Updated Sucessfully");
+    location.href = "#/SupportTicketDashboard";
+
+    this.date = '';
+    this.time = '';
+    this.typeofissue = '';
+    this.prority = '';
+    this.comments = '';
+  }, error: (err) => {
+    Swal.fire('Issue in UpdateSupportTickets');
+    // Insert error in Db Here//
+    var obj = {
+      'PageName': this.currentUrl,
+      'ErrorMessage': err.error.message
+    }
+    this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
       data => {
-        this.ticketid = data;
-        this.uploadmultipleimages()
-        Swal.fire("Updated Sucessfully");
-        location.href = "#/SupportTicketDashboard";
-
-        this.date = '';
-        this.time = '';
-        this.typeofissue = '';
-        this.prority = '';
-        this.comments = '';
-
-      }
+        debugger
+      },
     )
   }
+})
+    
+  
+  }
+
+
+
+
   public cancel(){
     location.href="#/SupportTicketDashboard";
   }
