@@ -1,4 +1,4 @@
-/* import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PerformancemanagementService } from 'src/app/Pages/Services/performancemanagement.service';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -27,9 +27,7 @@ export class KeyResultAreaFormComponent implements OnInit {
   tablecount: any;
   entity: any;
   kratype: any;
-  currentUrl : any
   ngOnInit(): void {
-    this.currentUrl = window.location.href;
 
     this.GetKraMaster();
     this.GetRoleType();
@@ -52,33 +50,20 @@ export class KeyResultAreaFormComponent implements OnInit {
 
 
   GetKeyResultArea() {
-    this.PerformanceManagementService.GetKeyResultArea().subscribe({
-  next: data => {
-    debugger
-    this.keyresultlist = data;
-    this.keyresultlist = this.keyresultlist.filter((x: { id: any; }) => x.id == Number(this.id));
-    this.kraName = this.keyresultlist[0].kraName;
-    this.kratypeid = this.keyresultlist[0].kraTypeID;
-    // this.rolename=this.keyresultArray[0].type;
-    this.roleTypeid = this.keyresultlist[0].role;
-    this.description = this.keyresultlist[0].description
-    // this.kratype=this.kratypelist[0].kraType
-    this.GetKraMaster();
-  }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Issue in Getting KeyResultArea');
-    // Insert error in Db Here//
-    var obj = {
-      'PageName': this.currentUrl,
-      'ErrorMessage': err.error.message
-    }
-    this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+    this.PerformanceManagementService.GetKeyResultArea().subscribe(
       data => {
         debugger
-      },
+        this.keyresultlist = data;
+        this.keyresultlist = this.keyresultlist.filter((x: { id: any; }) => x.id == Number(this.id));
+        this.kraName = this.keyresultlist[0].kraName;
+        this.kratypeid = this.keyresultlist[0].kraTypeID;
+        // this.rolename=this.keyresultArray[0].type;
+        this.roleTypeid = this.keyresultlist[0].role;
+        this.description = this.keyresultlist[0].description
+        // this.kratype=this.kratypelist[0].kraType
+        this.GetKraMaster();
+      }
     )
-  }
-})
-
   }
 
 
@@ -86,26 +71,14 @@ export class KeyResultAreaFormComponent implements OnInit {
 
 
   public GetKraMaster() {
-    this.PerformanceManagementService.GetKraMaster().subscribe({
-  next: data => {
-    debugger
-    this.kratypelist = data;
-    console.log("kratype", this.kratypelist);
-  }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Issue in Getting KraMaster');
-    // Insert error in Db Here//
-    var obj = {
-      'PageName': this.currentUrl,
-      'ErrorMessage': err.error.message
-    }
-    this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+    this.PerformanceManagementService.GetKraMaster().subscribe(
       data => {
-        debugger
-      },
-    )
-  }
-})
+        this.kratypelist = data;
+        console.log("kratype", this.kratypelist);
+        // this.kratypeid = "";
 
+      }
+    )
 
   }
 
@@ -119,28 +92,14 @@ export class KeyResultAreaFormComponent implements OnInit {
   }
 
   public GetRoleType() {
-    this.PerformanceManagementService.GetRoleType().subscribe({
-  next: data => {
-    debugger
-    this.roleTypeList = data;
-    this.rolename = this.roleTypeList[0].type
-    console.log("type", this.roleTypeList);
-    this.roleTypeid = "";
-  }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Issue in Getting RoleType');
-    // Insert error in Db Here//
-    var obj = {
-      'PageName': this.currentUrl,
-      'ErrorMessage': err.error.message
-    }
-    this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+    this.PerformanceManagementService.GetRoleType().subscribe(
       data => {
-        debugger
-      },
+        this.roleTypeList = data;
+        this.rolename = this.roleTypeList[0].type
+        console.log("type", this.roleTypeList);
+        this.roleTypeid = "";
+      }
     )
-  }
-})
-
   }
 
 
@@ -186,29 +145,15 @@ export class KeyResultAreaFormComponent implements OnInit {
         "Role": this.keyresultArray[i].Role,
         "Description": this.keyresultArray[i].Description
       };
-      this.PerformanceManagementService.InsertKeyResultArea(entity).subscribe({
-  next: data => {
-    debugger
-    let kratypelist = data;
+      this.PerformanceManagementService.InsertKeyResultArea(entity).subscribe(
+        data => {
+          debugger
+          let kratypelist = data;
           Swal.fire("Successfully Submitted...!");
           this.tablecount = 0;
           location.href = "#/KeyResultArea";
           console.log("kralist", this.kratypelist);
-  }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Issue in Inserting KeyResultArea');
-    // Insert error in Db Here//
-    var obj = {
-      'PageName': this.currentUrl,
-      'ErrorMessage': err.error.message
-    }
-    this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-      data => {
-        debugger
-      },
-    )
-  }
-})
-
+        })
     }
   }
 
@@ -228,26 +173,12 @@ export class KeyResultAreaFormComponent implements OnInit {
       "Role": this.roleTypeid,
       "Description": this.description
     };
-    this.PerformanceManagementService.UpdateKeyResultArea(json).subscribe({
-  next: data => {
-    debugger
-    Swal.fire("Updated Successfully");
-    location.href = "#/KeyResultArea";
-  }, error: (err: { error: { message: any; }; }) => {
-    Swal.fire('Issue in Updating KeyResultArea');
-    // Insert error in Db Here//
-    var obj = {
-      'PageName': this.currentUrl,
-      'ErrorMessage': err.error.message
-    }
-    this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+    this.PerformanceManagementService.UpdateKeyResultArea(json).subscribe(
       data => {
         debugger
-      },
-    )
-  }
-})
-
+        Swal.fire("Updated Successfully");
+        location.href = "#/KeyResultArea";
+      })
   }
 
 
@@ -260,4 +191,3 @@ export class KeyResultAreaFormComponent implements OnInit {
 
 
 }
- */
