@@ -13,7 +13,6 @@ import { HrDashComponent } from './hr-dash/hr-dash.component';
 import { BellCurveFittingComponent } from './bell-curve-fitting/bell-curve-fitting.component';
 import { StaffScoreReportComponent } from './staff-score-report/staff-score-report.component';
 import { ApprasialReportComponent } from './apprasial-report/apprasial-report.component';
-import { SalaryIncrementLetterComponent } from './salary-increment-letter/salary-increment-letter.component';
 import { HrDashboardComponent } from './hr-dashboard/hr-dashboard.component';
 import { SharedModule } from '../shared/shared.module';
 import { SalaryincrementletterDashComponent } from './salaryincrementletter-dash/salaryincrementletter-dash.component';
@@ -32,7 +31,7 @@ import { SalaryincrementletterDashComponent } from './salaryincrementletter-dash
     BellCurveFittingComponent,
     StaffScoreReportComponent,
     ApprasialReportComponent,
-    SalaryIncrementLetterComponent,
+ 
     HrDashboardComponent,
     SalaryincrementletterDashComponent
   ],
