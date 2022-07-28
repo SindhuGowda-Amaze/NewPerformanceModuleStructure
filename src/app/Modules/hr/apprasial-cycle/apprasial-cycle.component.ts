@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { PerformancemanagementService } from 'src/app/Pages/Services/performancemanagement.service';
 import Swal from 'sweetalert2';
@@ -9,20 +10,15 @@ import Swal from 'sweetalert2';
   styleUrls: ['./apprasial-cycle.component.css']
 })
 export class ApprasialCycleComponent implements OnInit {
-
   constructor(private PerformanceManagementService: PerformancemanagementService) { }
-
   appraisallist: any;
   count: any;
   search: any;
   currentUrl: any
-
   ngOnInit(): void {
     this.currentUrl = window.location.href;
     this.GetAppraisalCycle();
   }
-
-
   public GetAppraisalCycle() {
     debugger
     this.PerformanceManagementService.GetAppraisalCycle().subscribe({
@@ -44,9 +40,7 @@ export class ApprasialCycleComponent implements OnInit {
         )
       }
     })
-
   }
-
   public delete(ID: any) {
     debugger
     Swal.fire({
@@ -77,9 +71,6 @@ export class ApprasialCycleComponent implements OnInit {
             )
           }
         })
-
-
-
       }
     })
   }

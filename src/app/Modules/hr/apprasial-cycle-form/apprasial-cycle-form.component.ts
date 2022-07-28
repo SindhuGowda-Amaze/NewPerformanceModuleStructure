@@ -3,17 +3,13 @@ import { PerformancemanagementService } from 'src/app/Pages/Services/performance
 import { ActivatedRoute } from '@angular/router';
 import { formatDate } from '@angular/common';
 import Swal from 'sweetalert2';
-
-
 @Component({
   selector: 'app-apprasial-cycle-form',
   templateUrl: './apprasial-cycle-form.component.html',
   styleUrls: ['./apprasial-cycle-form.component.css']
 })
 export class ApprasialCycleFormComponent implements OnInit {
-
   constructor(private PerformanceManagementService: PerformancemanagementService, private ActivatedRoute: ActivatedRoute) { }
-
   appraisal: any;
   startdate: any;
   enddate: any;
@@ -30,21 +26,15 @@ export class ApprasialCycleFormComponent implements OnInit {
   sbuReviewDate: any;
   closingdate: any;
   currentUrl: any
-
-
+  frequency: any;
   ngOnInit(): void {
     this.currentUrl = window.location.href;
     const format = 'yyyy-MM-dd';
-
     const myDate = new Date();
     const locale = 'en-US';
     this.todaydate = formatDate(myDate, format, locale);
-
-
     this.GetFrequency();
     this.frequencyid = "";
-
-
     this.ActivatedRoute.params
       .subscribe(params => {
         this.id = params['id'];
@@ -60,18 +50,15 @@ export class ApprasialCycleFormComponent implements OnInit {
   managerriew: any;
   goalsettinglastdate: any;
   endingdate: any;
-
   public startingdatealert(even: any) {
     this.startingdate = even.target.value;
   }
-
   public endingdatealert(even: any) {
     this.endingdate = even.target.value;
     if (this.endingdate < this.startingdate || this.enddate < this.startdate) {
       Swal.fire("Cycle End date should be greater than Cycle Start date")
     }
   }
-
   public closingdatealert(event: any) {
     this.closingdate = event.target.value;
     if (this.closingdate < this.startingdate) {
@@ -141,12 +128,6 @@ export class ApprasialCycleFormComponent implements OnInit {
       this.hrReviewDate = 0;
     }
   }
-
-
-
-
-
-
   GetAppraisalCycle() {
     this.PerformanceManagementService.GetAppraisalCycle().subscribe({
       next: data => {
@@ -179,8 +160,6 @@ export class ApprasialCycleFormComponent implements OnInit {
     })
 
   }
-
-
   Save() {
     debugger
     if (this.appraisal == null || this.appraisal == undefined || this.frequencyid == null || this.frequencyid == undefined
@@ -222,14 +201,8 @@ export class ApprasialCycleFormComponent implements OnInit {
         }
       })
 
-
-
-
     }
-
   }
-
-
   Update() {
     debugger
     var json = {
@@ -244,9 +217,7 @@ export class ApprasialCycleFormComponent implements OnInit {
       "HrReviewLastDate": this.hrReviewDate,
       "SbuReviewLastDate": this.sbuReviewDate,
       "AppraisalClosingLastDate": this.appraisalClosingLastDate
-
     };
-
     this.PerformanceManagementService.UpdateAppraisalCycle(json).subscribe({
       next: data => {
         debugger
@@ -267,22 +238,13 @@ export class ApprasialCycleFormComponent implements OnInit {
       }
     })
 
-
-
-
-
-
-
   }
 
   Cancel() {
     location.href = "#/hr/ApprasialCycle"
   }
 
-
-
-
-  frequency: any;
+ 
 
 
   public GetFrequency() {
