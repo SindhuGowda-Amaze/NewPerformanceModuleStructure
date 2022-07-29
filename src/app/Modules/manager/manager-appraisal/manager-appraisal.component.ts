@@ -1,3 +1,12 @@
+//  Product :Digi PerformanceManagement System 1.0 
+// /Date : 1 March, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains get data from GetMyDetails,GetDepartment,GetConductappraisalStaffList,GetAppraisalCycle,GetKraMaster,GetStaffKraDetails in open Window 
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -13,7 +22,7 @@ export class ManagerAppraisalComponent implements OnInit {
 
 
   constructor(private PerformanceManagementService: PerformancemanagementService, private router: Router, private route: ActivatedRoute, private datepipe: DatePipe) { }
-
+//varaiable Declaration 
   stafflist: any;
   term: any;
   p: any = 1;
@@ -24,8 +33,6 @@ export class ManagerAppraisalComponent implements OnInit {
   RoleType: any;
   Department: any;
   count: any;
-
-
   ParamID: any;
   EmployeeKradash: any
   StaffType: any;
@@ -44,10 +51,18 @@ export class ManagerAppraisalComponent implements OnInit {
   appraislid: any;
   managerrating: any;
   currentUrl: any
+  list: any;
+  SelfComments: any;
+  Staffkra: any;
+  attachment: any;
+  photoid: any;
 
-  ngOnInit(): void {
+
+  ngOnInit(): void 
+  {
+     //Variable Initialisation and Default Method Calls//
+    this.GetKRAByStaffID();
     this.currentUrl = window.location.href;
-
     this.Score = 0;
     this.showbtn = false;
     this.showbtn1 = false;
@@ -58,54 +73,55 @@ export class ManagerAppraisalComponent implements OnInit {
       if (params['id'] != undefined) {
         // this.StaffType = params['StaffID'];
         this.appraislid = params['StaffID'];
-        this.StaffID = params['id'];
-        this.StaffTypeID = this.StaffType;
-
-        this.PerformanceManagementService.GetKRAByStaffID(this.StaffID).subscribe({
-          next: data => {
-            debugger
-            this.ResultAreaList = data.filter((x: { emplosubmitdate: any; appraiselID: any; }) => x.emplosubmitdate != null && x.appraiselID == this.appraislid);
-            console.log(this.ResultAreaList);
-
-            this.Name = this.ResultAreaList[0].name
-            this.role = this.ResultAreaList[0].role
-            this.departmentName = this.ResultAreaList[0].departmentName
-            this.managerSubmittedDate = this.ResultAreaList[0].managerSubmittedDate
-            this.selfAttachment = this.ResultAreaList[0].Photo
-            this.ResultAreaList.forEach((element: { managerupdate: any; }) => {
-              if (element.managerupdate != 1) {
-                this.showbtn = false
-              } else {
-                this.showbtn = true
-              }
-            });
-
-          }, error: (err) => {
-            Swal.fire('Issue in Getting KRAByStaffID');
-            // Insert error in Db Here//
-            var obj = {
-              'PageName': this.currentUrl,
-              'ErrorMessage': err.error.message
-            }
-            this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-              data => {
-                debugger
-              },
-            )
-          }
-        })
-        // this.GetStaffAppraisalByID(this.ParamID);
-
+        this.StaffID = params['id']; 
       }
     }
     );
+  }
+
+//Method to get StaffID from 
+  public GetKRAByStaffID(){
+    this.PerformanceManagementService.GetKRAByStaffID(this.StaffID).subscribe({
+      next: data => {
+        debugger
+        this.ResultAreaList = data.filter((x: { emplosubmitdate: any; appraiselID: any; }) => x.emplosubmitdate != null && x.appraiselID == this.appraislid);
+        console.log(this.ResultAreaList);
+
+        this.Name = this.ResultAreaList[0].name
+        this.role = this.ResultAreaList[0].role
+        this.departmentName = this.ResultAreaList[0].departmentName
+        this.managerSubmittedDate = this.ResultAreaList[0].managerSubmittedDate
+        this.selfAttachment = this.ResultAreaList[0].Photo
+        this.ResultAreaList.forEach((element: { managerupdate: any; }) => {
+          if (element.managerupdate != 1) {
+            this.showbtn = false
+          } else {
+            this.showbtn = true
+          }
+        });
+
+      }, error: (err) => {
+        Swal.fire('Issue in Getting KRAByStaffID');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
   }
 
   public getRoleType(event: any) {
     debugger
     this.RoleType = event.target.value;
   }
-
+//Method to FilterRoleType in MyDetails Table
   public FilterRoleType() {
     debugger
     this.PerformanceManagementService.GetMyDetails().subscribe({
@@ -129,6 +145,7 @@ export class ManagerAppraisalComponent implements OnInit {
     })
 
   }
+// filterByDepartment in MyDetails Table
 
   public filterByDepartment() {
     debugger
@@ -153,7 +170,7 @@ export class ManagerAppraisalComponent implements OnInit {
     })
 
   }
-  Staffkra: any;
+//Method to get StaffKraDetails in EmployeeKraMap
   public GetStaffKraDetails(details: any) {
     debugger
     this.PerformanceManagementService.GetEmployeeKraMap().subscribe({
@@ -177,8 +194,7 @@ export class ManagerAppraisalComponent implements OnInit {
 
   }
 
-  list: any;
-  SelfComments: any;
+// Method to get HighScore data from HighScores table
   public HighScore() {
     debugger
     this.PerformanceManagementService.GetHighScores().subscribe({
@@ -215,7 +231,7 @@ export class ManagerAppraisalComponent implements OnInit {
     this.SelfComments = '';
 
   }
-
+//Method to save details in StaffScoresByManager table 
   public SaveDetails() {
     debugger
     if (this.Score == undefined || this.Score == 0 || this.SelfComments == undefined || this.SelfComments == null) {
@@ -271,7 +287,7 @@ export class ManagerAppraisalComponent implements OnInit {
   }
 
 
-
+//Method to update data in StaffScoresByManager 
   public UpdateDetails() {
     debugger
     var entity = {
@@ -313,7 +329,7 @@ export class ManagerAppraisalComponent implements OnInit {
       }
     })
   }
-
+//Method to get KPIIDetails from EmployeeKraMap
 
   public GetKPIIDetails(details: any) {
     debugger
@@ -396,7 +412,7 @@ export class ManagerAppraisalComponent implements OnInit {
     this.empcomments = detials.empcomments
   }
 
-
+//Method to submit staffId in ManagerAppraisal
   public SubmitManagerAppraisal() {
     debugger
     Swal.fire({
@@ -438,15 +454,14 @@ export class ManagerAppraisalComponent implements OnInit {
       }
     })
   }
-  attachment: any;
-  photoid: any;
+ 
   getattachment(details: any) {
     debugger
     this.selfAttachment = details.photo;
     this.photoid = details.id;
     this.attachmentsurl[0] = details.selfattachment
   }
-
+//Method to update data in ManagerSelfAttachment
   update() {
     debugger
     var entity = {
@@ -487,7 +502,7 @@ export class ManagerAppraisalComponent implements OnInit {
   }
 
 
-
+//method to insert notification in notitfication Table
   public InsertNotification() {
     debugger
 
@@ -527,7 +542,7 @@ export class ManagerAppraisalComponent implements OnInit {
       }
     })
   }
-
+//Method to update notificationhr in notification table
   public InsertNotificationHR() {
     debugger
 
@@ -567,7 +582,7 @@ export class ManagerAppraisalComponent implements OnInit {
     })
   }
 
-
+//Method to InsertNotificationEmployeeAppraisalSubmit   from notification Table
   public InsertNotificationEmployeeAppraisalSubmit() {
     debugger
 
