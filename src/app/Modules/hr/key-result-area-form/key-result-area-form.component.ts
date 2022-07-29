@@ -27,6 +27,8 @@ export class KeyResultAreaFormComponent implements OnInit {
   tablecount: any;
   entity: any;
   kratype: any;
+  rolename: any;
+  keyresultArray: any = [];
   ngOnInit(): void {
 
     this.GetKraMaster();
@@ -44,10 +46,7 @@ export class KeyResultAreaFormComponent implements OnInit {
 
       }
     })
-
   }
-
-
 
   GetKeyResultArea() {
     this.PerformanceManagementService.GetKeyResultArea().subscribe(
@@ -66,24 +65,16 @@ export class KeyResultAreaFormComponent implements OnInit {
     )
   }
 
-
-
-
-
   public GetKraMaster() {
     this.PerformanceManagementService.GetKraMaster().subscribe(
       data => {
         this.kratypelist = data;
         console.log("kratype", this.kratypelist);
         // this.kratypeid = "";
-
       }
     )
-
   }
 
-
-  rolename: any
   getRoleID(even: any) {
     this.roleTypeid = even.target.value;
     var list = this.roleTypeList.filter((x: { id: any; }) => x.id == this.roleTypeid);
@@ -102,18 +93,11 @@ export class KeyResultAreaFormComponent implements OnInit {
     )
   }
 
-
   getkratypeid(event: any) {
     debugger
     this.kratypeid = event.target.value
-
   }
 
-
-
-
-
-  keyresultArray: any = [];
   Add() {
     debugger
     this.tablecount = 1;
@@ -123,7 +107,6 @@ export class KeyResultAreaFormComponent implements OnInit {
       "Type": this.rolename,
       "Role": this.roleTypeid,
       "Description": this.description
-
     };
     debugger
     this.keyresultArray.push(json)
@@ -157,12 +140,9 @@ export class KeyResultAreaFormComponent implements OnInit {
     }
   }
 
-
   cancel() {
-    location.href = "#/KeyResultArea";
+    location.href = "#/hr/KeyResultArea";
   }
-
-
 
   Update() {
     debugger
@@ -177,17 +157,7 @@ export class KeyResultAreaFormComponent implements OnInit {
       data => {
         debugger
         Swal.fire("Updated Successfully");
-        location.href = "#/KeyResultArea";
+        location.href = "#/hr/KeyResultArea";
       })
   }
-
-
-
-
-
-
-
-
-
-
 }

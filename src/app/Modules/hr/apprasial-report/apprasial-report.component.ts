@@ -1,3 +1,13 @@
+//  Product :Digi PerformanceManagement System 1.0 
+// /Date : 1 March, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains Code to Filter, get Appraisal Repot via ConductappraisalStaffList SP
+// --Last Modified Date : 28 July , 2022
+// --Last Modified Changes : Addedd Commets and Exception Handling Code
+// --Last Modified By : Sindhu, Madhav
+// --Copyrights : AmazeINC-Bangalore-2022
+
+
 import { Component, OnInit } from '@angular/core';
 import { PerformancemanagementService } from 'src/app/Pages/Services/performancemanagement.service';
 import Swal from 'sweetalert2';
@@ -9,7 +19,7 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./apprasial-report.component.css']
 })
 export class ApprasialReportComponent implements OnInit {
-
+  //Variable Declerations//
   constructor(private PerformanceManagementService: PerformancemanagementService) { }
   count: any;
   roleTypeList: any;
@@ -30,10 +40,11 @@ export class ApprasialReportComponent implements OnInit {
   departmentid: any;
   count1: any = 10;
   currentUrl: any
+
   ngOnInit(): void {
+    //Variable Initialisation and Default Method Calls//
+
     this.currentUrl = window.location.href;
-
-
     this.StaffID = sessionStorage.getItem('EmaployedID')
     this.roleid = sessionStorage.getItem('roleid');
     this.departmentid = 0;
@@ -43,14 +54,14 @@ export class ApprasialReportComponent implements OnInit {
     this.ConductappraisalStaffList();
     this.manager = 0;
     this.dumpmanagerList = 0;
-
   }
 
-
+  //Method to get RoleID//
   getRoleID(even: any) {
     this.roleTypeid = even.target.value;
   }
 
+  //Method to Get Role Type Details//
   public GetRoleType() {
     this.PerformanceManagementService.GetRoleType().subscribe({
       next: data => {
@@ -72,24 +83,20 @@ export class ApprasialReportComponent implements OnInit {
         )
       }
     })
-
-
-
-
   }
 
-
-
+  //Change Method to get Manager//
   getManager(even: any) {
     this.manager = even.target.value;
   }
 
 
-
+  //Change Method to get Department//
   getdepartmentID(even: any) {
     this.departmentid = even.target.value;
   }
 
+  //Method to Filter by Department
   public GetFilteredDepartment() {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
@@ -111,6 +118,7 @@ export class ApprasialReportComponent implements OnInit {
     })
   }
 
+  //Method to get Department Details//
   public GetDepartment() {
     this.PerformanceManagementService.GetDepartmentMaster().subscribe({
       next: data => {
@@ -133,6 +141,7 @@ export class ApprasialReportComponent implements OnInit {
     })
   }
 
+  //Method to get Staff Details//
   public GetMyDetails() {
     debugger
     this.PerformanceManagementService.GetMyDetails().subscribe({
@@ -158,11 +167,10 @@ export class ApprasialReportComponent implements OnInit {
         )
       }
     })
-
-
-
   }
 
+
+  //Method to get Employee Appraisal Details for HR and Manager//
   public ConductappraisalStaffList() {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: res => {
@@ -171,14 +179,12 @@ export class ApprasialReportComponent implements OnInit {
         if (this.roleid == 3) {
           this.StaffAppraisalList = temp;
           this.dumpmanagerList = this.StaffAppraisalList
-
         }
         else if (this.roleid == 4) {
           this.StaffAppraisalList = temp;
           this.dumpmanagerList = this.StaffAppraisalList
           //  this.StaffAppraisalList = this.dumpmanagerList.filter((x: { cioScores: null;approver1:any }) => x.cioScores != null && x.approver1==this.StaffID)
           this.StaffAppraisalList = this.dumpmanagerList.filter((x: { approver1: any }) => x.approver1 == this.StaffID)
-
         }
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Conduct appraisal StaffList');
@@ -196,6 +202,7 @@ export class ApprasialReportComponent implements OnInit {
     })
   }
 
+  //Method Exprt to Excel//
 
   fileName = 'Adjustment Report.xlsx';
   exportexcel(): void {
@@ -209,6 +216,8 @@ export class ApprasialReportComponent implements OnInit {
     XLSX.writeFile(wb, this.fileName);
   }
 
+
+  //Method to Filter by RoleType//
   public GetFilteredRoleType() {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
@@ -231,6 +240,7 @@ export class ApprasialReportComponent implements OnInit {
   }
 
 
+  //Method to Filter by Manager//
   public GetFilteredManager() {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
@@ -252,9 +262,10 @@ export class ApprasialReportComponent implements OnInit {
     })
   }
 
-  public FilterAttendence() {
-    debugger
 
+  //Method to Search By Employee Name//
+  public FilterBySearch() {
+    debugger
     let searchCopy = this.search.toLowerCase();
     this.StaffAppraisalList = this.dumpmanagerList.filter((x: { name: string }) => x.name.toLowerCase().includes(searchCopy));
     this.count = this.StaffAppraisalList.length;

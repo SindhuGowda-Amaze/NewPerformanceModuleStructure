@@ -11,8 +11,6 @@ export class KeyPerformaceIndicatorComponent implements OnInit {
 
   constructor(private PerformanceManagementService: PerformancemanagementService) { }
 
-
-
   indicatorlist: any;
   count: any;
   search: any;
@@ -41,7 +39,6 @@ export class KeyPerformaceIndicatorComponent implements OnInit {
     )
   }
 
-
   public delete(ID: any) {
     debugger
     Swal.fire({
@@ -62,10 +59,6 @@ export class KeyPerformaceIndicatorComponent implements OnInit {
       }
     })
   }
-
-
-
-
 
   public GetKeyResultArea() {
     this.PerformanceManagementService.GetKeyResultArea().subscribe(
@@ -88,10 +81,6 @@ export class KeyPerformaceIndicatorComponent implements OnInit {
       this.GetKPI();
     }
   }
-
-
-
-
 
 
 }

@@ -1,3 +1,13 @@
+//  Product :Digi PerformanceManagement System 1.0 
+// /Date : 1 March, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains Code to Filter by role,appraisal cycle,Department, update bellcurve score
+// --Last Modified Date : 28 July , 2022
+// --Last Modified Changes : Addedd Commets and Exception Handling Code
+// --Last Modified By : Sindhu, Madhav
+// --Copyrights : AmazeINC-Bangalore-2022
+
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PerformancemanagementService } from 'src/app/Pages/Services/performancemanagement.service';
@@ -12,7 +22,7 @@ import Swal from 'sweetalert2';
 export class BellCurveFittingComponent implements OnInit {
 
   constructor(private PerformanceManagementService: PerformancemanagementService, public router: Router) { }
-
+  //Variable Declerations//
   search: any;
   StaffTypelist: any;
   YearID: any;
@@ -47,7 +57,6 @@ export class BellCurveFittingComponent implements OnInit {
   appraisalCycleName: any
   pending: any;
   sbuSubmittedCount: any
-
   employeSubmissionDate: any;
   managerSubmittedCount: any;
   hrSubmittedlist: any;
@@ -58,8 +67,12 @@ export class BellCurveFittingComponent implements OnInit {
   appraisalPendingCount: any;
   appraisalClose: any;
   AppraisalCycleID: any;
-  currentUrl: any
+  currentUrl: any;
+  ratingvalue: any;
+  StaffAppraisalList1: any;
+
   ngOnInit() {
+    //Variable Initialisation and Default Method Calls//
     this.currentUrl = window.location.href;
     this.pending = 0;
     this.roleid = sessionStorage.getItem('roleid');
@@ -76,14 +89,18 @@ export class BellCurveFittingComponent implements OnInit {
     this.departmentid = 0;
     this.GetMyDetails();
     this.manager = 0;
-    this
-    // this.StaffID = 0;
     this.UserID = sessionStorage.getItem('EmaployedID');
+    // this.StaffID = 0;
     // this.PerformanceManagementService.GetStaffType(1).subscribe(data => {
     //   debugger
     //   this.StaffTypelist = data;
     // })
+    this.GetAppraisalCycle();
+    this.ConductappraisalStaffList();
+  }
 
+  //Method to get Appraisal Cycle Details//
+  public GetAppraisalCycle() {
     this.PerformanceManagementService.GetAppraisalCycle().subscribe({
       next: data => {
         debugger
@@ -102,10 +119,8 @@ export class BellCurveFittingComponent implements OnInit {
         )
       }
     })
-
-    this.ConductappraisalStaffList();
   }
-  ratingvalue: any;
+
   public Getratingvalue(event: any) {
     debugger
     this.ratingvalue = event.target.value;
@@ -157,7 +172,7 @@ export class BellCurveFittingComponent implements OnInit {
     }
   }
 
-  StaffAppraisalList1: any;
+  //Method to get Employee Appraisal Details//
   public ConductappraisalStaffList() {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: (res: any) => {
@@ -189,7 +204,7 @@ export class BellCurveFittingComponent implements OnInit {
   }
 
 
-
+//Method to Get Staff Type ID//
   GetStaffTypeID(event: any) {
     this.StaffTypeID = event.target.value;
     if (this.StaffTypeID == 0) {
@@ -206,6 +221,7 @@ export class BellCurveFittingComponent implements OnInit {
   }
 
 
+  //Method to get StaffID filter by same//
   public GetStaffID(event: any) {
     debugger;
     this.StaffID = event.target.value;
@@ -217,11 +233,12 @@ export class BellCurveFittingComponent implements OnInit {
     }
   }
 
+  //Method to get Year ID//
   public FilterByYear(event: any) {
     this.YearID = event.target.value;
   }
 
-
+//Method to update BellCurveFitting Rating//
   update() {
     debugger
     var entity = {
@@ -247,26 +264,22 @@ export class BellCurveFittingComponent implements OnInit {
         )
       }
     })
-
-
-
   }
 
-
+//method to store staff IDs//
   public ViewScores(event: any) {
     debugger;
     this.StaffID = event.id;
     let StaffTypeID = event.type;
-
     // this.router.navigate(['/StaffScoreFullDetails', StaffID, StaffID]);
-
   }
 
-
+//Method to get Manager//
   getManager(even: any) {
     this.manager = even.target.value;
   }
 
+  //Method to get Staff Details//
   public GetMyDetails() {
     debugger
     this.PerformanceManagementService.GetMyDetails().subscribe({
@@ -294,11 +307,12 @@ export class BellCurveFittingComponent implements OnInit {
     })
   }
 
-
+//Method to get Role//
   getRoleID(even: any) {
     this.roleTypeid = even.target.value;
   }
 
+  //Method to get Role Details//
   public GetRoleType() {
     this.PerformanceManagementService.GetRoleType().subscribe({
       next: data => {
@@ -322,7 +336,7 @@ export class BellCurveFittingComponent implements OnInit {
     })
   }
 
-
+//Method to filter By Roletype//
   public GetFilteredRoleType() {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
@@ -344,11 +358,12 @@ export class BellCurveFittingComponent implements OnInit {
     })
   }
 
-
+//method to get Department ID//
   getdepartmentID(even: any) {
     this.departmentid = even.target.value;
   }
 
+  //Method to Get Department Details//
   public GetDepartment() {
     this.PerformanceManagementService.GetDepartmentMaster().subscribe({
       next: data => {
@@ -371,6 +386,7 @@ export class BellCurveFittingComponent implements OnInit {
     })
   }
 
+  //Method to filter by depatment//
   public GetFilteredDepartment() {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
@@ -414,6 +430,7 @@ export class BellCurveFittingComponent implements OnInit {
   // }
 
 
+  //Method to get Score list for DropDown//
   public HighScore() {
     debugger
     this.PerformanceManagementService.GetHighScores().subscribe({
@@ -436,7 +453,7 @@ export class BellCurveFittingComponent implements OnInit {
     })
   }
 
-
+//Method to filter by manager//
   public GetFilteredManager() {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
@@ -459,6 +476,7 @@ export class BellCurveFittingComponent implements OnInit {
     })
   }
 
+  //Method to get Appraisal Cycle Details and call filter method//
   public GetApprisalcycle(event: any) {
     debugger
     this.appraisalCycleName = event.target.value;
@@ -489,13 +507,12 @@ export class BellCurveFittingComponent implements OnInit {
     })
   }
 
+//method to filter bu Appraisal Cycle //
   public GetFilteredAppraisalCycle() {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
         debugger
         this.FilteredStaffAppraisalList = data.filter(x => x.appraisalCycleName == this.appraisalCycleName)
-
-
 
         this.appraisalcount = this.FilteredStaffAppraisalList.length;
         this.appraisalClose = this.FilteredStaffAppraisalList[0].appraisalClose
@@ -534,7 +551,7 @@ export class BellCurveFittingComponent implements OnInit {
     })
   }
 
-
+//Method to get Counts//
   public Conductappraisalcounts() {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: (res: any[]) => {
@@ -578,8 +595,8 @@ export class BellCurveFittingComponent implements OnInit {
 
   }
 
+  //Method to close Appraisal Cycle//
   public CloseAppraisal() {
-
     debugger
     Swal.fire({
       title: 'Are you sure?',

@@ -36,6 +36,18 @@ export class StaffScoreFullDetailsComponent implements OnInit {
   StaffScoresListsCopy: any;
   goal: any;
   appraislid: any;
+  
+  Stafflist1: any;
+  EmployeeID: any;
+  EmployeeName: any;
+  StaffScoresLists: any;
+  Appraisaldate: any;
+  StartDate: any;
+  EndDate: any;
+  SupervisorName: any;
+  overallScore: any;
+  StaffType: any;
+  StaffAppraisalList: any;
   ngOnInit() {
 
     this.goal = "0"
@@ -60,8 +72,6 @@ export class StaffScoreFullDetailsComponent implements OnInit {
             this.HrSubmittedDate = this.StaffDetailsBYConductAppraisals[0].hrSubmittedDate
             this.ManagerSubmittedDate = this.StaffDetailsBYConductAppraisals[0].managerSubmittedDate
             this.EmployeeSubmittedDate = this.StaffDetailsBYConductAppraisals[0].employeeSubmittedDate
-
-
           }
         )
         this.PerformanceManagementService.GetStaffScoresByStaffandYear(2021, this.StaffID).subscribe(data => {
@@ -79,8 +89,6 @@ export class StaffScoreFullDetailsComponent implements OnInit {
           this.divisionAvgScores = temp[0].divisionAvgScores;
           this.cioAvgScores = temp[0].cioAvgScores;
           //this.SupervisorName = data[0].userName
-
-
           for (let i = 0; i < this.StaffScoresLists.length; i++) {
             if (this.StaffScoresLists[i].score == null) {
               this.Manager = false;
@@ -120,12 +128,10 @@ export class StaffScoreFullDetailsComponent implements OnInit {
         this.goallist = res
       }
     )
-
   }
 
   public Filtergoals() {
     debugger
-
     let searchCopy = this.goal.toLowerCase();
     if (searchCopy == 0) {
       this.ngOnInit();
@@ -136,42 +142,6 @@ export class StaffScoreFullDetailsComponent implements OnInit {
 
   }
 
-
-
-  Stafflist1: any;
-  EmployeeID: any;
-  EmployeeName: any;
-  StaffScoresLists: any;
-  Appraisaldate: any;
-  StartDate: any;
-  EndDate: any;
-  SupervisorName: any;
-  overallScore: any;
-  StaffType: any;
-  // GetStaff(event) {
-  //   debugger
-  //   this.StaffID = event.target.value;
-  //   this.PerformanceManagementService.GetStaff(1).subscribe(data => {
-  //     debugger
-  //     let temp: any = data;
-  //     this.Stafflist1 = temp.filter(x => x.id == this.StaffID);
-  //     this.EmployeeID = this.Stafflist1[0].id;
-  //     this.EmployeeName = this.Stafflist1[0].name;
-  //   })
-  //   this.PerformanceManagementService.GetStaffScoresByStaffandYear(2020, this.StaffID).subscribe(data => {
-  //     debugger;
-  //     this.StaffScoresLists = data;
-  //     this.StaffType = data[0].staffType;
-  //     this.Appraisaldate = data[0].appraisalDate;
-  //     this.StartDate = data[0].fromDate;
-  //     this.EndDate = data[0].toDate;
-  //     this.overallScore = data[0].overallScore;
-  //     this.SupervisorName = data[0].userName
-  //   })
-  // }
-
-
-  StaffAppraisalList: any;
   public ConductappraisalStaffList() {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe(
       res => {
@@ -182,6 +152,7 @@ export class StaffScoreFullDetailsComponent implements OnInit {
     )
   }
 
+  //Methods to get Comments//
   viewself(Scores: any) {
     this.selfcomment = Scores.selfComments;
   }
@@ -198,10 +169,6 @@ export class StaffScoreFullDetailsComponent implements OnInit {
   hrcomments(Scores: any) {
     this.hrcomment = Scores.cioComments;
   }
-
-
-
-
 }
 
 

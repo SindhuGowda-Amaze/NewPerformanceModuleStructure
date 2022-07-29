@@ -19,14 +19,14 @@ export class KeyResultAreaComponent implements OnInit {
   roleTypeList: any;
   newrolelist: any;
   short: any;
-  currentUrl: any
+  currentUrl: any;
+  dummkeyresultlist: any;
 
   ngOnInit(): void {
     this.currentUrl = window.location.href;
     this.GetKeyResultArea();
     this.GetRoleType();
     this.roleTypeid = 0;
-
   }
 
   getRoleID(even: any) {
@@ -64,10 +64,6 @@ export class KeyResultAreaComponent implements OnInit {
     })
   }
 
-
-
-  dummkeyresultlist: any;
-
   public GetKeyResultArea() {
     debugger
     this.PerformanceManagementService.GetKeyResultArea()
@@ -96,7 +92,7 @@ export class KeyResultAreaComponent implements OnInit {
   }
 
 
-
+//Method to delete KRA//
   public delete(ID: any) {
     debugger
     Swal.fire({

@@ -1,3 +1,14 @@
+
+//  Product :Digi PerformanceManagement System 1.0 
+// /Date : 1 March, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains Code to Save,Update and Prefill Data from AppraisalCycle Table
+// --Last Modified Date : 28 July , 2022
+// --Last Modified Changes : Addedd Commets and Exception Handling Code
+// --Last Modified By : Sindhu, Madhav
+// --Copyrights : AmazeINC-Bangalore-2022
+
+
 import { Component, OnInit } from '@angular/core';
 import { PerformancemanagementService } from 'src/app/Pages/Services/performancemanagement.service';
 import { ActivatedRoute } from '@angular/router';
@@ -10,6 +21,7 @@ import Swal from 'sweetalert2';
 })
 export class ApprasialCycleFormComponent implements OnInit {
   constructor(private PerformanceManagementService: PerformancemanagementService, private ActivatedRoute: ActivatedRoute) { }
+  //Variable Declerations//
   appraisal: any;
   startdate: any;
   enddate: any;
@@ -26,15 +38,27 @@ export class ApprasialCycleFormComponent implements OnInit {
   sbuReviewDate: any;
   closingdate: any;
   currentUrl: any
-  frequency: any;
+  startingdate: any;
+  sbureviwdate: any;
+  hrreviewdate: any
+  employeereview: any;
+  managerriew: any;
+  goalsettinglastdate: any;
+  endingdate: any;
+  frequency:any;
+
   ngOnInit(): void {
+      //Variable Initialisation and Default Method Calls//
+
     this.currentUrl = window.location.href;
     const format = 'yyyy-MM-dd';
     const myDate = new Date();
     const locale = 'en-US';
-    this.todaydate = formatDate(myDate, format, locale);
-    this.GetFrequency();
     this.frequencyid = "";
+    this.todaydate = formatDate(myDate, format, locale);
+
+    this.GetFrequency();
+   
     this.ActivatedRoute.params
       .subscribe(params => {
         this.id = params['id'];
@@ -43,13 +67,8 @@ export class ApprasialCycleFormComponent implements OnInit {
         }
       })
   }
-  startingdate: any;
-  sbureviwdate: any;
-  hrreviewdate: any
-  employeereview: any;
-  managerriew: any;
-  goalsettinglastdate: any;
-  endingdate: any;
+
+//Methods to Check Date Conditions//
   public startingdatealert(even: any) {
     this.startingdate = even.target.value;
   }
@@ -128,6 +147,12 @@ export class ApprasialCycleFormComponent implements OnInit {
       this.hrReviewDate = 0;
     }
   }
+
+
+
+
+//Method to get Appraisal Cycle Details for Prefilling//
+
   GetAppraisalCycle() {
     this.PerformanceManagementService.GetAppraisalCycle().subscribe({
       next: data => {
@@ -160,6 +185,9 @@ export class ApprasialCycleFormComponent implements OnInit {
     })
 
   }
+
+
+  //Method to Save Appraisal Cycle//
   Save() {
     debugger
     if (this.appraisal == null || this.appraisal == undefined || this.frequencyid == null || this.frequencyid == undefined
@@ -200,9 +228,10 @@ export class ApprasialCycleFormComponent implements OnInit {
           )
         }
       })
-
     }
   }
+
+//Method to Update Appraisal Cycle//
   Update() {
     debugger
     var json = {
@@ -237,9 +266,9 @@ export class ApprasialCycleFormComponent implements OnInit {
         )
       }
     })
-
   }
 
+  //Method to Cancel Adding Appraisal Cycle//
   Cancel() {
     location.href = "#/hr/ApprasialCycle"
   }

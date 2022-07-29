@@ -1,3 +1,13 @@
+//  Product :Digi PerformanceManagement System 1.0 
+// /Date : 1 March, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains Code to get staff, Conducted Appraisal and counts
+// --Last Modified Date : 28 July , 2022
+// --Last Modified Changes : Addedd Commets and Exception Handling Code
+// --Last Modified By : Sindhu, Madhav
+// --Copyrights : AmazeINC-Bangalore-2022
+
+
 import { Component, OnInit } from '@angular/core';
 import { PerformancemanagementService } from 'src/app/Pages/Services/performancemanagement.service';
 import Swal from 'sweetalert2';
@@ -9,7 +19,7 @@ import Swal from 'sweetalert2';
 })
 export class HrDashboardComponent implements OnInit {
   constructor(private PerformanceManagementService: PerformancemanagementService) { }
-
+  //Variable Declerations//
   countList: any;
   StaffID: any;
   EmployeeKradash: any;
@@ -25,14 +35,16 @@ export class HrDashboardComponent implements OnInit {
   managagerScore: any;
   currentUrl: any
   ngOnInit(): void {
+    //Variable Initialisation and Default Method Calls//
     this.currentUrl = window.location.href;
-
-    this.currentUrl = window.location.href;
-
-    this.GetAllCounts();
     this.StaffID = sessionStorage.getItem('EmaployedID');
+    this.GetAllCounts();
+    this.GetMyDetails();
+    this.GetConductappraisalStaffList();
+  }
 
-
+  //Method to Conducted Appraisal Details//
+  public GetConductappraisalStaffList() {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
         debugger
@@ -54,27 +66,10 @@ export class HrDashboardComponent implements OnInit {
         console.log("hr", this.hrSubmittedlist)
         this.hrSubmittedCount = this.hrSubmittedlist.length
 
-      }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting ConductappraisalStaffList');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
 
-    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
-      next: (res: any[]) => {
-        debugger
-        let temp: any = res
-        this.totalAppraisalList = res.filter((x: { cioScores: any; managerSubmittedDate: any; employeeSubmittedDate: any }) => x.cioScores != null && x.managerSubmittedDate != null && x.employeeSubmittedDate != null)
+        this.totalAppraisalList = data.filter((x: { cioScores: any; managerSubmittedDate: any; employeeSubmittedDate: any }) => x.cioScores != null && x.managerSubmittedDate != null && x.employeeSubmittedDate != null)
         this.totalAppraisalCount = this.totalAppraisalList.length;
+
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting ConductappraisalStaffList');
         // Insert error in Db Here//
@@ -89,7 +84,10 @@ export class HrDashboardComponent implements OnInit {
         )
       }
     })
+  }
 
+  //Method to get staff Details//
+  public GetMyDetails() {
     this.PerformanceManagementService.GetMyDetails().subscribe({
       next: data => {
         debugger
@@ -109,12 +107,10 @@ export class HrDashboardComponent implements OnInit {
         )
       }
     })
-
-
-
-
   }
 
+
+  //Method to get All Counts//
   public GetAllCounts() {
     debugger
     if (this.StaffID == undefined) {
@@ -158,5 +154,4 @@ export class HrDashboardComponent implements OnInit {
       })
     }
   }
-
 }

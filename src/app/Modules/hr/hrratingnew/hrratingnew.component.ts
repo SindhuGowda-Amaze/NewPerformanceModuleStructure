@@ -1,3 +1,12 @@
+//  Product :Digi PerformanceManagement System 1.0 
+// /Date : 1 March, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains Code to get staff, Conducted Appraisal and counts
+// --Last Modified Date : 28 July , 2022
+// --Last Modified Changes : Addedd Commets and Exception Handling Code
+// --Last Modified By : Sindhu, Madhav
+// --Copyrights : AmazeINC-Bangalore-2022
+
 import { Component, OnInit } from '@angular/core';
 import { PerformancemanagementService } from 'src/app/Pages/Services/performancemanagement.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,8 +21,9 @@ export class HrratingnewComponent implements OnInit {
 
 
   constructor(private PerformanceManagementService: PerformancemanagementService, private router: Router, private route: ActivatedRoute, private datepipe: DatePipe) { }
-
+  //Variable Declerations//
   stafflist: any;
+  empcommnts: any;
   term: any;
   p: any = 1;
   count1: any = 25;
@@ -25,7 +35,7 @@ export class HrratingnewComponent implements OnInit {
   count: any;
   attachment: any;
   description: any;
-
+  Staffkra: any;
   ParamID: any;
   EmployeeKradash: any
   StaffType: any;
@@ -40,11 +50,29 @@ export class HrratingnewComponent implements OnInit {
   HrSubmittedDate: any;
   hrattachment: any;
   appraislid: any;
+  list: any;
+  SelfComments: any;
+  kpiid: any;
+  Score: any;
+  ResultAreaID: any;
+  id: any;
+  managerattachment: any;
+  sbuattachment: any;
+  files: File[] = [];
+  attachmentsurl: any = []
+  managercomments: any;
+  sbucomments: any;
+  photoid: any;
+  show: any;
+  selfattachment: any;
+  sbuAttachment: any;
+
   ngOnInit(): void {
+    //Variable Initialisation and Default Method Calls//
     this.Score = 0;
     this.showbtn = false;
-
     this.HighScore();
+
     this.route.params.subscribe(params => {
       debugger;
       this.ParamID = params['id'];
@@ -81,11 +109,14 @@ export class HrratingnewComponent implements OnInit {
     );
   }
 
+
+  //Method to get Role//
   public getRoleType(event: any) {
     debugger
     this.RoleType = event.target.value;
   }
 
+  //Method to filter by role//
   public FilterRoleType() {
     debugger
     this.PerformanceManagementService.GetMyDetails().subscribe(data => {
@@ -93,9 +124,10 @@ export class HrratingnewComponent implements OnInit {
       this.stafflist = data.filter(x => x.roleType == this.RoleType);
       this.count = this.stafflist.length;
     });
-
   }
 
+
+  //Method to filter by Department//
   public filterByDepartment() {
     debugger
     this.PerformanceManagementService.GetMyDetails().subscribe(data => {
@@ -103,20 +135,19 @@ export class HrratingnewComponent implements OnInit {
       this.stafflist = data.filter(x => x.department == this.Department);
       this.count = this.stafflist.length;
     });
-
   }
-  Staffkra: any;
+
+
+
   public GetStaffKraDetails(details: any) {
     debugger
     this.PerformanceManagementService.GetEmployeeKraMap().subscribe(data => {
       debugger
       this.Staffkra = data.filter(x => x.staffName == details.staffid);
     });
-
   }
 
-  list: any;
-  SelfComments: any;
+
   public HighScore() {
     debugger
     this.PerformanceManagementService.GetHighScores().subscribe(data => {
@@ -124,19 +155,17 @@ export class HrratingnewComponent implements OnInit {
       this.list = data;
     })
   }
-  kpiid: any;
-  Score: any;
-  ResultAreaID: any;
-  id: any;
+
+
   public GetKPIID(details: any) {
     this.id = details.id;
     this.kpiid = details.kpiid;
     this.ResultAreaID = details.resultAreaID;
     this.Score = 0;
     this.SelfComments = '';
-
   }
 
+  //Method to Save HR Rating//
   public SaveDetails() {
     if (this.Score == undefined || this.SelfComments == undefined || this.Score == 0 || this.SelfComments == null) {
       Swal.fire("Please Enter the Mandatory Fields");
@@ -156,38 +185,33 @@ export class HrratingnewComponent implements OnInit {
       this.PerformanceManagementService.InsertStaffScoresByHR(entity).subscribe(data => {
         debugger
         Swal.fire("Saved Successfully");
-        // var entity1 = {
-        //   'SatffID': this.StaffID,
-        //   'StaffType': this.StaffID,
-        //   // 'Supervisor': this.appraisalList[this.q].Supervisor,
-        //   'ResultAreaID': this.ResultAreaID,
-        //   'PerformaceIndicatorID': this.kpiid,
-        //   'GroupHeadScores': this.Score,
-        //   'GroupHeadComments': this.SelfComments,
-        // }
-        // this.PerformanceManagementService.UpdateCIOStaffScores(entity1).subscribe(data => {
-        //   debugger
+        var entity1 = {
+          'SatffID': this.StaffID,
+          'StaffType': this.StaffID,
+          // 'Supervisor': this.appraisalList[this.q].Supervisor,
+          'ResultAreaID': this.ResultAreaID,
+          'PerformaceIndicatorID': this.kpiid,
+          'GroupHeadScores': this.Score,
+          'GroupHeadComments': this.SelfComments,
+        }
+        this.PerformanceManagementService.UpdateCIOStaffScores(entity1).subscribe(data => {
+          debugger
 
-        // })
+        })
         this.Score = 0;
         this.SelfComments = '';
         this.attachment = '';
         const element1 = document.getElementById('close');
         this.files.length = 0;
         if (element1 !== null) {
-
           element1.click();
-
         }
         this.ngOnInit();
-
       })
     }
-
   }
 
-  managerattachment: any;
-  sbuattachment: any;
+
   public GetKPIIDetails(details: any) {
     debugger
     this.PerformanceManagementService.GetEmployeeKraMap().subscribe(data => {
@@ -199,14 +223,12 @@ export class HrratingnewComponent implements OnInit {
       this.managerattachment = details.mPhoto;
       this.sbuattachment = details.sbuPhoto;
       this.attachment = details.hrattachment
-
     })
     this.photoid = details.id;
     this.id = details.id;
   }
 
-  files: File[] = [];
-  attachmentsurl: any = []
+  //Method to upload Attachment//
   onSelect(event: any) {
     console.log(event);
     this.attachmentsurl.length = 0
@@ -220,32 +242,32 @@ export class HrratingnewComponent implements OnInit {
         // alert('Attachment uploaded')
         // this.attachmentsurl.push(res);
         Swal.fire("Attachment uploaded Successfully");
-
       }
       debugger
     })
-
   }
-  empcommnts: any;
+
   onRemove(event: any) {
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
+
+//Methods to get Comments
+
   public GetEmpComments(detials: any) {
     this.empcommnts = detials.empcomments
   }
-  managercomments: any;
+
   public GEtmanagercomments(detials: any) {
     this.managercomments = detials.managercomments
   }
 
-  sbucomments: any;
   public GEtsbucomments(detials: any) {
     this.sbucomments = detials.sbuComments
   }
 
 
-
+  //Method to Update HR Rating //
   public UpdateDetails() {
     debugger
     var entity = {
@@ -265,17 +287,14 @@ export class HrratingnewComponent implements OnInit {
       const element1 = document.getElementById('close');
       this.files.length = 0;
       if (element1 !== null) {
-
         element1.click();
-
       }
       this.ngOnInit();
-
     })
   }
 
 
-
+  //Method to Submit Apprasal By HR//
   public SubmitHrAppraisal() {
     debugger
     Swal.fire({
@@ -299,32 +318,24 @@ export class HrratingnewComponent implements OnInit {
       }
     })
   }
-  photoid: any;
-  show: any;
-  selfattachment: any;
-  sbuAttachment: any;
+
+  //method to get Attachements//
   getattachment(details: any) {
-
-
     debugger
     this.attachment = details.photo;
     this.managerattachment = details.mPhoto;
     // this.selfattachment = details.photo;
     this.sbuAttachment = details.sbuPhoto;
     this.hrattachment = details.hPhoto;
-
-
-
   }
 
-
+  //method to update Attachment//
   update() {
     debugger
     var entity = {
       'ID': this.photoid,
       // 'Attachment': this.attachmentsurl[0]
       'Attachment': this.attachment
-
     }
     this.PerformanceManagementService.UpdateHrSelfAttachment(entity).subscribe(data => {
       debugger
@@ -335,21 +346,17 @@ export class HrratingnewComponent implements OnInit {
       this.PerformanceManagementService.GetKRAByStaffID(this.StaffID).subscribe(data => {
         debugger
         this.ResultAreaList = data.filter((x: { managerSubmittedDate: any; employeeSubmittedDate: any; appraiselID: any; }) => x.managerSubmittedDate != null && x.employeeSubmittedDate != null && x.appraiselID == this.appraislid);
-
-
         console.log("Result area", this.ResultAreaList);
-
       })
-
     })
-
   }
+
+  //method to cancel rating//
   cancel() {
-    location.href = "/Selfratingnew";
+    location.href = "/shared/Selfratingnew";
   }
 
-
-
+  //method to get description//
   view(desc: any) {
     this.description = desc;
   }
