@@ -1,3 +1,12 @@
+//  Product :Digi PerformanceManagement System 1.0 
+// /Date : 1 March, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains get data from GetAppraisalCycle,GetRoleType,GetMyDetails,EmployeeKraMap ,LearningAndDevelopement,Staff,in open Window 
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
 import { Component, OnInit } from '@angular/core';
 import { PerformancemanagementService } from 'src/app/Pages/Services/performancemanagement.service';
 import Swal from 'sweetalert2';
@@ -7,9 +16,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./pipreport.component.css']
 })
 export class PIPReportComponent implements OnInit {
-
-
   constructor(private PerformanceManagementService: PerformancemanagementService) { }
+  //Variable Declaration
   count: any;
   roleTypeList: any;
   roleTypeid: any;
@@ -45,9 +53,12 @@ export class PIPReportComponent implements OnInit {
   empComments: any;
   submitted: any;
   currentUrl: any
-
   viewMode = 'tab1';
+  RemovedFromPIPList: any;
+  RelivedfromOrgPIPList: any;
+
   ngOnInit(): void {
+    //Variable Initialisation and Default Method Calls//
     this.currentUrl = window.location.href;
     this.Type = "Select Type"
     this.Score = "0"
@@ -92,7 +103,7 @@ export class PIPReportComponent implements OnInit {
     this.pipActionID = details.id
   }
 
-
+//Method to get ConductappraisalStaffList from staff Table 
   public ConductappraisalStaffList() {
     this.PerformanceManagementService.GetConductappraisalStaffListforpip().subscribe({
       next: res => {
@@ -127,7 +138,7 @@ export class PIPReportComponent implements OnInit {
       }
     })
   }
-  RemovedFromPIPList: any;
+//Method to  Get PiPActionItemsForStaff from PiPActionItemsForStaff
   public GetPiPActionItemsForStaff() {
     this.PerformanceManagementService.GetPiPActionItemsForStaff().subscribe({
       next: res => {
@@ -151,7 +162,7 @@ export class PIPReportComponent implements OnInit {
     })
   }
 
-  RelivedfromOrgPIPList: any;
+  
   public GetStaffExitFormality() {
     this.PerformanceManagementService.GetStaffExitFormality().subscribe({
       next: res => {
@@ -178,7 +189,7 @@ export class PIPReportComponent implements OnInit {
 
 
 
-
+//Metho to update ReAppraisalHRrating from PiPActionItemsForStaff Table
   update() {
     debugger
     if (this.Score == undefined || this.Score == 0) {
@@ -217,7 +228,7 @@ export class PIPReportComponent implements OnInit {
     this.submitted = 1
   }
 
-
+//Method to get Score from  HighScores Table 
   public HighScore() {
     debugger
     this.PerformanceManagementService.GetHighScores().subscribe({
@@ -294,6 +305,7 @@ export class PIPReportComponent implements OnInit {
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
+  //Method to uploadattachments from ProjectAttachments
   public uploadattachments() {
     debugger
     this.PerformanceManagementService.ProjectAttachments(this.files).subscribe({
@@ -316,7 +328,7 @@ export class PIPReportComponent implements OnInit {
       }
     })
   }
-
+//method to UpdatePipEmployeeKraMap in EmployeeKraMap
   public UpdatePipEmployeeKraMap() {
     debugger
     if (this.empComments == undefined || this.empComments == 0) {

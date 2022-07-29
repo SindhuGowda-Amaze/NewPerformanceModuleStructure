@@ -1,16 +1,23 @@
+//  Product :Digi PerformanceManagement System 1.0 
+// /Date : 1 March, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains get data from GetMyDetails,GetDepartment,GetConductappraisalStaffList,GetAppraisalCycle,GetKraMaster,GetStaffKraDetails in open Window 
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
 import { Component, OnInit } from '@angular/core';
 import { PerformancemanagementService } from 'src/app/Pages/Services/performancemanagement.service';
 import Swal from 'sweetalert2';
-
 @Component({
   selector: 'app-managerratingdash',
   templateUrl: './managerratingdash.component.html',
   styleUrls: ['./managerratingdash.component.css']
 })
 export class ManagerratingdashComponent implements OnInit {
-
   constructor(private PerformanceManagementService: PerformancemanagementService) { }
-
+  //variable Declaration 
   stafflist: any;
   term: any;
   p: any = 1;
@@ -28,17 +35,24 @@ export class ManagerratingdashComponent implements OnInit {
   eDate: any;
   appraisalCycleName: any
   staffID: any;
-
   EmployeeKradash: any
   currentUrl: any
+  Staffkra: any;
 
   ngOnInit(): void {
+    //Variable Initialisation and Default Method Calls//
+    this.GetMyDetails();
+    this.GetDepartment();
+    this.GetConductappraisalStaffList();
+    this.GetAppraisalCycle();
     this.currentUrl = window.location.href;
     this.staffID = sessionStorage.getItem('EmaployedID');
-
     this.appraisalCycleName = 0;
     this.Department = "";
     this.RoleType = "";
+  }
+  //Method to get stafflist,stafflistCopy from Mydetails table
+  public GetMyDetails() {
     this.PerformanceManagementService.GetMyDetails().subscribe({
       next: data => {
         debugger
@@ -58,7 +72,10 @@ export class ManagerratingdashComponent implements OnInit {
         )
       }
     })
+  }
 
+  //Method to get Departmentlist from Department table
+  public GetDepartment() {
     this.PerformanceManagementService.GetDepartment().subscribe({
       next: data => {
         debugger
@@ -78,7 +95,10 @@ export class ManagerratingdashComponent implements OnInit {
         )
       }
     })
+  }
 
+  //Method to get ConductappraisalStaffList from ConductappraisalStaffList table
+  public GetConductappraisalStaffList() {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
         debugger
@@ -98,7 +118,10 @@ export class ManagerratingdashComponent implements OnInit {
         )
       }
     })
+  }
 
+  //Method to get AppraisalCycle from AppraisalCycle table
+  public GetAppraisalCycle() {
     this.PerformanceManagementService.GetAppraisalCycle().subscribe({
       next: data => {
         debugger
@@ -118,14 +141,13 @@ export class ManagerratingdashComponent implements OnInit {
         )
       }
     })
-
   }
 
   public getRoleType(event: any) {
     debugger
     this.RoleType = event.target.value;
   }
-
+  //Method to FilterRoleType in MyDetails table
   public FilterRoleType() {
     debugger
     this.PerformanceManagementService.GetMyDetails().subscribe({
@@ -149,7 +171,7 @@ export class ManagerratingdashComponent implements OnInit {
     })
 
   }
-
+  //Method to filterByDepartment in MyDetails table
   public filterByDepartment() {
     debugger
     this.PerformanceManagementService.GetMyDetails().subscribe({
@@ -173,7 +195,8 @@ export class ManagerratingdashComponent implements OnInit {
     })
 
   }
-  Staffkra: any;
+
+  //Method to get StaffKraDetails from EmployeeKraMap Table
   public GetStaffKraDetails(details: any) {
     debugger
     this.PerformanceManagementService.GetEmployeeKraMap().subscribe({
@@ -197,7 +220,7 @@ export class ManagerratingdashComponent implements OnInit {
     })
 
   }
-
+  //Method to get AppraisalCycle from AppraisalCycle table
   public GetApprisalcycle(event: any) {
     debugger
     this.PerformanceManagementService.GetAppraisalCycle().subscribe({
@@ -223,7 +246,7 @@ export class ManagerratingdashComponent implements OnInit {
       }
     })
   }
-
+  //Method to FilteredAppraisalCycle from ConductappraisalStaffList Table
   public GetFilteredAppraisalCycle() {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {

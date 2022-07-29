@@ -1,3 +1,12 @@
+//  Product :Digi PerformanceManagement System 1.0 
+// /Date : 1 March, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains get data from GetAppraisalCycle,GetRoleType,GetMyDetails,EmployeeKraMap ,LearningAndDevelopement,Staff,in open Window 
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
 import { Component, OnInit } from '@angular/core';
 import { PerformancemanagementService } from 'src/app/Pages/Services/performancemanagement.service';
 import Swal from 'sweetalert2';
@@ -9,6 +18,7 @@ import Swal from 'sweetalert2';
 export class PipComponent implements OnInit {
 
   constructor(private PerformanceManagementService: PerformancemanagementService) { }
+  //variable Declaration
   count: any;
   roleTypeList: any;
   roleTypeid: any;
@@ -44,13 +54,17 @@ export class PipComponent implements OnInit {
   empComments: any;
   submitted: any;
   currentUrl: any
+  StaffPIPActionItemList1: any;
+  PipComments: any;
+  PipAttachment: any;
 
 
-  ngOnInit(): void {
+  ngOnInit(): void 
+  {
+    //Variable Initialisation and Default Method Calls//
     this.currentUrl = window.location.href;
     this.Type = "Select Type"
     this.Score = "0"
-
     this.StaffID = sessionStorage.getItem('EmaployedID')
     this.roleid = sessionStorage.getItem('roleid');
     // this.GetMyDetails();
@@ -59,7 +73,6 @@ export class PipComponent implements OnInit {
     this.HighScore();
     this.employee = 0;
     this.dumpmanagerList = 0;
-
   }
 
   public ViewScores(event: any) {
@@ -90,8 +103,8 @@ export class PipComponent implements OnInit {
   public getpipActionID(details: any) {
     this.pipActionID = details.id
   }
-  StaffPIPActionItemList1: any;
 
+//Method to get ConductappraisalStaffList from Staff table
   public ConductappraisalStaffList() {
     this.PerformanceManagementService.GetConductappraisalStaffListforpip().subscribe({
       next: (res: any[]) => {
@@ -128,8 +141,7 @@ export class PipComponent implements OnInit {
     })
   }
 
-  PipComments: any;
-  PipAttachment: any;
+//Method to get PiPActionItemsForStaff from LearningAndDevelopement Table
   public GetPiPActionItemsForStaff() {
     this.PerformanceManagementService.GetPiPActionItemsForStaff().subscribe({
       next: res => {
@@ -157,7 +169,7 @@ export class PipComponent implements OnInit {
   }
 
 
-
+// Method to updata data in PiPActionItemsForStaff
   update() {
     debugger
     if (this.Score == undefined || this.Score == 0) {
@@ -195,7 +207,7 @@ export class PipComponent implements OnInit {
     this.submitted = 1
   }
 
-
+//Method to get data HighScore from HighScore Table 
   public HighScore() {
     debugger
     this.PerformanceManagementService.GetHighScores().subscribe({
@@ -269,6 +281,7 @@ export class PipComponent implements OnInit {
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
+  //Method to uploadattachments from ProjectAttachments
   public uploadattachments() {
     debugger
     this.PerformanceManagementService.ProjectAttachments(this.files).subscribe({
@@ -291,7 +304,7 @@ export class PipComponent implements OnInit {
       }
     })
   }
-
+//method to get comments from EmployeeKraMap Table
   public UpdatePipEmployeeKraMap() {
     debugger
     if (this.empComments == undefined || this.empComments == 0) {
