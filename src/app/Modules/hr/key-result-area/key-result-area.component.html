@@ -39,7 +39,7 @@
     <div class="row">
         <div class="col-lg-11"></div>
         <div class="col-lg-1">
-            <button class="form-control edit1" routerLink="/KeyResultAresForm">Add</button>
+            <button class="form-control edit1" routerLink="/hr/KeyResultAreaForm">Add</button>
         </div>
     </div> <br>
  
@@ -63,7 +63,7 @@
                             <td>{{details.description}}</td>
                             <td>
                                 <button class="form-control edit"
-                                    [routerLink]="['/KeyResultAresForm', details.id]">Edit</button>
+                                    [routerLink]="['/hr/KeyResultAreaForm', details.id]">Edit</button>
                                 <button class="form-control edit" (click)="delete(details.id)">Delete</button>
                             </td>
                         </tr>
