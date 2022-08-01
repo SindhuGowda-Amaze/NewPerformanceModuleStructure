@@ -1,7 +1,7 @@
 //  Product :Digi PerformanceManagement System 1.0 
 // /Date : 1 March, 2022
 // --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
-// --Description :This page contains get data from GetAppraisalCycle,GetRoleType,GetMyDetails in open Window 
+// --Description :This page contains get data from GetMyDetails,GetDepartment,GetConductappraisalStaffList,GetAppraisalCycle,GetKraMaster,GetStaffKraDetails in open Window 
 // --Last Modified Date : 26 July , 2022
 // --Last Modified Changes :   Added comments
 // --Last Modified By : Manikanta
@@ -26,7 +26,6 @@ import Swal from 'sweetalert2';
 export class EmployeeKraMappingdashboardComponent implements OnInit {
   constructor(private PerformanceManagementService: PerformancemanagementService) { }
   //variable declaration
-
   kpiid: any;
   ID: any;
   stafflist: any;
@@ -46,20 +45,18 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
   StaffID: any;
   search: any;
   EmployeeKradash: any
-
   Apprisalcyclelist: any;
   AppraisalSubmitionDate: any;
   sDate: any;
   eDate: any;
   appraisalCycleName: any
-
-
   kratypeid: any;
   dropdownList1: any;
   GoalTypelist: any;
   kpilist: any;
   kpitypelist: any;
   currentUrl: any
+  Staffkra: any; 
 
   ngOnInit(): void {
     //Variable Initialisation and Default Method Calls//
@@ -82,7 +79,7 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
     this.appraisalCycleName = 0;
 
   }
-
+//Method to get stafflist,stafflistCopy from Mydetails table
   public GetMyDetails(){
     this.PerformanceManagementService.GetMyDetails().subscribe({
       next: data => {
@@ -105,7 +102,7 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
     })
   }
 
-
+//Method to get Departmentlist from Department table
   public GetDepartment(){
     this.PerformanceManagementService.GetDepartment().subscribe({
       next: data => {
@@ -128,7 +125,7 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
 
   }
 
-
+//Method to get ConductappraisalStaffList from ConductappraisalStaffList table
   public GetConductappraisalStaffList(){
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
@@ -153,7 +150,7 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
 
   }
 
-
+//Method to get AppraisalCycle from AppraisalCycle table
   public GetAppraisalCycle(){
     this.PerformanceManagementService.GetAppraisalCycle().subscribe({
       next: data => {
@@ -263,7 +260,7 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
     debugger
     this.RoleType = event.target.value;
   }
-
+//Method Filter RoleType in MyDetails Table
   public FilterRoleType() {
     debugger
     this.PerformanceManagementService.GetMyDetails().subscribe({
@@ -287,7 +284,7 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
     })
 
   }
-
+//Method filter ByDepartment in MyDetails Table
   public filterByDepartment() {
     debugger
     this.PerformanceManagementService.GetMyDetails().subscribe({
@@ -311,7 +308,7 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
     })
 
   }
-  Staffkra: any;
+ //Method to get StaffKraDetails from EmployeeKraMap Table
   public GetStaffKraDetails(details: any) {
     debugger
     this.PerformanceManagementService.GetEmployeeKraMap()
@@ -339,7 +336,7 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
   }
 
 
-
+//Method to get keyResultArea from KeyResultArea
   public GetKeyResultArea() {
     debugger
     this.PerformanceManagementService.GetKeyResultArea().subscribe({
@@ -378,7 +375,7 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
   }
 
 
-
+  //Method to get AppraisalCycle from AppraisalCycle table
   public GetApprisalcycle(event: any) {
     debugger
     this.PerformanceManagementService.GetAppraisalCycle().subscribe({
@@ -404,7 +401,7 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
       }
     })
   }
-
+  //Method to get data FilteredAppraisalCycle from AppraisalCycle table
   public GetFilteredAppraisalCycle() {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
@@ -426,7 +423,7 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
       }
     })
   }
-
+//Method to edit data in KeyResultArea Table
   edit(details: any) {
     debugger
     this.kraid = details.kraid;
@@ -474,7 +471,7 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
     })
   }
 
-
+//Method to update data in kranew
   update() {
     debugger
     var entity = {

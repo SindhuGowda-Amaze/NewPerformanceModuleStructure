@@ -1,3 +1,12 @@
+//  Product :Digi PerformanceManagement System 1.0 
+// /Date : 1 March, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains get data from GetAppraisalCycle,GetRoleType,GetMyDetails in open Window 
+// --Last Modified Date : 26 July , 2022
+// --Last Modified Changes :   Added comments
+// --Last Modified By : Manikanta
+// --Copyrights : AmazeINC-Bangalore-2022
+
 import { Component, OnInit } from '@angular/core';
 import { PerformancemanagementService } from 'src/app/Pages/Services/performancemanagement.service';
 import Swal from 'sweetalert2';
@@ -7,9 +16,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./manager-dashboard.component.css']
 })
 export class ManagerDashboardComponent implements OnInit {
-
-
   constructor(private PerformanceManagementService: PerformancemanagementService) { }
+  //variable Declration 
   StaffID: any;
   countList: any;
   EmployeeKradash: any;
@@ -25,12 +33,17 @@ export class ManagerDashboardComponent implements OnInit {
   sbuSubmittedlist: any;
   sbuSubmittedCount: any;
   currentUrl: any
+
   ngOnInit(): void {
+ //Variable Initialisation and Default Method Calls//
+    this.GetConductappraisalStaffList();
+    this.GetMyDetails();
     this.currentUrl = window.location.href;
-
     this.StaffID = sessionStorage.getItem('EmaployedID');
-
-    this.GetAllCounts();
+   this.GetAllCounts();
+  }
+//Method to get ConductappraisalStaffList from appraisalStaffList table
+  public GetConductappraisalStaffList(){
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
         debugger
@@ -70,8 +83,9 @@ export class ManagerDashboardComponent implements OnInit {
       }
     })
 
-
-
+  }
+//Method to get data from MyDetails table
+  public GetMyDetails(){
     this.PerformanceManagementService.GetMyDetails().subscribe({
       next: data => {
         debugger
@@ -91,11 +105,10 @@ export class ManagerDashboardComponent implements OnInit {
         )
       }
     })
-
   }
 
 
-
+//Method to get countlist from AllCounts
   public GetAllCounts() {
     debugger
     if (this.StaffID == undefined) {

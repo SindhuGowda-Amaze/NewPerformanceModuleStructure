@@ -1,3 +1,13 @@
+
+//  Product :Digi PerformanceManagement System 1.0
+// /Date : 1 March, 2022
+// --Author :Prasanth,Praveen,Sindhu,Anusha,Madhava,Manikanta
+// --Description :This page contains Displaying the Data from GetMyDetails & GetDepartment,Displaying the Data from GetConductappraisalStaffList, Displaying the Count.
+// --Last Modified Date : 28 July , 2022
+// --Last Modified Changes : Addedd Commets and Exception Handling Code
+// --Last Modified By : Manikanta, Sindhu, Madhav
+// --Copyrights : AmazeINC-Bangalore-2022
+
 import { Component, OnInit } from '@angular/core';
 import { PerformancemanagementService } from 'src/app/Pages/Services/performancemanagement.service';
 import Swal from 'sweetalert2';
@@ -9,9 +19,12 @@ import Swal from 'sweetalert2';
 })
 export class MyApprasailComponent implements OnInit {
 
+ // variables decleartions//
+
   stafflist: any;
   term: any;
   p: any = 1;
+  Staffkra: any;
   count1: any = 10;
   stafflistCopy: any;
   Departmentlist: any;
@@ -28,11 +41,15 @@ export class MyApprasailComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.currentUrl = window.location.href;
+
+      //Variable Initialisation and Default Method Calls//
+
+ 
     this.GetMyDetails();
     this.GetDepartment();
     this.GetConductappraisalStaffList();
 
+    this.currentUrl = window.location.href;
     this.Department = "";
     this.RoleType = "";
     this.roleid = sessionStorage.getItem('roleid');
@@ -43,6 +60,7 @@ export class MyApprasailComponent implements OnInit {
   }
 
 
+ //Method to Displaying the Data & Count from GetMyDetails Table//
 
  public GetMyDetails(){
 
@@ -71,6 +89,8 @@ export class MyApprasailComponent implements OnInit {
 
   }
 
+   //Method to Displaying the Data from GetDepartment Table//
+
   public GetDepartment(){
 
     this.PerformanceManagementService.GetDepartment()
@@ -97,6 +117,8 @@ export class MyApprasailComponent implements OnInit {
 
 
   }
+
+  //Method to Displaying the Data from GetConductappraisalStaffList Table//
 
   public GetConductappraisalStaffList(){
     this.PerformanceManagementService.GetConductappraisalStaffList()
@@ -130,6 +152,8 @@ export class MyApprasailComponent implements OnInit {
     this.RoleType = event.target.value;
   }
 
+  //Method to Displaying the Data from GetMyDetails Table//
+
   public FilterRoleType() {
     debugger
     this.PerformanceManagementService.GetMyDetails()
@@ -158,6 +182,8 @@ export class MyApprasailComponent implements OnInit {
 
   }
 
+    //Method to Displaying the Data from GetMyDetails Table//
+
   public filterByDepartment() {
     debugger
     this.PerformanceManagementService.GetMyDetails()
@@ -185,7 +211,10 @@ export class MyApprasailComponent implements OnInit {
 
 
   }
-  Staffkra: any;
+
+  
+    //Method to Displaying the Data from GetEmployeeKraMap Table//
+    
   public GetStaffKraDetails(details: any) {
     debugger
     this.PerformanceManagementService.GetEmployeeKraMap()
