@@ -152,7 +152,7 @@ export class KeyPerformaceIndicatorformComponent implements OnInit {
       next: data => {
         debugger
         Swal.fire("Successfully Submitted...!");
-        location.href = "#/hr/KeyPerformanceIndicator"
+        location.href = "#/hr/KeyPerformaceIndicator"
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Inserting KPI');
         // Insert error in Db Here//
@@ -185,7 +185,7 @@ export class KeyPerformaceIndicatorformComponent implements OnInit {
         debugger
         let indicatorlist = data;
         Swal.fire("Updated Successfully");
-        location.href = "#/KeyPerformanceIndicator";
+        location.href = "#/hr/KeyPerformaceIndicator";
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Updating KPI');
         // Insert error in Db Here//

@@ -134,7 +134,7 @@ export class KeyResultAreaFormComponent implements OnInit {
           let kratypelist = data;
           Swal.fire("Successfully Submitted...!");
           this.tablecount = 0;
-          location.href = "#/KeyResultArea";
+          location.href = "#/hr/KeyResultArea";
           console.log("kralist", this.kratypelist);
         })
     }

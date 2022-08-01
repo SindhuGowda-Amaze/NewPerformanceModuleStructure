@@ -34,7 +34,7 @@ const routes: Routes = [{ path: '', component: HrComponent },
 
 {path:'KeyPerformaceIndicator',component:KeyPerformaceIndicatorComponent},
 {path:'KeyPerformaceIndicatorform',component:KeyPerformaceIndicatorformComponent},
-{path:'KeyPerformaceIndicatorform?:id',component:KeyPerformaceIndicatorformComponent},
+{path:'KeyPerformaceIndicatorform/:id',component:KeyPerformaceIndicatorformComponent},
 
 {path:'KeyResultArea',component:KeyResultAreaComponent},
 {path:'KeyResultAreaForm',component:KeyResultAreaFormComponent},
