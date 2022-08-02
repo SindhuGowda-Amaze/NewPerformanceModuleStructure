@@ -35,19 +35,20 @@ export class KeyPerformaceIndicatorformComponent implements OnInit {
   ngOnInit(): void {
     this.currentUrl = window.location.href;
     this.kraid = 0;
-    this.GetKPI();
-    this.GetKeyResultArea();
-    this.GetPerformanceIndicatorMaster();
-    this.GetKraMaster();
     this.goaltypeid = "";
+ 
 
     this.ActivatedRoute.params.subscribe(params => {
       this.id = params['id'];
       if (this.id != undefined && this.id != null) {
         this.GetKPI();
+        
       }
     })
     this.performanceIndicatorId = 0;
+    this.GetKeyResultArea();
+   
+    this.GetKraMaster();
   }
 
 
@@ -116,28 +117,6 @@ export class KeyPerformaceIndicatorformComponent implements OnInit {
     this.indicatorid = even.target.value;
   }
 
-
-  public GetPerformanceIndicatorMaster() {
-    this.PerformanceManagementService.GetPerformanceIndicatorMaster().subscribe({
-      next: data => {
-        debugger
-        this.performancelist = data;
-        console.log("performancetype", this.performancelist);
-      }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting PerformanceIndicatorMaster');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
-  }
 
   save() {
     var json = {
