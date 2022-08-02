@@ -81,6 +81,7 @@ export class ManagerAppraisalComponent implements OnInit {
 
 //Method to get StaffID from 
   public GetKRAByStaffID(){
+    debugger
     this.PerformanceManagementService.GetKRAByStaffID(this.StaffID).subscribe({
       next: data => {
         debugger

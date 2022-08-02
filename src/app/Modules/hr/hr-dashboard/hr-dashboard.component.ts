@@ -37,8 +37,9 @@ export class HrDashboardComponent implements OnInit {
   ngOnInit(): void {
     //Variable Initialisation and Default Method Calls//
     this.currentUrl = window.location.href;
-    this.StaffID = sessionStorage.getItem('EmaployedID');
     this.GetAllCounts();
+    this.StaffID = sessionStorage.getItem('EmaployedID');
+    
     this.GetMyDetails();
     this.GetConductappraisalStaffList();
   }
