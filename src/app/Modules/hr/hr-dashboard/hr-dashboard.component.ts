@@ -40,7 +40,7 @@ export class HrDashboardComponent implements OnInit {
     this.currentUrl = window.location.href;
     this.GetAllCounts();
     this.StaffID = sessionStorage.getItem('EmaployedID');
-
+  
     this.GetMyDetails();
     this.GetConductappraisalStaffList();
     
