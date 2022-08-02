@@ -75,9 +75,7 @@ export class SbuappraisalComponent implements OnInit {
   ngOnInit(): void {
     //Variable Initialisation and Default Method Calls//
 
-    this.GetKRAByStaffID();
-    this.HighScore();
-    this.GetKRAByStaffID();
+    
 
     this.currentUrl = window.location.href;
     this.Score = 0;
@@ -95,6 +93,10 @@ export class SbuappraisalComponent implements OnInit {
         // this.GetStaffAppraisalByID(this.ParamID);
       }
     });
+
+    this.GetKRAByStaffID();
+    this.HighScore();
+    this.GetKRAByStaffID();
   }
 
   //Method to Displaying the Data from GetKRAByStaffID Table//
