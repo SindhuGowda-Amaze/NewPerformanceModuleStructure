@@ -42,6 +42,7 @@ export class SalaryincrementletterDashComponent implements OnInit {
   Type: any;
   staffid: any;
   ngOnInit(): void {
+    this.GetMyDetailsForReiewRating();
     this.currentUrl = window.location.href;
 
     this.staffID = sessionStorage.getItem('EmaployedID');
@@ -51,6 +52,7 @@ export class SalaryincrementletterDashComponent implements OnInit {
     this.appraisalCycleName = 0;
     this.Department = "";
     this.RoleType = "";
+    
     this.PerformanceManagementService.GetMyDetails().subscribe({
       next: data => {
         debugger
@@ -72,25 +74,7 @@ export class SalaryincrementletterDashComponent implements OnInit {
     })
 
 
-    this.PerformanceManagementService.GetMyDetailsForReiewRating().subscribe({
-      next: data => {
-        debugger
-        this.stafflist1 = data.filter(x => x.salaryIncrement == 1);
-        this.stafflistCopy = this.stafflist
-      }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting MyDetailsForReiewRating');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
+    
 
 
     this.PerformanceManagementService.GetDepartment().subscribe({
@@ -177,6 +161,29 @@ export class SalaryincrementletterDashComponent implements OnInit {
 
 
   }
+public GetMyDetailsForReiewRating(){
+  debugger
+  this.PerformanceManagementService.GetMyDetailsForReiewRating().subscribe({
+    next: data => {
+      debugger
+      this.stafflist1 = data.filter(x => x.salaryIncrement == 1);
+      this.stafflistCopy = this.stafflist
+    }, error: (err: { error: { message: any; }; }) => {
+      Swal.fire('Issue in Getting MyDetailsForReiewRating');
+      // Insert error in Db Here//
+      var obj = {
+        'PageName': this.currentUrl,
+        'ErrorMessage': err.error.message
+      }
+      this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+        data => {
+          debugger
+        },
+      )
+    }
+  })
+}
+  
 
   public getRoleType(event: any) {
     debugger
