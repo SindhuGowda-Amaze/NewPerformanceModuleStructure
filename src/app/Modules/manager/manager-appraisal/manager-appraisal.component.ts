@@ -61,12 +61,8 @@ export class ManagerAppraisalComponent implements OnInit {
   ngOnInit(): void 
   {
      //Variable Initialisation and Default Method Calls//
-    this.GetKRAByStaffID();
-    this.currentUrl = window.location.href;
-    this.Score = 0;
-    this.showbtn = false;
-    this.showbtn1 = false;
-    this.HighScore();
+
+  
     this.route.params.subscribe(params => {
       debugger;
       this.ParamID = params['id'];
@@ -77,9 +73,15 @@ export class ManagerAppraisalComponent implements OnInit {
       }
     }
     );
+    this.GetKRAByStaffID();
+    this.currentUrl = window.location.href;
+    this.Score = 0;
+    this.showbtn = false;
+    this.showbtn1 = false;
+    this.HighScore();
   }
 
-//Method to get StaffID from 
+//Method to get StaffID from KRA Table// 
   public GetKRAByStaffID(){
     debugger
     this.PerformanceManagementService.GetKRAByStaffID(this.StaffID).subscribe({

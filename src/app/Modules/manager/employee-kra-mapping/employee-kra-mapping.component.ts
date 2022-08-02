@@ -373,7 +373,7 @@ public GetMyDetails(){
       this.InsertNotification();
       Swal.fire('Goal Setting Done Successfully.');
       location.href = "#/manager/EmployeeKraMappingdashboard";
-      this.ngOnInit();
+     location.reload();
     }
 
 
