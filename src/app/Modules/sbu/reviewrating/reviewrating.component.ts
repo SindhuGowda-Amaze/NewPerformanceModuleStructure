@@ -108,6 +108,7 @@ export class ReviewratingComponent implements OnInit {
 
 
   public GetMyDetailsForReiewRating() {
+    debugger;
     this.PerformanceManagementService.GetMyDetailsForReiewRating().subscribe({
       next: (data) => {
         debugger;
@@ -392,8 +393,8 @@ export class ReviewratingComponent implements OnInit {
         this.BaseSal = temp[0].baseSal;
       },
       error: (err) => {
-        Swal.fire('Issue in Getting MyDetailsForReiewRating');
-        // Insert error in Db Here//
+        // Swal.fire('Issue in Getting MyDetailsForReiewRating');
+        
         var obj = {
           PageName: this.currentUrl,
           ErrorMessage: err.error.message,

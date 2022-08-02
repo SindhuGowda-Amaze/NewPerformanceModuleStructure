@@ -32,7 +32,8 @@ export class ManagerDashboardComponent implements OnInit {
   employeCount: any;
   sbuSubmittedlist: any;
   sbuSubmittedCount: any;
-  currentUrl: any
+  currentUrl: any  
+  Count : any
 
   ngOnInit(): void {
  //Variable Initialisation and Default Method Calls//

@@ -38,11 +38,12 @@ export class HrDashboardComponent implements OnInit {
     debugger
     //Variable Initialisation and Default Method Calls//
     this.currentUrl = window.location.href;
+    this.GetAllCounts();
     this.StaffID = sessionStorage.getItem('EmaployedID');
 
     this.GetMyDetails();
     this.GetConductappraisalStaffList();
-    this.GetAllCounts();
+    
   }
 
   //Method to Conducted Appraisal Details//
