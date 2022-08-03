@@ -74,8 +74,7 @@ export class SelfratingnewComponentComponent implements OnInit {
   ngOnInit(): void {
     //Variable Initialisation and Default Method Calls//
 
-    this.HighScore();
-    this.GetKRAByStaffID();
+
     this.Score = 0;
     this.showbtn = false;
     this.currentUrl = window.location.href;
@@ -91,6 +90,9 @@ export class SelfratingnewComponentComponent implements OnInit {
         // this.GetStaffAppraisalByID(this.ParamID);
       }
     });
+
+    this.HighScore();
+    this.GetKRAByStaffID();
   }
 
   //Method to Displaying the Data from GetKRAByStaffID Table//

@@ -35,12 +35,15 @@ export class HrDashboardComponent implements OnInit {
   managagerScore: any;
   currentUrl: any
   ngOnInit(): void {
+    debugger
     //Variable Initialisation and Default Method Calls//
     this.currentUrl = window.location.href;
-    this.StaffID = sessionStorage.getItem('EmaployedID');
     this.GetAllCounts();
+    this.StaffID = sessionStorage.getItem('EmaployedID');
+  
     this.GetMyDetails();
     this.GetConductappraisalStaffList();
+    
   }
 
   //Method to Conducted Appraisal Details//
@@ -137,9 +140,15 @@ export class HrDashboardComponent implements OnInit {
       this.PerformanceManagementService.GetAllCounts(2, this.StaffID).subscribe({
         next: data => {
           debugger
+<<<<<<< HEAD
           this.countList = data[0];
         }, error: (err: { error: { message: any; }; }) => {
          // Swal.fire('Issue in Getting AllCounts');
+=======
+          this.countList = data;
+        }, error: (err) => {
+          Swal.fire('Issue in Getting AllCounts');
+>>>>>>> e00fa4473529d0353c8225ca70f89a0970aeef8c
           // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,

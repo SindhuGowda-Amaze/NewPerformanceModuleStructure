@@ -32,15 +32,18 @@ export class ManagerDashboardComponent implements OnInit {
   employeCount: any;
   sbuSubmittedlist: any;
   sbuSubmittedCount: any;
-  currentUrl: any
+  currentUrl: any  
+  Count : any
 
   ngOnInit(): void {
  //Variable Initialisation and Default Method Calls//
-    this.GetConductappraisalStaffList();
-    this.GetMyDetails();
+   
     this.currentUrl = window.location.href;
+    this.GetAllCounts();
     this.StaffID = sessionStorage.getItem('EmaployedID');
-   this.GetAllCounts();
+   
+   this.GetConductappraisalStaffList();
+   this.GetMyDetails();
   }
 //Method to get ConductappraisalStaffList from appraisalStaffList table
   public GetConductappraisalStaffList(){
@@ -111,16 +114,16 @@ export class ManagerDashboardComponent implements OnInit {
 //Method to get countlist from AllCounts
   public GetAllCounts() {
     debugger
-    if (this.StaffID == undefined) {
+    if (this.StaffID == undefined) { 
       debugger
       this.PerformanceManagementService.GetAllCounts(1, 1).subscribe({
         next: data => {
           debugger
-          (data: any[]) => {
+      
             this.countList = data[0];
-          }
+          
         }, error: (err: { error: { message: any; }; }) => {
-          // Swal.fire('Issue in Getting AllCounts');
+          Swal.fire('Issue in Getting AllCounts');
           // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,
@@ -139,10 +142,10 @@ export class ManagerDashboardComponent implements OnInit {
         next: data => {
           debugger
           (data: any[]) => {
-            this.countList = data[0];
+            this.countList = data;
           }
         }, error: (err) => {
-          // Swal.fire('Issue in Getting AllCounts');
+          Swal.fire('Issue in Getting AllCounts');
           // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,

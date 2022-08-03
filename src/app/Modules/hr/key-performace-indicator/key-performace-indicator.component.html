@@ -32,7 +32,7 @@
     <div class="row">
         <div class="col-lg-11"></div>
         <div class="col-lg-1">
-            <button class="form-control Add" routerLink="/hr/KeyPerformanceIndicatorform">Add</button>
+            <button class="form-control Add" routerLink="/hr/KeyPerformaceIndicatorform">Add</button>
         </div>
     </div> <br>
  
@@ -55,7 +55,7 @@
                             <td>{{details.kpiName}}</td>
                             <td>{{details.description}}</td>
                             <td>
-                                <button class="form-control edit" [routerLink]="['/KeyPerformanceIndicatorform', details.id]" >Edit</button>
+                                <button class="form-control edit" [routerLink]="['/hr/KeyPerformaceIndicatorform', details.id]" >Edit</button>
                                 <button class="form-control edit" (click)="delete(details.id)">Delete</button>
                             </td>
                         </tr>

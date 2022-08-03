@@ -55,6 +55,7 @@ export class SupportticketsComponent implements OnInit {
     const myDate = new Date();
     const locale = 'en-US';
     this.todaydate = formatDate(myDate, format, locale);
+    this.date=this.todaydate
     this.ActivatedRoute.params.subscribe((params) => {
       debugger;
       this.id = params['id'];

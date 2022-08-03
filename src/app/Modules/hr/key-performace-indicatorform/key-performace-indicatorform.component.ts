@@ -35,19 +35,20 @@ export class KeyPerformaceIndicatorformComponent implements OnInit {
   ngOnInit(): void {
     this.currentUrl = window.location.href;
     this.kraid = 0;
-    this.GetKPI();
-    this.GetKeyResultArea();
-    this.GetPerformanceIndicatorMaster();
-    this.GetKraMaster();
     this.goaltypeid = "";
+ 
 
     this.ActivatedRoute.params.subscribe(params => {
       this.id = params['id'];
       if (this.id != undefined && this.id != null) {
         this.GetKPI();
+        
       }
     })
     this.performanceIndicatorId = 0;
+    this.GetKeyResultArea();
+   
+    this.GetKraMaster();
   }
 
 
@@ -117,28 +118,6 @@ export class KeyPerformaceIndicatorformComponent implements OnInit {
   }
 
 
-  public GetPerformanceIndicatorMaster() {
-    this.PerformanceManagementService.GetPerformanceIndicatorMaster().subscribe({
-      next: data => {
-        debugger
-        this.performancelist = data;
-        console.log("performancetype", this.performancelist);
-      }, error: (err: { error: { message: any; }; }) => {
-        Swal.fire('Issue in Getting PerformanceIndicatorMaster');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
-  }
-
   save() {
     var json = {
       "KraID": this.kraid,
@@ -152,7 +131,7 @@ export class KeyPerformaceIndicatorformComponent implements OnInit {
       next: data => {
         debugger
         Swal.fire("Successfully Submitted...!");
-        location.href = "#/hr/KeyPerformanceIndicator"
+        location.href = "#/hr/KeyPerformaceIndicator"
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Inserting KPI');
         // Insert error in Db Here//
@@ -185,7 +164,7 @@ export class KeyPerformaceIndicatorformComponent implements OnInit {
         debugger
         let indicatorlist = data;
         Swal.fire("Updated Successfully");
-        location.href = "#/KeyPerformanceIndicator";
+        location.href = "#/hr/KeyPerformaceIndicator";
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Updating KPI');
         // Insert error in Db Here//
@@ -203,7 +182,7 @@ export class KeyPerformaceIndicatorformComponent implements OnInit {
   }
 
   cancel() {
-    location.href = "#/hr/KeyPerformanceIndicator";
+    location.href = "#/hr/KeyPerformaceIndicator";
   }
 
 

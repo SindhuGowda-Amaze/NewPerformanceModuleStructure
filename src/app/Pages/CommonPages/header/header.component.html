@@ -84,7 +84,7 @@
                         <div class="row" *ngFor="let item of notificationslist" [style.background]="item.seenColorCode" (click)="seennotification(item.id)">
                             <div class="col-lg-4" >
                            
-                                {{item.date|date}} <br><br><br>
+                                {{item.date|date}}{{item.time}} <br><br><br>
 
                             </div>
                             <div class="col-lg-8">

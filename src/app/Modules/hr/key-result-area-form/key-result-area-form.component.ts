@@ -74,10 +74,10 @@ export class KeyResultAreaFormComponent implements OnInit {
       }
     )
   }
-
+  roleTypeid1:any;
   getRoleID(even: any) {
-    this.roleTypeid = even.target.value;
-    var list = this.roleTypeList.filter((x: { id: any; }) => x.id == this.roleTypeid);
+    this.roleTypeid1 = even.target.value;
+    var list = this.roleTypeList.filter((x: { id: any; }) => x.id == this.roleTypeid1);
     this.rolename = list[0].short
     console.log("type", this.roleTypeList);
   }
@@ -134,7 +134,7 @@ export class KeyResultAreaFormComponent implements OnInit {
           let kratypelist = data;
           Swal.fire("Successfully Submitted...!");
           this.tablecount = 0;
-          location.href = "#/KeyResultArea";
+          location.href = "#/hr/KeyResultArea";
           console.log("kralist", this.kratypelist);
         })
     }

@@ -59,14 +59,7 @@ export class ReviewratingComponent implements OnInit {
   ngOnInit(): void {
     //Variable Initialisation and Default Method Calls//
 
-    this.GetMyDetails();
-    this.GetMyDetailsForReiewRating();
-    this.GetDepartment();
-    this.GetRoleType();
-    this.GetConductappraisalStaffList();
-    this.GetAppraisalCycle();
-    this.FilterRoleType();
-    this.filterByDepartment();
+ 
     this.currentUrl = window.location.href;
     this.staffID = sessionStorage.getItem('EmaployedID');
     this.roleid = sessionStorage.getItem('roleid');
@@ -75,6 +68,14 @@ export class ReviewratingComponent implements OnInit {
     this.appraisalCycleName = 0;
     this.Department = '';
     this.RoleType = '';
+    this.GetMyDetails();
+    this.GetMyDetailsForReiewRating();
+    this.GetDepartment();
+    this.GetRoleType();
+    this.GetConductappraisalStaffList();
+    this.GetAppraisalCycle();
+    this.FilterRoleType();
+    this.filterByDepartment();
   }
 
    //Method to get Details from GetMyDetails Table//
@@ -108,6 +109,7 @@ export class ReviewratingComponent implements OnInit {
 
 
   public GetMyDetailsForReiewRating() {
+    debugger;
     this.PerformanceManagementService.GetMyDetailsForReiewRating().subscribe({
       next: (data) => {
         debugger;
@@ -115,7 +117,7 @@ export class ReviewratingComponent implements OnInit {
         this.stafflistCopy = this.stafflist1;
       },
       error: (err) => {
-        Swal.fire('Issue in Getting MyDetailsForReiewRating');
+        Swal.fire('Issue in Getting My Details For ReiewRating');
         // Insert error in Db Here//
         var obj = {
           PageName: this.currentUrl,
@@ -392,8 +394,8 @@ export class ReviewratingComponent implements OnInit {
         this.BaseSal = temp[0].baseSal;
       },
       error: (err) => {
-        Swal.fire('Issue in Getting MyDetailsForReiewRating');
-        // Insert error in Db Here//
+        // Swal.fire('Issue in Getting MyDetailsForReiewRating');
+        
         var obj = {
           PageName: this.currentUrl,
           ErrorMessage: err.error.message,

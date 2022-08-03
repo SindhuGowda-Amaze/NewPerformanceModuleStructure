@@ -501,7 +501,6 @@ public InsertExceptionLogs(data: any) {
 public GetExceptionLogs() {
   return this.http.get<any[]>(
     this.host + "/Master/GetExceptionLogs"
-
   );
 }
 
