@@ -6,7 +6,7 @@
         </div>
         <div class="col-lg-1">
             <br>
-            <p class="count">Count:{{stafflist1.length}}</p>
+            <p class="count">Count:{{stafflist.length}}</p>
         </div>
     </div>
     <div class="card">
@@ -42,7 +42,7 @@
         <div class="col-lg-12">
             <table class="table" >
                 <thead>
-                    <tr *ngIf="(stafflist1 | filter: search).length > 0; else noResults">
+                    <tr *ngIf="(stafflist | filter: search).length > 0; else noResults">
                         <th>Employee Name</th>
                         <th>Department</th>
                         <th>Manager</th>
@@ -65,7 +65,7 @@
                 <tbody>
 
                     <tr
-                        *ngFor="let details of stafflist1 |paginate: { itemsPerPage: count1, currentPage: p}|filter:search">
+                        *ngFor="let details of stafflist |paginate: { itemsPerPage: count1, currentPage: p}|filter:search">
                         <td>{{details.name}}</td>
                         <td>{{details.department_name}}</td>
                         <td>{{details.manager}}</td>

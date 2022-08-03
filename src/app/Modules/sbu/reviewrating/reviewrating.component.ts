@@ -68,8 +68,8 @@ export class ReviewratingComponent implements OnInit {
     this.appraisalCycleName = 0;
     this.Department = '';
     this.RoleType = '';
-    this.GetMyDetails();
     this.GetMyDetailsForReiewRating();
+    this.GetMyDetails();
     this.GetDepartment();
     this.GetRoleType();
     this.GetConductappraisalStaffList();
@@ -113,8 +113,8 @@ export class ReviewratingComponent implements OnInit {
     this.PerformanceManagementService.GetMyDetailsForReiewRating().subscribe({
       next: (data) => {
         debugger;
-        this.stafflist1 = data.filter((x) => x.salaryIncrement == null);
-        this.stafflistCopy = this.stafflist1;
+        this.stafflist = data.filter((x) => x.salaryIncrement == null);
+        this.stafflistCopy = this.stafflist;
       },
       error: (err) => {
         Swal.fire('Issue in Getting My Details For ReiewRating');

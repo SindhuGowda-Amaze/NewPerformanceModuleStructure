@@ -321,7 +321,7 @@ export class PipComponent implements OnInit {
       this.PerformanceManagementService.UpdatePipEmployeeComments(entity).subscribe({
         next: data => {
           debugger
-          Swal.fire("Submitted Sucssessfully");
+          Swal.fire("Submitted Successfully");
         }, error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in Updating PipEmployeeCommentsb');
           // Insert error in Db Here//
@@ -341,4 +341,5 @@ export class PipComponent implements OnInit {
     this.show();
 
   }
+  
 }

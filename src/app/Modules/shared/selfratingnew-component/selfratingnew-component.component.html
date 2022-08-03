@@ -198,7 +198,7 @@
                             Rating <span style="color: red;">*</span> </p>
                     </div>
                     <div class="col-lg-7">
-                        <select disabled class="dropdown form-control" id="Score" name="Score" [(ngModel)]="Score" required>
+                        <select  class="dropdown form-control" id="Score" name="Score" [(ngModel)]="Score" required>
                             <option value="0">Select Rating</option>
                             <option *ngFor="let value of list" value="{{value.id}}">{{value.score}} - {{value.answers}}
                             </option>
@@ -214,11 +214,10 @@
                             Comments <span style="color: red;">*</span> </p>
                     </div>
                     <div class="col-lg-7">
-                        <!-- <ckeditor id="SelfComments" name="SelfComments" [(ngModel)]="SelfComments" required
-                            data="<p>Enter Answer Here !</p>"></ckeditor> -->
+                        <ckeditor id="SelfComments" name="SelfComments" [(ngModel)]="SelfComments" required
+                            data="<p>Enter Answer Here !</p>"></ckeditor>
 
-                            <textarea id="SelfComments" name="SelfComments" [(ngModel)]="SelfComments" required>
-                          Enter Answer Here !</textarea>
+                       
                     </div>
                 </div>
                 <br>
