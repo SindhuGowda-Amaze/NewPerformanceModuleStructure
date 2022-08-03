@@ -119,7 +119,7 @@ export class HrDashboardComponent implements OnInit {
           debugger
           this.countList = data[0];
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in Getting AllCounts');
+          //Swal.fire('Issue in Getting AllCounts');
           // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,
@@ -139,7 +139,7 @@ export class HrDashboardComponent implements OnInit {
           debugger
           this.countList = data[0];
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in Getting AllCounts');
+         // Swal.fire('Issue in Getting AllCounts');
           // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,
