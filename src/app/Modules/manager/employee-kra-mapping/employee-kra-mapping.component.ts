@@ -125,6 +125,7 @@ public GetAppraisalCycle(){
       this.sDate = temp[0].cycleStartDate;
       this.eDate = temp[0].cycleEndDate;
       this.goalSettingDate = temp[0].goalSettingDate;
+      
     }, error: (err: { error: { message: any; }; }) => {
       Swal.fire('Issue in Getting AppraisalCycle');
       // Insert error in Db Here//
@@ -260,7 +261,7 @@ public GetMyDetails(){
     this.selectedItems2.splice(index, 1);
 
   }
-
+  AppraisalClose:any;
 //method to get Apprisalcycle from Apprisalcycle
   public GetApprisalcycle(event: any) {
     debugger
@@ -273,6 +274,13 @@ public GetMyDetails(){
         this.eDate = temp[0].cycleEndDate;
         this.goalSettingDate = temp[0].goalSettingDate;
         this.appraisalid = event.target.value;
+        this.AppraisalClose=temp[0].appraisalClose;
+
+        
+
+
+
+
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting AppraisalCycle');
         // Insert error in Db Here//
