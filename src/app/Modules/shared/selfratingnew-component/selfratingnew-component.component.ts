@@ -331,7 +331,7 @@ export class SelfratingnewComponentComponent implements OnInit {
     console.log(event);
     debugger;
     this.files.push(...event.addedFiles);
-    // this.attachmentsurl.length = 0;
+     this.attachmentsurl.length = 0;
     this.PerformanceManagementService.ProjectAttachments(this.files).subscribe({
       next: (data) => {
         this.loader = true;
@@ -365,6 +365,10 @@ export class SelfratingnewComponentComponent implements OnInit {
   onRemove(event: any) {
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
+  }
+
+  public close(){
+    location.reload();
   }
 
   //Method to Displaying the Data from SubmitEmployeeAppraisal Table//

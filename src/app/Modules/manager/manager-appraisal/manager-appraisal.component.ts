@@ -626,4 +626,8 @@ export class ManagerAppraisalComponent implements OnInit {
     })
   }
 
+  close(){
+    location.reload()
+  }
+
 }
