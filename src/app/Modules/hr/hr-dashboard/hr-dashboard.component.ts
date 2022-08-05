@@ -40,7 +40,7 @@ export class HrDashboardComponent implements OnInit {
     this.currentUrl = window.location.href;
     this.GetAllCounts();
     this.StaffID = sessionStorage.getItem('EmaployedID');
-
+  
     this.GetMyDetails();
     this.GetConductappraisalStaffList();
     
@@ -122,7 +122,7 @@ export class HrDashboardComponent implements OnInit {
           debugger
           this.countList = data[0];
         }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in Getting AllCounts');
+          //Swal.fire('Issue in Getting AllCounts');
           // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,

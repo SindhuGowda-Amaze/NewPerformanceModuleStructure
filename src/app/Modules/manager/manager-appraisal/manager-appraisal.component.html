@@ -163,7 +163,7 @@
             </form>
             </div>
             <div class="modal-footer">
-                <button type="button" id="close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="close" class="btn btn-secondary" data-dismiss="modal" (click)="close()">Close</button>
                 <button type="button" class="btn btn-primary" (click)="SaveDetails()" [disabled]="managerrateform.form.invalid" >Save changes</button>
             </div>
         </div>

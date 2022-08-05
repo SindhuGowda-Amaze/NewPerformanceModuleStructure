@@ -21,9 +21,10 @@
             </div> -->
 
             <div class="col-lg-4" style="font-family: 'Poppins';">
-                <input class="form-control" type="search" [(ngModel)]="term"
+                <input type="text" class="form-control"  [(ngModel)]="term" 
                    placeholder="Search for Staff" >
             </div>
+           
             <div class="col-lg-1"></div>
         </div><br>
     </div> <br>
@@ -39,7 +40,7 @@
                 <table class="table ">
                     <thead>
                         <tr
-                        *ngIf="(stafflist | filter: term).length > 0; else noResults">
+                       >
                             <th>Employee Name</th>
                             <th>Email ID</th>
                             <th>Phone Number</th>
@@ -49,7 +50,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let details of stafflist| filter:term  |paginate: { itemsPerPage: count1, currentPage: p}">
+                        <tr *ngFor="let details of stafflist|paginate: { itemsPerPage: count3, currentPage: p }" >
                             <td>{{details.name}}</td>
                             <td>{{details.emailID}}</td>
                             <td>{{details.phoneNo}}</td>
@@ -61,14 +62,14 @@
                 </table>
                 <ng-template #noResults>
                     <div class="card">
-                        <p class="NoResultShow"> No results found </p>
+                        <p > No results found </p>
                     </div>
                 </ng-template>
             </div>
             <div class="text-right">
                 <br>
-                <pagination-controls (pageChange)="p = $event"></pagination-controls>
-            </div>
+                <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
+            </div> 
 
         </div>
     </div>

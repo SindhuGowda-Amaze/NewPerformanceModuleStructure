@@ -281,8 +281,8 @@ export class SupportticketsComponent implements OnInit {
       },
     });
   }
-//Method to Route With Respect to URL//
+//Method to Route With Respect to URL//`
   public cancel() {
-    location.href = '#/SupportTicketDashboard';
+    location.href = '#shared/SupportTicketDashboard';
   }
 }

@@ -11,6 +11,7 @@ import { Component, OnInit } from '@angular/core';
 import { PerformancemanagementService } from 'src/app/Pages/Services/performancemanagement.service';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-employee-dashboard',
   templateUrl: './employee-dashboard.component.html',
@@ -22,7 +23,7 @@ export class EmployeeDashboardComponent implements OnInit {
   stafflist: any;
   term: any;
   p: any = 1;
-  count1: any = 10;
+  count3: any = 10;
   stafflistCopy: any;
   Departmentlist: any;
   RoleTypeList: any;
@@ -34,6 +35,7 @@ export class EmployeeDashboardComponent implements OnInit {
   roleid: any;
   StaffID: any;
   currentUrl: any;
+  name : any
 
   constructor(
     private PerformanceManagementService: PerformancemanagementService
@@ -42,16 +44,16 @@ export class EmployeeDashboardComponent implements OnInit {
   ngOnInit(): void {
     //Variable Initialisation and Default Method Calls//
 
-    this.GetMyDetails();
-    this.GetDepartment();
-    this.FilterRoleType();
-    this.Filterstaff();
     this.currentUrl = window.location.href;
     this.roleid = sessionStorage.getItem('roleid');
     this.StaffID = sessionStorage.getItem('EmaployedID');
     this.Department = '';
     this.RoleType = '';
 
+    this.GetMyDetails();
+    this.GetDepartment();
+    this.FilterRoleType();
+    this.Filterstaff();
     // this.filterByDepartment();
   }
 
@@ -60,21 +62,27 @@ export class EmployeeDashboardComponent implements OnInit {
     this.PerformanceManagementService.GetMyDetails().subscribe({
       next: (data) => {
         debugger;
-        this.dumpstafflist = data;
-        this.stafflist = data;
-        this.stafflistCopy = this.stafflist;
+    
+        if(this.roleid==4){
+          this.stafflist = data.filter(x=>x.supervisor==this.StaffID)
+        }
+        else{
+          this.stafflist = data;
+        }
+        // this.dumpstafflist = data;
+        // this.stafflistCopy = this.stafflist;
         this.Department = this.stafflistCopy;
 
-        if (this.roleid != 3) {
-          this.stafflist = this.dumpstafflist.filter(
-            (x: { supervisor: any; department_name: any }) =>
-              x.supervisor == this.StaffID
-          );
-          console.log('stafflist', this.stafflist);
-        } else {
-          this.stafflist = this.dumpstafflist;
-          console.log('stafflist', this.stafflist);
-        }
+        // if (this.roleid != 3) {
+        //   this.stafflist = this.dumpstafflist.filter(
+        //     (x: { supervisor: any; department_name: any }) =>
+        //       x.supervisor == this.StaffID
+        //   );
+        //   console.log('stafflist', this.stafflist);
+        // } else {
+        //   this.stafflist = this.dumpstafflist;
+        //   console.log('stafflist', this.stafflist);
+        // }
 
         this.count = this.stafflist.length;
       },
@@ -198,3 +206,4 @@ export class EmployeeDashboardComponent implements OnInit {
     this.count = this.stafflist.length;
   }
 }
+

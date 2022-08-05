@@ -481,4 +481,7 @@ export class SbuappraisalComponent implements OnInit {
   view(desc: any) {
     this.description = desc;
   }
+  close(){
+    location.reload();
+  }
 }

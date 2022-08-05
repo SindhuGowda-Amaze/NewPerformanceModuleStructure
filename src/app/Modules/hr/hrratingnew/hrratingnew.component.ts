@@ -286,6 +286,7 @@ export class HrratingnewComponent implements OnInit {
       this.attachment = "";
       const element1 = document.getElementById('close');
       this.files.length = 0;
+   
       if (element1 !== null) {
         element1.click();
       }

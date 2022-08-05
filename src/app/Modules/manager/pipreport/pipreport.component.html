@@ -84,7 +84,7 @@
                 </ul>
             </div>
         </div>
-       
+
     </div>
     <br>
 
@@ -110,8 +110,8 @@
                                     <th>Department</th>
                                     <th *ngIf="roleid==3">Manager Name</th>
                                     <th>Final Rating </th>
-                             
-                                    <!-- <th *ngIf="roleid=='4'">Action</th> -->
+
+                                    <th *ngIf="roleid=='4'">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -122,16 +122,16 @@
                                     <td>{{details.role}}</td>
                                     <td>{{details.departmentName}}</td>
                                     <td *ngIf="roleid==3">{{details.managername}}</td>
-            
+
                                     <td>
                                         <p
                                             *ngIf="details.bellcurveScore==null && details.avgCIOScores!=null && details.hrSubmittedDate!=null">
                                             {{((details.avgGroupHeadScores+details.avgCIOScores)/2)|number:"1.0-0"}}
-            
+
                                         <p *ngIf="details.bellcurveScore!=null">{{details.bellcurveScore}}</p>
-            
+
                                         <p *ngIf="details.avgCIOScores==null || details.hrSubmittedDate==null">NA</p>
-            
+
                                         <!-- {{details.finalrating}} -->
                                     </td>
                                     <!-- <td>
@@ -140,7 +140,7 @@
                                         </p>
                                         <p *ngIf="details.pipComments==null" style="color: red">Pending</p>
                                     </td> -->
-                                    <!-- <td *ngIf="roleid=='4'">
+                                    <td *ngIf="roleid=='4'">
                                         <button class="btn btn-primary editable-table-button btn-xs" data-toggle="modal"
                                         data-target="#exampleModal" (click)="ViewScores(details)">Relieve from Organisation
                                     </button><br><br>
@@ -153,8 +153,8 @@
                                         <button class="btn btn-primary editable-table-button btn-xs" data-toggle="modal"
                                             data-target="#exampleModal">View PIP Details
                                         </button><br><br>
-                                    </td> -->
-            
+                                    </td>
+
                                 </tr>
                             </tbody>
                         </table>
@@ -185,7 +185,7 @@
                                     <th>Department</th>
                                     <th *ngIf="roleid==3">Manager Name</th>
                                     <th>Final Rating </th>
-                             
+
                                     <!-- <th *ngIf="roleid=='4'">Action</th> -->
                                 </tr>
                             </thead>
@@ -197,16 +197,16 @@
                                     <td>{{details.role}}</td>
                                     <td>{{details.departmentName}}</td>
                                     <td *ngIf="roleid==3">{{details.managername}}</td>
-            
+
                                     <td>
                                         <p
                                             *ngIf="details.bellcurveScore==null && details.avgCIOScores!=null && details.hrSubmittedDate!=null">
                                             {{((details.avgGroupHeadScores+details.avgCIOScores)/2)|number:"1.0-0"}}
-            
+
                                         <p *ngIf="details.bellcurveScore!=null">{{details.bellcurveScore}}</p>
-            
+
                                         <p *ngIf="details.avgCIOScores==null || details.hrSubmittedDate==null">NA</p>
-            
+
                                         <!-- {{details.finalrating}} -->
                                     </td>
                                     <!-- <td>
@@ -229,7 +229,7 @@
                                             data-target="#exampleModal">View PIP Details
                                         </button><br><br>
                                     </td> -->
-            
+
                                 </tr>
                             </tbody>
                         </table>
@@ -259,7 +259,7 @@
                                     <th>Department</th>
                                     <th *ngIf="roleid==3">Manager Name</th>
                                     <th>Final Rating </th>
-                             
+
                                     <!-- <th *ngIf="roleid=='4'">Action</th> -->
                                 </tr>
                             </thead>
@@ -270,7 +270,7 @@
                                     <td>{{details.emprole}}</td>
                                     <td>{{details.department_name}}</td>
                                     <td *ngIf="roleid==3">{{details.manager}}</td>
-            
+
                                     <!-- <td>
                                         <p
                                             *ngIf="details.bellcurveScore==null && details.avgCIOScores!=null && details.hrSubmittedDate!=null">
@@ -302,7 +302,7 @@
                                             data-target="#exampleModal">View PIP Details
                                         </button><br><br>
                                     </td> -->
-            
+
                                 </tr>
                             </tbody>
                         </table>
@@ -313,12 +313,12 @@
                         </div>
                     </div>
                 </div>
-    
-    
+
+
             </div>
             <div class="col-md-1"></div>
         </div>
-     
+
     </div>
 
 
@@ -353,7 +353,8 @@
                         <td>{{details.lastDateOfSubmission|date}}</td>
                         <td>
                             <button *ngIf="submitted!=1" class="button" data-toggle="modal"
-                                (click)="getpipActionID(details)" data-target="#commentModel">Update PIP Activity</button>
+                                (click)="getpipActionID(details)" data-target="#commentModel">Update PIP
+                                Activity</button>
                             <p *ngIf="submitted==1">Submitted</p>
                         </td>
 

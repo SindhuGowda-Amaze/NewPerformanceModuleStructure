@@ -34,6 +34,7 @@
   display: inline-flex;
   color: #3247D5;
   font-size: 11px;
+  margin-left: -8px;
   }
   .Active2 {
   display: none;
@@ -48,6 +49,7 @@
   }
   
   .Active4 {
+    margin-left: -8px;
     display: inline-flex;
    color: #3247D5;
         font-size: 11px;
@@ -85,7 +87,7 @@
   .sidenav a:hover {
     color: #3247D5;
     cursor: pointer;
-    font-size: 11px;
+    font-size: 13px;
   }
   
   .togglebtn{
