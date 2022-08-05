@@ -11,6 +11,7 @@ import { Component, OnInit } from '@angular/core';
 import { PerformancemanagementService } from 'src/app/Pages/Services/performancemanagement.service';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-employee-dashboard',
   templateUrl: './employee-dashboard.component.html',
@@ -22,7 +23,7 @@ export class EmployeeDashboardComponent implements OnInit {
   stafflist: any;
   term: any;
   p: any = 1;
-  count1: any = 10;
+  count3: any = 10;
   stafflistCopy: any;
   Departmentlist: any;
   RoleTypeList: any;
@@ -34,6 +35,7 @@ export class EmployeeDashboardComponent implements OnInit {
   roleid: any;
   StaffID: any;
   currentUrl: any;
+  name : any
 
   constructor(
     private PerformanceManagementService: PerformancemanagementService
@@ -204,3 +206,4 @@ export class EmployeeDashboardComponent implements OnInit {
     this.count = this.stafflist.length;
   }
 }
+

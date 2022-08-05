@@ -211,7 +211,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" id="close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" (onclick)="close()"id="close" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" (click)="SaveDetails()" [disabled]="empratingform.invalid">Save</button>
             </div>
         </div>

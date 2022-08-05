@@ -342,7 +342,7 @@ export class SelfratingnewComponentComponent implements OnInit {
           this.loader = false;
           // alert('Attachment uploaded')
           //  this.files.length = 0;
-          Swal.fire('Attachment uploaded Successfully');
+          Swal.fire('Attachment Uploaded Successfully');
         }
         debugger;
       },
