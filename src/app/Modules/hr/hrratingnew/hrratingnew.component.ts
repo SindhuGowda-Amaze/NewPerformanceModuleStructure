@@ -361,7 +361,5 @@ export class HrratingnewComponent implements OnInit {
   view(desc: any) {
     this.description = desc;
   }
- close(){
-  this.attachmentsurl.length = 0
- }
+
 }

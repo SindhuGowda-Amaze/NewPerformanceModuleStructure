@@ -381,7 +381,7 @@ export class ManagerAppraisalComponent implements OnInit {
           this.attchmentss = res;
           // this.attachmentsurl.push(res);
 
-          alert('Attachment uploaded')
+          Swal.fire('Attachment uploaded')
 
 
 
