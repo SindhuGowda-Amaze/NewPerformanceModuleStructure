@@ -363,7 +363,6 @@ export class ManagerAppraisalComponent implements OnInit {
         )
       }
     })
-
     this.photoid = details.id;
   }
 
@@ -380,11 +379,7 @@ export class ManagerAppraisalComponent implements OnInit {
         if (res != undefined) {
           this.attchmentss = res;
           // this.attachmentsurl.push(res);
-
           Swal.fire('Attachment uploaded')
-
-
-
         }
         debugger
       }, error: (err: { error: { message: any; }; }) => {
@@ -401,8 +396,6 @@ export class ManagerAppraisalComponent implements OnInit {
         )
       }
     })
-
-
   }
 
   onRemove(event: any) {
