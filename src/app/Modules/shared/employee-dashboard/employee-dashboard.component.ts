@@ -51,10 +51,6 @@ export class EmployeeDashboardComponent implements OnInit {
     this.RoleType = '';
 
     this.GetMyDetails();
-    this.GetDepartment();
-    this.FilterRoleType();
-    this.Filterstaff();
-    // this.filterByDepartment();
   }
 
   //Method to Displaying the Data from GetMyDetails Table//
@@ -69,21 +65,6 @@ export class EmployeeDashboardComponent implements OnInit {
         else{
           this.stafflist = data;
         }
-        // this.dumpstafflist = data;
-        // this.stafflistCopy = this.stafflist;
-        this.Department = this.stafflistCopy;
-
-        // if (this.roleid != 3) {
-        //   this.stafflist = this.dumpstafflist.filter(
-        //     (x: { supervisor: any; department_name: any }) =>
-        //       x.supervisor == this.StaffID
-        //   );
-        //   console.log('stafflist', this.stafflist);
-        // } else {
-        //   this.stafflist = this.dumpstafflist;
-        //   console.log('stafflist', this.stafflist);
-        // }
-
         this.count = this.stafflist.length;
       },
       error: (err) => {
@@ -102,106 +83,13 @@ export class EmployeeDashboardComponent implements OnInit {
     });
   }
 
-  //Method to Displaying the Data from GetDepartment Table//
-
-  public GetDepartment() {
-    this.PerformanceManagementService.GetDepartment().subscribe({
-      next: (data) => {
-        debugger;
-        this.Departmentlist = data;
-      },
-      error: (err) => {
-        Swal.fire('Issue in Getting Department');
-        // Insert error in Db Here//
-        var obj = {
-          PageName: this.currentUrl,
-          ErrorMessage: err.error.message,
-        };
-        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-          (data) => {
-            debugger;
-          }
-        );
-      },
-    });
-  }
-  //Method to Displaying the Data from GetRoleType Table//
-
-  public GetRoleType() {
-    this.PerformanceManagementService.GetRoleType().subscribe({
-      next: (data) => {
-        debugger;
-        this.RoleTypeList = data;
-      },
-      error: (err) => {
-        Swal.fire('Issue in Getting RoleType');
-        // Insert error in Db Here//
-        var obj = {
-          PageName: this.currentUrl,
-          ErrorMessage: err.error.message,
-        };
-        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-          (data) => {
-            debugger;
-          }
-        );
-      },
-    });
-  }
-
-  public getRoleType(event: any) {
-    debugger;
-    this.RoleType = event.target.value;
-  }
-
-  //Method to Displaying the Data from GetMyDetails Table//
-
-  public FilterRoleType() {
-    debugger;
-    this.PerformanceManagementService.GetMyDetails().subscribe({
-      next: (data) => {
-        debugger;
-        // this.stafflist = data.filter(x=>x.roleType==this.RoleType);
-
-        this.stafflist = this.dumpstafflist;
-        console.log('stafflist', this.stafflist);
-        this.count = this.stafflist.length;
-      },
-      error: (err) => {
-        Swal.fire('Issue in Getting MyDetails');
-        // Insert error in Db Here//
-        var obj = {
-          PageName: this.currentUrl,
-          ErrorMessage: err.error.message,
-        };
-        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-          (data) => {
-            debugger;
-          }
-        );
-      },
-    });
-  }
-
-  // public filterByDepartment(){
-  //   debugger
-  //   this.PerformanceManagementService.GetMyDetails().subscribe(data => {
-  //     debugger
-  //     this.stafflist = data.filter(x=>x.department==this.Department);
-  //     this.count = this.stafflist.length;
-  //   });
-
-  // }
-
-  //Method to Displaying the Count//
 
   public Filterstaff() {
     debugger;
     let searchCopy = this.term.toLowerCase();
     this.stafflist = this.stafflistCopy.filter(
       (x: { name: string; supervisor: number }) =>
-        x.name.toLowerCase().includes(searchCopy) &&
-        x.supervisor == this.StaffID
+        x.name.toLowerCase().includes(searchCopy)
     );
     this.count = this.stafflist.length;
   }

@@ -386,6 +386,7 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
         this.appraisalCycleName = temp[0].appraisalCycleName
         this.sDate = temp[0].cycleStartDate;
         this.eDate = temp[0].cycleEndDate;
+
       }, error: (err) => {
         Swal.fire('Issue in Getting AppraisalCycle');
         // Insert error in Db Here//

@@ -16,13 +16,8 @@
             <div class="col-lg-1">
                 <p class="filter">Filter By</p>
             </div>
-            <!-- <div class="col-lg-5">
-                <input type="search" class="form-control search" placeholder="Search for Name.. " [(ngModel)]="search">
-            </div> -->
-
-            <div class="col-lg-4" style="font-family: 'Poppins';">
-                <input type="text" class="form-control"  [(ngModel)]="term" 
-                   placeholder="Search for Staff" >
+            <div class="col-lg-4">
+                <input type="search" class="form-control" placeholder="Search for Name.." [(ngModel)]="search">
             </div>
            
             <div class="col-lg-1"></div>
@@ -39,8 +34,7 @@
             <div class="col-lg-12">
                 <table class="table ">
                     <thead>
-                        <tr
-                       >
+                        <tr>
                             <th>Employee Name</th>
                             <th>Email ID</th>
                             <th>Phone Number</th>
@@ -50,7 +44,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let details of stafflist|paginate: { itemsPerPage: count3, currentPage: p }" >
+                        <tr *ngFor="let details of stafflist|filter:search|paginate: { itemsPerPage: count3, currentPage: p }" >
                             <td>{{details.name}}</td>
                             <td>{{details.emailID}}</td>
                             <td>{{details.phoneNo}}</td>

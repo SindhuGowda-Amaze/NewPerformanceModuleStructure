@@ -25,7 +25,7 @@ export class EmployeeKraMappingComponent implements OnInit {
 
   constructor(private PerformanceManagementService: PerformancemanagementService, private ActivatedRoute: ActivatedRoute) { }
 
-//variable declaration
+  //variable declaration
   Departmentlist: any;
   RoleTypeList: any;
   RoleID: any;
@@ -64,9 +64,8 @@ export class EmployeeKraMappingComponent implements OnInit {
   eDate: any;
   tablecount: any;
   Approver3: any;
-   keyresultArray: any = [];
-  ngOnInit(): void 
-  {
+  keyresultArray: any = [];
+  ngOnInit(): void {
     //Variable Initialisation and Default Method Calls//
     this.GetAppraisalCycle();
     this.GetRoleType();
@@ -114,106 +113,107 @@ export class EmployeeKraMappingComponent implements OnInit {
   }
 
 
-//Method to Displaying  AppraisalCycle Details
-public GetAppraisalCycle(){
-  this.PerformanceManagementService.GetAppraisalCycle().subscribe({
-    next: data => {
-      debugger
-      this.Apprisalcyclelist = data.filter(x => x.appraisalClose == 0);
-      let temp: any = data.filter(x => x.appraisalClose == 0);
-      this.AppraisalSubmitionDate = temp[0].employeeSubmissionDate;
-      this.sDate = temp[0].cycleStartDate;
-      this.eDate = temp[0].cycleEndDate;
-      this.goalSettingDate = temp[0].goalSettingDate;
-    }, error: (err: { error: { message: any; }; }) => {
-      Swal.fire('Issue in Getting AppraisalCycle');
-      // Insert error in Db Here//
-      var obj = {
-        'PageName': this.currentUrl,
-        'ErrorMessage': err.error.message
-      }
-      this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-        data => {
-          debugger
-        },
-      )
-    }
-  })
- 
-}
+  //Method to Displaying  AppraisalCycle Details
+  public GetAppraisalCycle() {
+    this.PerformanceManagementService.GetAppraisalCycle().subscribe({
+      next: data => {
+        debugger
+        this.Apprisalcyclelist = data.filter(x => x.appraisalClose == 0);
+        let temp: any = data.filter(x => x.appraisalClose == 0);
+        this.AppraisalSubmitionDate = temp[0].employeeSubmissionDate;
+        this.sDate = temp[0].cycleStartDate;
+        this.eDate = temp[0].cycleEndDate;
+        this.goalSettingDate = temp[0].goalSettingDate;
 
-//Method to Displaying  Jobtitle Details
-public GetRoleType(){
-  this.PerformanceManagementService.GetRoleType().subscribe({
-    next: data => {
-      debugger
-      this.RoleTypeList = data;
-    }, error: (err: { error: { message: any; }; }) => {
-      Swal.fire('Issue in Getting RoleType');
-      // Insert error in Db Here//
-      var obj = {
-        'PageName': this.currentUrl,
-        'ErrorMessage': err.error.message
-      }
-      this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-        data => {
-          debugger
-        },
-      )
-    }
-  })
-}
-
-
-//Method to Displaying  dropdownList,staffName
-public GetMyDetails(){
-  this.PerformanceManagementService.GetMyDetails().subscribe({
-    next: data => {
-      debugger
-      this.dropdownList = data.filter(x => x.supervisor == sessionStorage.getItem('EmaployedID'));
-      this.staffName == this.dropdownList[0].name;
-      let temp: any = data.filter(x => x.id == sessionStorage.getItem('EmaployedID'));
-
-      this.Departmentid = temp[0].department;
-      this.PerformanceManagementService.GetDepartmentMaster().subscribe({
-        next: data => {
-          debugger
-          this.Departmentlist = data.filter(x => x.id == this.Departmentid);
-        }, error: (err: { error: { message: any; }; }) => {
-          Swal.fire('Issue in Getting DepartmentMaster');
-          // Insert error in Db Here//
-          var obj = {
-            'PageName': this.currentUrl,
-            'ErrorMessage': err.error.message
-          }
-          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-            data => {
-              debugger
-            },
-          )
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting AppraisalCycle');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
         }
-      })
-    }, error: (err: { error: { message: any; }; }) => {
-      Swal.fire('Issue in Getting MyDetails');
-      // Insert error in Db Here//
-      var obj = {
-        'PageName': this.currentUrl,
-        'ErrorMessage': err.error.message
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
       }
-      this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-        data => {
-          debugger
-        },
-      )
-    }
-  })
+    })
 
-}
+  }
+
+  //Method to Displaying  Jobtitle Details
+  public GetRoleType() {
+    this.PerformanceManagementService.GetRoleType().subscribe({
+      next: data => {
+        debugger
+        this.RoleTypeList = data;
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting RoleType');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+  }
+
+
+  //Method to Displaying  dropdownList,staffName
+  public GetMyDetails() {
+    this.PerformanceManagementService.GetMyDetails().subscribe({
+      next: data => {
+        debugger
+        this.dropdownList = data.filter(x => x.supervisor == sessionStorage.getItem('EmaployedID'));
+        this.staffName == this.dropdownList[0].name;
+        let temp: any = data.filter(x => x.id == sessionStorage.getItem('EmaployedID'));
+
+        this.Departmentid = temp[0].department;
+        this.PerformanceManagementService.GetDepartmentMaster().subscribe({
+          next: data => {
+            debugger
+            this.Departmentlist = data.filter(x => x.id == this.Departmentid);
+          }, error: (err: { error: { message: any; }; }) => {
+            Swal.fire('Issue in Getting DepartmentMaster');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
+        })
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting MyDetails');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
+  }
 
 
 
 
- 
+
   onItemSelect(item: any) {
     debugger
     console.log(item);
@@ -260,8 +260,8 @@ public GetMyDetails(){
     this.selectedItems2.splice(index, 1);
 
   }
-
-//method to get Apprisalcycle from Apprisalcycle
+  AppraisalClose: any;
+  //method to get Apprisalcycle from Apprisalcycle
   public GetApprisalcycle(event: any) {
     debugger
     this.PerformanceManagementService.GetAppraisalCycle().subscribe({
@@ -273,6 +273,13 @@ public GetMyDetails(){
         this.eDate = temp[0].cycleEndDate;
         this.goalSettingDate = temp[0].goalSettingDate;
         this.appraisalid = event.target.value;
+        this.AppraisalClose = temp[0].appraisalClose;
+
+
+
+
+
+
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting AppraisalCycle');
         // Insert error in Db Here//
@@ -289,7 +296,7 @@ public GetMyDetails(){
     })
   }
 
-//Method to get RoleID from MyDetails
+  //Method to get RoleID from MyDetails
   public GetRoleID() {
     this.PerformanceManagementService.GetMyDetails()
 
@@ -317,14 +324,16 @@ public GetMyDetails(){
     debugger
     location.href = "#/manager/EmployeeKraMappingdashboard";
   }
-  
-//Mthod to InsertDetails in EmployeeKraMap Table
+
+  //Mthod to InsertDetails in EmployeeKraMap Table
   public InsertDetails() {
     debugger
     // if( this.goalSettingDate< this.todaydate ){
     //   Swal.fire('Sorry, You cannot set the goal since last date is over')
     // }
     // else{
+
+
 
     for (let j = 0; j < this.selectedstaff.length; j++) {
       debugger
@@ -349,8 +358,8 @@ public GetMyDetails(){
           this.PerformanceManagementService.InsertEmployeeKraMap(Entity).subscribe({
             next: data => {
               debugger
-              if (data != undefined) {
-
+              if (data == 0) {
+                Swal.fire("Already exist!!")
               }
             }, error: (err: { error: { message: any; }; }) => {
               Swal.fire('Issue in Inserting EmployeeKraMap');
@@ -373,14 +382,14 @@ public GetMyDetails(){
       this.InsertNotification();
       Swal.fire('Goal Setting Done Successfully.');
       location.href = "#/manager/EmployeeKraMappingdashboard";
-     location.reload();
+      location.reload();
     }
 
 
 
   }
 
-//Method to insert Notification in Notification Table
+  //Method to insert Notification in Notification Table
   public InsertNotification() {
     debugger
 
@@ -495,7 +504,7 @@ public GetMyDetails(){
     })
   }
 
-//Method to get EmployeeKraMap from KraMaster Table
+  //Method to get EmployeeKraMap from KraMaster Table
   public GetEmployeeKraMap() {
     this.PerformanceManagementService.GetKraMaster()
 
