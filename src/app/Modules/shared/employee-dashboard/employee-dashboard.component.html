@@ -32,7 +32,9 @@
     <div>
         <div class="row">
             <div class="col-lg-12">
-                <table class="table ">
+                <table class="table "             
+            *ngIf="(stafflist | filter: search).length > 0; else noResults"
+                >
                     <thead>
                         <tr>
                             <th>Employee Name</th>
@@ -64,7 +66,13 @@
                 <br>
                 <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
             </div> 
+            
+  
 
         </div>
+      
     </div>
 </div>
+<ng-template #noResults>
+    <p>no results found for "{{search}}" </p>
+  </ng-template>
