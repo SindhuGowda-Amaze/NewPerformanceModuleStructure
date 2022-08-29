@@ -1,0 +1,79 @@
+<div class="container-fluid">
+    <br>
+    <div class="row">
+        <br>
+        <div class="col-lg-4">
+            <p class="headings">Competancy Trates Details </p>
+        </div>
+        <div class="col-lg-8"></div>
+    </div>
+    <div class="card">
+        <form #kpiform="ngForm">
+            <br>
+            <div class="row ">
+                <div class="col-lg-2">
+                    <p class="columnname">Competancy<span style="color: red;">*</span> </p>
+                </div>
+
+                <div class="col-lg-3">
+                    <p class="columnname">Competancy Trates<span style="color: red;">*</span> </p>
+                </div>
+
+                <div class="col-lg-4">
+                    <p class="columnname">Description <span style="color: red;">*</span> </p>
+                </div>
+                <div class="col-lg-2">
+                    <p class="columnname">Weightage<span style="color: red;">*</span> </p>
+                </div>
+
+            </div>
+
+            <div class="row header">
+
+
+                <div class="col-lg-2 columnname">
+                    <select class="form-control " [(ngModel)]="kraid" name="kraid"
+                        (change)="getkraid($event)">
+                        <option value="0">Select By Competancy</option>
+                        <option>Leadership</option>
+                        <option>StackHolders and Quality Focus</option>
+                        <option>Bussiness Accument Perspective</option>
+                        <option>Technical Knowledge</option>
+                        <option>Communication</option>
+                        <option>Team Work</option>
+                        <option>Innovation and Change Management</option>
+                        <option>Result Orientation</option>
+                        <option>Problem Solving and Decision Making</option>
+
+                    </select>
+                </div>
+                <div class="col-lg-3 ">
+                    <input class="form-control" placeholder="Competancy" type="text" required [(ngModel)]="kpiName"
+                        name="kpiName">
+                </div>
+
+                <div class="col-lg-4 ">
+                    <textarea class="form-control" placeholder="Description" type="text" required
+                        [(ngModel)]="description" name="description"></textarea>
+                </div>
+                <div class="col-lg-2 ">
+                    <input class="form-control" placeholder="Weightage" type="text" required [(ngModel)]="kpiName"
+                        name="kpiName">
+                </div>
+            </div> <br>
+
+            <div class="row">
+                <div class="col-lg-9"></div>
+                <div class="col-lg-1">
+                    <button class="form-control edit" *ngIf="id==undefined" [disabled]="kpiform.form.invalid"
+                        (click)="save()">Save</button>
+                    <button class="form-control edit" *ngIf="id!= undefined" (click)="Update()">Update</button>
+                </div>
+                <div class="col-lg-1">
+                    <button class="form-control edit" (click)="cancel()">Cancel</button>
+                </div>
+            </div>
+            <br>
+
+        </form>
+    </div>

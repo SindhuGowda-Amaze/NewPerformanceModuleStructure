@@ -19,6 +19,10 @@ import { SalaryincrementletterDashComponent } from './salaryincrementletter-dash
 import { StaffScoreFullDetailsComponent } from './staff-score-full-details/staff-score-full-details.component';
 import { HrratingnewComponent } from './hrratingnew/hrratingnew.component';
 import { KeyResultAreaFormComponent } from './key-result-area-form/key-result-area-form.component';
+import { CompetancydashComponent } from './competancydash/competancydash.component';
+import { CompetancyTratesComponent } from './competancy-trates/competancy-trates.component';
+import { CompetancyFormComponent } from './competancy-form/competancy-form.component';
+import { CompetancyTratesFormComponent } from './competancy-trates-form/competancy-trates-form.component';
 
 
 @NgModule({
@@ -38,7 +42,11 @@ import { KeyResultAreaFormComponent } from './key-result-area-form/key-result-ar
     HrDashboardComponent,
     SalaryincrementletterDashComponent,
     StaffScoreFullDetailsComponent,
-    HrratingnewComponent
+    HrratingnewComponent,
+    CompetancydashComponent,
+    CompetancyTratesComponent,
+    CompetancyFormComponent,
+    CompetancyTratesFormComponent
   ],
   imports: [
     CommonModule,

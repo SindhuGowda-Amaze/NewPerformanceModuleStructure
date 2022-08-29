@@ -333,6 +333,28 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
         }
       })
 
+
+      this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
+        next: data => {
+          debugger
+          this.EmployeeKradash = data.filter(x => x.appraiselID == details.appraiselID);
+          this.count = this.EmployeeKradash.length;
+          console.log("list", this.EmployeeKradash);
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting ConductappraisalStaffList');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+
   }
 
 
@@ -493,13 +515,13 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
   getkratypeid(event: any) {
     debugger
     this.kratypeid = event.target.value;
-    this.PerformanceManagementService.GetKeyResultArea().subscribe({
+    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
         debugger
-        this.kratypelist = data.filter(x => x.kraTypeID == this.kratypeid);
-        console.log("kratype", this.kratypelist);
-      }, error: (err) => {
-        Swal.fire('Issue in Getting KeyResultArea');
+        this.EmployeeKradash = data.filter(x =>x.goalType==this.kratypeid && x.approver1 == this.StaffID)
+
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting ConductappraisalStaffList');
         // Insert error in Db Here//
         var obj = {
           'PageName': this.currentUrl,

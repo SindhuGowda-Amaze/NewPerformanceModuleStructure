@@ -34,18 +34,37 @@
             <div class="col-lg-12">
                     <table class="table">
                     <thead>
-                        <tr *ngIf="(appraisallist | filter: search).length > 0; else noResults"
-                            >
+                        <tr style="text-align: center;">
+                            <th></th>
+                            <th></th>
+                            <th colspan="2">Planning Phase</th>
+                            <th colspan="4">Evaluation Phase</th>
+                            <th colspan="3">Final Phase</th>
+                        </tr>
+                        <tr style="text-align: center;">
+                            <th></th>
+                            <th></th>
+                            <th colspan="2"></th>
+                            <th >Employee</th>
+                            <th >Manager</th>
+                            <th >SBU</th>
+                            <th >HR</th>
+                            <th colspan="3"></th>
+                        </tr>
+
+                        <tr  *ngIf="(appraisallist | filter: search).length > 0; else noResults" style="text-align: center;">
+                            
                             <th>Appraisal Cycle Name</th>
                             <th>Frequency Type</th>
                             <th>Cycle Start Date</th>
-                            <th>Cycle End Date</th>
+                           
                             <th>Goal Setting Last Date</th>
                             <th>Employee Submission Last Date</th>
                             <th>Manager Review Last Date</th>
                             <th>SBU Review Last Date</th>
                             <th>HR Review Last Date</th>
                             <th>Appraisal Closing Last Date</th>
+                            <th>Cycle End Date</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -53,14 +72,15 @@
                         <tr *ngFor="let details of appraisallist | filter:search">
                             <td>{{details.appraisalCycleName}}</td>
                             <td>{{details.frequencyName}}</td>
-                            <td>{{details.cycleStartDate}}</td>
-                            <td>{{details.cycleEndDate}}</td>
-                            <td>{{details.goalSettingDate}}</td>
-                            <td>{{details.employeeSubmissionDate}}</td>
-                            <td>{{details.managerReviewLastDate}}</td>
-                            <td>{{details.sbuReviewLastDate}}</td>
-                            <td>{{details.hrReviewLastDate}}</td>
-                            <td>{{details.appraisalClosingLastDate}}</td>
+                            <td>{{details.cycleStartDate|date}}</td>
+                            
+                            <td>{{details.goalSettingDate|date}}</td>
+                            <td>{{details.employeeSubmissionDate|date}}</td>
+                            <td>{{details.managerReviewLastDate|date}}</td>
+                            <td>{{details.sbuReviewLastDate|date}}</td>
+                            <td>{{details.hrReviewLastDate|date}}</td>
+                            <td>{{details.appraisalClosingLastDate|date}}</td>
+                            <td>{{details.cycleEndDate|date}}</td>
                             <td>
                                 <br>
                                 <button class="form-control Add"  [routerLink]="['/hr/ApprasialCycleForm', details.id]">Edit</button><br>

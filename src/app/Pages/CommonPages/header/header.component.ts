@@ -61,13 +61,15 @@ export class HeaderComponent implements OnInit {
 
   }
   notificationCount: any;
+  notificationslistforCount:any;
   public GetNotification() {
     debugger
     this.unseen = 0;
     this.PerformanceManagementService.GetNotification(sessionStorage.getItem('EmaployedID')).subscribe(data => {
       debugger
       this.notificationslist = data.filter(x => x.notificationTypeID == 17);
-      this.notificationCount = this.notificationslist.length;
+      this.notificationslistforCount = data.filter(x => x.notificationTypeID == 17 && x.seen==1);
+      this.notificationCount = this.notificationslistforCount.length;
     })
   }
 

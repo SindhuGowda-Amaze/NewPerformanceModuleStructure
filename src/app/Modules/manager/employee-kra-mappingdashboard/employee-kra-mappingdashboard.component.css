@@ -35,14 +35,13 @@
   }
   
   .button1{
-    letter-spacing: 0.5px;
+
     background-color: #3247d5;
     color: #ffffff;
-    border-radius: 5px;
+    border-radius: 12px;
     border: none;
-    padding: 5px;
-    width: 105px;
-    float: left;
-    font-size: 15px;
+    width: 109%;
+    font-size: 13px;
+    margin-right: 3px;
   }
   

@@ -71,6 +71,16 @@ export class SidebarComponent implements OnInit {
     localStorage.setItem("clickname", "KPI")
   }
 
+  CompetancyTrates() {
+    this.active = 'CompetancyTrates';
+    localStorage.setItem("clickname", "Competancy Trates")
+  }
+
+  Competancy() {
+    this.active = 'Competancy';
+    localStorage.setItem("clickname", "Competancy")
+  }
+
   Employee() {
     this.active = 'EmployeeDashboard';
     localStorage.setItem("clickname", "Employee Dashboard")
@@ -80,10 +90,43 @@ export class SidebarComponent implements OnInit {
     localStorage.setItem("clickname", "Employee KRA Mapping")
   }
 
+  CompSettings() {
+    this.active = 'CompSettings';
+    localStorage.setItem("clickname", "Competancy Settings")
+  }
+
+  Communication() {
+    this.active = 'Communication';
+    localStorage.setItem("clickname", "Communication")
+  }
+
+  SetAppraisal() {
+    this.active = 'SetAppraisal';
+    localStorage.setItem("clickname", "Set Appraisal")
+  }
+
+  ViewAppraisal() {
+    this.active = 'ViewAppraisal';
+    localStorage.setItem("clickname", "View Appraisal")
+  }
+
+  EvaluateAppraisal() {
+    this.active = 'EvaluateAppraisal';
+    localStorage.setItem("clickname", "Evaluate Appraisal")
+  }
+
+
   Myappraisal() {
     this.active = 'MyAppraisalDashboard';
 
     localStorage.setItem("clickname", "My Appraisal Dashboard")
+  }
+
+  
+  MyappraisalCompetency() {
+    this.active = 'MyAppraisalCompetency';
+
+    localStorage.setItem("clickname", "My Appraisal Competency")
   }
 
   Appraisal() {

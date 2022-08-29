@@ -38,6 +38,7 @@
                             <th>Goal Type </th>
                             <th>Goal</th>
                             <th>KPI</th>
+                            <th>Weightage</th>
                             <th>Rating</th>
                             <th>Action </th>
                         </tr>
@@ -50,6 +51,7 @@
                             <td [ngClass]="{'bggreen':details.empupdate==1 }">{{details.kraTypeID}}</td>
                             <td [ngClass]="{'bggreen':details.empupdate==1 }">{{details.kraName}}</td>
                             <td [ngClass]="{'bggreen':details.empupdate==1 }">{{details.kpiName}}</td>
+                            <td [ngClass]="{'bggreen':details.empupdate==1 }">{{details.milestone}}</td>
                             <td [ngClass]="{'bggreen':details.empupdate==1 }">
                                 {{details.emprating}}
                                 <p *ngIf="details.empupdate!=1">NA</p>

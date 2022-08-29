@@ -203,7 +203,7 @@ export class SupportticketsComponent implements OnInit {
     }
   }
 
-   //Method to Insert the Data from InsertAttachment Table//
+   //Method to Insert the attachment to InsertAttachment Table//
 
   public uploadmultipleimages() {
     debugger;

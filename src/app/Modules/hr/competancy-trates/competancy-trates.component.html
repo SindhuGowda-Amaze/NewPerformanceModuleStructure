@@ -1,0 +1,141 @@
+ 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-11">
+            <br>
+            <p class="headings">Competancy Trates dashboard</p>
+        </div>
+        <div class="col-lg-1">
+            <br>
+            <p class="count">Count:{{count}} </p>
+        </div>
+    </div>
+    <br>
+   <div class="card">
+       <br>
+    <div class="row FilterClass ">
+        <div class="col-lg-1">
+            <p class="filter">Filter By</p>
+        </div>
+        <div class="col-lg-3">
+                <input type="search" class="form-control search" [(ngModel)]="search"  placeholder="Search for Name..">
+        </div>
+       <div class="col-lg-3">
+        <!-- <select class="form-control columnname" [(ngModel)]="kraid" name="kraid" (change)="getkraid($event)">
+            <option value="0">Select By  Goal</option>
+            <option *ngFor="let details of kratypelist"  value="{{details.kraName}}">{{details.kraName}}</option>
+       
+        </select> -->
+        <select class="form-control columnname" [(ngModel)]="kraid" name="kraid" (change)="getkraid($event)">
+            <option value="0">Select By  Competancy</option>
+            <option >Leadership</option>
+            <option >StackHolders and Quality Focus</option>
+            <option >Bussiness Accument Perspective</option>
+            <option >Technical Knowledge</option>
+            <option >Communication</option>
+            <option >Team Work</option>
+            <option >Innovation and Change Management</option>
+            <option >Result Orientation</option>
+            <option >Problem Solving and Decision Making</option>
+      
+        </select>
+        </div>
+    </div><br>
+</div> <br>
+    <div class="row">
+        <div class="col-lg-11"></div>
+        <div class="col-lg-1">
+            <button class="form-control Add" routerLink="/hr/CompetancyTratesForm">Add</button>
+        </div>
+    </div> <br>
+ 
+        <div class="row">
+            <div class="col-lg-12">
+                    <table class="table">
+                    <thead>
+                    <!-- <tr *ngIf="(indicatorlist | filter: search).length > 0; else noResults"> -->
+                        <tr>
+                            <th>Competancy</th>
+                            <th>Competancy Trates</th>
+                            <th>Weightage</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>    
+                        <!-- <tr *ngFor="let details of indicatorlist |filter:search">
+                            <td>{{details.kraTypeID}}</td>
+                            <td>{{details.kraName}}</td>                        
+                            <td>{{details.kpiName}}</td>
+                            <td>{{details.description}}</td>
+                            <td>
+                                <button class="form-control edit" [routerLink]="['/hr/KeyPerformaceIndicatorform', details.id]" >Edit</button>
+                                <button class="form-control edit" (click)="delete(details.id)">Delete</button>
+                            </td>
+                        </tr> -->
+                        <tr>
+                            <td>Leadership</td>
+                            <td>
+                                Accept and Support the leadership of other through active participation and cooperation 
+                                in carrying out tasks and policies 
+                            </td>
+                            <td>10</td>
+                            <td>
+                                <button class="form-control edit" [routerLink]="['/hr/KeyPerformaceIndicatorform']" >Edit</button>
+                                <button class="form-control edit" (click)="delete()">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Leadership</td>
+                            <td>
+                                Demonstrates the Company's vision,values and priciples in all interactions
+                            </td>
+                            <td>20</td>
+                            <td>
+                                <button class="form-control edit" [routerLink]="['/hr/KeyPerformaceIndicatorform']" >Edit</button>
+                                <button class="form-control edit" (click)="delete()">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Leadership</td>
+                            <td>Muilti-task driven, manages own time and work and actively identifies opportunities 
+                                for self-development and/or good use of skills
+                            </td>
+                            <td>20</td>
+                            <td>
+                                <button class="form-control edit" [routerLink]="['/hr/KeyPerformaceIndicatorform']" >Edit</button>
+                                <button class="form-control edit" (click)="delete()">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Bussiness Accument Perspective</td>
+                            <td>Understands Bussiness Strategy and how team or individual efforts impact the strategy
+                            </td>
+                            <td>20</td>
+                            <td>
+                                <button class="form-control edit" [routerLink]="['/hr/KeyPerformaceIndicatorform']" >Edit</button>
+                                <button class="form-control edit" (click)="delete()">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Bussiness Accument Perspective</td>
+                            <td>Exercises prucedence in using Company resources to enhance stakeholder value
+                            </td>
+                            <td>60</td>
+                            <td>
+                                <button class="form-control edit" [routerLink]="['/hr/KeyPerformaceIndicatorform']" >Edit</button>
+                                <button class="form-control edit" (click)="delete()">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- <span *ngIf="indicatorlist.length==0">No data Found</span> -->
+                <ng-template #noResults>
+                    <div class="card">
+                        <p class="NoResultShow"> No results found </p>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    
+
+</div>

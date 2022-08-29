@@ -45,6 +45,7 @@
                             <th>Goal Name</th>
                             <th>KPI Name</th>
                             <th>Description</th>
+                            <th>Milestone</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -54,6 +55,7 @@
                             <td>{{details.kraName}}</td>                        
                             <td>{{details.kpiName}}</td>
                             <td>{{details.description}}</td>
+                            <td>{{details.milestone}}</td>
                             <td>
                                 <button class="form-control edit" [routerLink]="['/hr/KeyPerformaceIndicatorform', details.id]" >Edit</button>
                                 <button class="form-control edit" (click)="delete(details.id)">Delete</button>

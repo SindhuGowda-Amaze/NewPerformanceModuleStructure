@@ -122,8 +122,6 @@ export class MyApprasailComponent implements OnInit {
 
   public GetConductappraisalStaffList(){
     this.PerformanceManagementService.GetConductappraisalStaffList()
-    
-    
 .subscribe({
   next: data => {
     debugger

@@ -1,0 +1,72 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-11">
+            <br>
+            <p class="headings">Communication Dashboard</p>
+        </div>
+        <div class="col-lg-1">
+            <br>
+            <p class="count">Count:{{EmployeeKradash.length}}</p>
+        </div>
+    </div>
+    <br>
+    <div class="card">
+        <br>
+        <div class="row FilterClass ">
+            <div class="col-lg-1">
+                <p class="filter">Filter By</p>
+            </div>
+            <div class="col-lg-5">
+                <input type="search" class="form-control search" [(ngModel)]="search" placeholder="Search for Name..">
+            </div>
+            <div class="col-lg-1"></div>
+        </div><br>
+    </div> <br>
+    <div class="row">
+        <div class="col-lg-10"></div>
+        <div class="col-lg-2">
+            <button class="form-control  Add" routerLink="/EmployeeKraMapping">Add</button>
+        </div>
+    </div> <br>
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table">
+                    <thead>
+                        <tr >
+                         <th>Communication Type</th>
+                         <th>Communication With</th>
+                         <th>Level</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                     <tr>
+                        <td>Internal</td>
+                        <td>Manager</td>
+                        <td>A3</td>
+                     </tr>
+                     <tr>
+                        <td>External</td>
+                        <td>Client</td>
+                        <td>A1</td>
+                     </tr>
+                     <tr>
+                        <td>Internal</td>
+                        <td>Developer</td>
+                        <td>B2</td>
+                     </tr>
+                    </tbody>
+                </table>
+                <!-- <span *ngIf="EmployeeKradash.length==0">No data Found</span> -->
+                <ng-template #noResults>
+                    <div class="card">
+                        <p class="NoResultShow"> No results found </p>
+                    </div>
+                </ng-template>
+                <div class="text-right">
+                    <br>
+                    <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
+                </div>
+            </div>
+        </div>
+</div>
+

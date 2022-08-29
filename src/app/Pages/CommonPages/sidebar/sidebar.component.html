@@ -50,6 +50,7 @@
                 &nbsp;
                 <span [ngClass]="active == 'course' ? 'Active1' : 'Active3'"> Goals </span>
             </a>
+
             <a routerLink="/hr/KeyPerformaceIndicator" class="tablinks" (click)="highlight($event)" (click)="Kpi()">
                 <!-- <img  class="dashboard" src="assets/Images/Vector.png" /> -->
                 <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 17px;"
@@ -60,48 +61,69 @@
                 <span [ngClass]="active == 'kpi' ? 'Active1' : 'Active3'"> KPI </span>
             </a>
 
-            <a class="togglebtn button" *ngIf="roleid=='3'" routerLink="/hr/HrDash" class="tablinks"
-            (click)="highlight($event)" (click)="TeamAppraisal()">
-            <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
-                [ngClass]="active != 'TeamAppraisal' ? 'Active1' : 'Active2'" />
-            <img [ngClass]="active == 'TeamAppraisal' ? 'Active1' : 'Active2'" src="assets/Images/64 Blue/Staff.png"
-                style="width:13%; margin-right: 17px;">
-            &nbsp;
-            <span [ngClass]="active == 'TeamAppraisal' ? 'Active1' : 'Active3'"> Team Appraisal</span>
-        </a>
+            <a routerLink="/hr/Competancydash" class="tablinks" (click)="highlight($event)" (click)="Competancy()">
+                <!-- <img  class="dashboard" src="assets/Images/Vector.png" /> -->
+                <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 17px;"
+                    [ngClass]="active != 'Competancy' ? 'Active1' : 'Active2'" />
+                <img [ngClass]="active == 'Competancy' ? 'Active1' : 'Active2'" src="assets/Images/64 Blue/Staff.png"
+                    style="width:13%; margin-right: 17px;">
+                &nbsp;
+                <span [ngClass]="active == 'Competancy' ? 'Active1' : 'Active3'"> Competancy </span>
+            </a>
 
-        <a class="togglebtn button" routerLink="/hr/BellCurveFitting" class="tablinks" (click)="highlight($event)"
-        (click)="BellCurve()" *ngIf="roleid=='3'">
-        <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
-            [ngClass]="active != 'Bell' ? 'Active1' : 'Active2'" />
-        <img [ngClass]="active == 'Bell' ? 'Active1' : 'Active2'" src="assets/Images/64 Blue/Staff.png"
-            style="width:13%; margin-right: 17px;">
-        &nbsp;
-        <span [ngClass]="active == 'Bell' ? 'Active1' : 'Active3'">Bell Curve Fitting</span>
-    </a>
+            <a routerLink="/hr/CompetancyTrates" class="tablinks" (click)="highlight($event)"
+                (click)="CompetancyTrates()">
+                <!-- <img  class="dashboard" src="assets/Images/Vector.png" /> -->
+                <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 17px;"
+                    [ngClass]="active != 'Trates' ? 'Active1' : 'Active2'" />
+                <img [ngClass]="active == 'Trates' ? 'Active1' : 'Active2'" src="assets/Images/64 Blue/Staff.png"
+                    style="width:13%; margin-right: 17px;">
+                &nbsp;
+                <span [ngClass]="active == 'Trates' ? 'Active1' : 'Active3'"> Competancy Trates </span>
+            </a>
+
+            <a class="togglebtn button" *ngIf="roleid=='3'" routerLink="/hr/HrDash" class="tablinks"
+                (click)="highlight($event)" (click)="TeamAppraisal()">
+                <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
+                    [ngClass]="active != 'TeamAppraisal' ? 'Active1' : 'Active2'" />
+                <img [ngClass]="active == 'TeamAppraisal' ? 'Active1' : 'Active2'" src="assets/Images/64 Blue/Staff.png"
+                    style="width:13%; margin-right: 17px;">
+                &nbsp;
+                <span [ngClass]="active == 'TeamAppraisal' ? 'Active1' : 'Active3'"> Team Appraisal</span>
+            </a>
+
+            <a class="togglebtn button" routerLink="/hr/BellCurveFitting" class="tablinks" (click)="highlight($event)"
+                (click)="BellCurve()" *ngIf="roleid=='3'">
+                <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
+                    [ngClass]="active != 'Bell' ? 'Active1' : 'Active2'" />
+                <img [ngClass]="active == 'Bell' ? 'Active1' : 'Active2'" src="assets/Images/64 Blue/Staff.png"
+                    style="width:13%; margin-right: 17px;">
+                &nbsp;
+                <span [ngClass]="active == 'Bell' ? 'Active1' : 'Active3'">Bell Curve Fitting</span>
+            </a>
 
             <a class="togglebtn button" *ngIf="roleid=='3'" routerLink="/hr/StaffScoreReport" class="tablinks"
-            (click)="highlight($event)" (click)="StaffScore()">
-            <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
-                [ngClass]="active != 'StaffScore' ? 'Active1' : 'Active2'" />
-            <img [ngClass]="active == 'StaffScore' ? 'Active1' : 'Active2'" src="assets/Images/64 Blue/Staff.png"
-                style="width:13%; margin-right: 17px;">
-            &nbsp;
-            <span [ngClass]="active == 'StaffScore' ? 'Active4' : 'Active3'">Appraisal Detailed Report</span>
-        </a>
-
-    
+                (click)="highlight($event)" (click)="StaffScore()">
+                <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
+                    [ngClass]="active != 'StaffScore' ? 'Active1' : 'Active2'" />
+                <img [ngClass]="active == 'StaffScore' ? 'Active1' : 'Active2'" src="assets/Images/64 Blue/Staff.png"
+                    style="width:13%; margin-right: 17px;">
+                &nbsp;
+                <span [ngClass]="active == 'StaffScore' ? 'Active4' : 'Active3'">Appraisal Detailed Report</span>
+            </a>
 
 
-    <a class="togglebtn button" routerLink="/hr/ApprasialReport" class="tablinks" (click)="highlight($event)"
-        (click)="AppraisalReport()" *ngIf="roleid=='3'|| roleid=='4'">
-        <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
-            [ngClass]="active != 'AppraisalReport' ? 'Active1' : 'Active2'" />
-        <img [ngClass]="active == 'AppraisalReport' ? 'Active1' : 'Active2'" src="assets/Images/64 Blue/Staff.png"
-            style="width:13%; margin-right: 17px;">
-        &nbsp;
-        <span [ngClass]="active == 'AppraisalReport' ? 'Active1' : 'Active3'">Appraisal Final Report</span>
-    </a>
+
+
+            <a class="togglebtn button" routerLink="/hr/ApprasialReport" class="tablinks" (click)="highlight($event)"
+                (click)="AppraisalReport()" *ngIf="roleid=='3'|| roleid=='4'">
+                <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
+                    [ngClass]="active != 'AppraisalReport' ? 'Active1' : 'Active2'" />
+                <img [ngClass]="active == 'AppraisalReport' ? 'Active1' : 'Active2'"
+                    src="assets/Images/64 Blue/Staff.png" style="width:13%; margin-right: 17px;">
+                &nbsp;
+                <span [ngClass]="active == 'AppraisalReport' ? 'Active1' : 'Active3'">Appraisal Final Report</span>
+            </a>
         </div>
         <div id="userapplications" class="collapse" style="padding-left: 7%;">
         </div>
@@ -116,31 +138,144 @@
             <span [ngClass]="active == 'EmployeeDashboard' ? 'Active1' : 'Active3'">My Team </span>
         </a>
 
-     
 
-
-        <a class="togglebtn button" *ngIf="roleid=='4'" routerLink="/manager/EmployeeKraMappingdashboard" class="tablinks"
-            (click)="highlight($event)" (click)="Employeekramapping()">
+        <a data-toggle="collapse" class="togglebtn button" data-target="#setappraisal" class="togglebtn button"
+            *ngIf="roleid!='1'" class="tablinks" (click)="highlight($event)" (click)="SetAppraisal()">
             <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
-                [ngClass]="active != 'Settings' ? 'Active1' : 'Active2'" />
-            <img [ngClass]="active == 'Settings' ? 'Active1' : 'Active2'" src="assets/Images/64 Blue/Staff.png"
+                [ngClass]="active != 'SetAppraisal' ? 'Active1' : 'Active2'" />
+            <img [ngClass]="active == 'SetAppraisal' ? 'Active1' : 'Active2'" src="assets/Images/64 Blue/Staff.png"
                 style="width:13%; margin-right: 17px;">
             &nbsp;
-            <span [ngClass]="active == 'Settings' ? 'Active1' : 'Active3'"> Goal Settings</span>
-        </a>
-
-
-        <a class="togglebtn button" *ngIf="roleid!='1'" routerLink="/shared/MyAppraisal" class="tablinks"
-            (click)="highlight($event)" (click)="Myappraisal()">
-            <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
-                [ngClass]="active != 'MyAppraisalDashboard' ? 'Active1' : 'Active2'" />
-            <img [ngClass]="active == 'MyAppraisalDashboard' ? 'Active1' : 'Active2'"
-                src="assets/Images/64 Blue/Staff.png" style="width:13%; margin-right: 17px;">
-            &nbsp;
-            <span [ngClass]="active == 'MyAppraisalDashboard' ? 'Active1' : 'Active3'" style="font-size: 11px;">My
+            <span [ngClass]="active == 'SetAppraisal' ? 'Active1' : 'Active3'" style="font-size: 11px;">Set
                 Appraisal </span>
         </a>
-        <a class="togglebtn button" *ngIf="roleid=='4'" routerLink="/manager/Managerratingdash" class="tablinks"
+
+        <div id="setappraisal" class="collapse" style="padding-left: 7%;">
+            <a class="togglebtn button" *ngIf="roleid=='4'" routerLink="/manager/EmployeeKraMappingdashboard"
+                class="tablinks" (click)="highlight($event)" (click)="Employeekramapping()">
+                <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
+                    [ngClass]="active != 'Settings' ? 'Active1' : 'Active2'" />
+                <img [ngClass]="active == 'Settings' ? 'Active1' : 'Active2'" src="assets/Images/64 Blue/Staff.png"
+                    style="width:13%; margin-right: 17px;">
+                &nbsp;
+                <span [ngClass]="active == 'Settings' ? 'Active1' : 'Active3'"> Goal Settings</span>
+            </a>
+
+            <a class="togglebtn button" *ngIf="roleid=='4'" routerLink="/manager/CompetancySettingDash" class="tablinks"
+                (click)="highlight($event)" (click)="CompSettings()">
+                <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
+                    [ngClass]="active != 'CompSettings' ? 'Active1' : 'Active2'" />
+                <img [ngClass]="active == 'CompSettings' ? 'Active1' : 'Active2'" src="assets/Images/64 Blue/Staff.png"
+                    style="width:13%; margin-right: 17px;">
+                &nbsp;
+                <span [ngClass]="active == 'CompSettings' ? 'Active1' : 'Active3'"> Competancy Settings</span>
+            </a>
+
+            <a class="togglebtn button" *ngIf="roleid=='4'" routerLink="/manager/ViewAppraisal" class="tablinks"
+                (click)="highlight($event)" (click)="ViewAppraisal()">
+                <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
+                    [ngClass]="active != 'ViewAppraisal' ? 'Active1' : 'Active2'" />
+                <img [ngClass]="active == 'ViewAppraisal' ? 'Active1' : 'Active2'" src="assets/Images/64 Blue/Staff.png"
+                    style="width:13%; margin-right: 17px;">
+                &nbsp;
+                <span [ngClass]="active == 'ViewAppraisal' ? 'Active1' : 'Active3'">View Appraisal</span>
+            </a>
+
+        </div>
+
+        <a data-toggle="collapse" class="togglebtn button" data-target="#EvaluateAppraisal" class="togglebtn button"
+            *ngIf="roleid!='1'" class="tablinks" (click)="highlight($event)" (click)="EvaluateAppraisal()">
+            <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
+                [ngClass]="active != 'EvaluateAppraisal' ? 'Active1' : 'Active2'" />
+            <img [ngClass]="active == 'EvaluateAppraisal' ? 'Active1' : 'Active2'" src="assets/Images/64 Blue/Staff.png"
+                style="width:13%; margin-right: 17px;">
+            &nbsp;
+            <span [ngClass]="active == 'EvaluateAppraisal' ? 'Active1' : 'Active3'" style="font-size: 11px;">Evaluate
+                Appraisal </span>
+        </a>
+        <div id="EvaluateAppraisal" class="collapse" style="padding-left: 7%;">
+            <a data-toggle="collapse" class="togglebtn button" data-target="#appraisaltype" class="togglebtn button"
+                *ngIf="roleid!='1'" routerLink="/shared/MyAppraisal" class="tablinks" (click)="highlight($event)"
+                (click)="Myappraisal()">
+                <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
+                    [ngClass]="active != 'MyAppraisalDashboard' ? 'Active1' : 'Active2'" />
+                <img [ngClass]="active == 'MyAppraisalDashboard' ? 'Active1' : 'Active2'"
+                    src="assets/Images/64 Blue/Staff.png" style="width:13%; margin-right: 17px;">
+                &nbsp;
+                <span [ngClass]="active == 'MyAppraisalDashboard' ? 'Active1' : 'Active3'" style="font-size: 11px;">My
+                    Appraisal </span>
+            </a>
+
+            <div id="appraisaltype" class="collapse" style="padding-left: 7%;">
+                <a class="togglebtn button" *ngIf="roleid!='1'" routerLink="/shared/MyAppraisal" class="tablinks"
+                    (click)="highlight($event)" (click)="Myappraisal()">
+                    <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
+                        [ngClass]="active != 'MyAppraisalDashboard' ? 'Active1' : 'Active2'" />
+                    <img [ngClass]="active == 'MyAppraisalDashboard' ? 'Active1' : 'Active2'"
+                        src="assets/Images/64 Blue/Staff.png" style="width:13%; margin-right: 17px;">
+                    &nbsp;
+                    <span [ngClass]="active == 'MyAppraisalDashboard' ? 'Active1' : 'Active3'"
+                        style="font-size: 11px;">Goal
+                        Appraisal </span>
+                </a>
+
+                <a class="togglebtn button" *ngIf="roleid!='1'" routerLink="/employee/EmpCompetancyAppraisal"
+                    class="tablinks" (click)="highlight($event)" (click)="MyappraisalCompetency()">
+                    <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
+                        [ngClass]="active != 'MyAppraisalCompetency' ? 'Active1' : 'Active2'" />
+                    <img [ngClass]="active == 'MyAppraisalCompetency' ? 'Active1' : 'Active2'"
+                        src="assets/Images/64 Blue/Staff.png" style="width:13%; margin-right: 17px;">
+                    &nbsp;
+                    <span [ngClass]="active == 'MyAppraisalCompetency' ? 'Active1' : 'Active3'"
+                        style="font-size: 11px;">Competency
+                        Appraisal </span>
+                </a>
+            </div>
+
+
+            <a class="togglebtn button" *ngIf="roleid=='4'" routerLink="/manager/Managerratingdash" class="tablinks"
+                (click)="highlight($event)" (click)="TeamAppraisal()">
+                <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
+                    [ngClass]="active != 'TeamAppraisal' ? 'Active1' : 'Active2'" />
+                <img [ngClass]="active == 'TeamAppraisal' ? 'Active1' : 'Active2'" src="assets/Images/64 Blue/Staff.png"
+                    style="width:13%; margin-right: 17px;">
+                &nbsp;
+                <span [ngClass]="active == 'TeamAppraisal' ? 'Active1' : 'Active3'"> Team Appraisal</span>
+            </a>
+
+        </div>
+
+
+        <!-- <a class="togglebtn button" *ngIf="roleid!='1'" routerLink="/manager/ManagerCompetancyAppraisal"
+                class="tablinks" (click)="highlight($event)" (click)="MyappraisalCompetency()">
+                <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
+                    [ngClass]="active != 'MyAppraisalCompetency' ? 'Active1' : 'Active2'" />
+                <img [ngClass]="active == 'MyAppraisalCompetency' ? 'Active1' : 'Active2'"
+                    src="assets/Images/64 Blue/Staff.png" style="width:13%; margin-right: 17px;">
+                &nbsp;
+                <span [ngClass]="active == 'MyAppraisalCompetency' ? 'Active1' : 'Active3'"
+                    style="font-size: 11px;">Competency
+                    Appraisal </span>
+            </a> -->
+
+
+
+
+
+        <a class="togglebtn button" *ngIf="roleid=='2'" routerLink="/employee/CommunicationDash" class="tablinks"
+            (click)="highlight($event)" (click)="Communication()">
+            <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
+                [ngClass]="active != 'Communication' ? 'Active1' : 'Active2'" />
+            <img [ngClass]="active == 'Communication' ? 'Active1' : 'Active2'" src="assets/Images/64 Blue/Staff.png"
+                style="width:13%; margin-right: 17px;">
+            &nbsp;
+            <span [ngClass]="active == 'Communication' ? 'Active1' : 'Active3'"
+                style="font-size: 11px;">Communication</span>
+        </a>
+
+
+
+        <a class="togglebtn button" *ngIf="roleid=='5'" routerLink="/sbu/Sburattingdash" class="tablinks"
             (click)="highlight($event)" (click)="TeamAppraisal()">
             <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
                 [ngClass]="active != 'TeamAppraisal' ? 'Active1' : 'Active2'" />
@@ -149,18 +284,6 @@
             &nbsp;
             <span [ngClass]="active == 'TeamAppraisal' ? 'Active1' : 'Active3'"> Team Appraisal</span>
         </a>
-
-     
-
-        <a class="togglebtn button" *ngIf="roleid=='5'" routerLink="/sbu/Sburattingdash" class="tablinks"
-        (click)="highlight($event)" (click)="TeamAppraisal()">
-        <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
-            [ngClass]="active != 'TeamAppraisal' ? 'Active1' : 'Active2'" />
-        <img [ngClass]="active == 'TeamAppraisal' ? 'Active1' : 'Active2'" src="assets/Images/64 Blue/Staff.png"
-            style="width:13%; margin-right: 17px;">
-        &nbsp;
-        <span [ngClass]="active == 'TeamAppraisal' ? 'Active1' : 'Active3'"> Team Appraisal</span>
-    </a>
 
         <!-- <a class="togglebtn button" routerLink="/Pip" class="tablinks" (click)="highlight($event)" (click)="pip()"
             *ngIf="roleid=='3'||roleid=='2' ">
@@ -172,7 +295,7 @@
             <span [ngClass]="active == 'PIP' ? 'Active1' : 'Active3'">PIP</span>
         </a> -->
 
-        
+
         <!-- <a class="togglebtn button" *ngIf="(roleid=='2')&& StaffPIPActionItemList.length>0" routerLink="/Pip" class="tablinks"
             (click)="highlight($event)" (click)="app()">
             <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
@@ -182,15 +305,15 @@
             &nbsp;
             <span [ngClass]="active == 'app' ? 'Active1' : 'Active3'">PIP</span>
         </a> -->
-        <a class="togglebtn button" *ngIf="roleid=='2'&& StaffPIPActionItemList.length>0" routerLink="/manager/Pip" class="tablinks"
-            (click)="highlight($event)" (click)="app()">
+        <a class="togglebtn button" *ngIf="roleid=='2'&& StaffPIPActionItemList.length>0" routerLink="/manager/Pip"
+            class="tablinks" (click)="highlight($event)" (click)="app()">
             <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
                 [ngClass]="active != 'app' ? 'Active1' : 'Active2'" />
             <img [ngClass]="active == 'app' ? 'Active1' : 'Active2'" src="assets/Images/64 Blue/Staff.png"
                 style="width:13%; margin-right: 17px;">
             &nbsp;
             <span [ngClass]="active == 'app' ? 'Active1' : 'Active3'">PIP</span>
-        </a> 
+        </a>
         <a class="togglebtn button" *ngIf="roleid=='4'||roleid=='3'" routerLink="/manager/Pip" class="tablinks"
             (click)="highlight($event)" (click)="app()">
             <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
@@ -202,14 +325,14 @@
         </a>
 
         <a class="togglebtn button" *ngIf="roleid=='4'||roleid=='3'" routerLink="/manager/PIPReport" class="tablinks"
-        (click)="highlight($event)" (click)="appreport()">
-        <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
-            [ngClass]="active != 'appreport' ? 'Active1' : 'Active2'" />
-        <img [ngClass]="active == 'appreport' ? 'Active1' : 'Active2'" src="assets/Images/64 Blue/Staff.png"
-            style="width:13%; margin-right: 17px;">
-        &nbsp;
-        <span [ngClass]="active == 'appreport' ? 'Active1' : 'Active3'">PIP Report</span>
-    </a>
+            (click)="highlight($event)" (click)="appreport()">
+            <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
+                [ngClass]="active != 'appreport' ? 'Active1' : 'Active2'" />
+            <img [ngClass]="active == 'appreport' ? 'Active1' : 'Active2'" src="assets/Images/64 Blue/Staff.png"
+                style="width:13%; margin-right: 17px;">
+            &nbsp;
+            <span [ngClass]="active == 'appreport' ? 'Active1' : 'Active3'">PIP Report</span>
+        </a>
 
         <a class="togglebtn button" *ngIf="roleid=='3'||roleid=='5'" routerLink="/sbu/ReviewRating" class="tablinks"
             (click)="highlight($event)" (click)="ReviewRating()">
@@ -221,7 +344,7 @@
             <span [ngClass]="active == 'ReviewRating' ? 'Active1' : 'Active3'">Review Rating</span>
         </a>
 
-       
+
 
         <a class="togglebtn button" *ngIf="roleid=='3'" routerLink="/hr/SalaryincrementletterDash" class="tablinks"
             (click)="highlight($event)" (click)="salaryIncrement()">
@@ -243,7 +366,8 @@
             &nbsp;
         </a>
 
-        <a routerLink="/shared/SupportTicketDashboard" class="tablinks" (click)="highlight($event)" (click)="SupportTickets()">
+        <a routerLink="/shared/SupportTicketDashboard" class="tablinks" (click)="highlight($event)"
+            (click)="SupportTickets()">
             <img src="assets/Images/64 Blue/Anoncement.png" style="width:13% ;margin-right: 17px;"
                 [ngClass]="active == 'SupportTickets' ? 'Active1' : 'Active2'" />
             <img [ngClass]="active != 'SupportTickets' ? 'Active1' : 'Active2'" src="assets/Images/64/Anoncement.png"

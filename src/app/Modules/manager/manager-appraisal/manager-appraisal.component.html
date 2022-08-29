@@ -32,6 +32,7 @@
     </div>
     <br>
     <div>
+        <b>Goal Appraisal</b>
         <div class="row">
             <div class="col-lg-12">
                 <table class="table">
@@ -86,6 +87,79 @@
                                     <!-- <p *ngIf="details.managerupdate== '1' && details.managerattachment!=null">No Attachments</p> -->
                             </td>
                         </tr>
+                    </tbody>
+                </table>
+
+                <div class="text-right">
+                    <br>
+                    <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div>
+        <b>Competency Appraisal</b>
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Sr.No.</th>
+                            <th>Competency</th>
+                            <th>Competency Traits</th>
+                            <th>Weightage</th>
+                            <th>Employee Rating</th>
+                            <th>Employee Comments</th>
+                            <th>Employee Attachment</th>
+                            <th>Manager Rating</th>
+                            <th>Action </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                        *ngFor="let details of ResultAreaList |paginate: { itemsPerPage: count1, currentPage: p} index as i">
+                        <td [ngClass]="{'bggreen':details.managerupdate==1 }">
+                            {{i+1}}</td>
+                        <td [ngClass]="{'bggreen':details.managerupdate==1 }">{{details.kraName}}</td>
+                        <td [ngClass]="{'bggreen':details.managerupdate==1 }">{{details.kpiName}}</td>
+                        <td [ngClass]="{'bggreen':details.managerupdate==1 }">{{details.milestone}}</td>
+
+                        <td [ngClass]="{'bg-warning':details.managerupdate==1 }" style="text-align: center;">{{details.emprating}}</td>
+
+                        <td [ngClass]="{'bggreen':details.managerupdate==1 }">
+                            <button type="button" class="btn btn-success" data-toggle="modal"
+                                (click)="GEtemployeecomments(details)" data-target="#viewempcomments">View
+                            </button>
+                        </td>
+                        <td [ngClass]="{'bggreen':details.managerupdate==1 }">
+                            <button class=" btn btn-primary action" data-toggle="modal" data-target="#exampleModal2"
+                                (click)="getattachment(details)"  *ngIf="details.selfattachment!='0'&&details.selfattachment!=''">View Attachments</button>
+                                <p *ngIf="details.selfattachment=='0'||details.selfattachment==null||details.selfattachment==''">No Attachment</p>
+                        </td>   
+                        <td  [ngClass]="{'bg-warning':details.managerupdate==1 }" style="text-align: center;">
+                            {{details.managerrating}}
+                            <p *ngIf="details.managerupdate!=1">NA</p>
+                        </td>
+                        <td [ngClass]="{'bggreen':details.managerupdate==1 }">
+                            <button *ngIf="details.managerupdate!=1 &&details.empupdate==1" type="button"
+                                class="btn btn-primary" data-toggle="modal" (click)="GetKPIID(details)"
+                                data-target="#exampleModal">Rate Employee</button>
+                            <button *ngIf="details.managerupdate==1" type="button" class="btn btn-success"
+                                data-toggle="modal" (click)="GetKPIIDetails(details)"
+                                data-target="#exampleModal1">View
+                                Details</button><br><br>
+                                <p *ngIf="details.managerupdate==1 &&(details.managerattachment==null||details.managerattachment=='')">No Attachments</p>
+
+                                <button *ngIf="details.managerupdate==1 && details.managerattachment!=null&&details.managerattachment!=''" type="button" class="btn btn-success"
+                                data-toggle="modal" (click)="GetKPIIDetails(details)"
+                                data-target="#exampleModal4">View Attachments</button>
+                                <!-- <p *ngIf="details.managerupdate== '1' && details.managerattachment!=null">No Attachments</p> -->
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
 

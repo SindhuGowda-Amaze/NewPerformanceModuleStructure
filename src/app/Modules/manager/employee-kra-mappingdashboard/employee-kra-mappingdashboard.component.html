@@ -29,6 +29,15 @@
                 </option>
             </select>
             </div>
+            <div class="col-lg-3">
+                <div class="col-lg-9">
+                    <select class="form-control"  (change)="getkratypeid($event)"  [(ngModel)]="kratypeid" name="kratypeid"  >
+                        <option value="">Select Goal Type</option>
+                        <option *ngFor="let details of GoalTypelist" value="{{details.kraType}}">{{details.kraType}}
+                        </option>
+                    </select>
+                </div>
+            </div>
             
             <div class="col-lg-1"></div>
         </div><br>
@@ -53,12 +62,7 @@
                         <th>Employee Name</th>
                         <th>Role</th>
                         <th>Department</th>
-                        <th>Goal Setting Date </th>
-                        <th>Employee Submission Last Date</th>
-                        <!-- <th>Submission Date </th> -->
-                       
-                        <th>Manager Submission Last Date </th>
-                        <th>HR Submission Last Date</th>
+                      
                         <th>Action </th>
                     </tr>
                 </thead>
@@ -74,15 +78,13 @@
                         <td>{{details.name}}</td>
                         <td>{{details.role}}</td>
                         <td>{{details.departmentName}}</td>
-                        <td>{{details.goalSettingDate}}</td>
-                        <td>{{details.employeeSubmissionLastDate}}</td>
                      
-                        <td>{{details.managerReviewLastDate}}</td>
-                        <td>{{details.hrReviewLastDate}}</td>
                         <!-- <td>{{details.appraisalSubmitionDate|date}}</td> -->
                         <td>
                             <button class="form-control button1" data-toggle="modal"
-                                (click)="GetStaffKraDetails(details)" data-target="#myModal">View Goals</button>&nbsp;
+                                (click)="GetStaffKraDetails(details)" data-target="#myModal">View KRA</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <button class="form-control button1" data-toggle="modal"
+                                 data-target="#keydates"  (click)="GetStaffKraDetails(details)">View Key Dates</button>&nbsp;
                         </td>
                     </tr>
                 </tbody>
@@ -122,7 +124,7 @@
                                     <th>Sl No.</th>
                                     <th>Goal Type</th>
                                     <th>Goals</th>
-                                    <th>KPI</th>
+                                    <th>KRA</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -136,6 +138,55 @@
                                         <button class="edit" data-toggle="modal" data-target="#exampleModal"
                                             data-dismiss="modal" (click)="edit(details)">Edit</button>
                                     </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="keydates" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title headings">Key Dates</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            </div>
+            <div class="modal-body" style="height: 400px; overflow-y: scroll;">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                   
+                                    <th>Goal Setting Date </th>
+                                    <th>Employee Submission Last Date</th>
+                                    <!-- <th>Submission Date </th> -->
+                                   
+                                    <th>Manager Submission Last Date </th>
+                                    <th>HR Submission Last Date</th>
+                                 
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    *ngFor="let details of EmployeeKradash |paginate: { itemsPerPage: count1, currentPage: p}|filter:search">
+            
+                                  
+                                    <td>{{details.goalSettingDate}}</td>
+                                    <td>{{details.employeeSubmissionLastDate}}</td>
+                                 
+                                    <td>{{details.managerReviewLastDate}}</td>
+                                    <td>{{details.hrReviewLastDate}}</td>
+                           
+                               
                                 </tr>
                             </tbody>
                         </table>
@@ -189,11 +240,11 @@
                 </div> <br>
                 <div class="row">
                     <div class="col-lg-3">
-                        <p>KPI</p>
+                        <p>KRA</p>
                     </div>
                     <div class="col-lg-9">
                         <select class="form-control columnname" (change)="getkpiid($event)" [(ngModel)]="kpiid" name="kpiid" id="kpiid">
-                            <option value="">Select KPI</option>
+                            <option value="">Select KRA</option>
                             <option *ngFor="let details of kpitypelist" value="{{details.id}}">{{details.kpiName}}
                             </option>
                         </select>

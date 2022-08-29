@@ -1,0 +1,28 @@
+.btn{
+    background: #3247D5;
+}
+.bggreen{
+    background: rgb(93, 228, 93);
+}
+.action{
+    background-color: #3247D5;
+    color:white;
+    border:none;
+    border-radius: 5px;
+    width:40%;
+    height:auto;
+}
+
+.action1{
+    background-color: #3247D5;
+    color:white;
+    border:none;
+    border-radius: 5px;
+    /* width:100%; */
+    height:auto;
+}
+
+.related{
+    color:#3247D5;
+    font-size: 19px;
+}

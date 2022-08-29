@@ -52,6 +52,7 @@
                             <th>Goal Name</th>                          
                             <th>Position</th>
                             <th>Description</th>
+                            <th>Weightage</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -61,6 +62,7 @@
                             <td>{{details.kraName}}</td>                    
                             <td>{{details.short}}</td>
                             <td>{{details.description}}</td>
+                            <td>{{details.weightage}}</td>
                             <td>
                                 <button class="form-control edit"
                                     [routerLink]="['/hr/KeyResultAreaForm', details.id]">Edit</button>

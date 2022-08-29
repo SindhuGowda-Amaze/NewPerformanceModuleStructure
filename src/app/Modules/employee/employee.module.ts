@@ -7,11 +7,19 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { EmployeeTileDashboardComponent } from './employee-tile-dashboard/employee-tile-dashboard.component';
+import { CommunicationComponent } from './communication/communication.component';
+import { CommunicationDashComponent } from './communication-dash/communication-dash.component';
+import { EmpCompetancyAppraisalComponent } from './emp-competancy-appraisal/emp-competancy-appraisal.component';
+import { EmpCompetancyRatingPageComponent } from './emp-competancy-rating-page/emp-competancy-rating-page.component';
 
 @NgModule({
   declarations: [
     EmployeeComponent,
     EmployeeTileDashboardComponent,
+    CommunicationComponent,
+    CommunicationDashComponent,
+    EmpCompetancyAppraisalComponent,
+    EmpCompetancyRatingPageComponent,
    
   ],
   imports: [

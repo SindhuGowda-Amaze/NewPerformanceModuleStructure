@@ -1,0 +1,139 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-10">
+            <br>
+            <p class="headings">View Appraisal</p>
+        </div>
+        <div class="col-lg-2">
+            <br>
+            <p class="count">Count: {{EmployeeKradash.length}}</p>
+        </div>
+    </div>
+    <br>
+    <div class="card">
+        <br>
+        <div class="row FilterClass ">
+            <div class="col-lg-1">
+                <p class="filter">Filter By</p>
+            </div>
+            <div class="col-lg-2">
+                <input type="search" class="form-control search" placeholder="Search for Name.." [(ngModel)]="search">
+            </div>
+            <div class="col-lg-3">
+                <select class="form-control" id="appraisalCycleName" name="appraisalCycleName"
+                    [(ngModel)]="appraisalCycleName" 
+                    (change)="GetFilteredAppraisalCycle($event)">
+                    <option value="0">Select Cycle</option>
+                    <option *ngFor="let item of Apprisalcyclelist" value="{{item.appraisalCycleName}}">
+                        {{item.appraisalCycleName}}
+                    </option>
+                </select>
+            </div>
+            <div class="col-lg-3">
+                <select class="form-control" id="DeptID" name="DeptID"
+                    [(ngModel)]="DeptID" 
+                    (change)="GetFilteredDeptID()">
+                    <option value="0">Select Department</option>
+                    <option *ngFor="let item of DepartmentList" value="{{item.id}}">
+                        {{item.departmentName}}
+                    </option>
+                </select>
+            </div>
+            <div class="col-lg-3">
+                <select class="form-control" id="staffid" name="staffid"
+                    [(ngModel)]="staffid"  (change)="GetFilteredStaffID($event)">
+                    <option value="0">Select Staff</option>
+                    <option *ngFor="let item of stafflist" value="{{item.id}}">
+                        {{item.name}}
+                    </option>
+                </select>
+            </div>
+
+            
+        </div><br>
+    </div> <br>
+
+    <div class="row">
+        <b style="padding-left: 20px;">Goal Appraisal View</b>
+        <div class="col-lg-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Sl No.</th>
+                        <th>Goal Type</th>
+                        <th>Goals</th>
+                        <th>KRA</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let details of Staffkra index as i">
+                        <td>{{i+1}}</td>
+                        <td>{{details.kraTypeID}}</td>
+                        <td>{{details.kraName}}</td>
+                        <td>{{details.kpiName}}</td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-right">
+                <br>
+                <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row">
+        <b style="padding-left: 20px;">Competency Appraisal View</b>
+        <div class="col-lg-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Sl No.</th>
+                        <th>Competancy</th>
+                        <th>Competancy Trates</th>
+                        <th>Weightage</th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                 
+                    <tr>
+                        <td>1</td>
+                        <td>Leadership</td>
+                        <td>Accept and Support the leadership of other through active participation and cooperation 
+                            in carrying out tasks and policies</td>
+                            <td>20</td>
+                     
+                    </tr>
+                    <tr  >
+                        <td>2</td>
+                        <td>Leadership</td>
+                        <td>Demonstrates the Company's vision,values and priciples in all interactions</td>
+                        <td>20</td>
+                       
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Leadership</td>
+           
+                        <td>Muilti-task driven, manages own time and work and actively identifies opportunities 
+                            for self-development and/or good use of skills</td>
+                            <td>10</td>
+                      
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="text-right">
+                <br>
+                <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
+            </div>
+
+        </div>
+
+    </div>
+
+   
+</div>

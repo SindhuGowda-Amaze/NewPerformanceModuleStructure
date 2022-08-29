@@ -4,6 +4,10 @@ import { ApprasialCycleFormComponent } from './apprasial-cycle-form/apprasial-cy
 import { ApprasialCycleComponent } from './apprasial-cycle/apprasial-cycle.component';
 import { ApprasialReportComponent } from './apprasial-report/apprasial-report.component';
 import { BellCurveFittingComponent } from './bell-curve-fitting/bell-curve-fitting.component';
+import { CompetancyFormComponent } from './competancy-form/competancy-form.component';
+import { CompetancyTratesFormComponent } from './competancy-trates-form/competancy-trates-form.component';
+import { CompetancyTratesComponent } from './competancy-trates/competancy-trates.component';
+import { CompetancydashComponent } from './competancydash/competancydash.component';
 import { HrDashComponent } from './hr-dash/hr-dash.component';
 import { HrDashboardComponent } from './hr-dashboard/hr-dashboard.component';
 import { HrComponent } from './hr.component';
@@ -43,6 +47,12 @@ const routes: Routes = [{ path: '', component: HrComponent },
 {path:'StaffScoreReport',component:StaffScoreReportComponent},
 { path: 'StaffScoreFullDetails/:StaffTypeID/:StaffID', component: StaffScoreFullDetailsComponent },
 { path: 'hrratingnew/:id/:StaffID', component: HrratingnewComponent },
+
+{ path: 'CompetancyForm', component: CompetancyFormComponent },
+{ path: 'CompetancyForm/:id', component: CompetancyFormComponent },
+{ path: 'CompetancyTrates', component: CompetancyTratesComponent },
+{ path: 'CompetancyTratesForm', component: CompetancyTratesFormComponent },
+{ path: 'Competancydash', component: CompetancydashComponent },
 
 ];
 
