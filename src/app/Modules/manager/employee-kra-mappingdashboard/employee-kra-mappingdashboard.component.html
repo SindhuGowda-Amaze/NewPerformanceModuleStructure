@@ -43,9 +43,15 @@
         </div><br>
     </div> <br>
     <div class="row">
-        <div class="col-lg-11"></div>
+        <div class="col-lg-9"></div>
         <div class="col-lg-1">
             <button class="form-control Add" routerLink="/manager/EmployeeKraMapping">Add</button>
+            
+        </div>
+        <div class="col-lg-2">
+          
+            <button class="form-control Add" data-toggle="modal"
+            data-target="#keydates"  (click)="viewdates()">View Key Dates</button>&nbsp;
         </div>
     </div> <br>
 
@@ -83,8 +89,7 @@
                         <td>
                             <button class="form-control button1" data-toggle="modal"
                                 (click)="GetStaffKraDetails(details)" data-target="#myModal">View KRA</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <button class="form-control button1" data-toggle="modal"
-                                 data-target="#keydates"  (click)="GetStaffKraDetails(details)">View Key Dates</button>&nbsp;
+                              
                         </td>
                     </tr>
                 </tbody>

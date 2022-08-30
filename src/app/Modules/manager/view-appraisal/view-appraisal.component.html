@@ -63,6 +63,7 @@
                         <th>Goal Type</th>
                         <th>Goals</th>
                         <th>KRA</th>
+                        <th>Weightage</th>
                         
                     </tr>
                 </thead>
@@ -72,13 +73,24 @@
                         <td>{{details.kraTypeID}}</td>
                         <td>{{details.kraName}}</td>
                         <td>{{details.kpiName}}</td>
+                        <td>{{details.milestone}}</td>
+                        
+                    </tr>
+                    <tr >
+                        <td>3</td>
+                        <td>Team Goal</td>
+                        <td>Improve communication channels across all departments with the use of better communication platforms and software.</td>
+                        <td>Adopt the use of process modelling to facilitate visualization for identifying improvements.</td>
+                        <td>35</td>
                         
                     </tr>
                 </tbody>
             </table>
             <div class="text-right">
                 <br>
-                <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
+                <pagination-controls (pageChange)="p = $event" class="poppinns">  
+                </pagination-controls>
+                <b style="padding-left: 20px;">Total Weightage :<b>70</b></b>
             </div>
 
         </div>
@@ -104,14 +116,14 @@
                         <td>Leadership</td>
                         <td>Accept and Support the leadership of other through active participation and cooperation 
                             in carrying out tasks and policies</td>
-                            <td>20</td>
+                            <td>10</td>
                      
                     </tr>
                     <tr  >
                         <td>2</td>
-                        <td>Leadership</td>
-                        <td>Demonstrates the Company's vision,values and priciples in all interactions</td>
-                        <td>20</td>
+                        <td>Bussiness Accument Perspective</td>
+                        <td>Understands Bussiness Strategy and how team or individual efforts impact the strategy</td>
+                        <td>10</td>
                        
                     </tr>
                     <tr>
@@ -129,6 +141,7 @@
             <div class="text-right">
                 <br>
                 <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
+                <b style="padding-left: 20px;">Total Weightage :<b>30</b></b>
             </div>
 
         </div>

@@ -40,7 +40,8 @@
                         <tr>
                             <th>Sr.No.</th>
                             <th>Goal</th>
-                            <th>KPI</th>
+                            <th>KRA</th>
+                            <th>MilesStone</th>
                             <th>Employee Rating</th>
                             <th>Employee Comments</th>
                             <th>Employee Attachment</th>
@@ -55,6 +56,7 @@
                                 {{i+1}}</td>
                             <td [ngClass]="{'bggreen':details.managerupdate==1 }">{{details.kraName}}</td>
                             <td [ngClass]="{'bggreen':details.managerupdate==1 }">{{details.kpiName}}</td>
+                            <td [ngClass]="{'bggreen':details.managerupdate==1 }">35</td>
                             <td [ngClass]="{'bg-warning':details.managerupdate==1 }" style="text-align: center;">{{details.emprating}}</td>
 
                             <td [ngClass]="{'bggreen':details.managerupdate==1 }">
@@ -93,6 +95,7 @@
                 <div class="text-right">
                     <br>
                     <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
+                    <b style="padding-left: 20px;">Total Weightage :<b>70</b></b>
                 </div>
             </div>
         </div>
@@ -120,13 +123,17 @@
                         </tr>
                     </thead>
                     <tbody>
+                       
                         <tr
                         *ngFor="let details of ResultAreaList |paginate: { itemsPerPage: count1, currentPage: p} index as i">
                         <td [ngClass]="{'bggreen':details.managerupdate==1 }">
                             {{i+1}}</td>
-                        <td [ngClass]="{'bggreen':details.managerupdate==1 }">{{details.kraName}}</td>
-                        <td [ngClass]="{'bggreen':details.managerupdate==1 }">{{details.kpiName}}</td>
-                        <td [ngClass]="{'bggreen':details.managerupdate==1 }">{{details.milestone}}</td>
+                        <td [ngClass]="{'bggreen':details.managerupdate==1 }">
+                            Leadership
+                        </td>
+                        <td [ngClass]="{'bggreen':details.managerupdate==1 }">Accept and Support the leadership of other through active participation and cooperation 
+                            in carrying out tasks and policies</td>
+                        <td [ngClass]="{'bggreen':details.managerupdate==1 }">15</td>
 
                         <td [ngClass]="{'bg-warning':details.managerupdate==1 }" style="text-align: center;">{{details.emprating}}</td>
 
@@ -160,12 +167,15 @@
                                 <!-- <p *ngIf="details.managerupdate== '1' && details.managerattachment!=null">No Attachments</p> -->
                         </td>
                     </tr>
+
+                
                     </tbody>
                 </table>
 
                 <div class="text-right">
                     <br>
                     <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
+                    <b style="padding-left: 20px;">Total Weightage :<b>30</b></b>
                 </div>
             </div>
         </div>

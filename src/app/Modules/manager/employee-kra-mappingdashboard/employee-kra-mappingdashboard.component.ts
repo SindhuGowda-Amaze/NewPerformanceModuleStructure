@@ -357,7 +357,9 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
 
   }
 
-
+public viewdates(){
+  
+}
 //Method to get keyResultArea from KeyResultArea
   public GetKeyResultArea() {
     debugger
