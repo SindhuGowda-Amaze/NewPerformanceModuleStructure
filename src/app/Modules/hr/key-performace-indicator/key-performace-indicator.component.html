@@ -20,13 +20,24 @@
         <div class="col-lg-3">
                 <input type="search" class="form-control search" [(ngModel)]="search"  placeholder="Search for Name..">
         </div>
+        
+        <div class="col-lg-3">
+            <select class="form-control" [(ngModel)]="kratypeid" name="kratypeid" (change)="getkratypeid($event)"
+                    required>
+                    <option value="">Select Goal Type</option>
+                    <option *ngFor="let details of kratypelist" value="{{details.kraType}}">{{details.kraType
+                    }}
+                    </option>
+                </select>
+        </div>
        <div class="col-lg-3">
         <select class="form-control columnname" [(ngModel)]="kraid" name="kraid" (change)="getkraid($event)">
             <option value="0">Select By  Goal</option>
-            <option *ngFor="let details of kratypelist"  value="{{details.kraName}}">{{details.kraName}}</option>
+            <option *ngFor="let details of kralist"  value="{{details.kraName}}">{{details.kraName}}</option>
        
         </select>
         </div>
+
     </div><br>
 </div> <br>
     <div class="row">

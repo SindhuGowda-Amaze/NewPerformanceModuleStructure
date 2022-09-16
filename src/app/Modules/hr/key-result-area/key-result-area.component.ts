@@ -21,12 +21,15 @@ export class KeyResultAreaComponent implements OnInit {
   short: any;
   currentUrl: any;
   dummkeyresultlist: any;
-
+  kratypelist:any;
+  kratypeid:any;
   ngOnInit(): void {
     this.currentUrl = window.location.href;
     this.GetKeyResultArea();
     this.GetRoleType();
     this.roleTypeid = 0;
+    this.GetKraMaster();
+    this.kratypeid="";
   }
 
   getRoleID(even: any) {
@@ -92,6 +95,17 @@ export class KeyResultAreaComponent implements OnInit {
   }
 
 
+  public GetKraMaster() {
+    this.PerformanceManagementService.GetKraMaster().subscribe(
+      data => {
+        this.kratypelist = data;
+        console.log("kratype", this.kratypelist);
+        // this.kratypeid = "";
+      }
+    )
+  }
+
+
 //Method to delete KRA//
   public delete(ID: any) {
     debugger
@@ -128,7 +142,12 @@ export class KeyResultAreaComponent implements OnInit {
   }
 
 
-
+  getkratypeid(event: any) {
+    debugger
+    this.kratypeid = event.target.value
+    this.keyresultlist = this.dummkeyresultlist.filter((x: { kraTypeID: any; }) => x.kraTypeID == this.kratypeid);
+    this.count = this.keyresultlist.length;
+  }
 
 
 

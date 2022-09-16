@@ -18,6 +18,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./hr-dashboard.component.css']
 })
 export class HrDashboardComponent implements OnInit {
+  departmentList: any;
+  departmentid: any;
+  list4: any;
   constructor(private PerformanceManagementService: PerformancemanagementService) { }
   //Variable Declerations//
   countList: any;
@@ -34,16 +37,71 @@ export class HrDashboardComponent implements OnInit {
   employeCount: any;
   managagerScore: any;
   currentUrl: any
+  sbuid:any;
   ngOnInit(): void {
     debugger
     //Variable Initialisation and Default Method Calls//
     this.currentUrl = window.location.href;
     this.GetAllCounts();
     this.StaffID = sessionStorage.getItem('EmaployedID');
-  
+
     this.GetMyDetails();
     this.GetConductappraisalStaffList();
-    
+
+    this.getDepartment();
+    this.departmentid = "0"
+this.sbuid="0"
+  }
+
+  public getDepartment() {
+    this.PerformanceManagementService.GetDepartmentMaster().subscribe({
+      next: data => {
+        debugger
+        this.departmentList = data;
+        console.log("departmentName", this.departmentList);
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting DepartmentMaster');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+  }
+
+  //method to get Departmnet ID//
+  getdepartmentID(even: any) {
+    this.departmentid = even.target.value;
+    this.GetFilteredDepartment();
+  }
+
+  //Method to filter by Department//
+  public GetFilteredDepartment() {
+    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
+      next: data => {
+        debugger
+        this.EmployeeKradash = data.filter(x => x.department == this.departmentid && x.approver2 == sessionStorage.getItem('EmaployedID') && x.selfScores != null
+          && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null && x.sbuSubmittedDate != null)
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting ConductappraisalStaffList');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
   }
 
   //Method to Conducted Appraisal Details//
@@ -94,8 +152,9 @@ export class HrDashboardComponent implements OnInit {
     this.PerformanceManagementService.GetMyDetails().subscribe({
       next: data => {
         debugger
-        var list4 = data;
-        this.employeCount = list4.length
+        var list3 = data;
+        this.list4 = data.filter(x=>x.type==3742);
+        this.employeCount = list3.length
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting MyDetails');
         // Insert error in Db Here//

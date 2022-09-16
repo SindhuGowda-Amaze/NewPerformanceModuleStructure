@@ -65,84 +65,169 @@
             <button class="form-control Add" routerLink="/EmployeeKraMapping">Add</button>
         </div>
     </div> <br> -->
-
-    <div class="row" style="width: 1200px; overflow-x: scroll;">
-        <div class="col-lg-12">
-            <table class="table">
-                <thead>
-                    <tr *ngIf="(EmployeeKradash | filter: search).length > 0; else noResults">
-                        <th>Employee Name</th>
-                        <th>Department</th>
-                        <th>Position</th>
-                        <th>Appraisal Cycle</th>
-                        <th>Appraisal Start Date</th>
-                        <th>Appraisal End Date</th>
-                        <th>Last Submission Date</th>
-                        <th>Employee Submitted Date</th>
-                        <th>Manager Submitted Date</th>
-                        <th>SBU Submitted Date</th>
-                        <th>Manager Promotion Recommendation</th>
-                        <th>Action </th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr
-                        *ngFor="let details of EmployeeKradash |paginate: { itemsPerPage: count1, currentPage: p}|filter:search|filter:status">
-                        <td>{{details.name}}</td>
-                        <td>{{details.departmentName}}</td>
-                        <td>{{details.role}}</td>
-                        <td>{{details.appraisalCycleName}}</td>
-                        <td>{{details.cycleStartDate|date}}</td>
-                        <td>{{details.cycleEndDate|date}}</td>
-                        <td>{{details.employeeSubmissionLastDate|date}}</td>
-                        <td>{{details.employeeSubmittedDate|date}}</td>
-                        <td>{{details.managerSubmittedDate|date}}</td>
-                        <td>{{details.sbuSubmittedDate|date}}</td>
-                        <td>
-                            <p *ngIf="details.managerPromotionRecommendaton==1">Yes</p>
-                            <p *ngIf="details.managerPromotionRecommendaton==0">No</p>
-                        </td>
-                        <td>
-                            <button [routerLink]="['/hr/hrratingnew', details.id,details.appraiselID ] "
-                                *ngIf="details.hrSubmittedDate==null"
-                                class=" btn btn-primary editable-table-button btn-xs">Conduct Appraisal</button>
-
-                            <button [routerLink]="['/hr/hrratingnew', details.id,details.appraiselID] "
-                                *ngIf="details.hrSubmittedDate!=null"
-                                class=" btn btn-primary editable-table-button btn-xs btncolor">View
-                                Appraisal</button>
-
-                            <!-- <button *ngIf="details.cioComments!=null"
-                                    class=" btn btn-primary editable-table-button btn-xs">Completed</button> -->
-                            <!-- <button class="button btn-xs"
-                                    routerLink]="['/SelfRatingPage', details.id,details.id ]">Self
-                                    Apprisal</button>&nbsp; -->
-                            <!-- <button class="button btn-xs" data-toggle="modal" (click)="GetStaffKraDetails(details)"
-                                    data-target="#myModal">View</button>&nbsp; -->
-                        </td>
-                        <td>
-                            <p *ngIf="details.hrSubmittedDate==null">Open</p>
-                            <p *ngIf="details.hrSubmittedDate!=null">Submitted</p>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <!-- <span *ngIf="EmployeeKradash.length==0">No Data </span> -->
-            <ng-template #noResults>
-                <div class="card">
-                    <p class="NoResultShow"> No results found </p>
-                </div>
-            </ng-template>
-            <div class="text-right">
-                <br>
-                <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
+    <div class="row">
+        <br />
+        <div class="col-lg-12 dashbutton bttn">
+            <div class="tab-slider--nav">
+                <ul class="tab-slider--tabs">
+                    <li class="tab-slider--trigger" [class.active]="viewMode == 'tab1'" rel="tab1"
+                        (click)="viewMode ='tab1'">
+                        Ongoing</li>
+                    <li class="tab-slider--trigger" [class.active]="viewMode == 'tab2'" rel="tab2"
+                        (click)="viewMode ='tab2'">Completed</li>
+                </ul>
             </div>
         </div>
+    </div>
+    <br>
 
+    <div class="row">
+        <div class="tab-slider--container" [ngSwitch]="viewMode">
+            <div *ngSwitchCase="'tab1'" id="tab1">
 
+                <div class="row" style="width: 1200px; overflow-x: scroll;">
+                    <div class="col-lg-12">
+                        <table class="table">
+                            <thead>
+                                <tr *ngIf="(EmployeeKradash | filter: search).length > 0; else noResults">
+                                    <th>Employee Name</th>
+                                    <th>Department</th>
+                                    <th>Position</th>
+                                    <th>Appraisal Cycle</th>
+                                    <th>Appraisal Start Date</th>
+                                    <th>Appraisal End Date</th>
+                                    <th>Last Submission Date</th>
+                                    <th>Employee Submitted Date</th>
+                                    <th>Manager Submitted Date</th>
+                                    <th>SBU Submitted Date</th>
+                                    <th>Manager Promotion Recommendation</th>
+                                    <th>Action </th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    *ngFor="let details of EmployeeKradash |paginate: { itemsPerPage: count1, currentPage: p}|filter:search|filter:status">
+                                    <td>{{details.name}}</td>
+                                    <td>{{details.departmentName}}</td>
+                                    <td>{{details.role}}</td>
+                                    <td>{{details.appraisalCycleName}}</td>
+                                    <td>{{details.cycleStartDate|date}}</td>
+                                    <td>{{details.cycleEndDate|date}}</td>
+                                    <td>{{details.employeeSubmissionLastDate|date}}</td>
+                                    <td>{{details.employeeSubmittedDate|date}}</td>
+                                    <td>{{details.managerSubmittedDate|date}}</td>
+                                    <td>{{details.sbuSubmittedDate|date}}</td>
+                                    <td>
+                                        <p *ngIf="details.managerPromotionRecommendaton==1">Yes</p>
+                                        <p *ngIf="details.managerPromotionRecommendaton==0">No</p>
+                                    </td>
+                                    <td>
+                                        <button [routerLink]="['/hr/hrratingnew', details.id,details.appraiselID ] "
+                                            *ngIf="details.hrSubmittedDate==null"
+                                            class=" btn btn-primary editable-table-button btn-xs">Conduct
+                                            Appraisal</button>
+
+                                        <button [routerLink]="['/hr/hrratingnew', details.id,details.appraiselID] "
+                                            *ngIf="details.hrSubmittedDate!=null"
+                                            class=" btn btn-primary editable-table-button btn-xs btncolor">View
+                                            Appraisal</button>
+
+                                        <!-- <button *ngIf="details.cioComments!=null"
+                                                class=" btn btn-primary editable-table-button btn-xs">Completed</button> -->
+                                        <!-- <button class="button btn-xs"
+                                                routerLink]="['/SelfRatingPage', details.id,details.id ]">Self
+                                                Apprisal</button>&nbsp; -->
+                                        <!-- <button class="button btn-xs" data-toggle="modal" (click)="GetStaffKraDetails(details)"
+                                                data-target="#myModal">View</button>&nbsp; -->
+                                    </td>
+                                    <td>
+                                        <p *ngIf="details.hrSubmittedDate==null">Open</p>
+                                        <p *ngIf="details.hrSubmittedDate!=null">Submitted</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- <span *ngIf="EmployeeKradash.length==0">No Data </span> -->
+                        <ng-template #noResults>
+                            <div class="card">
+                                <p class="NoResultShow"> No results found </p>
+                            </div>
+                        </ng-template>
+                        <div class="text-right">
+                            <br>
+                            <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngSwitchCase="'tab2'" id="tab2">
+
+                <div class="row" style="width: 1200px; overflow-x: scroll;">
+                    <div class="col-lg-12">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Employee Name</th>
+                                    <th>Department</th>
+                                    <th>Appraisal Cycle</th>
+                                    <th>Appraisal Start Date </th>
+                                    <th>Appraisal End Date </th>
+                                    <th>Last Submission Date </th>
+                                    <th>Employee Submitted Date</th>
+                                    <th>Manager Submitted Date </th>
+                                    <th>Action </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    *ngFor="let details of EmployeeKradash2 |paginate: { itemsPerPage: count1, currentPage: p}|filter:search">
+                                    <td>{{details.name}}</td>
+                                    <td>{{details.departmentName}}</td>
+                                    <td>{{details.appraisalCycleName}}</td>
+                                    <td>{{details.cycleStartDate|date}}</td>
+                                    <td>{{details.cycleEndDate|date}}</td>
+                                    <td>{{details.appraisalSubmitionDate|date}}</td>
+                                    <td>{{details.employeeSubmittedDate}}</td>
+                                    <td *ngIf="details.managerSubmittedDate!=null">{{details.managerSubmittedDate}}
+                                    </td>
+                                    <td *ngIf="details.managerSubmittedDate==null">
+                                        <p>NA</p>
+                                    </td>
+                                    <td>
+                                        <button [routerLink]="['/manager/ManagerAppraisal', details.id,details.appraiselID ]"
+                                            class=" btn btn-primary editable-table-button btn-xs Add"
+                                            *ngIf="details.managerSubmittedDate==null">Conduct Appraisal</button>
+        
+                                        <button [routerLink]="['/manager/ManagerAppraisal', details.id,details.appraiselID ]"
+                                            class=" btn btn-primary editable-table-button btn-xs btncolor"
+                                            *ngIf="details.managerSubmittedDate!=null">View Appraisal</button>
+        
+                                        <!-- <button *ngIf="details.groupHeadScores!=null"
+                                            class=" btn btn-primary editable-table-button btn-xs btncolor">Completed</button> -->
+                                        <!-- <button class="button btn-xs"
+                                            routerLink]="['/SelfRatingPage', details.id,details.id ]">Self
+                                            Apprisal</button>&nbsp; -->
+                                        <!-- <button class="button btn-xs" data-toggle="modal" (click)="GetStaffKraDetails(details)"
+                                            data-target="#myModal">View</button>&nbsp; -->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </div>
+            
+
+                <div class="text-right">
+                    <br>
+                    <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+
+
 
 
 <div class="modal fade" id="myModal" role="dialog">

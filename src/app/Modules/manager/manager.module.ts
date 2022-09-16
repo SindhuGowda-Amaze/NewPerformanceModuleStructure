@@ -12,6 +12,7 @@ import { ManagerDashboardComponent } from './manager-dashboard/manager-dashboard
 import { PipComponent } from './pip/pip.component';
 import { PIPReportComponent } from './pipreport/pipreport.component';
 import { EmployeeKraMappingComponent } from './employee-kra-mapping/employee-kra-mapping.component';
+import { AddEmployeetoPipComponent } from './add-employeeto-pip/add-employeeto-pip.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { EmployeeKraMappingComponent } from './employee-kra-mapping/employee-kra
     ManagerDashboardComponent,
     PipComponent,
     PIPReportComponent,
-    EmployeeKraMappingComponent
+    EmployeeKraMappingComponent,
+    AddEmployeetoPipComponent
   ],
   imports: [
     CommonModule,

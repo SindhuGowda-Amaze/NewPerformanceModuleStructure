@@ -1,0 +1,73 @@
+.columnname{
+    margin-left: 15px;
+}
+.button{
+    background-color: #3247D5;
+    color:white;
+    width:100%;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.button1{
+    background-color: #3247D5;
+    color:white;
+    width:100%;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    float:left;
+}
+
+.card{
+    background-color: white;
+    padding:15px;
+}
+.button
+{
+    border: none;
+    width:80%;
+    height:auto;
+    border-radius: 5px;
+    background-color: #2f87cc;
+    color:white;
+    font-size: 15px;
+}
+.course{
+    font-size: 15px;
+}
+  
+    .Save{
+        padding:7px;
+        border-radius: 5px;
+        border:none;
+        background-color: #3247D5;
+        color:white; 
+        width:100%;
+        font-size: 16px;
+      }
+
+.button1{   
+    border-radius: 5px;
+    border:black;
+    color:black; 
+    background-color: white;
+    width:100%;
+    font-size: 16px;
+    }
+ .image{
+    width:10%;
+    height:auto
+ }
+ 
+ .card{
+    width:100%;
+    background: #FFFFFF;
+    box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+ }
+
+.column{
+    color:#0C275A;
+}

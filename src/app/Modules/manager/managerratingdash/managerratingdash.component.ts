@@ -22,6 +22,8 @@ export class ManagerratingdashComponent implements OnInit {
   term: any;
   p: any = 1;
   count1: any = 10;
+  viewMode = 'tab1';
+
   stafflistCopy: any;
   Departmentlist: any;
   RoleTypeList: any;
@@ -96,13 +98,14 @@ export class ManagerratingdashComponent implements OnInit {
       }
     })
   }
-
+  EmployeeKradash2:any
   //Method to get ConductappraisalStaffList from ConductappraisalStaffList table
   public GetConductappraisalStaffList() {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
         debugger
-        this.EmployeeKradash = data.filter(x => x.approver1 == sessionStorage.getItem('EmaployedID') && x.selfScores != null && x.employeeSubmittedDate != null);
+        this.EmployeeKradash = data.filter(x => x.approver1 == sessionStorage.getItem('EmaployedID') && x.selfScores != null && x.employeeSubmittedDate != null && x.managerSubmittedDate==null);
+        this.EmployeeKradash2 = data.filter(x => x.approver1 == sessionStorage.getItem('EmaployedID') && x.selfScores != null && x.employeeSubmittedDate != null && x.managerSubmittedDate!=null);
         this.count = this.EmployeeKradash.length;
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting ConductappraisalStaffList');

@@ -1,5 +1,36 @@
 <div class="container-fluid">
     <br>
+
+ 
+
+        <div class="row FilterClass ">
+            <div class="col-lg-1">
+                <p class="filter">Filter By</p>
+            </div>
+
+            <div class="col-lg-3">
+                <select class="form-control" id="departmentid" name="departmentid" [(ngModel)]="departmentid"
+                    (change)='getdepartmentID($event)'>
+                    <option value="0">Select Department</option>
+                    <option *ngFor="let details of departmentList" value="{{details.id}}">{{details.departmentName}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="col-lg-2">
+                <select class="form-control" sbuid="roleTypeid" name="sbuid" [(ngModel)]="sbuid"
+                    >
+                    <!-- (change)="getRoleID($event)" (change)="GetFilteredRoleType()" -->
+                    <option value="0">Select SBU</option>
+                    <option *ngFor="let details of list4" value="{{details.id}}">{{details.name}}
+                    </option>
+                </select>
+            </div>
+
+          
+   
+    </div> <br>
+
     <div class="row">
         <div class="col-lg-3">
             <div class="card1">

@@ -73,7 +73,7 @@
                             <td [ngClass]="{'bggreen':details.managerupdate==1 }">
                                 <button *ngIf="details.managerupdate!=1 &&details.empupdate==1" type="button"
                                     class="btn btn-primary" data-toggle="modal" (click)="GetKPIID(details)"
-                                    data-target="#exampleModal">Rate Employee</button>
+                                    data-target="#exampleModal">Provide Rating</button>
                                 <button *ngIf="details.managerupdate==1" type="button" class="btn btn-success"
                                     data-toggle="modal" (click)="GetKPIIDetails(details)"
                                     data-target="#exampleModal1">View

@@ -505,4 +505,9 @@ public GetExceptionLogs() {
 }
 
 
+ 
+ public UpdateEmployeeAcceptGoal(ID: any) {
+  return this.http.get<any[]>(
+    this.baseURL + "/Master/UpdateEmployeeAcceptGoal?ID=" + ID);
+}
 }

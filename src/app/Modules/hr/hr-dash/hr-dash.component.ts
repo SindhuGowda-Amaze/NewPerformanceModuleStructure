@@ -21,6 +21,7 @@ export class HrDashComponent implements OnInit {
 
   constructor(private PerformanceManagementService: PerformancemanagementService) { }
   //Variable Declerations//
+  viewMode = 'tab1';
   Staffkra: any;
   stafflist: any;
   term: any;
@@ -153,14 +154,17 @@ export class HrDashComponent implements OnInit {
     })
   }
 
+  EmployeeKradash2:any;
   //Method to get Employee Appraisal Details//
   public GetConductappraisalStaffList() {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
         debugger
         this.EmployeeKradash = data.filter(x => x.approver2 == sessionStorage.getItem('EmaployedID') && x.selfScores != null
-          && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null && x.sbuSubmittedDate != null);
+          && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null&& x.managerSubmittedDate != null && x.sbuSubmittedDate != null && x.hrSubmittedDate == null );
 
+          this.EmployeeKradash2 = data.filter(x => x.approver2 == sessionStorage.getItem('EmaployedID') && x.selfScores != null
+          && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null   && x.managerSubmittedDate != null && x.sbuSubmittedDate != null && x.hrSubmittedDate != null);
         this.count = this.EmployeeKradash.length;
 
       }, error: (err: { error: { message: any; }; }) => {

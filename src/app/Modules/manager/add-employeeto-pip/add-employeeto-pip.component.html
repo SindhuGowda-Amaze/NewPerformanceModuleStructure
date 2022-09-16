@@ -1,0 +1,107 @@
+<div class="container-fluid">
+    <br>
+    <div class="row">
+        <div class="col-lg-4">
+            <p class="headings">PIP Staff Details</p>
+        </div>
+    </div>
+    <br>
+    <div class="card">
+        <form #Ekramap="ngForm">
+            <div class="row column">
+                <!-- <div class="col-lg-2">
+                    <p>Department <span style="color:red">*</span></p>
+                    <input type="text" placeholder="Department" class="form-control" id="department" name="department" [(ngModel)]="department">
+                </div> -->
+
+                <!-- <div class="col-lg-2">
+                    <p>Staff <span style="color:red">*</span></p>
+                    <ng-multiselect-dropdown [placeholder]="'Select Staff'" [settings]="dropdownSettings"
+                        [data]="dropdownList" [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event)">
+                    </ng-multiselect-dropdown>
+                </div> -->
+               
+                <div class="col-lg-4">
+                    <p>PIP Action Items<span style="color:red">*</span></p>
+                    <textarea class="form-control"  name="PIPAction" id="PIPAction" [(ngModel)]="PIPAction"
+                        placeholder="Write here.."></textarea>
+
+                </div>
+
+                <div class="col-lg-3">
+                    <p>Attachment </p>
+                    <ngx-dropzone (change)="onSelect($event)" style="height: 60px;">
+                        <ngx-dropzone-label>Drop it here!</ngx-dropzone-label>
+                        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                        </ngx-dropzone-preview>
+                    </ngx-dropzone>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-lg-3">
+                    <p>Exit Criteria <span style="color:red">*</span></p>
+                    <textarea class="form-control"  id="exitcriteria" name="exitcriteria" [(ngModel)]="exitcriteria"
+                        placeholder="Write here.."></textarea>
+
+                </div>
+                <div class="col-lg-3">
+                    <p>Training </p>
+                    
+                   <select class="form-control" id="trainingID"   name="trainingID" [(ngModel)]="trainingID">
+                       <option value="">Select Training</option>    
+                       <option *ngFor="let Training of coursedetails" value="{{Training.id}}">{{Training.name}}</option>
+                   </select>
+
+                </div>
+                <div class="col-lg-3">
+                    <p>PIP Period<span style="color:red">*</span></p>
+                    <input type="text" class="form-control" placeholder="PIP Period"
+                      id="lastdateofsubmission"    name="lastdateofsubmission" [(ngModel)]="lastdateofsubmission">
+
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-10"></div>
+                <div class="col-lg-1">
+                    <button class="form-control cancel" (click)="SaveDetails()"
+                        [disabled]="Ekramap.form.invalid">Add</button>
+                </div>
+
+                <div class="col-lg-1">
+                    <button class="form-control cancel" (click)="Cancel()">Cancel</button>
+                </div>
+            </div>
+            <br>
+
+            <div class="row" *ngIf="tablecount==1">
+                <div class="col-lg-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>PIP Action Items</th>
+                                <th>Exit Criteria</th>
+                                <th>PIP Period</th>
+                            </tr>
+                            <tr *ngFor="let details of keyresultArray">
+                                <td>{{details.PIPActionItem}}</td>
+                                <td>{{details.ExitCriteria}}</td>
+                                <td>{{details.LastDateOfSubmission}}</td>
+                            </tr>
+                        </thead>
+                    </table>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-10"></div>
+                        <div class="col-lg-2">
+                            <button class="form-control cancel" (click)="UpdatePipDetails()">Save</button>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+            </div>
+        </form>
+    </div>
+</div>

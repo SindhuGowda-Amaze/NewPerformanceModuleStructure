@@ -255,46 +255,53 @@ export class SelfratingnewComponentComponent implements OnInit {
 
   public SaveDetails() {
     debugger;
-    var entity = {
-      SatffID: this.StaffID,
-      StaffType: this.StaffID,
-      Supervisor: this.id,
-      ResultAreaID: this.ResultAreaID,
-      PerformaceIndicatorID: this.kpiid,
-      SelfScores: this.Score,
-      SelfComments: this.SelfComments,
-      Attachment: this.attachmentNew,
-      ApprisalID: this.appraislid,
-    };
-    this.PerformanceManagementService.InsertStaffScores(entity).subscribe({
-      next: (data) => {
-        debugger;
-        Swal.fire('Saved Successfully');
-        this.Score = 0;
-        this.SelfComments = '';
-        this.files.length = 0;
-        this.attachmentNew = '';
-        const element1 = document.getElementById('close');
-
-        if (element1 !== null) {
-          element1.click();
-        }
-        this.ngOnInit();
-      },
-      error: (err: { error: { message: any } }) => {
-        Swal.fire('Issue in Getting Expenses List Web');
-        // Insert error in Db Here//
-        var obj = {
-          PageName: this.currentUrl,
-          ErrorMessage: err.error.message,
-        };
-        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-          (data) => {
-            debugger;
+    if(this.SelfComments==undefined||this.Score==undefined||this.Score==0){
+      Swal.fire('Please Fill Mandatory Fields');
+    }
+    
+    else{
+      var entity = {
+        SatffID: this.StaffID,
+        StaffType: this.StaffID,
+        Supervisor: this.id,
+        ResultAreaID: this.ResultAreaID,
+        PerformaceIndicatorID: this.kpiid,
+        SelfScores: this.Score,
+        SelfComments: this.SelfComments,
+        Attachment: this.attachmentNew,
+        ApprisalID: this.appraislid,
+      };
+      this.PerformanceManagementService.InsertStaffScores(entity).subscribe({
+        next: (data) => {
+          debugger;
+          Swal.fire('Saved Successfully');
+          this.Score = 0;
+          this.SelfComments = '';
+          this.files.length = 0;
+          this.attachmentNew = '';
+          const element1 = document.getElementById('close');
+  
+          if (element1 !== null) {
+            element1.click();
           }
-        );
-      },
-    });
+          this.ngOnInit();
+        },
+        error: (err: { error: { message: any } }) => {
+          Swal.fire('Issue in Getting Expenses List Web');
+          // Insert error in Db Here//
+          var obj = {
+            PageName: this.currentUrl,
+            ErrorMessage: err.error.message,
+          };
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            (data) => {
+              debugger;
+            }
+          );
+        },
+      });
+    }
+  
   }
 
   //Method to Displaying the Data from GetEmployeeKraMap Table//

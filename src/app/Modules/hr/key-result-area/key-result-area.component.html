@@ -21,8 +21,8 @@
                 <input type="search" class="form-control search" [(ngModel)]="search" placeholder="Search for Name..">
             </div>
             <div class="col-lg-3">
-                <select class="form-control"id="roleTypeid" name="roleTypeid" [(ngModel)]="roleTypeid"
-                (change)="getRoleID($event)">
+                <select class="form-control" id="roleTypeid" name="roleTypeid" [(ngModel)]="roleTypeid"
+                    (change)="getRoleID($event)">
                     <option value="0">Select Position</option>
                     <option *ngFor="let details of roleTypeList" value="{{details.id}}">{{details.short}}
                     </option>
@@ -34,6 +34,17 @@
                 </option>
             </select> -->
             </div>
+            <div class="col-lg-3">
+
+                <select class="form-control" [(ngModel)]="kratypeid" name="kratypeid" (change)="getkratypeid($event)"
+                    required>
+                    <option value="">Select Goal Type</option>
+                    <option *ngFor="let details of kratypelist" value="{{details.kraType}}">{{details.kraType}}
+                    </option>
+                </select>
+
+            </div>
+
         </div><br>
     </div> <br>
     <div class="row">
@@ -42,41 +53,41 @@
             <button class="form-control edit1" routerLink="/hr/KeyResultAreaForm">Add</button>
         </div>
     </div> <br>
- 
-        <div class="row">
-            <div class="col-lg-12">
-                <table class="table">
-                    <thead>
-                        <tr *ngIf="(keyresultlist | filter: search).length > 0; else noResults">
-                            <th>Goal Type</th>
-                            <th>Goal Name</th>                          
-                            <th>Position</th>
-                            <th>Description</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let details of keyresultlist | filter:search">
-                            <td>{{details.kraTypeID}}</td>
-                            <td>{{details.kraName}}</td>                    
-                            <td>{{details.short}}</td>
-                            <td>{{details.description}}</td>
-                            <td>
-                                <button class="form-control edit"
-                                    [routerLink]="['/hr/KeyResultAreaForm', details.id]">Edit</button>
-                                <button class="form-control edit" (click)="delete(details.id)">Delete</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <!-- <span *ngIf="keyresultlist.length==0">No data Found</span> -->
-                <ng-template #noResults>
-                    <div class="card">
-                        <p class="NoResultShow"> No results found </p>
-                    </div>
-                </ng-template>
-            </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table">
+                <thead>
+                    <tr *ngIf="(keyresultlist | filter: search).length > 0; else noResults">
+                        <th>Goal Type</th>
+                        <th>Goal Name</th>
+                        <th>Position</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let details of keyresultlist | filter:search">
+                        <td>{{details.kraTypeID}}</td>
+                        <td>{{details.kraName}}</td>
+                        <td>{{details.short}}</td>
+                        <td>{{details.description}}</td>
+                        <td>
+                            <button class="form-control edit"
+                                [routerLink]="['/hr/KeyResultAreaForm', details.id]">Edit</button>
+                            <button class="form-control edit" (click)="delete(details.id)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- <span *ngIf="keyresultlist.length==0">No data Found</span> -->
+            <ng-template #noResults>
+                <div class="card">
+                    <p class="NoResultShow"> No results found </p>
+                </div>
+            </ng-template>
         </div>
-  
+    </div>
+
 
 </div>

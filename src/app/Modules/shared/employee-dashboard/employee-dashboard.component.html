@@ -39,8 +39,8 @@
                             <th>Email ID</th>
                             <th>Phone Number</th>
                             <th *ngIf="roleid==3">Department</th>
-                            <!-- <th>Position</th>-->
-                            <!-- <th>Manager Name</th> -->
+                            <th>Position</th>
+                            <th *ngIf="roleid==3">Manager Name</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,8 +49,8 @@
                             <td>{{details.emailID}}</td>
                             <td>{{details.phoneNo}}</td>
                             <td *ngIf="roleid==3">{{details.department_name}}</td>
-                            <!-- <td>{{details.role}}</td> -->
-                            <!-- <td>{{details.manager}}</td> -->
+                            <td>{{details.role}}</td>
+                            <td  *ngIf="roleid==3">{{details.manager}}</td>
                         </tr>
                     </tbody>
                 </table>

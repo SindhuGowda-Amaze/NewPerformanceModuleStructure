@@ -379,10 +379,10 @@ export class EmployeeKraMappingComponent implements OnInit {
         // }
       }
 
-      this.InsertNotification();
+      // this.InsertNotification();
       Swal.fire('Goal Setting Done Successfully.');
       location.href = "#/manager/EmployeeKraMappingdashboard";
-      location.reload();
+      // location.reload();
     }
 
 
