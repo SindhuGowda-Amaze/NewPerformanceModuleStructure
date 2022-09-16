@@ -24,8 +24,9 @@
   }
   
   .scroll {
-    overflow-y: auto;
-    height: 200px;
+    overflow-y: scroll;
+    height: 300px;
+
   }
   
   .cmmnt {
