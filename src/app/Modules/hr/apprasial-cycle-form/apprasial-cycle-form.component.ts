@@ -169,7 +169,8 @@ export class ApprasialCycleFormComponent implements OnInit {
         this.hrReviewDate = this.appraisallist[0].hrReviewLastDate;
         this.sbuReviewDate = this.appraisallist[0].sbuReviewLastDate;
         this.appraisalClosingLastDate = this.appraisallist[0].appraisalClosingLastDate;
-      }, error: (err: { error: { message: any; }; }) => {
+      }, 
+      error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Appraisal Cycle');
         // Insert error in Db Here//
         var obj = {

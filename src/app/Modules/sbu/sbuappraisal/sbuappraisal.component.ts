@@ -351,7 +351,7 @@ export class SbuappraisalComponent implements OnInit {
           // this.loader = false;
           // alert('Attachment uploaded')
           // this.attachmentsurl.push(res);
-          Swal.fire('Attachment uploaded Successfully');
+          Swal.fire('Attachment Uploaded Successfully');
         }
       }
     );
