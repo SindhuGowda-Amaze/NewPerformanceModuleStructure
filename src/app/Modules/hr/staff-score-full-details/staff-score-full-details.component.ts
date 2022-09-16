@@ -7,6 +7,12 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./staff-score-full-details.component.css']
 })
 export class StaffScoreFullDetailsComponent implements OnInit {
+  ResultAreaList: any;
+  managerattachment: any;
+  sbuAttachment: any;
+  hrAttachment: any;
+  empID: any;
+  employeeattachment: any;
 
   constructor(private PerformanceManagementService: PerformancemanagementService, private route: ActivatedRoute) { }
 
@@ -169,6 +175,25 @@ export class StaffScoreFullDetailsComponent implements OnInit {
   hrcomments(Scores: any) {
     this.hrcomment = Scores.cioComments;
   }
+
+  AllAttachments(Scores: any) {
+    debugger
+    this.empID = Scores.empID;
+
+
+    this.PerformanceManagementService.GetKRAByStaffID(this.StaffID).subscribe(data => {
+      debugger
+      this.ResultAreaList = data.filter((x: {  staffName: any; }) =>x.staffName == this.empID);
+      this.employeeattachment = this.ResultAreaList[0].photo
+      this.managerattachment = this.ResultAreaList[0].mPhoto
+      this.sbuAttachment = this.ResultAreaList[0].sbuPhoto
+      this.hrAttachment = this.ResultAreaList[0].hPhoto
+
+      console.log("resultarea", this.ResultAreaList)
+
+    
+    })
+  } 
 }
 
 
