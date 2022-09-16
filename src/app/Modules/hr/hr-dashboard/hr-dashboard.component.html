@@ -18,12 +18,19 @@
             </div>
 
             <div class="col-lg-2">
-                <select class="form-control" sbuid="roleTypeid" name="sbuid" [(ngModel)]="sbuid"
-                    >
-                    <!-- (change)="getRoleID($event)" (change)="GetFilteredRoleType()" -->
+                <!-- <select class="form-control" sbuid="roleTypeid" name="sbuid" [(ngModel)]="sbuid">
+                     (change)="getRoleID($event)" (change)="GetFilteredRoleType()" 
                     <option value="0">Select SBU</option>
                     <option *ngFor="let details of list4" value="{{details.id}}">{{details.name}}
                     </option>
+                </select> -->
+
+                <select class="form-control" sbuid="roleTypeid" name="sbuid" [(ngModel)]="sbuid">
+                    <!-- (change)="getRoleID($event)" (change)="GetFilteredRoleType()" -->
+                    <option value="0">Select SBU</option>
+                    <option  value="">Asticom</option>
+                    <option  value="">ALI</option>
+                    <option  value="">Purego</option>
                 </select>
             </div>
 

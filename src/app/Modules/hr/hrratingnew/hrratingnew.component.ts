@@ -158,6 +158,7 @@ export class HrratingnewComponent implements OnInit {
 
 
   public GetKPIID(details: any) {
+    debugger
     this.id = details.id;
     this.kpiid = details.kpiid;
     this.ResultAreaID = details.resultAreaID;

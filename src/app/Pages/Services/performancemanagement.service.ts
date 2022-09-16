@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 })
 export class PerformancemanagementService {
 
- //  public baseURL = "http://localhost:4199/";
+   public baseURL4 = "http://localhost:4199/";
  //  public baseURL = "http://103.133.214.197/PerformanceManagement/";
  // public host = "https://digioffice.amazeone.co/DigiOfficeAsticomAPI";
 //  public host1="https://support.amazeone.co/SupportAPI/";
@@ -280,6 +280,10 @@ public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
    this.url = this.baseURL + '/Master/InsertStaffScoresByHR';
    return this.http.post(this.url, data);
  }
+
+
+
+
  public InsertStaffScoresByManager(data: any) {
    debugger;
    this.url = this.baseURL + '/Master/InsertStaffScoresByManager';
@@ -483,6 +487,14 @@ public UpdatePipEmployeeComments(json: any) {
  let APIURL = this.baseURL + "/Master/UpdatePipEmployeeComments";
  return this.http.post<any[]>(APIURL, json);
 }
+
+
+public UpdatePipManagerComments(json: any) {
+  debugger
+  let APIURL = this.baseURL + "/Master/UpdatePipManagerComments";
+  return this.http.post<any[]>(APIURL, json);
+ }
+ 
 
 public GetStaffExitFormality() {
  return this.http.get<any[]>(

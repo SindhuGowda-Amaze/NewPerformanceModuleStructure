@@ -89,7 +89,8 @@
                         <th>Final Rating </th>
                         <th>Status</th>
                         <th>Employee Submitted Date</th>
-                        <th *ngIf="roleid=='4'">Action</th>
+                        <th>View Details</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -116,37 +117,55 @@
                             <p *ngIf="details.pipStatus!=null"> {{details.pipStatus}}<br>
                                 <!-- <img src="{{details.pipAttachment}}"> -->
                             </p>
-                            <p *ngIf="details.pipStatus==null" style="color: red">Pending</p>
+                            <p *ngIf="details.pipStatus==null" style="color: red">Pending With Manager</p>
                         </td>
                         <td>
                             <p *ngIf="details.employeePIPSubmittedDate!=null">
                                 {{details.employeePIPSubmittedDate|date}}<br>
 
                             </p>
-                            <p *ngIf="details.employeePIPSubmittedDate==null" style="color: red">Pending</p>
+                            <p *ngIf="details.employeePIPSubmittedDate==null">NA</p>
                         </td>
-                        <td *ngIf="roleid=='4'">
-                            <button class=" btn-primary editable-table-button btn-xs" style="margin: 5px;"
-                                [routerLink]="['/manager/AddEmployeetoPip',details.staffid]">Add to PIP
-                            </button>
-                            <!-- <button class=" btn-primary editable-table-button btn-xs" style="margin: 5px;"
-                            (click)="InsertPIP()">Add to PIP
-                        </button> -->
-                            <button class=" btn-primary editable-table-button btn-xs" style="margin: 5px;"
-                                data-toggle="modal" data-target="#exampleModal" (click)="ViewScores(details)">Relieve
-                                from Organisation
-                            </button>
-                            <button class=" btn-primary editable-table-button btn-xs" style="margin: 5px;"
-                                data-toggle="modal" data-target="#viewbellcurve" (click)="ViewScores(details)">Remove
-                                from PIP
-                            </button>
+                        <td>
                             <button class=" btn-primary editable-table-button btn-xs" style="margin: 5px;"
                                 data-toggle="modal" *ngIf="details.employeePIPSubmittedDate!=null"
                                 data-target="#viewempcomments" (click)="ViewScores(details)">View Employee Comments
                             </button>
                             <button class=" btn-primary editable-table-button btn-xs" style="margin: 5px;"
-                                data-toggle="modal" *ngIf="details.employeePIPSubmittedDate!=null"
-                                data-target="#exampleModal2" (click)="ViewScores(details)">View PIP Details
+                                data-toggle="modal" data-target="#exampleModal2" (click)="ViewScores(details)">View PIP
+                                Details
+                            </button>
+                            <!-- *ngIf="details.employeePIPSubmittedDate!=null" -->
+
+                            <button class=" btn-primary editable-table-button btn-xs" style="margin: 5px;"   
+                            data-toggle="modal" *ngIf="details.employeePIPSubmittedDate!=null && details.pipStatus=='Manager Reviewd' && (roleid=='3'||roleid=='4')"
+                            data-target="#viewMangercomments" (click)="ViewScores(details)">View Manager Comments
+                        </button>
+                        </td>
+                        <td >
+                            <button class=" btn-primary editable-table-button btn-xs" style="margin: 5px;"*ngIf="roleid=='4'"
+                                [routerLink]="['/manager/AddEmployeetoPip',details.staffid]">Add to PIP
+                            </button>
+                            <!-- <button class=" btn-primary editable-table-button btn-xs" style="margin: 5px;"
+                            (click)="InsertPIP()">Add to PIP
+                        </button> -->
+                          
+                            <button class=" btn-primary editable-table-button btn-xs" style="margin: 5px;"
+                            *ngIf="roleid=='4' && details.pipStatus=='Employee Submitted'" data-toggle="modal" data-target="#exampleModal4"
+                            (click)="getpipActionID(details)">Add Comments
+                        </button>
+
+                            <button class=" btn-primary editable-table-button btn-xs" style="margin: 5px;"
+                                *ngIf="roleid=='3'" data-toggle="modal" data-target="#exampleModal"
+                                (click)="ViewScores(details)">Relieve
+                                from Organisation
+                            </button>
+
+
+                            <button class=" btn-primary editable-table-button btn-xs" style="margin: 5px;"
+                                *ngIf="roleid=='3'" data-toggle="modal" data-target="#viewbellcurve"
+                                (click)="ViewScores(details)">Remove
+                                from PIP
                             </button>
                         </td>
 
@@ -176,7 +195,7 @@
                         <th>Training</th>
                         <!-- <th>Comments</th> -->
 
-                        <th>PIP Period</th>
+                        <th>Action Completion Date</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -192,7 +211,7 @@
                         <td>{{details.exitCriteria}}</td>
                         <td>{{details.trainingname}}</td>
 
-                        <td>{{details.lastDateOfSubmission}}</td>
+                        <td>{{details.lastDateOfSubmission|date}}</td>
                         <td>
                             <button *ngIf="details.pipComments==null" class="button" data-toggle="modal"
                                 (click)="getpipActionID(details)" data-target="#commentModel">Update PIP
@@ -315,8 +334,8 @@
 
 
 <div class="modal fade" id="commentModel" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content mod">
             <div class="modal-header">
                 <h5 class="modal-title">Employee Comments</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -329,12 +348,12 @@
                     [(ngModel)]="empComments"></textarea>
                 <br>
                 <p>Attachment</p>
-                <!-- <ngx-dropzone (change)="onSelect($event)" style="height: 60px;">
+                <ngx-dropzone (change)="onSelect($event)">
                     <ngx-dropzone-label>Drop it here!</ngx-dropzone-label>
                     <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
                         <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                     </ngx-dropzone-preview>
-                </ngx-dropzone> -->
+                </ngx-dropzone>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal"
@@ -401,12 +420,12 @@
             <div class="modal-body scroll">
                 <div>
                     <table class="table">
-                        <tr >
+                        <tr>
                             <th>PIP Action Item</th>
                             <th>Exit Criteria</th>
                             <th>PIP Period</th>
                             <th>Training</th>
-                           
+
                         </tr>
                         <tr *ngFor="let details of StaffPIPActionItemList1">
                             <td>{{details.pipActionItem}}</td>
@@ -462,6 +481,79 @@
                     </div>
                 </div><br> -->
 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content mod">
+            <div class="modal-header">
+                <h5 class="modal-title">Manager PIP Comments</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Comments</p>
+                <textarea class="form-control" rows="5" id="managerComments" name="managerComments"
+                    [(ngModel)]="managerComments"></textarea>
+                <br>
+                <p>Attachment</p>
+                <ngx-dropzone (change)="onSelect($event)">
+                    <ngx-dropzone-label>Drop it here!</ngx-dropzone-label>
+                    <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                    </ngx-dropzone-preview>
+                </ngx-dropzone>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                    (click)="UpdatePipManagerComments()">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="viewMangercomments" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Manager Comments</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body scroll">
+
+                <div class="row">
+                    <div class="col-lg-1">
+                    </div>
+                    <div class="col-lg-3">
+                        <p style="padding:5px">
+                            Comments <span style="color: red;">*</span> </p>
+                    </div>
+                    <div class="col-lg-7">
+                        <textarea rows="6" class="form-control">{{ManagerPIPComments}}</textarea>
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-lg-1">
+                    </div>
+                    <div class="col-lg-3">
+                        <p style="padding:5px">
+                            Attachment<span style="color: red;">*</span> </p>
+                    </div>
+                    <div class="col-lg-7">
+                        <img src="{{MangerPIPAttachment}}" style="width: 100%; height:auto">
+                    </div>
+                </div><br>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

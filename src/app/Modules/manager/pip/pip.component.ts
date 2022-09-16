@@ -59,8 +59,7 @@ export class PipComponent implements OnInit {
   PipAttachment: any;
 
 
-  ngOnInit(): void 
-  {
+  ngOnInit(): void {
     //Variable Initialisation and Default Method Calls//
     this.currentUrl = window.location.href;
     this.Type = "Select Type"
@@ -69,6 +68,7 @@ export class PipComponent implements OnInit {
     this.roleid = sessionStorage.getItem('roleid');
     // this.GetMyDetails();
     this.ConductappraisalStaffList();
+
     this.GetPiPActionItemsForStaff();
     this.HighScore();
     this.employee = 0;
@@ -79,6 +79,7 @@ export class PipComponent implements OnInit {
     debugger;
     this.staffID = event.id;
     let StaffTypeID = event.type;
+
 
     // this.router.navigate(['/StaffScoreFullDetails', StaffID, StaffID]);
 
@@ -104,7 +105,7 @@ export class PipComponent implements OnInit {
     this.pipActionID = details.id
   }
 
-//Method to get ConductappraisalStaffList from Staff table
+  //Method to get ConductappraisalStaffList from Staff table
   public ConductappraisalStaffList() {
     this.PerformanceManagementService.GetConductappraisalStaffListforpip().subscribe({
       next: (res: any[]) => {
@@ -140,8 +141,9 @@ export class PipComponent implements OnInit {
       }
     })
   }
-
-//Method to get PiPActionItemsForStaff from LearningAndDevelopement Table
+  ManagerPIPComments:any;
+  MangerPIPAttachment:any;
+  //Method to get PiPActionItemsForStaff from LearningAndDevelopement Table
   public GetPiPActionItemsForStaff() {
     this.PerformanceManagementService.GetPiPActionItemsForStaff().subscribe({
       next: res => {
@@ -152,6 +154,8 @@ export class PipComponent implements OnInit {
         this.StaffPIPActionItemList1 = res
         this.PipComments = this.StaffPIPActionItemList1[0].pipComments
         this.PipAttachment = this.StaffPIPActionItemList1[0].attachment
+        this.ManagerPIPComments = this.StaffPIPActionItemList1[0].pipManagerComments
+        this.MangerPIPAttachment = this.StaffPIPActionItemList1[0].mangerPIPAttachment
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting PiPActionItemsForStaff');
         // Insert error in Db Here//
@@ -169,7 +173,7 @@ export class PipComponent implements OnInit {
   }
 
 
-// Method to updata data in PiPActionItemsForStaff
+  // Method to updata data in PiPActionItemsForStaff
   update() {
     debugger
     if (this.Score == undefined || this.Score == 0) {
@@ -207,7 +211,7 @@ export class PipComponent implements OnInit {
     this.submitted = 1
   }
 
-//Method to get data HighScore from HighScore Table 
+  //Method to get data HighScore from HighScore Table 
   public HighScore() {
     debugger
     this.PerformanceManagementService.GetHighScores().subscribe({
@@ -288,7 +292,9 @@ export class PipComponent implements OnInit {
       next: res => {
         debugger
         this.Attachment = res;
-        alert("ATTACHMENT UPLOADED");
+        Swal.fire('ATTACHMENT UPLOADED');
+        location.reload();
+
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Project Attachments');
         // Insert error in Db Here//
@@ -304,7 +310,7 @@ export class PipComponent implements OnInit {
       }
     })
   }
-//method to get comments from EmployeeKraMap Table
+  //method to get comments from PIP Table
   public UpdatePipEmployeeKraMap() {
     debugger
     if (this.empComments == undefined || this.empComments == 0) {
@@ -341,5 +347,44 @@ export class PipComponent implements OnInit {
     this.show();
 
   }
-  
+
+  managerComments: any;
+  //method to get comments from PIP Table
+  public UpdatePipManagerComments() {
+    debugger
+    if (this.managerComments == undefined || this.managerComments == 0) {
+      Swal.fire("Please enter the Comments");
+    }
+    else {
+      var entity = {
+        'StaffName': this.StaffID,
+        // 'StaffTypeID':1,
+        'PIPActionID': this.pipActionID,
+        'PipManagerComments': this.managerComments,
+        'PipManagerAttachment': this.Attachment
+      }
+      this.PerformanceManagementService.UpdatePipManagerComments(entity).subscribe({
+        next: data => {
+          debugger
+          Swal.fire("Submitted Successfully");
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Updating PipEmployeeCommentsb');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+
+    }
+    this.show();
+
+  }
+
 }

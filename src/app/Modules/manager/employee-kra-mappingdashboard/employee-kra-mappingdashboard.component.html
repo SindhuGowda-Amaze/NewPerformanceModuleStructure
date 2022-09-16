@@ -46,14 +46,14 @@
                 <thead>
                     <tr>
                         <th>Appraisal Cycle</th>
-                        <th>Appraisal Cycle Start Date </th>
-                        <th>Appraisal Cycle End Date </th>
+                        <!-- <th>Appraisal Cycle Start Date </th>
+                        <th>Appraisal Cycle End Date </th> -->
                         <!-- <th>Appraisal Cycle type</th> -->
                         <th>Goal Type</th>
                         <th>Employee Name</th>
                         <th>Role</th>
-                        <th>Department</th>
-                        <th>Goal Setting Date </th>
+                        <!-- <th>Department</th> -->
+                        <!-- <th>Goal Setting Date </th> -->
                         <th>Employee Submission Last Date</th>
                         <!-- <th>Submission Date </th> -->
                        
@@ -67,14 +67,14 @@
                         *ngFor="let details of EmployeeKradash |paginate: { itemsPerPage: count1, currentPage: p}|filter:search">
 
                         <td>{{details.appraisalCycleName}}</td>
-                        <td>{{details.cycleStartDate|date}}</td>
-                        <td>{{details.cycleEndDate|date}}</td>
+                        <!-- <td>{{details.cycleStartDate|date}}</td>
+                        <td>{{details.cycleEndDate|date}}</td> -->
                         <!-- <td>{{details.frequencyName}}</td> -->
                         <td>{{details.goalType}}</td>
                         <td>{{details.name}}</td>
                         <td>{{details.role}}</td>
-                        <td>{{details.departmentName}}</td>
-                        <td>{{details.goalSettingDate}}</td>
+                        <!-- <td>{{details.departmentName}}</td> -->
+                        <!-- <td>{{details.goalSettingDate}}</td> -->
                         <td>{{details.employeeSubmissionLastDate}}</td>
                      
                         <td>{{details.managerReviewLastDate}}</td>

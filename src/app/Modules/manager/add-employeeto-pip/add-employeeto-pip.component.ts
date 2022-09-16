@@ -206,9 +206,10 @@ export class AddEmployeetoPipComponent implements OnInit {
       else {
         var Entity = {
 
+
           "StaffID": this.keyresultArray[i].StaffID,
           "PIPActionItem": this.keyresultArray[i].PIPActionItem,
-          "Attachment": this.keyresultArray[i].Attachment,
+          "Attachment": this.keyresultArray[i].Attachment== 0 ? null : this.keyresultArray[i].Attachment,
           "ExitCriteria": this.keyresultArray[i].ExitCriteria,
           'TrainingID': this.keyresultArray[i].TrainingID,
           'LastDateOfSubmission': this.keyresultArray[i].LastDateOfSubmission,

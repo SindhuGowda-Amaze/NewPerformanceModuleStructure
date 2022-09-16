@@ -149,6 +149,7 @@
                         <th>SBU Comments</th>
                         <th>HR Score</th>
                         <th>HR Comments</th>
+                        <th>All Attachment</th>
                     </tr>
                     <tr
                         *ngFor="let Scores of StaffScoresLists|paginate: { itemsPerPage: count1, currentPage: p}|filter:search">
@@ -186,7 +187,11 @@
                                 <p *ngIf="Scores.cscores==null">NA</p>
                         </td>
                         <!-- <td *ngIf="Scores.cscores!=null">{{Scores.cioComments}}</td> -->
-                  
+                  <td>
+              
+                    <button *ngIf="Scores.cscores!=null" class="form-control edit" (click)="hrcomments(Scores)"
+                    data-toggle="modal" data-target="#exampleModal2">View Attachments</button>
+                    <p *ngIf="Scores.cscores==null">View Attachments</p>
                     </tr>
                 </thead>
             </table>

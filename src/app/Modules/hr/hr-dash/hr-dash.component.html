@@ -90,6 +90,8 @@
                         <table class="table">
                             <thead>
                                 <tr *ngIf="(EmployeeKradash | filter: search).length > 0; else noResults">
+                                    
+                                    <th>Action </th>
                                     <th>Employee Name</th>
                                     <th>Department</th>
                                     <th>Position</th>
@@ -101,27 +103,13 @@
                                     <th>Manager Submitted Date</th>
                                     <th>SBU Submitted Date</th>
                                     <th>Manager Promotion Recommendation</th>
-                                    <th>Action </th>
+                                  
                                     <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr
                                     *ngFor="let details of EmployeeKradash |paginate: { itemsPerPage: count1, currentPage: p}|filter:search|filter:status">
-                                    <td>{{details.name}}</td>
-                                    <td>{{details.departmentName}}</td>
-                                    <td>{{details.role}}</td>
-                                    <td>{{details.appraisalCycleName}}</td>
-                                    <td>{{details.cycleStartDate|date}}</td>
-                                    <td>{{details.cycleEndDate|date}}</td>
-                                    <td>{{details.employeeSubmissionLastDate|date}}</td>
-                                    <td>{{details.employeeSubmittedDate|date}}</td>
-                                    <td>{{details.managerSubmittedDate|date}}</td>
-                                    <td>{{details.sbuSubmittedDate|date}}</td>
-                                    <td>
-                                        <p *ngIf="details.managerPromotionRecommendaton==1">Yes</p>
-                                        <p *ngIf="details.managerPromotionRecommendaton==0">No</p>
-                                    </td>
                                     <td>
                                         <button [routerLink]="['/hr/hrratingnew', details.id,details.appraiselID ] "
                                             *ngIf="details.hrSubmittedDate==null"
@@ -141,9 +129,28 @@
                                         <!-- <button class="button btn-xs" data-toggle="modal" (click)="GetStaffKraDetails(details)"
                                                 data-target="#myModal">View</button>&nbsp; -->
                                     </td>
+                                    <td>{{details.name}}</td>
+                                    <td>{{details.departmentName}}</td>
+                                    <td>{{details.role}}</td>
+                                    <td>{{details.appraisalCycleName}}</td>
+                                    <td>{{details.cycleStartDate|date}}</td>
+                                    <td>{{details.cycleEndDate|date}}</td>
+                                    <td>{{details.employeeSubmissionLastDate|date}}</td>
+                                    <td>{{details.employeeSubmittedDate|date}}</td>
+                                    <td>{{details.managerSubmittedDate|date}}</td>
+                                    <td>{{details.sbuSubmittedDate|date}}</td>
                                     <td>
-                                        <p *ngIf="details.hrSubmittedDate==null">Open</p>
-                                        <p *ngIf="details.hrSubmittedDate!=null">Submitted</p>
+                                        <p *ngIf="details.managerPromotionRecommendaton==1">Yes</p>
+                                        <p *ngIf="details.managerPromotionRecommendaton==0">No</p>
+                                    </td>
+                                    
+                                    <td>
+                                        <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal!=1">Pending for Acceptance</p>
+                                        <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal==1">Goal Accepted</p>
+                                        <p *ngIf="details.employeeSubmittedDate!=null && details.managerSubmittedDate==null">Appraisal Submitted By Employee</p>
+                                        <p *ngIf="details.managerSubmittedDate!=null && details.sbuSubmittedDate==null">Appraisal Submitted By Manager</p>
+                                        <p *ngIf="details.sbuSubmittedDate!=null && details.hrSubmittedDate==null">Appraisal Submitted By SBU</p>
+                                        <p *ngIf="details.hrSubmittedDate!=null">Appraisal Submitted By HR</p>
                                     </td>
                                 </tr>
                             </tbody>
@@ -168,6 +175,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
+                                    <th>Action </th>
                                     <th>Employee Name</th>
                                     <th>Department</th>
                                     <th>Appraisal Cycle</th>
@@ -176,12 +184,32 @@
                                     <th>Last Submission Date </th>
                                     <th>Employee Submitted Date</th>
                                     <th>Manager Submitted Date </th>
-                                    <th>Action </th>
+                                    <th>Status</th>
+                                
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr
                                     *ngFor="let details of EmployeeKradash2 |paginate: { itemsPerPage: count1, currentPage: p}|filter:search">
+                                    <td>
+                                        <button [routerLink]="['/hr/hrratingnew', details.id,details.appraiselID ] "
+                                            *ngIf="details.hrSubmittedDate==null"
+                                            class=" btn btn-primary editable-table-button btn-xs">Conduct
+                                            Appraisal</button>
+
+                                        <button [routerLink]="['/hr/hrratingnew', details.id,details.appraiselID] "
+                                            *ngIf="details.hrSubmittedDate!=null"
+                                            class=" btn btn-primary editable-table-button btn-xs btncolor">View
+                                            Appraisal</button>
+
+                                        <!-- <button *ngIf="details.cioComments!=null"
+                                                class=" btn btn-primary editable-table-button btn-xs">Completed</button> -->
+                                        <!-- <button class="button btn-xs"
+                                                routerLink]="['/SelfRatingPage', details.id,details.id ]">Self
+                                                Apprisal</button>&nbsp; -->
+                                        <!-- <button class="button btn-xs" data-toggle="modal" (click)="GetStaffKraDetails(details)"
+                                                data-target="#myModal">View</button>&nbsp; -->
+                                    </td>
                                     <td>{{details.name}}</td>
                                     <td>{{details.departmentName}}</td>
                                     <td>{{details.appraisalCycleName}}</td>
@@ -194,22 +222,14 @@
                                     <td *ngIf="details.managerSubmittedDate==null">
                                         <p>NA</p>
                                     </td>
+                                
                                     <td>
-                                        <button [routerLink]="['/manager/ManagerAppraisal', details.id,details.appraiselID ]"
-                                            class=" btn btn-primary editable-table-button btn-xs Add"
-                                            *ngIf="details.managerSubmittedDate==null">Conduct Appraisal</button>
-        
-                                        <button [routerLink]="['/manager/ManagerAppraisal', details.id,details.appraiselID ]"
-                                            class=" btn btn-primary editable-table-button btn-xs btncolor"
-                                            *ngIf="details.managerSubmittedDate!=null">View Appraisal</button>
-        
-                                        <!-- <button *ngIf="details.groupHeadScores!=null"
-                                            class=" btn btn-primary editable-table-button btn-xs btncolor">Completed</button> -->
-                                        <!-- <button class="button btn-xs"
-                                            routerLink]="['/SelfRatingPage', details.id,details.id ]">Self
-                                            Apprisal</button>&nbsp; -->
-                                        <!-- <button class="button btn-xs" data-toggle="modal" (click)="GetStaffKraDetails(details)"
-                                            data-target="#myModal">View</button>&nbsp; -->
+
+                                        <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal!=1">Pending for Acceptance</p>
+                                        <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal==1">Goal Accepted</p>
+                                        <p *ngIf="details.employeeSubmittedDate!=null && details.managerSubmittedDate==null">Appraisal Submitted By Employee</p>
+                                        <p *ngIf="details.managerSubmittedDate!=null && details.sbuSubmittedDate==null">Appraisal Submitted By Manager</p>
+                                        <p *ngIf="details.sbuSubmittedDate!=null">Appraisal Submitted By HR</p>
                                     </td>
                                 </tr>
                             </tbody>

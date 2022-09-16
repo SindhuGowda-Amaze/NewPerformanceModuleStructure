@@ -118,7 +118,7 @@ export class MyApprasailComponent implements OnInit {
 
 
   }
-
+  EmployeeKradash2:any
   //Method to Displaying the Data from GetConductappraisalStaffList Table//
 
   public GetConductappraisalStaffList() {
@@ -128,7 +128,8 @@ export class MyApprasailComponent implements OnInit {
       .subscribe({
         next: data => {
           debugger
-          this.EmployeeKradash = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID'));
+          this.EmployeeKradash = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID')&& x.employeeSubmittedDate == null );
+          this.EmployeeKradash2 = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID')&& x.employeeSubmittedDate != null );
         }, error: (err) => {
           Swal.fire('Issue in Getting ConductappraisalStaffList');
           // Insert error in Db Here//

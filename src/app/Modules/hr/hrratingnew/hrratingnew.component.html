@@ -34,6 +34,7 @@
                 <table class="table "style="width: 1260px; overflow-x: scroll;">
                     <thead>
                         <tr>
+                            <th>Action </th>
                             <th>Sr.No.</th>
                             <th>Goal</th>
                             <th>KPI</th>
@@ -47,12 +48,30 @@
                             <th>SBU Comments</th>
                             <th>SBU Attachment</th>
                             <th>HR Rating</th>
-                            <th>Action </th>
+                           
                         </tr>
                     </thead>
                     <tbody>
                         <tr
                             *ngFor="let details of ResultAreaList |paginate: { itemsPerPage: count1, currentPage: p} index as i">
+                            <td [ngClass]="{'bggreen':details.hrupdate==1 }">
+
+                                <button *ngIf="details.hrupdate!=1 &&details.managerupdate==1" type="button"
+                                    class="btn btn-primary" data-toggle="modal" (click)="GetKPIID(details)"
+                                    data-target="#exampleModal">Provide Rating</button>
+
+                                <button *ngIf="details.hrupdate==1" type="button" class="btn btn-success"
+                                    data-toggle="modal" (click)="GetKPIIDetails(details)"
+                                    data-target="#exampleModal1">View
+                                    Details</button><br><br>
+                                    <p *ngIf="details.hrupdate==1 && (details.hrattachment==null||details.hrattachment=='')" >No Attachments</p>
+
+                                <button class=" btn btn-primary action" data-toggle="modal" data-target="#exampleModal4"
+                                    (click)="GetKPIIDetails(details)"
+                                    *ngIf="details.hrattachment!=null&&details.hrattachment!='0'&&details.hrattachment!='' ">View
+                                    Attachments</button>
+                                <!-- <p *ngIf="details.hrattachment==null and details.hrrrating!=null" >No Attachments</p> -->
+                            </td>
                             <td [ngClass]="{'bggreen':details.hrupdate==1 }">
                                 {{i+1}}</td>
                             <td [ngClass]="{'bggreen':details.hrupdate==1 }">{{details.kraName}}
@@ -115,24 +134,7 @@
                                 {{details.hrrrating}}
                                 <p *ngIf="details.hrupdate!=1">NA</p>
                             </td>
-                            <td [ngClass]="{'bggreen':details.hrupdate==1 }">
-
-                                <button *ngIf="details.hrupdate!=1 &&details.managerupdate==1" type="button"
-                                    class="btn btn-primary" data-toggle="modal" (click)="GetKPIID(details)"
-                                    data-target="#exampleModal">Provide Rating</button>
-
-                                <button *ngIf="details.hrupdate==1" type="button" class="btn btn-success"
-                                    data-toggle="modal" (click)="GetKPIIDetails(details)"
-                                    data-target="#exampleModal1">View
-                                    Details</button><br><br>
-                                    <p *ngIf="details.hrupdate==1 && (details.hrattachment==null||details.hrattachment=='')" >No Attachments</p>
-
-                                <button class=" btn btn-primary action" data-toggle="modal" data-target="#exampleModal4"
-                                    (click)="GetKPIIDetails(details)"
-                                    *ngIf="details.hrattachment!=null&&details.hrattachment!='0'&&details.hrattachment!='' ">View
-                                    Attachments</button>
-                                <!-- <p *ngIf="details.hrattachment==null and details.hrrrating!=null" >No Attachments</p> -->
-                            </td>
+                           
                         </tr>
                     </tbody>
                 </table>

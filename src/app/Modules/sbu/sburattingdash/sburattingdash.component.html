@@ -98,8 +98,12 @@
                                 *ngIf="details.sbuSubmittedDate!=null">View Appraisal</button>
                         </td>
                         <td>
-                            <p *ngIf="details.sbuSubmittedDate==null">Open</p>
-                            <p *ngIf="details.sbuSubmittedDate!=null">Submitted</p>
+
+                            <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal!=1">Pending for Acceptance</p>
+                            <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal==1">Goal Accepted</p>
+                            <p *ngIf="details.employeeSubmittedDate!=null && details.managerSubmittedDate==null">Appraisal Submitted By Employee</p>
+                            <p *ngIf="details.managerSubmittedDate!=null && details.sbuSubmittedDate==null">Appraisal Submitted By Manager</p>
+                            <p *ngIf="details.sbuSubmittedDate!=null">Appraisal Submitted By SBU</p>
                         </td>
                     </tr>
                 </tbody>

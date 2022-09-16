@@ -22,7 +22,7 @@ export class KeyPerformaceIndicatorComponent implements OnInit {
   dummkeyresultlist:any;
   kralist:any;
   ngOnInit(): void {
-    this.GetKPI();
+     this.GetKPI();
     this.GetKraMaster();
     this.GetKeyResultArea();
     this.kraid = 0;
@@ -102,6 +102,8 @@ this.kratypeid="";
     this.kratypeid = event.target.value
     this.indicatorlist = this.dummkeyresultlist.filter((x: { kraTypeID: any; }) => x.kraTypeID == this.kratypeid);
     this.count = this.indicatorlist.length;
+    
+
   }
 
 
