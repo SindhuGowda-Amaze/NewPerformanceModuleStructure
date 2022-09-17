@@ -19,6 +19,7 @@ import Swal from 'sweetalert2';
 export class SburattingdashComponent implements OnInit {
   // variables decleartions//
   stafflist: any;
+  viewMode = 'tab1';
   term: any;
   p: any = 1;
   count1: any = 10;
@@ -41,6 +42,7 @@ export class SburattingdashComponent implements OnInit {
   level: any;
   Staffkra: any;
   name: any;
+  EmployeeKradash2: any;
 
   constructor(
     private PerformanceManagementService: PerformancemanagementService
@@ -123,6 +125,12 @@ export class SburattingdashComponent implements OnInit {
               x.approver1 == sessionStorage.getItem('EmaployedID') &&
               x.selfScores != null &&
               x.employeeSubmittedDate != null
+          );
+          this.EmployeeKradash2 = data.filter(
+            (x) =>
+              x.approver1 == sessionStorage.getItem('EmaployedID') &&
+              x.selfScores != null &&
+              x.employeeSubmittedDate != null&&x.sbuSubmittedDate!=null
           );
           this.count = this.EmployeeKradash.length;
         } else if (this.roleid == 5) {
