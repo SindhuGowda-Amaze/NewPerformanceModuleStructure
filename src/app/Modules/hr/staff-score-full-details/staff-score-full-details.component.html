@@ -331,20 +331,26 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <img src="{{employeeattachment}}">
-                                                <p *ngIf="employeeattachment==null">No Attachments</p>
+                                                <a href="{{employeeattachment}}" target="blank"><img style="width: 40%;" *ngIf="employeeattachment!=0" src="assets/Images/image.png"></a>
+  
+                                                <p *ngIf="employeeattachment==0">No Attachments</p>
                                             </td>
                                             <td>
-                                                <img src="{{managerattachment}}">
-                                                <p *ngIf="managerattachment==null">No Attachments</p>
+                                        
+                                                <a href="{{managerattachment}}" target="blank"><img style="width: 40%;" *ngIf="managerattachment!=0" src="assets/Images/image.png"></a>
+
+                                                <p *ngIf="managerattachment==0">No Attachments</p>
                                             </td>
                                             <td>
-                                                <img src="{{sbuAttachment}}">
-                                                <p *ngIf="sbuAttachment==null">No Attachments</p>
+                                                <a href="{{sbuAttachment}}" target="blank"><img style="width: 40%;" *ngIf="sbuAttachment!=0" src="assets/Images/image.png"></a>
+
+                                              
+                                                <p *ngIf="sbuAttachment==0">No Attachments</p>
                                             </td>
                                             <td>
-                                                <img src="{{hrAttachment}}">
-                                                <p *ngIf="hrAttachment==null">No Attachments</p>
+                                                <a href="{{hrAttachment}}" target="blank"><img style="width: 40%;" *ngIf="hrAttachment!=0" src="assets/Images/image.png"></a>
+
+                                                <p *ngIf="hrAttachment==0">No Attachments</p>
                                             </td>
                                         </tr>
                                     </thead>
