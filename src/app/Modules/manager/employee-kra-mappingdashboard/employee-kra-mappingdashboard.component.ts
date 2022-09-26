@@ -472,6 +472,40 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
     })
   }
 
+  public delete(ID: any) {
+    debugger
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You Want to delete it.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, Delete it!',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.value == true) {
+        this.PerformanceManagementService.DeleteEmployeeKraMap(ID).subscribe({
+          next: data => {
+            debugger
+            Swal.fire('Deleted Successfully')
+            this.GetKeyResultArea();
+          }, error: (err: { error: { message: any; }; }) => {
+            Swal.fire('Issue in Deleting KeyResultArea');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
+        })
+      }
+    })
+  }
+
 //Method to update data in kranew
   update() {
     debugger
