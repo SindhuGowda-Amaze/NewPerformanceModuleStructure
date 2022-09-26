@@ -92,8 +92,12 @@ public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
    let APIURL = this.baseURL + "/Master/UpdateAppraisalCycle";
    return this.http.post<any[]>(APIURL, json);
  }
-
-
+ 
+ public UpdateSuccessor(json: any) {
+  debugger
+  let APIURL = this.baseURL + "/Master/UpdateSuccessor";
+  return this.http.post<any[]>(APIURL, json);
+}
 
  public GetKeyResultArea() {
    return this.http.get<any[]>(
@@ -522,4 +526,13 @@ public GetExceptionLogs() {
   return this.http.get<any[]>(
     this.baseURL + "/Master/UpdateEmployeeAcceptGoal?ID=" + ID);
 }
+
+
+
+ 
+public UpdateFinalizeRating(ID: any) {
+  return this.http.get<any[]>(
+    this.baseURL + "/Master/UpdateFinalizeRating?ID=" + ID);
+}
+
 }

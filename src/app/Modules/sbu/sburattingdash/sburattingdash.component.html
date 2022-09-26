@@ -116,8 +116,9 @@
                                     <td *ngIf="roleid==5">
                                         <button class=" btn btn-primary editable-table-button btn-xs Add"
                                             data-toggle="modal" data-target="#myModal3"
-                                            (click)="getlevel(details)">Successor</button>
+                                            (click)="getstaffid(details)">Successor</button>
                                     </td>
+
                                     <td>
                                         <button [routerLink]="['/sbu/SbuAppraisal', details.id,details.appraiselID ]"
                                             class=" btn btn-primary editable-table-button btn-xs Add"
@@ -207,7 +208,7 @@
                                     <td *ngIf="roleid==5">
                                         <button class=" btn btn-primary editable-table-button btn-xs Add"
                                             data-toggle="modal" data-target="#myModal3"
-                                            (click)="getlevel(details)">Successor</button>
+                                            (click)="getstaffid(details)">Successor</button>
                                     </td>
                                     <td>
                                         <button [routerLink]="['/sbu/SbuAppraisal', details.id,details.appraiselID ]"
@@ -268,12 +269,26 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-lg-12">
+                        <p style="padding:5px">
+                            Successor Name<span style="color: red;">*</span> </p>
+                    </div>
+                    <div class="col-lg-7">
                         <select class="form-control" id="name" name="name" [(ngModel)]="name">
                             <option value="0">Select Successor</option>
-                            <option *ngFor="let details of stafflist" value="{{details.name}}">
+                            <option *ngFor="let details of stafflist" value="{{details.id}}">
                                 {{details.name}}
                             </option>
                         </select>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="col-lg-12">
+                        <p style="padding:5px">
+                            Comments<span style="color: red;">*</span> </p>
+                    </div>
+                    <div class="col-lg-12">
+                        <ckeditor id="comment" name="comment" [(ngModel)]="comment" required
+                            data="<p>Enter Answer Here !</p>"></ckeditor>
                     </div>
                 </div>
             </div><br>
