@@ -535,4 +535,11 @@ public UpdateFinalizeRating(ID: any) {
     this.baseURL + "/Master/UpdateFinalizeRating?ID=" + ID);
 }
 
+ 
+public DeleteEmployeeKraMap(ID: any) {
+  return this.http.get<any[]>(
+    this.baseURL + "/Master/DeleteEmployeeKraMap?ID=" + ID);
+}
+
+
 }
