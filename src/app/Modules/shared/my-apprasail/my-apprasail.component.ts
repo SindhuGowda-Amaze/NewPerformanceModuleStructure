@@ -38,6 +38,8 @@ export class MyApprasailComponent implements OnInit {
   currentUrl: any;
   Approver1: any;
   loginName:any;
+  EmployeeKradashCompleted: any;
+  EmployeeKradashAccepted: any;
   constructor(private PerformanceManagementService: PerformancemanagementService) { }
 
 
@@ -130,6 +132,8 @@ export class MyApprasailComponent implements OnInit {
           debugger
           this.EmployeeKradash = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID')&& x.employeeSubmittedDate == null );
           this.EmployeeKradash2 = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID')&& x.employeeSubmittedDate != null );
+          this.EmployeeKradashAccepted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID')&& x.employeeSubmittedDate != null && x.employeeacceptgoal==1);
+          this.EmployeeKradashCompleted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID')&& x.employeeSubmittedDate != null );
         }, error: (err) => {
           Swal.fire('Issue in Getting ConductappraisalStaffList');
           // Insert error in Db Here//
