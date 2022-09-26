@@ -47,8 +47,8 @@
             </div>
         </div>
         <div class="col-lg-2">
-            <button class="form-control Add" data-toggle="modal" data-target="#exampleModal2">Add
-                </button>
+            <button class="form-control Add" data-toggle="modal" data-target="#exampleModal2">Add Goal
+            </button>
         </div>
     </div>
     <br>
@@ -481,7 +481,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">View Assigned PIP</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add Goals</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -504,85 +504,69 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-3">
-                            <select class="form-control ">
+                            <select class="form-control" id="Apprisalcycle" (change)="GetApprisalcycle($event)"
+                                name="Apprisalcycle" required [(ngModel)]="Apprisalcycle">
                                 <option value="">Select Cycle</option>
-                                <option>
+                                <option *ngFor="let item of Apprisalcyclelist" value="{{item.id}}">
+                                    {{item.appraisalCycleName}}
                                 </option>
                             </select>
-                        </div>       
+                        </div>
                         <div class="col-lg-3">
-                            <select class="form-control ">
-                                <option value="">Select Goal</option>
-                                <option>
+                            <select class="form-control"  (change)="getkratypeid($event)"  [(ngModel)]="kratypeid" name="kratypeid"  required>
+                                <option value="">Select Goal Type</option>
+                                <option *ngFor="let details of kratypelist" value="{{details.kraType}}">{{details.kraType}}
                                 </option>
                             </select>
-                        </div>          
-                        <div class="col-lg-3">
-                          <input class="form-control search" type="text" placeholder="Goal..">
                         </div>
-        
                         <div class="col-lg-3">
-                            <input class="form-control search"type="text" placeholder="KPI..">
+                            <input class="form-control search" type="text" placeholder="Goal..">
                         </div>
-        
+
+                        <div class="col-lg-3">
+                            <input class="form-control search" type="text" placeholder="KPI..">
+                        </div>
+
+                    </div>
                 </div>
-                <!-- <div class="row">
-                    <div class="col-lg-1">
-                    </div>
-                    <div class="col-lg-3">
-                        <p style="padding:5px">
-                            PIP Action Items <span style="color: red;">*</span> </p>
-                    </div>
-                    <div class="col-lg-7">
-                        <p>{{StaffPIPActionItemList1.pipActionItem}}</p>
-                    </div>
-                </div><br> -->
-                <!-- <div class="row">
-                    <div class="col-lg-1">
-                    </div>
-                    <div class="col-lg-3">
-                        <p style="padding:5px">
-                            Exit Criteria<span style="color: red;">*</span> </p>
-                    </div>
-                    <div class="col-lg-7">
-                        <p>{{StaffPIPActionItemList1.exitCriteria}}</p>
-                    </div>
-                </div><br>
-
+                <br>
                 <div class="row">
-                    <div class="col-lg-1">
+                    <div class="col-lg-8"></div>
+                    <div class="col-lg-2">
+                        <button class="form-control Add">ADD</button>
                     </div>
-                    <div class="col-lg-3">
-                        <p style="padding:5px">
-                            PIP Period<span style="color: red;">*</span> </p>
+                    <div class="col-lg-2">
+                        <button class="form-control Add" > Cancel</button>
                     </div>
-                    <div class="col-lg-7">
-                        <p>{{StaffPIPActionItemList1.lastDateOfSubmission}}</p>
-                    </div>
-                </div><br>
+                </div>
+            </div>
+            <!-- <div class="row">
+            <div class="col-lg-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Appraisal Cycle</th>
+                            <th>Goal Type</th>
+                            <th>Goal </th>
+                            <th>KPI</th>
+                        </tr>
+                        <tr >
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                </table>
+                <br>
                 <div class="row">
-                    <div class="col-lg-1">
+                    <div class="col-lg-10"></div>
+                    <div class="col-lg-2">
+                        <button class="form-control cancel">Save</button>
                     </div>
-                    <div class="col-lg-3">
-                        <p style="padding:5px">
-                            PIP Attachment<span style="color: red;">*</span> </p>
-                    </div>
-                    <div class="col-lg-7">
-                        <img src="{{StaffPIPActionItemList1.pipAttachment}}">
-                    </div>
-                </div><br> -->
-
+                </div>
             </div>
             <br>
-          <div class="row">
-            <div class="col-lg-8"></div>
-            <div class="col-lg-2">
-                <button  class="form-control Add">ADD</button>
-            </div>
-            <div class="col-lg-2">
-              <button  class="form-control Add"> Cancel</button>
-            </div>
-          </div>
+
+        </div> -->
         </div>
     </div>
-</div>
