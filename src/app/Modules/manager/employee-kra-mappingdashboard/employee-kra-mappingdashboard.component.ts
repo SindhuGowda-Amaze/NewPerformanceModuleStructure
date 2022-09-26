@@ -308,6 +308,7 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
     })
 
   }
+  EmployeeKradashAccepted:any;
  //Method to get StaffKraDetails from EmployeeKraMap Table
   public GetStaffKraDetails(details: any) {
     debugger
@@ -317,6 +318,7 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
         next: data => {
           debugger
           this.Staffkra = data.filter(x => x.kpiName != null && x.staffName == details.staffid);
+          this.EmployeeKradashAccepted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID')&& x.employeeSubmittedDate != null && x.employeeacceptgoal==1);
 
         }, error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in Getting Expenses List Web');
