@@ -301,7 +301,7 @@ export class HrratingnewComponent implements OnInit {
     debugger
     Swal.fire({
       title: 'Are you sure?',
-      text: 'You Want to Submit it.',
+      text: 'You will not able to make changes once submitted',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes, Submit it!',

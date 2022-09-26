@@ -150,6 +150,10 @@ export class SidebarComponent implements OnInit {
       localStorage.setItem("clickname","PIP Report")
     }
   }
+  PlanningReport(){
+    this.active='SuccessionPlanningReport'
+    localStorage.setItem("clickname","Succession Planning Report")
+  }
 
   
 

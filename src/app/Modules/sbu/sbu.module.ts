@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { SburattingdashComponent } from './sburattingdash/sburattingdash.component';
 import { SbuappraisalComponent } from './sbuappraisal/sbuappraisal.component';
 import { ReviewratingComponent } from './reviewrating/reviewrating.component';
+import { SuccessionPlanningReportComponent } from './succession-planning-report/succession-planning-report.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ReviewratingComponent } from './reviewrating/reviewrating.component';
     SbuComponent,
     SburattingdashComponent,
     SbuappraisalComponent,
-    ReviewratingComponent
+    ReviewratingComponent,
+    SuccessionPlanningReportComponent
   ],
   imports: [
     CommonModule,
