@@ -37,13 +37,13 @@ export class MyApprasailComponent implements OnInit {
   roleid: any;
   currentUrl: any;
   Approver1: any;
-  loginName:any;
+  loginName: any;
   EmployeeKradashCompleted: any;
   EmployeeKradashAccepted: any;
   EmployeeKradashSubmitted: any;
-  kratypelist : any
-  kratypeid : any
-  Apprisalcycle : any
+  kratypelist: any
+  kratypeid: any
+  Apprisalcycle: any
   AppraisalSubmitionDate: any;
   sDate: any;
   eDate: any;
@@ -60,9 +60,10 @@ export class MyApprasailComponent implements OnInit {
     this.GetConductappraisalStaffList();
     this.GetEmployeeKraMap();
     this.GetAppraisalCycle()
-   
-  
 
+
+    this.Apprisalcycle = ""
+    this.kratypeid = ""
     this.currentUrl = window.location.href;
     this.Department = "";
     this.RoleType = "";
@@ -131,7 +132,7 @@ export class MyApprasailComponent implements OnInit {
 
 
   }
-  EmployeeKradash2:any
+  EmployeeKradash2: any
   //Method to Displaying the Data from GetConductappraisalStaffList Table//
 
   public GetConductappraisalStaffList() {
@@ -141,10 +142,10 @@ export class MyApprasailComponent implements OnInit {
       .subscribe({
         next: data => {
           debugger
-          this.EmployeeKradash = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID')&& x.employeeSubmittedDate == null && x.employeeacceptgoal!=1);
-          this.EmployeeKradashAccepted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID')&& x.employeeSubmittedDate == null && x.employeeacceptgoal==1);
-          this.EmployeeKradashSubmitted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID')&& x.employeeSubmittedDate != null );
-          this.EmployeeKradashCompleted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID')&& x.employeeSubmittedDate != null && x.hrSubmittedDate != null );
+          this.EmployeeKradash = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate == null && x.employeeacceptgoal != 1);
+          this.EmployeeKradashAccepted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate == null && x.employeeacceptgoal == 1);
+          this.EmployeeKradashSubmitted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate != null);
+          this.EmployeeKradashCompleted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate != null && x.hrSubmittedDate != null);
         }, error: (err) => {
           Swal.fire('Issue in Getting ConductappraisalStaffList');
           // Insert error in Db Here//
@@ -274,32 +275,33 @@ export class MyApprasailComponent implements OnInit {
     }).then((result) => {
       if (result.value == true) {
         this.PerformanceManagementService.UpdateEmployeeAcceptGoal(id)
-        .subscribe({
-          next: data => {
-            debugger
-            Swal.fire('Accepted Successfully')
-
-            this.PerformanceManagementService.GetMyDetails().subscribe(data => {
+          .subscribe({
+            next: data => {
               debugger
-              let temp: any = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID'));
-              this.Approver1 = temp[0].supervisor;
-            });
-            
-            this.InsertNotification();
-            this.ngOnInit();
-          }, error: (err) => {
-            Swal.fire('Issue in Accept Goal');
-            // Insert error in Db Here//
-            var obj = {
-              'PageName': this.currentUrl,
-              'ErrorMessage': err.error.message
-            }
-            this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-              data => {
+              Swal.fire('Accepted Successfully')
+
+              this.PerformanceManagementService.GetMyDetails().subscribe(data => {
                 debugger
-              },
-            )}
-        })
+                let temp: any = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID'));
+                this.Approver1 = temp[0].supervisor;
+              });
+
+              this.InsertNotification();
+              this.ngOnInit();
+            }, error: (err) => {
+              Swal.fire('Issue in Accept Goal');
+              // Insert error in Db Here//
+              var obj = {
+                'PageName': this.currentUrl,
+                'ErrorMessage': err.error.message
+              }
+              this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+                data => {
+                  debugger
+                },
+              )
+            }
+          })
       }
     })
   }
@@ -322,7 +324,7 @@ export class MyApprasailComponent implements OnInit {
       'Event': 'Apprisal Request',
       'FromUser': 'Admin',
       'ToUser': sessionStorage.getItem('EmaployedID'),
-      'Message': this.loginName+'Accepted Goal!!',
+      'Message': this.loginName + 'Accepted Goal!!',
       'Photo': 'Null',
       'Building': 'Dynamics 1',
       'UserID': this.Approver1,
@@ -338,10 +340,10 @@ export class MyApprasailComponent implements OnInit {
   }
 
 
-  dropdownList : any
-  staffName : any
-  Departmentid : any
-  
+  dropdownList: any
+  staffName: any
+  Departmentid: any
+
   public GetEmployeeKraMap() {
     this.PerformanceManagementService.GetKraMaster()
 
@@ -365,7 +367,7 @@ export class MyApprasailComponent implements OnInit {
         }
       })
   }
-  Apprisalcyclelist : any
+  Apprisalcyclelist: any
   public GetAppraisalCycle() {
     this.PerformanceManagementService.GetAppraisalCycle().subscribe({
       next: data => {
@@ -393,9 +395,9 @@ export class MyApprasailComponent implements OnInit {
     })
 
   }
-  goalSettingDate : any
-  appraisalid : any 
-  AppraisalClose : any
+  goalSettingDate: any
+  appraisalid: any
+  AppraisalClose: any
   public GetApprisalcycle(event: any) {
     debugger
     this.PerformanceManagementService.GetAppraisalCycle().subscribe({
@@ -429,11 +431,11 @@ export class MyApprasailComponent implements OnInit {
       }
     })
   }
-  selectedstaff : any 
-  selectedstaffapprover1 : any
-  Approver2 : any 
-  Approver3 : any
-  dropdownList1 : any
+  selectedstaff: any
+  selectedstaffapprover1: any
+  Approver2: any
+  Approver3: any
+  dropdownList1: any
   getkratypeid(event: any) {
     debugger
     this.kratypeid = event.target.value;

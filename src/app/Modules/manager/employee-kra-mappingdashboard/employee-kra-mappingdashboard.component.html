@@ -143,9 +143,10 @@
                                     <td *ngIf="Employeeacceptgoal!=1">Pending</td> -->
                                     <td>
                                         <button class="edit" data-toggle="modal" data-target="#exampleModal"
-                                            data-dismiss="modal" (click)="edit(details)">Edit</button>
-                                            <button class="edit"
-                                            (click)="delete(details.id)">Delete</button>
+                                         *ngIf="details.employeeacceptgoal!=1"   data-dismiss="modal" (click)="edit(details)">Edit</button>
+                                            <button class="edit" 
+                                            (click)="delete(details.id)"   *ngIf="details.employeeacceptgoal!=1" >Delete</button>
+                                            <p  *ngIf="details.employeeacceptgoal==1"><b></b></p>
                                     </td>
                                 </tr>
                             </tbody>
