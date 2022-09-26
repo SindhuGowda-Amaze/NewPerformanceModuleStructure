@@ -174,9 +174,10 @@
                                     data-target="#viewbellcurve" [disabled]="details.appraisalClose=='1' || details.finalize!='1'"
                                     (click)="ViewScores(details)">Change Rating
                                 </button><br><br>
-                                <button class="btn btn-primary editable-table-button btn-xs"
+                                <button *ngIf="details.finalize==0" class="btn btn-primary editable-table-button btn-xs"
                                     (click)="FinalizeAppraisal(details.staffid)">Finalize Rating
                                 </button>
+                                <p *ngIf="details.finalize==1">Finalized</p>
                             </td>
                         </tr>
                     </tbody>
