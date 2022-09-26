@@ -384,7 +384,7 @@ export class SelfratingnewComponentComponent implements OnInit {
     debugger;
     Swal.fire({
       title: 'Are you sure?',
-      text: 'You Want to Submit it.',
+      text: 'You will not be able to make changes once Submitted',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes, Submit it!',

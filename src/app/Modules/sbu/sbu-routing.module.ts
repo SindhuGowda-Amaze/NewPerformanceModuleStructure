@@ -4,11 +4,13 @@ import { ReviewratingComponent } from './reviewrating/reviewrating.component';
 import { SbuComponent } from './sbu.component';
 import { SbuappraisalComponent } from './sbuappraisal/sbuappraisal.component';
 import { SburattingdashComponent } from './sburattingdash/sburattingdash.component';
+import { SuccessionPlanningReportComponent } from './succession-planning-report/succession-planning-report.component';
 
 const routes: Routes = [{ path: '', component: SbuComponent },
 {path:'ReviewRating',component:ReviewratingComponent},
 {path:'Sburattingdash',component:SburattingdashComponent},
 {path:'SbuAppraisal/:id/:StaffID',component:SbuappraisalComponent},
+{path:'SuccessionPlanningReport',component:SuccessionPlanningReportComponent}
 ];
 
 @NgModule({
