@@ -16,6 +16,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./managerratingdash.component.css']
 })
 export class ManagerratingdashComponent implements OnInit {
+  Approver1: any;
   constructor(private PerformanceManagementService: PerformancemanagementService) { }
   //variable Declaration 
   stafflist: any;
@@ -40,6 +41,7 @@ export class ManagerratingdashComponent implements OnInit {
   EmployeeKradash: any
   currentUrl: any
   Staffkra: any;
+  loginName:any;
 
   ngOnInit(): void {
     //Variable Initialisation and Default Method Calls//
@@ -52,6 +54,7 @@ export class ManagerratingdashComponent implements OnInit {
     this.appraisalCycleName = 0;
     this.Department = "";
     this.RoleType = "";
+    this.loginName = sessionStorage.getItem('loginName');
   }
   //Method to get stafflist,stafflistCopy from Mydetails table
   public GetMyDetails() {
@@ -99,13 +102,20 @@ export class ManagerratingdashComponent implements OnInit {
     })
   }
   EmployeeKradash2:any
+  EmployeeKradashAccepted:any;
+  EmployeeKradashSubmitted:any;
+  EmployeeKradashCompleted:any;
   //Method to get ConductappraisalStaffList from ConductappraisalStaffList table
   public GetConductappraisalStaffList() {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
         debugger
-        this.EmployeeKradash = data.filter(x => x.approver1 == sessionStorage.getItem('EmaployedID') && x.selfScores != null && x.employeeSubmittedDate != null && x.managerSubmittedDate==null);
-        this.EmployeeKradash2 = data.filter(x => x.approver1 == sessionStorage.getItem('EmaployedID') && x.selfScores != null && x.employeeSubmittedDate != null && x.managerSubmittedDate!=null);
+        this.EmployeeKradash = data.filter(x => x.approver1 == sessionStorage.getItem('EmaployedID') && x.selfScores != null && x.employeeSubmittedDate != null && x.managerSubmittedDate==null && x.employeeacceptgoal!=1);
+        this.EmployeeKradashAccepted = data.filter(x => x.approver1 == sessionStorage.getItem('EmaployedID') && x.selfScores != null && x.employeeSubmittedDate != null && x.managerSubmittedDate==null && x.employeeacceptgoal==1);
+        this.EmployeeKradashSubmitted = data.filter(x => x.approver1 == sessionStorage.getItem('EmaployedID') && x.selfScores != null && x.employeeSubmittedDate != null && x.managerSubmittedDate!=null);
+        this.EmployeeKradashCompleted = data.filter(x => x.approver1 == sessionStorage.getItem('EmaployedID') && x.selfScores != null && x.employeeSubmittedDate != null && x.managerSubmittedDate!=null  && x.hrSubmittedDate != null);
+
+     
         this.count = this.EmployeeKradash.length;
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting ConductappraisalStaffList');
@@ -274,4 +284,71 @@ export class ManagerratingdashComponent implements OnInit {
 
 
 
+
+  public accept(id: any) {
+    debugger
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You Want to Accept it.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, Accept it!',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.value == true) {
+        this.PerformanceManagementService.UpdateEmployeeAcceptGoal(id)
+        .subscribe({
+          next: data => {
+            debugger
+            Swal.fire('Accepted Successfully')
+
+            this.PerformanceManagementService.GetMyDetails().subscribe(data => {
+              debugger
+              let temp: any = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID'));
+              this.Approver1 = temp[0].supervisor;
+            });
+            
+            this.InsertNotification();
+            this.ngOnInit();
+          }, error: (err) => {
+            Swal.fire('Issue in Accept Goal');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )}
+        })
+      }
+    })
+  }
+
+  
+
+  public InsertNotification() {
+    debugger
+
+    var entity = {
+      'Date': new Date(),
+      'Event': 'Apprisal Request',
+      'FromUser': 'Admin',
+      'ToUser': sessionStorage.getItem('EmaployedID'),
+      'Message':"Your Manager" + this.loginName+'Accepted Goal!!',
+      'Photo': 'Null',
+      'Building': 'Dynamics 1',
+      'UserID': this.Approver1,
+      'NotificationTypeID': 17,
+      'VendorID': 0
+
+
+    }
+    this.PerformanceManagementService.InsertNotification(entity).subscribe(data => {
+      if (data != 0) {
+      }
+    })
+  }
 }

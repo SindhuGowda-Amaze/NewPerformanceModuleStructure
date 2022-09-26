@@ -154,17 +154,28 @@ export class HrDashComponent implements OnInit {
     })
   }
 
-  EmployeeKradash2:any;
+  EmployeeKradash2: any;
+  EmployeeKradashAccepted:any;
+  EmployeeKradashSubmitted:any;
+  EmployeeKradashCompleted:any;
   //Method to get Employee Appraisal Details//
   public GetConductappraisalStaffList() {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
         debugger
         this.EmployeeKradash = data.filter(x => x.approver2 == sessionStorage.getItem('EmaployedID') && x.selfScores != null
-          && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null&& x.managerSubmittedDate != null && x.sbuSubmittedDate != null && x.hrSubmittedDate == null );
+          && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null && x.sbuSubmittedDate != null && x.hrSubmittedDate == null);
 
-          this.EmployeeKradash2 = data.filter(x => x.approver2 == sessionStorage.getItem('EmaployedID') && x.selfScores != null
-          && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null   && x.managerSubmittedDate != null && x.sbuSubmittedDate != null && x.hrSubmittedDate != null);
+        this.EmployeeKradashAccepted = data.filter(x => x.approver2 == sessionStorage.getItem('EmaployedID') && x.selfScores != null
+          && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null && x.sbuSubmittedDate != null && x.hrSubmittedDate != null);
+        this.count = this.EmployeeKradash.length;
+
+        this.EmployeeKradashSubmitted = data.filter(x => x.approver2 == sessionStorage.getItem('EmaployedID') && x.selfScores != null
+          && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null && x.sbuSubmittedDate != null && x.hrSubmittedDate != null);
+        this.count = this.EmployeeKradash.length;
+
+        this.EmployeeKradashCompleted = data.filter(x => x.approver2 == sessionStorage.getItem('EmaployedID') && x.selfScores != null
+          && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null && x.sbuSubmittedDate != null && x.hrSubmittedDate != null);
         this.count = this.EmployeeKradash.length;
 
       }, error: (err: { error: { message: any; }; }) => {

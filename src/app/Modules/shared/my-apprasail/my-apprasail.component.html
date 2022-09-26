@@ -93,7 +93,7 @@
 
 
 
-
+<!-- 
                                         <button
                                             [routerLink]="['/shared/SelfRatingPagenew', details.id,details.appraiselID ]"
                                             *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal==1"
@@ -104,7 +104,7 @@
                                             [routerLink]="['/shared/SelfRatingPagenew', details.id,details.appraiselID ]"
                                             *ngIf="details.employeeSubmittedDate!=null"
                                             class=" btn btn-primary editable-table-button btn-xs Add1">View
-                                            Appraisal</button>
+                                            Appraisal</button> -->
 
 
                                         <!-- <button *ngIf="details.selfScores!=null"
@@ -222,7 +222,7 @@
                     <div class="col-lg-12">
                         <table class="table">
                             <thead>
-                                <tr *ngIf="(EmployeeKradash | filter: search).length > 0; else noResults">
+                                <tr *ngIf="(EmployeeKradashSubmitted | filter: search).length > 0; else noResults">
                                     <th *ngIf="roleid==2">Appraisal Cycle </th>
                                     <!-- <th *ngIf="roleid==3 ">Employee Name</th> -->
                                     <th *ngIf="roleid==3">Position</th>
@@ -236,7 +236,7 @@
                             </thead>
                             <tbody>
                                 <tr
-                                    *ngFor="let details of EmployeeKradash |paginate: { itemsPerPage: count1, currentPage: p} |filter:search">
+                                    *ngFor="let details of EmployeeKradashSubmitted |paginate: { itemsPerPage: count1, currentPage: p} |filter:search">
                                     <td *ngIf="roleid==2">{{details.appraisalCycleName}}</td>
                                     <!-- <td *ngIf="roleid==3">{{details.name}}</td> -->
                                     <td *ngIf="roleid==3">{{details.departmentName}}</td>
@@ -246,7 +246,7 @@
                                     <td>{{details.employeeSubmissionLastDate|date}}</td>
                                     <td>
 
-                                        <button
+                                        <!-- <button
                                             *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
                                             class=" btn btn-primary editable-table-button btn-xs Add"
                                             (click)="accept(details.mappingID)">Accept</button>
@@ -255,16 +255,16 @@
                                             *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
                                             class=" btn btn-primary editable-table-button btn-xs Add"
                                             data-toggle="modal" (click)="GetStaffKraDetails(details)"
-                                            data-target="#viewgoal">View Goals</button>
+                                            data-target="#viewgoal">View Goals</button> -->
 
 
 
 
-                                        <button
+                                        <!-- <button
                                             [routerLink]="['/shared/SelfRatingPagenew', details.id,details.appraiselID ]"
                                             *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal==1"
                                             class=" btn btn-primary editable-table-button btn-xs Add">Self
-                                            Appraisal</button>
+                                            Appraisal</button> -->
 
                                         <button
                                             [routerLink]="['/shared/SelfRatingPagenew', details.id,details.appraiselID ]"
@@ -311,7 +311,7 @@
                     <div class="col-lg-12">
                         <table class="table">
                             <thead>
-                                <tr *ngIf="(EmployeeKradash2 | filter: search).length > 0; else noResults">
+                                <tr *ngIf="(EmployeeKradashCompleted | filter: search).length > 0; else noResults">
                                     <th *ngIf="roleid==2">Appraisal Cycle </th>
                                     <!-- <th *ngIf="roleid==3 ">Employee Name</th> -->
                                     <th *ngIf="roleid==3">Position</th>
@@ -325,7 +325,7 @@
                             </thead>
                             <tbody>
                                 <tr
-                                    *ngFor="let details of EmployeeKradash2 |paginate: { itemsPerPage: count1, currentPage: p} |filter:search">
+                                    *ngFor="let details of EmployeeKradashCompleted |paginate: { itemsPerPage: count1, currentPage: p} |filter:search">
                                     <td *ngIf="roleid==2">{{details.appraisalCycleName}}</td>
                                     <!-- <td *ngIf="roleid==3">{{details.name}}</td> -->
                                     <td *ngIf="roleid==3">{{details.departmentName}}</td>

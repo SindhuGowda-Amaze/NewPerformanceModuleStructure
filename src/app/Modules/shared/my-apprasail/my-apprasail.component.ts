@@ -40,6 +40,7 @@ export class MyApprasailComponent implements OnInit {
   loginName:any;
   EmployeeKradashCompleted: any;
   EmployeeKradashAccepted: any;
+  EmployeeKradashSubmitted: any;
   constructor(private PerformanceManagementService: PerformancemanagementService) { }
 
 
@@ -130,10 +131,10 @@ export class MyApprasailComponent implements OnInit {
       .subscribe({
         next: data => {
           debugger
-          this.EmployeeKradash = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID')&& x.employeeSubmittedDate == null );
-          this.EmployeeKradash2 = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID')&& x.employeeSubmittedDate != null );
-          this.EmployeeKradashAccepted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID')&& x.employeeSubmittedDate != null && x.employeeacceptgoal==1);
-          this.EmployeeKradashCompleted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID')&& x.employeeSubmittedDate != null );
+          this.EmployeeKradash = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID')&& x.employeeSubmittedDate == null && x.employeeacceptgoal!=1);
+          this.EmployeeKradashAccepted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID')&& x.employeeSubmittedDate == null && x.employeeacceptgoal==1);
+          this.EmployeeKradashSubmitted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID')&& x.employeeSubmittedDate != null );
+          this.EmployeeKradashCompleted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID')&& x.employeeSubmittedDate != null && x.hrSubmittedDate != null );
         }, error: (err) => {
           Swal.fire('Issue in Getting ConductappraisalStaffList');
           // Insert error in Db Here//
