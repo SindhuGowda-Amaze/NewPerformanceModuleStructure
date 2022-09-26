@@ -38,6 +38,14 @@ export class MyApprasailComponent implements OnInit {
   currentUrl: any;
   Approver1: any;
   loginName:any;
+  EmployeeKradashCompleted: any;
+  EmployeeKradashAccepted: any;
+  kratypelist : any
+  kratypeid : any
+  Apprisalcycle : any
+  AppraisalSubmitionDate: any;
+  sDate: any;
+  eDate: any;
   constructor(private PerformanceManagementService: PerformancemanagementService) { }
 
 
@@ -49,6 +57,10 @@ export class MyApprasailComponent implements OnInit {
     this.GetMyDetails();
     this.GetDepartment();
     this.GetConductappraisalStaffList();
+    this.GetEmployeeKraMap();
+    this.GetAppraisalCycle()
+   
+  
 
     this.currentUrl = window.location.href;
     this.Department = "";
@@ -130,6 +142,8 @@ export class MyApprasailComponent implements OnInit {
           debugger
           this.EmployeeKradash = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID')&& x.employeeSubmittedDate == null );
           this.EmployeeKradash2 = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID')&& x.employeeSubmittedDate != null );
+          this.EmployeeKradashAccepted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID')&& x.employeeSubmittedDate != null && x.employeeacceptgoal==1);
+          this.EmployeeKradashCompleted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID')&& x.employeeSubmittedDate != null );
         }, error: (err) => {
           Swal.fire('Issue in Getting ConductappraisalStaffList');
           // Insert error in Db Here//
@@ -321,6 +335,155 @@ export class MyApprasailComponent implements OnInit {
       }
     })
   }
+
+
+  dropdownList : any
+  staffName : any
+  Departmentid : any
+  
+  public GetEmployeeKraMap() {
+    this.PerformanceManagementService.GetKraMaster()
+
+      .subscribe({
+        next: data => {
+          debugger
+          this.kratypelist = data;
+
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Getting KraMasterb');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+  }
+  Apprisalcyclelist : any
+  public GetAppraisalCycle() {
+    this.PerformanceManagementService.GetAppraisalCycle().subscribe({
+      next: data => {
+        debugger
+        this.Apprisalcyclelist = data.filter(x => x.appraisalClose == 0);
+        // let temp: any = data.filter(x => x.appraisalClose == 0);
+        // this.AppraisalSubmitionDate = temp[0].employeeSubmissionDate;
+        // this.sDate = temp[0].cycleStartDate;
+        // this.eDate = temp[0].cycleEndDate;
+        // this.goalSettingDate = temp[0].goalSettingDate;
+
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting AppraisalCycle');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+
+  }
+  goalSettingDate : any
+  appraisalid : any 
+  AppraisalClose : any
+  public GetApprisalcycle(event: any) {
+    debugger
+    this.PerformanceManagementService.GetAppraisalCycle().subscribe({
+      next: data => {
+        debugger
+        let temp: any = data.filter(x => x.id == event.target.value);
+        this.AppraisalSubmitionDate = temp[0].employeeSubmissionDate;
+        this.sDate = temp[0].cycleStartDate;
+        this.eDate = temp[0].cycleEndDate;
+        this.goalSettingDate = temp[0].goalSettingDate;
+        this.appraisalid = event.target.value;
+        this.AppraisalClose = temp[0].appraisalClose;
+
+
+
+
+
+
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting AppraisalCycle');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+  }
+  selectedstaff : any 
+  selectedstaffapprover1 : any
+  Approver2 : any 
+  Approver3 : any
+  dropdownList1 : any
+  getkratypeid(event: any) {
+    debugger
+    this.kratypeid = event.target.value;
+    for (let i = 0; i <= this.selectedstaff.length; i++) {
+      this.PerformanceManagementService.GetMyDetails().subscribe({
+        next: data => {
+          debugger
+          let temp: any = data.filter(x => x.id == this.selectedstaff[i]);
+          this.selectedstaffapprover1.push(temp[0].supervisor);
+          //this.Approver1 = temp[0].supervisor;
+
+          this.Approver2 = 10422;
+          this.Approver3 = 49518;
+        }, error: (err) => {
+          Swal.fire('Issue in Getting MyDetails');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+    }
+
+    this.PerformanceManagementService.GetKeyResultArea().subscribe({
+      next: data => {
+        debugger
+        this.dropdownList1 = data.filter(x => x.kraTypeID == this.kratypeid);
+
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting KeyResultArea');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+  }
+
+
 
 }
 
