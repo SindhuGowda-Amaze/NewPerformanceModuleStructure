@@ -53,14 +53,14 @@
                         <tr *ngFor="let details of appraisallist | filter:search">
                             <td>{{details.appraisalCycleName}}</td>
                             <td>{{details.frequencyName}}</td>
-                            <td>{{details.cycleStartDate}}</td>
-                            <td>{{details.cycleEndDate}}</td>
-                            <td>{{details.goalSettingDate}}</td>
-                            <td>{{details.employeeSubmissionDate}}</td>
-                            <td>{{details.managerReviewLastDate}}</td>
-                            <td>{{details.sbuReviewLastDate}}</td>
-                            <td>{{details.hrReviewLastDate}}</td>
-                            <td>{{details.appraisalClosingLastDate}}</td>
+                            <td>{{details.cycleStartDate|date}}</td>
+                            <td>{{details.cycleEndDate|date}}</td>
+                            <td>{{details.goalSettingDate|date}}</td>
+                            <td>{{details.employeeSubmissionDate|date}}</td>
+                            <td>{{details.managerReviewLastDate|date}}</td>
+                            <td>{{details.sbuReviewLastDate|date}}</td>
+                            <td>{{details.hrReviewLastDate|date}}</td>
+                            <td>{{details.appraisalClosingLastDate|date}}</td>
                             <td>
                                 <br>
                                 <button class="form-control Add"  [routerLink]="['/hr/ApprasialCycleForm', details.id]">Edit</button><br>

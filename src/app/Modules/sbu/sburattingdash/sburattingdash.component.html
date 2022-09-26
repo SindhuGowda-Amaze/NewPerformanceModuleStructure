@@ -4,10 +4,10 @@
             <br>
             <p class="headings">My Team Appraisal </p>
         </div>
-        <div class="col-lg-1">
+        <!-- <div class="col-lg-1">
             <br>
             <p class="count">Count:{{count}}</p>
-        </div>
+        </div> -->
     </div>
     <div class="card">
         <div class="row FilterClass ">
@@ -67,7 +67,14 @@
     <div class="row">
         <div class="tab-slider--container" [ngSwitch]="viewMode">
             <div *ngSwitchCase="'tab1'" id="tab1">
-
+                <div class="row">
+                    <div class="col-md-10">
+                        <p class="show3res">SHOWING <span>{{(EmployeeKradash| filter: search).length}}</span> RESULTS</p>
+                    </div>
+                    <!-- <div class="col-md-2">
+                        <button class="form-control requestbtn" routerLink="/ApplyOT">Apply</button>
+                    </div> -->
+                </div>
                 <div class="row" style="width: 1200px; overflow-x: scroll;">
                     <div class="col-lg-12">
                         <table class="table">
@@ -96,8 +103,8 @@
                                     <td>{{details.cycleStartDate|date}}</td>
                                     <td>{{details.cycleEndDate|date}}</td>
                                     <td>{{details.appraisalSubmitionDate|date}}</td>
-                                    <td>{{details.employeeSubmittedDate}}</td>
-                                    <td *ngIf="details.managerSubmittedDate!=null">{{details.managerSubmittedDate}}
+                                    <td>{{details.employeeSubmittedDate|date}}</td>
+                                    <td *ngIf="details.managerSubmittedDate!=null">{{details.managerSubmittedDate|date}}
                                     </td>
                                     <td *ngIf="details.managerSubmittedDate==null">
                                         <p>NA</p>
@@ -151,11 +158,19 @@
             </div>
 
             <div *ngSwitchCase="'tab2'" id="tab2">
+                <div class="row">
+                    <div class="col-md-10">
+                        <p class="show3res">SHOWING <span>{{(EmployeeKradash2| filter: search).length}}</span> RESULTS</p>
+                    </div>
+                    <!-- <div class="col-md-2">
+                        <button class="form-control requestbtn" routerLink="/ApplyOT">Apply</button>
+                    </div> -->
+                </div>
                 <div class="row" style="width: 1200px; overflow-x: scroll;">
                     <div class="col-lg-12">
                         <table class="table">
                             <thead>
-                                <tr *ngIf="(EmployeeKradash | filter: search).length > 0; else noResults">
+                                <tr *ngIf="(EmployeeKradash2 | filter: search).length > 0; else noResults">
                                     <th>Employee Name</th>
                                     <th>Department</th>
                                     <th>Appraisal Cycle</th>
@@ -179,8 +194,8 @@
                                     <td>{{details.cycleStartDate|date}}</td>
                                     <td>{{details.cycleEndDate|date}}</td>
                                     <td>{{details.appraisalSubmitionDate|date}}</td>
-                                    <td>{{details.employeeSubmittedDate}}</td>
-                                    <td *ngIf="details.managerSubmittedDate!=null">{{details.managerSubmittedDate}}
+                                    <td>{{details.employeeSubmittedDate|date}}</td>
+                                    <td *ngIf="details.managerSubmittedDate!=null">{{details.managerSubmittedDate|date}}
                                     </td>
                                     <td *ngIf="details.managerSubmittedDate==null">
                                         <p>NA</p>

@@ -84,8 +84,8 @@
                                 <td>{{details.cycleStartDate|date}}</td>
                                 <td>{{details.cycleEndDate|date}}</td>
                                 <td>{{details.appraisalSubmitionDate|date}}</td>
-                                <td>{{details.employeeSubmittedDate}}</td>
-                                <td *ngIf="details.managerSubmittedDate!=null">{{details.managerSubmittedDate}}
+                                <td>{{details.employeeSubmittedDate|date}}</td>
+                                <td *ngIf="details.managerSubmittedDate!=null">{{details.managerSubmittedDate|date}}
                                 </td>
                                 <td *ngIf="details.managerSubmittedDate==null">
                                     <p>NA</p>
@@ -152,8 +152,8 @@
                         <td>{{details.cycleStartDate|date}}</td>
                         <td>{{details.cycleEndDate|date}}</td>
                         <td>{{details.appraisalSubmitionDate|date}}</td>
-                        <td>{{details.employeeSubmittedDate}}</td>
-                        <td *ngIf="details.managerSubmittedDate!=null">{{details.managerSubmittedDate}}
+                        <td>{{details.employeeSubmittedDate|date}}</td>
+                        <td *ngIf="details.managerSubmittedDate!=null">{{details.managerSubmittedDate|date}}
                         </td>
                         <td *ngIf="details.managerSubmittedDate==null">
                             <p>NA</p>
