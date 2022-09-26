@@ -211,6 +211,19 @@
         <span [ngClass]="active == 'appreport' ? 'Active1' : 'Active3'">PIP Report</span>
     </a>
 
+
+
+    <a class="togglebtn button" *ngIf="roleid=='3'||roleid=='5'" routerLink="/sbu/SuccessionPlanningReport" class="tablinks"
+    (click)="highlight($event)" (click)="PlanningReport()">
+    <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
+        [ngClass]="active != 'Planning Report' ? 'Active1' : 'Active2'" />
+    <img [ngClass]="active == 'Planning Report' ? 'Active1' : 'Active2'" src="assets/Images/64 Blue/Staff.png"
+        style="width:13%; margin-right: 17px;">
+    &nbsp;
+    <span [ngClass]="active == 'Planning Report' ? 'Active1' : 'Active3'">Succession Planning Report</span>
+</a>
+
+
         <a class="togglebtn button" *ngIf="roleid=='3'||roleid=='5'" routerLink="/sbu/ReviewRating" class="tablinks"
             (click)="highlight($event)" (click)="ReviewRating()">
             <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"

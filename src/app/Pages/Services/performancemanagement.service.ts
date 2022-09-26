@@ -522,4 +522,12 @@ public GetExceptionLogs() {
   return this.http.get<any[]>(
     this.baseURL + "/Master/UpdateEmployeeAcceptGoal?ID=" + ID);
 }
+
+ 
+public DeleteEmployeeKraMap(ID: any) {
+  return this.http.get<any[]>(
+    this.baseURL + "/Master/DeleteEmployeeKraMap?ID=" + ID);
+}
+
+
 }
