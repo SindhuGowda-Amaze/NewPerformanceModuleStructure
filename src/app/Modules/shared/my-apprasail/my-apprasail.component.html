@@ -167,16 +167,11 @@
                                     <td *ngIf="roleid==2">{{details.frequencyName}}</td>
                                     <td>{{details.employeeSubmissionLastDate|date}}</td>
                                     <td>
-
-
                                         <button
                                             *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
                                             class=" btn btn-primary editable-table-button btn-xs Add"
                                             data-toggle="modal" (click)="GetStaffKraDetails(details)"
                                             data-target="#viewgoal">View Goals</button>
-
-
-
 
                                         <button
                                             [routerLink]="['/shared/SelfRatingPagenew', details.id,details.appraiselID ]"
@@ -189,7 +184,6 @@
                                             *ngIf="details.employeeSubmittedDate!=null"
                                             class=" btn btn-primary editable-table-button btn-xs Add1">View
                                             Appraisal</button>
-
 
                                         <!-- <button *ngIf="details.selfScores!=null"
                                             class=" btn btn-primary editable-table-button btn-xs">Completed</button> -->
