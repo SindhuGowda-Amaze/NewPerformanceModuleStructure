@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-staff-score-report',
-  templateUrl:'./staff-score-report.component.html',
+  templateUrl: './staff-score-report.component.html',
   styleUrls: ['./staff-score-report.component.css']
 })
 export class StaffScoreReportComponent implements OnInit {
@@ -160,16 +160,19 @@ export class StaffScoreReportComponent implements OnInit {
   }
 
   public ConductappraisalStaffList() {
+    debugger
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: (res: any) => {
         debugger
         let temp: any = res
-        this.StaffAppraisalList = temp;
+        this.StaffAppraisalList = temp.filter((x: { finalize: number; }) => x.finalize == 1);
+
         this.appraisalClose = this.StaffAppraisalList[0].appraisalClose
         this.AppraisalCycleID = this.StaffAppraisalList[0].appraiselID
         this.FilteredStaffAppraisalList = this.StaffAppraisalList.filter((x: { cioScores: null; }) => x.cioScores != null)
         this.count = this.FilteredStaffAppraisalList.length;
         this.managerList = this.dumpmanagerList.filter((x: { manager: any; }) => x.manager == this.manager);
+
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting ConductappraisalStaffList');
         // Insert error in Db Here//
@@ -490,13 +493,13 @@ export class StaffScoreReportComponent implements OnInit {
       }
     })
   }
-
+  finalize: any;
   public GetFilteredAppraisalCycle() {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
         debugger
-        this.FilteredStaffAppraisalList = data.filter(x => x.appraisalCycleName == this.appraisalCycleName)
-
+        this.FilteredStaffAppraisalList = data.filter(x => x.appraisalCycleName == this.appraisalCycleName && x.Finalize == 1)
+        this.finalize = this.FilteredStaffAppraisalList[0].finalize
 
 
         this.appraisalcount = this.FilteredStaffAppraisalList.length;
@@ -544,8 +547,8 @@ export class StaffScoreReportComponent implements OnInit {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: (res: any[]) => {
         debugger
-        let temp: any = res
-        this.StaffAppraisalList = temp;
+
+        this.StaffAppraisalList = res;
         this.appraisalcount = this.StaffAppraisalList.length;
         var list = res.filter(x => x.employeeSubmittedDate != null && x.selfScores != null &&
           x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null)

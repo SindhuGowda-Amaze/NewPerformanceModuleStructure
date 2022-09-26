@@ -167,9 +167,9 @@
                         </table>
                         <!-- <span *ngIf="EmployeeKradash.length==0">No Data </span> -->
                         <ng-template #noResults>
-                         
-                                <p class="NoResultShow"> No results found </p>
-                           
+
+                            <p class="NoResultShow"> No results found </p>
+
                         </ng-template>
                         <div class="text-right">
                             <br>
@@ -211,6 +211,8 @@
                                             *ngIf="details.hrSubmittedDate!=null"
                                             class=" btn btn-primary editable-table-button btn-xs btncolor">View
                                             Appraisal</button>
+
+
 
                                         <!-- <button *ngIf="details.cioComments!=null"
                                                 class=" btn btn-primary editable-table-button btn-xs">Completed</button> -->
@@ -296,7 +298,13 @@
                                         <button [routerLink]="['/hr/hrratingnew', details.id,details.appraiselID] "
                                             *ngIf="details.hrSubmittedDate!=null"
                                             class=" btn btn-primary editable-table-button btn-xs btncolor">View
-                                            Appraisal</button>
+                                            Appraisal</button><br><br>
+
+                                        <button *ngIf="details.finalize==null && details.hrSubmittedDate!=null"
+                                            class="btn btn-primary editable-table-button btn-xs Add"
+                                            (click)="FinalizeAppraisal(details.staffid)">Finalize Rating
+                                        </button>
+                                        <p *ngIf="details.finalize==1" style="margin-top: -58%;">Finalized</p>
 
                                         <!-- <button *ngIf="details.cioComments!=null"
                                                 class=" btn btn-primary editable-table-button btn-xs">Completed</button> -->
@@ -354,7 +362,7 @@
             </div>
             <div *ngSwitchCase="'tab4'" id="tab4">
 
-                <div class="row" >
+                <div class="row">
                     <div class="col-lg-12">
                         <table class="table">
                             <thead>

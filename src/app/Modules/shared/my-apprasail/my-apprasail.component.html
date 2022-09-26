@@ -375,21 +375,13 @@
                             </tbody>
                         </table>
                         <!-- <span *ngIf="EmployeeKradash.length==0">No data Found</span> -->
-                        <ng-template #noResults>
-                            
+                        <ng-template #noResults>       
                                 <p class="NoResultShow"> No results found </p>
-                           
                         </ng-template>
                         <div class="text-right">
                             <br>
                             <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
                         </div>
-                    </div>
-
-
-                    <div class="text-right">
-                        <br>
-                        <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
                     </div>
                 </div>
             </div>

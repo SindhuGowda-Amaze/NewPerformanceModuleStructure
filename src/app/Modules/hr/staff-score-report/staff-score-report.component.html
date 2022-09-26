@@ -121,6 +121,7 @@
         is
         Closed</span><br><br>
     <span *ngIf="appraisalcount==0" style="color: red;">Appraisal Cycle Not Started</span><br><br>
+    <span *ngIf="finalize==null" style="color: red;">Appraisal Cycle Not Finalized</span><br><br>
 
     <div class="container-fluid" id="demo" class="collapse" *ngIf="appraisalCycleName!=0">
         <div class="row">

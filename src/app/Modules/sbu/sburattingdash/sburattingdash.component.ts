@@ -140,18 +140,19 @@ export class SburattingdashComponent implements OnInit {
               x.employeeSubmittedDate != null&&x.sbuSubmittedDate!=null
           );
           this.count = this.EmployeeKradash.length;
-        } else if (this.roleid == 5) {
+        }
+         else if (this.roleid == 5) {
           this.EmployeeKradash = data.filter(
             (x) =>
               x.approver3 == sessionStorage.getItem('EmaployedID') &&
               x.selfScores != null &&
-              x.employeeSubmittedDate != null  && x.managerSubmittedDate==null
+              x.employeeSubmittedDate != null  && x.managerSubmittedDate!=null
           );
           this.EmployeeKradash2 = data.filter(
             (x) =>
               x.approver3 == sessionStorage.getItem('EmaployedID') &&
               x.selfScores != null &&
-              x.employeeSubmittedDate != null&&x.managerSubmittedDate!=null
+              x.employeeSubmittedDate != null&&x.sbuSubmittedDate!=null&&x.filnalize==1
           );
           this.count = this.EmployeeKradash.length;
         }
