@@ -195,10 +195,10 @@ export class HrratingnewComponent implements OnInit {
           'GroupHeadScores': this.Score,
           'GroupHeadComments': this.SelfComments,
         }
-        this.PerformanceManagementService.UpdateCIOStaffScores(entity1).subscribe(data => {
-          debugger
+        // this.PerformanceManagementService.UpdateCIOStaffScores(entity1).subscribe(data => {
+        //   debugger
 
-        })
+        // })
         this.Score = 0;
         this.SelfComments = '';
         this.attachment = '';
