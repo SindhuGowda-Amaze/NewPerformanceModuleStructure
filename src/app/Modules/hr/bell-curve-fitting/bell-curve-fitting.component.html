@@ -170,11 +170,11 @@
                             <!--  <td>{{details.cycleStartDate|date}}</td>
                             <td>{{details.cycleEndDate|date}}</td> -->
                             <td>
-                                <button class="btn btn-primary editable-table-button btn-xs" data-toggle="modal"
+                                <button *ngIf="details.finalize==0" class="btn btn-primary editable-table-button btn-xs" data-toggle="modal"
                                     data-target="#viewbellcurve" [disabled]="details.appraisalClose=='1' || details.finalize!='1'"
                                     (click)="ViewScores(details)">Change Rating
                                 </button><br><br>
-                                <button class="btn btn-primary editable-table-button btn-xs" [disabled]="details.finalize=='1'"
+                                <button class="btn btn-primary editable-table-button btn-xs"
                                     (click)="FinalizeAppraisal(details.staffid)">Finalize Rating
                                 </button>
                             </td>
