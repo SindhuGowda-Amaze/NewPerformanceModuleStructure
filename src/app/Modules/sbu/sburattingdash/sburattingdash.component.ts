@@ -9,7 +9,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { PerformancemanagementService } from 'src/app/Pages/Services/performancemanagement.service';
-
+import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-sburattingdash',
@@ -43,9 +43,10 @@ export class SburattingdashComponent implements OnInit {
   Staffkra: any;
   name: any;
   EmployeeKradash2: any;
+  Successor: any;
 
   constructor(
-    private PerformanceManagementService: PerformancemanagementService
+    private PerformanceManagementService: PerformancemanagementService,private ActivatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -54,7 +55,13 @@ export class SburattingdashComponent implements OnInit {
     this.GetDepartment();
     this.GetConductappraisalStaffList();
     this.GetAppraisalCycle();
-
+    this.ActivatedRoute.params.subscribe(params => {
+      this.id = params['id'];
+      if (this.id != undefined && this.id != null) {
+        this.GetMyDetails();
+        
+      }
+    })
     this.currentUrl = window.location.href;
     this.staffID = sessionStorage.getItem('EmaployedID');
     this.roleid = sessionStorage.getItem('roleid');
@@ -124,7 +131,7 @@ export class SburattingdashComponent implements OnInit {
             (x) =>
               x.approver1 == sessionStorage.getItem('EmaployedID') &&
               x.selfScores != null &&
-              x.employeeSubmittedDate != null
+              x.employeeSubmittedDate != null  
           );
           this.EmployeeKradash2 = data.filter(
             (x) =>
@@ -138,8 +145,13 @@ export class SburattingdashComponent implements OnInit {
             (x) =>
               x.approver3 == sessionStorage.getItem('EmaployedID') &&
               x.selfScores != null &&
-              x.employeeSubmittedDate != null &&
-              x.managerSubmittedDate != null
+              x.employeeSubmittedDate != null  && x.managerSubmittedDate==null
+          );
+          this.EmployeeKradash2 = data.filter(
+            (x) =>
+              x.approver3 == sessionStorage.getItem('EmaployedID') &&
+              x.selfScores != null &&
+              x.employeeSubmittedDate != null&&x.managerSubmittedDate!=null
           );
           this.count = this.EmployeeKradash.length;
         }
@@ -323,10 +335,10 @@ export class SburattingdashComponent implements OnInit {
     });
   }
   //Method to Displaying the Data from GetMyDetails Table//
-
-  public getlevel(event: any) {
+  staffid12:any;
+  public getstaffid(event: any) {
     debugger;
-    this.level = event;
+    this.staffid12 = event.staffid;
 
     this.PerformanceManagementService.GetMyDetails().subscribe({
       next: (data) => {
@@ -355,7 +367,36 @@ export class SburattingdashComponent implements OnInit {
     });
   }
 
+  // approve() {
+  //   Swal.fire('Successfully Approved');
+  // }
+  id:any;
+  comment:any;
   approve() {
-    Swal.fire('Successfully Approved');
+    debugger
+    var json = {
+      "ID": this.staffid12,
+      "SuccessorName": this.name,
+      "SuccessorComment": this.comment
+    };
+    this.PerformanceManagementService.UpdateSuccessor(json).subscribe({
+      next: data => {
+        debugger
+        Swal.fire('Successfully Approved');
+        location.href = "#/sbu/Sburattingdash"
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Updating Successor');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
   }
 }

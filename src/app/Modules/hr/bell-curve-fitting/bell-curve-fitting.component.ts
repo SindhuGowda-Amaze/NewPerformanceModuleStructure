@@ -70,6 +70,7 @@ export class BellCurveFittingComponent implements OnInit {
   currentUrl: any;
   ratingvalue: any;
   StaffAppraisalList1: any;
+  staffid:any;
 
   ngOnInit() {
     //Variable Initialisation and Default Method Calls//
@@ -90,6 +91,7 @@ export class BellCurveFittingComponent implements OnInit {
     this.GetMyDetails();
     this.manager = 0;
     this.UserID = sessionStorage.getItem('EmaployedID');
+    this.staffid = sessionStorage.getItem('EmaployedID');
     // this.StaffID = 0;
     // this.PerformanceManagementService.GetStaffType(1).subscribe(data => {
     //   debugger
@@ -171,7 +173,7 @@ export class BellCurveFittingComponent implements OnInit {
       })
     }
   }
-
+  Finalize:any;
   //Method to get Employee Appraisal Details//
   public ConductappraisalStaffList() {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
@@ -181,6 +183,7 @@ export class BellCurveFittingComponent implements OnInit {
         this.StaffAppraisalList = temp;
 
         this.AppraisalCycleID = this.StaffAppraisalList[0].appraiselID
+        this.Finalize = this.StaffAppraisalList[0].finalize
         this.appraisalClose = this.StaffAppraisalList1[0].appraisalClose
         this.FilteredStaffAppraisalList = this.StaffAppraisalList.filter((x: { cioScores: null; }) => x.cioScores != null)
         this.count = this.FilteredStaffAppraisalList.length;
@@ -633,6 +636,42 @@ export class BellCurveFittingComponent implements OnInit {
         else {
           Swal.fire('Appraisal Cycle Closed Already!!')
         }
+      }
+    })
+  }
+
+  public FinalizeAppraisal(id:any) {
+    debugger
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You want to Finalize the Rating.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, Close it!',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.value == true) {
+       
+       
+          this.PerformanceManagementService.UpdateFinalizeRating(id).subscribe({
+            next: data => {
+              debugger
+              Swal.fire('Finalised Rating Successfully!!')
+            }, error: (err: { error: { message: any; }; }) => {
+              Swal.fire('Issue in Updating Finalize Rating');
+              // Insert error in Db Here//
+              var obj = {
+                'PageName': this.currentUrl,
+                'ErrorMessage': err.error.message
+              }
+              this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+                data => {
+                  debugger
+                },
+              )
+            }
+          })
+   
       }
     })
   }

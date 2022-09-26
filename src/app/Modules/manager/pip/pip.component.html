@@ -430,7 +430,7 @@
                         <tr *ngFor="let details of StaffPIPActionItemList1">
                             <td>{{details.pipActionItem}}</td>
                             <td>{{details.exitCriteria}}</td>
-                            <td>{{details.lastDateOfSubmission}}</td>
+                            <td>{{details.lastDateOfSubmission|date}}</td>
                             <td>{{details.trainingname}}</td>
                         </tr>
                     </table>

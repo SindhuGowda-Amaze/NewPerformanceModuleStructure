@@ -21,15 +21,15 @@
             </div>
             <div class="col-lg-3">
                 <select class="form-control" id="appraisalCycleName" name="appraisalCycleName"
-                [(ngModel)]="appraisalCycleName" (change)="GetApprisalcycle($event)"
-                (change)="GetFilteredAppraisalCycle()">
-                <option value="0">Select Cycle</option>
-                <option *ngFor="let item of Apprisalcyclelist" value="{{item.appraisalCycleName}}">
-                    {{item.appraisalCycleName}}
-                </option>
-            </select>
+                    [(ngModel)]="appraisalCycleName" (change)="GetApprisalcycle($event)"
+                    (change)="GetFilteredAppraisalCycle()">
+                    <option value="0">Select Cycle</option>
+                    <option *ngFor="let item of Apprisalcyclelist" value="{{item.appraisalCycleName}}">
+                        {{item.appraisalCycleName}}
+                    </option>
+                </select>
             </div>
-            
+
             <div class="col-lg-1"></div>
         </div><br>
     </div> <br>
@@ -56,7 +56,7 @@
                         <!-- <th>Goal Setting Date </th> -->
                         <th>Employee Submission Last Date</th>
                         <!-- <th>Submission Date </th> -->
-                       
+
                         <th>Manager Submission Last Date </th>
                         <th>HR Submission Last Date</th>
                         <th>Action </th>
@@ -75,10 +75,10 @@
                         <td>{{details.role}}</td>
                         <!-- <td>{{details.departmentName}}</td> -->
                         <!-- <td>{{details.goalSettingDate}}</td> -->
-                        <td>{{details.employeeSubmissionLastDate}}</td>
-                     
-                        <td>{{details.managerReviewLastDate}}</td>
-                        <td>{{details.hrReviewLastDate}}</td>
+                        <td>{{details.employeeSubmissionLastDate|date}}</td>
+
+                        <td>{{details.managerReviewLastDate|date}}</td>
+                        <td>{{details.hrReviewLastDate|date}}</td>
                         <!-- <td>{{details.appraisalSubmitionDate|date}}</td> -->
                         <td>
                             <button class="form-control button1" data-toggle="modal"
@@ -123,6 +123,7 @@
                                     <th>Goal Type</th>
                                     <th>Goals</th>
                                     <th>KPI</th>
+                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -132,6 +133,14 @@
                                     <td>{{details.kraTypeID}}</td>
                                     <td>{{details.kraName}}</td>
                                     <td>{{details.kpiName}}</td>
+                                    <td>
+                                        <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal!=1">
+                                            Pending for Acceptance</p>
+                                        <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal==1">
+                                            Accepted</p>
+                                    </td>
+                                    <!-- <td *ngIf="Employeeacceptgoal==1">Accepted</td>
+                                    <td *ngIf="Employeeacceptgoal!=1">Pending</td> -->
                                     <td>
                                         <button class="edit" data-toggle="modal" data-target="#exampleModal"
                                          *ngIf="details.employeeacceptgoal!=1"   data-dismiss="modal" (click)="edit(details)">Edit</button>
@@ -167,10 +176,11 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-lg-3">
-                    <p>Goal Type </p>
+                        <p>Goal Type </p>
                     </div>
                     <div class="col-lg-9">
-                        <select class="form-control"  (change)="getkratypeid($event)"  [(ngModel)]="kratypeid" name="kratypeid"  required>
+                        <select class="form-control" (change)="getkratypeid($event)" [(ngModel)]="kratypeid"
+                            name="kratypeid" required>
                             <option value="">Select Goal Type</option>
                             <option *ngFor="let details of GoalTypelist" value="{{details.kraType}}">{{details.kraType}}
                             </option>
@@ -183,7 +193,8 @@
                         <p>Goals</p>
                     </div>
                     <div class="col-lg-9">
-                        <select class="form-control columnname" (change)="getgoaltype($event)" id="kraid" [(ngModel)]="kraid" name="kraid" required>
+                        <select class="form-control columnname" (change)="getgoaltype($event)" id="kraid"
+                            [(ngModel)]="kraid" name="kraid" required>
                             <option value="">Select Goal</option>
                             <option *ngFor="let details of kratypelist" value="{{details.id}}">{{details.kraName}}
                             </option>
@@ -195,7 +206,8 @@
                         <p>KPI</p>
                     </div>
                     <div class="col-lg-9">
-                        <select class="form-control columnname" (change)="getkpiid($event)" [(ngModel)]="kpiid" name="kpiid" id="kpiid">
+                        <select class="form-control columnname" (change)="getkpiid($event)" [(ngModel)]="kpiid"
+                            name="kpiid" id="kpiid">
                             <option value="">Select KPI</option>
                             <option *ngFor="let details of kpitypelist" value="{{details.id}}">{{details.kpiName}}
                             </option>
