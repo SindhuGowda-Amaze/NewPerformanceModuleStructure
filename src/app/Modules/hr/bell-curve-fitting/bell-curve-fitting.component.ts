@@ -70,6 +70,7 @@ export class BellCurveFittingComponent implements OnInit {
   currentUrl: any;
   ratingvalue: any;
   StaffAppraisalList1: any;
+  staffid:any;
 
   ngOnInit() {
     //Variable Initialisation and Default Method Calls//
@@ -90,6 +91,7 @@ export class BellCurveFittingComponent implements OnInit {
     this.GetMyDetails();
     this.manager = 0;
     this.UserID = sessionStorage.getItem('EmaployedID');
+    this.staffid = sessionStorage.getItem('EmaployedID');
     // this.StaffID = 0;
     // this.PerformanceManagementService.GetStaffType(1).subscribe(data => {
     //   debugger
