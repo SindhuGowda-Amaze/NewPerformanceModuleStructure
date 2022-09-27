@@ -171,11 +171,11 @@ export class HrDashComponent implements OnInit {
         this.count = this.EmployeeKradash.length;
 
         this.EmployeeKradashSubmitted = data.filter(x => x.approver2 == sessionStorage.getItem('EmaployedID') && x.selfScores != null
-          && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null && x.sbuSubmittedDate != null && x.hrSubmittedDate != null);
+          && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null && x.sbuSubmittedDate != null && x.hrSubmittedDate != null&& x.filnalize==null);
         this.count = this.EmployeeKradash.length;
 
         this.EmployeeKradashCompleted = data.filter(x => x.approver2 == sessionStorage.getItem('EmaployedID') && x.selfScores != null
-          && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null && x.sbuSubmittedDate != null && x.hrSubmittedDate != null);
+          && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null && x.sbuSubmittedDate != null && x.hrSubmittedDate != null &&x.filnalize==1);
         this.count = this.EmployeeKradash.length;
 
       }, error: (err: { error: { message: any; }; }) => {
@@ -376,5 +376,41 @@ export class HrDashComponent implements OnInit {
           )
         }
       })
+  }
+
+  public FinalizeAppraisal(id:any) {
+    debugger
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You want to Finalize the Rating.You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, Finalize it!',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.value == true) {
+       
+       
+          this.PerformanceManagementService.UpdateFinalizeRating(id).subscribe({
+            next: data => {
+              debugger
+              Swal.fire('Finalised Rating Successfully!!')
+            }, error: (err: { error: { message: any; }; }) => {
+              Swal.fire('Issue in Updating Finalize Rating');
+              // Insert error in Db Here//
+              var obj = {
+                'PageName': this.currentUrl,
+                'ErrorMessage': err.error.message
+              }
+              this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+                data => {
+                  debugger
+                },
+              )
+            }
+          })
+   
+      }
+    })
   }
 }

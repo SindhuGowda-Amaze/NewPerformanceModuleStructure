@@ -110,10 +110,10 @@ export class ManagerratingdashComponent implements OnInit {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
         debugger
-        this.EmployeeKradash = data.filter(x => x.approver1 == sessionStorage.getItem('EmaployedID') && x.selfScores != null && x.employeeSubmittedDate != null && x.managerSubmittedDate==null && x.employeeacceptgoal!=1);
+        this.EmployeeKradash = data.filter(x => x.approver1 == sessionStorage.getItem('EmaployedID') && x.selfScores == null && x.employeeSubmittedDate == null && x.managerSubmittedDate==null && x.employeeacceptgoal!=1);
         this.EmployeeKradashAccepted = data.filter(x => x.approver1 == sessionStorage.getItem('EmaployedID') && x.selfScores != null && x.employeeSubmittedDate != null && x.managerSubmittedDate==null && x.employeeacceptgoal==1);
         this.EmployeeKradashSubmitted = data.filter(x => x.approver1 == sessionStorage.getItem('EmaployedID') && x.selfScores != null && x.employeeSubmittedDate != null && x.managerSubmittedDate!=null);
-        this.EmployeeKradashCompleted = data.filter(x => x.approver1 == sessionStorage.getItem('EmaployedID') && x.selfScores != null && x.employeeSubmittedDate != null && x.managerSubmittedDate!=null  && x.hrSubmittedDate != null);
+        this.EmployeeKradashCompleted = data.filter(x => x.approver1 == sessionStorage.getItem('EmaployedID') && x.selfScores != null && x.employeeSubmittedDate != null && x.managerSubmittedDate!=null  &&x.filnalize==1);
 
      
         this.count = this.EmployeeKradash.length;

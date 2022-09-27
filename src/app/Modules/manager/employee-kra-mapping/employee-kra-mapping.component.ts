@@ -385,8 +385,6 @@ export class EmployeeKraMappingComponent implements OnInit {
       // location.reload();
     }
 
-
-
   }
 
   //Method to insert Notification in Notification Table
