@@ -68,6 +68,7 @@
                                     <th>Appraisal Cycle End Date </th>
                                     <th>Appraisal Cycle Type</th>
                                     <th>Employee Submission Last Date </th>
+                                    <th>Assigned By</th>
                                     <th>Action </th>
                                     <th>Status</th>
                                 </tr>
@@ -82,6 +83,7 @@
                                     <td>{{details.cycleEndDate|date}}</td>
                                     <td *ngIf="roleid==2">{{details.frequencyName}}</td>
                                     <td>{{details.employeeSubmissionLastDate|date}}</td>
+                                    <td>Manager</td>
                                     <td>
 
                                         <button
@@ -156,6 +158,7 @@
                                     <th>Appraisal Cycle End Date </th>
                                     <th>Appraisal Cycle Type</th>
                                     <th>Employee Submission Last Date </th>
+                                    <th>Assigned By</th>
                                     <th>Action </th>
                                     <th>Status</th>
                                 </tr>
@@ -170,6 +173,7 @@
                                     <td>{{details.cycleEndDate|date}}</td>
                                     <td *ngIf="roleid==2">{{details.frequencyName}}</td>
                                     <td>{{details.employeeSubmissionLastDate|date}}</td>
+                                    <td>Manager</td>
                                     <td>
                                         <button
                                             *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
@@ -234,6 +238,7 @@
                                     <th>Appraisal Cycle End Date </th>
                                     <th>Appraisal Cycle Type</th>
                                     <th>Employee Submission Last Date </th>
+                                    <th>Assigned By</th>
                                     <th>Action </th>
                                     <th>Status</th>
                                 </tr>
@@ -248,6 +253,7 @@
                                     <td>{{details.cycleEndDate|date}}</td>
                                     <td *ngIf="roleid==2">{{details.frequencyName}}</td>
                                     <td>{{details.employeeSubmissionLastDate|date}}</td>
+                                    <td>Manager</td>
                                     <td>
 
                                         <!-- <button
@@ -323,6 +329,7 @@
                                     <th>Appraisal Cycle End Date </th>
                                     <th>Appraisal Cycle Type</th>
                                     <th>Employee Submission Last Date </th>
+                                    <th>Assigned By</th>
                                     <th>Action </th>
                                     <th>Status</th>
                                 </tr>
@@ -337,6 +344,7 @@
                                     <td>{{details.cycleEndDate|date}}</td>
                                     <td *ngIf="roleid==2">{{details.frequencyName}}</td>
                                     <td>{{details.employeeSubmissionLastDate|date}}</td>
+                                    <td>Manager</td>
                                     <td>
 
                                         <button *ngIf="details.employeeSubmittedDate==null"
