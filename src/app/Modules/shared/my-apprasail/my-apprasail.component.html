@@ -56,7 +56,7 @@
     <div class="row">
         <div class="tab-slider--container" [ngSwitch]="viewMode">
             <div *ngSwitchCase="'tab1'" id="tab1">
-                <div class="row" >
+                <div class="row">
                     <div class="col-lg-12">
                         <table class="table">
                             <thead>
@@ -99,7 +99,7 @@
 
 
 
-<!-- 
+                                        <!-- 
                                         <button
                                             [routerLink]="['/shared/SelfRatingPagenew', details.id,details.appraiselID ]"
                                             *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal==1"
@@ -133,9 +133,9 @@
                         </table>
                         <!-- <span *ngIf="EmployeeKradash.length==0">No data Found</span> -->
                         <ng-template #noResults>
-                       
-                                <p class="NoResultShow"> No results found </p>
-                       
+
+                            <p class="NoResultShow"> No results found </p>
+
                         </ng-template>
                         <div class="text-right">
                             <br>
@@ -146,7 +146,7 @@
             </div>
 
             <div *ngSwitchCase="'tab2'" id="tab2">
-                <div class="row" >
+                <div class="row">
                     <div class="col-lg-12">
                         <table class="table">
                             <thead>
@@ -213,9 +213,9 @@
                         </table>
                         <!-- <span *ngIf="EmployeeKradash.length==0">No data Found</span> -->
                         <ng-template #noResults>
-                       
-                                <p class="NoResultShow"> No results found </p>
-                       
+
+                            <p class="NoResultShow"> No results found </p>
+
                         </ng-template>
                         <div class="text-right">
                             <br>
@@ -303,9 +303,9 @@
                         </table>
                         <!-- <span *ngIf="EmployeeKradash.length==0">No data Found</span> -->
                         <ng-template #noResults>
-                          
-                                <p class="NoResultShow"> No results found </p>
-                         
+
+                            <p class="NoResultShow"> No results found </p>
+
                         </ng-template>
                         <div class="text-right">
                             <br>
@@ -317,7 +317,7 @@
 
             <div *ngSwitchCase="'tab4'" id="tab4">
 
-                <div class="row" >
+                <div class="row">
                     <div class="col-lg-12">
                         <table class="table">
                             <thead>
@@ -383,8 +383,8 @@
                             </tbody>
                         </table>
                         <!-- <span *ngIf="EmployeeKradash.length==0">No data Found</span> -->
-                        <ng-template #noResults>       
-                                <p class="NoResultShow"> No results found </p>
+                        <ng-template #noResults>
+                            <p class="NoResultShow"> No results found </p>
                         </ng-template>
                         <!-- <div class="text-right">
                             <br>
@@ -410,7 +410,6 @@
             <div class="modal-header">
                 <h5 class="modal-title">Assigned Goals</h5>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -479,67 +478,111 @@
 <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Goals</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body scroll">
-                <div>
-                    <div class="row column">
-                        <div class="col-lg-3">
-                            <p>Appraisal Cycle <span style="color:red">*</span> </p>
+        <form #Ekramap="ngForm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Goals</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body scroll">
+                    <div>
+
+                        <div class="row column">
+                            <div class="col-lg-4">
+                                <p>Appraisal Cycle <span style="color:red">*</span> </p>
+                            </div>
+                            <div class="col-lg-4">
+                                <p>Goal Type <span style="color:red">*</span> </p>
+                            </div>
+
                         </div>
-                        <div class="col-lg-3">
-                            <p>Goal Type <span style="color:red">*</span> </p>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <select class="form-control" id="Apprisalcycle" (change)="GetApprisalcycle($event)"
+                                    name="Apprisalcycle" required [(ngModel)]="Apprisalcycle">
+                                    <option value="">Select Cycle</option>
+                                    <option *ngFor="let item of Apprisalcyclelist" value="{{item.id}}">
+                                        {{item.appraisalCycleName}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4">
+                                <select class="form-control" (change)="getkratypeid($event)" [(ngModel)]="kratypeid"
+                                    name="kratypeid" required>
+                                    <option value="">Select Goal Type</option>
+                                    <option *ngFor="let details of kratypelist" value="{{details.kraType}}">
+                                        {{details.kraType}}
+                                    </option>
+                                </select>
+                            </div>
+
+                        </div><br>
+                        <div class="row column">
+
+                            <div class="col-lg-6">
+                                <p>Goal <span style="color:red">*</span></p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p>KPI <span style="color:red">*</span></p>
+                            </div>
                         </div>
-                        <div class="col-lg-3">
-                            <p>Goal <span style="color:red">*</span></p>
-                        </div>
-                        <div class="col-lg-3">
-                            <p>KPI <span style="color:red">*</span></p>
+                        <div class="row">
+
+                            <div class="col-lg-6">
+                                <textarea class="form-control search" type="text" placeholder="Goal.." id="kraname" name="kraname"
+                                [(ngModel)]="kraname"   rows="4"></textarea>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <textarea class="form-control search" type="text" placeholder="KPI.." id="kpiName" name="kpiName"
+                                [(ngModel)]="kpiName" (click)="getkpi($event)"
+                                    rows="4"></textarea>
+                            </div>
+
                         </div>
                     </div>
+                    <br>
                     <div class="row">
-                        <div class="col-lg-3">
-                            <select class="form-control" id="Apprisalcycle" (change)="GetApprisalcycle($event)"
-                                name="Apprisalcycle" required [(ngModel)]="Apprisalcycle">
-                                <option value="">Select Cycle</option>
-                                <option *ngFor="let item of Apprisalcyclelist" value="{{item.id}}">
-                                    {{item.appraisalCycleName}}
-                                </option>
-                            </select>
+                        <div class="col-lg-8"></div>
+                        <div class="col-lg-2">
+                            <button class="form-control Add" (click)="SaveDetails()"
+                                [disabled]="Ekramap.form.invalid">ADD</button>
                         </div>
-                        <div class="col-lg-3">
-                            <select class="form-control"  (change)="getkratypeid($event)"  [(ngModel)]="kratypeid" name="kratypeid"  required>
-                                <option value="">Select Goal Type</option>
-                                <option *ngFor="let details of kratypelist" value="{{details.kraType}}">{{details.kraType}}
-                                </option>
-                            </select>
+                        <div class="col-lg-2">
+                            <button class="form-control Add"> Cancel</button>
                         </div>
-                        <div class="col-lg-3">
-                            <input class="form-control search" type="text" placeholder="Goal..">
-                        </div>
-
-                        <div class="col-lg-3">
-                            <input class="form-control search" type="text" placeholder="KPI..">
-                        </div>
-
                     </div>
                 </div>
-                <br>
-                <div class="row">
-                    <div class="col-lg-8"></div>
-                    <div class="col-lg-2">
-                        <button class="form-control Add">ADD</button>
+                <div class="row" *ngIf="tablecount==1">
+                    <div class="col-lg-12">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Goal Type</th>
+                                    <th>Goal Name</th>
+                                    <th>KPI </th>
+                                </tr>
+                                <tr *ngFor="let details of keyresultArray">
+                                    <td>{{details.KraTypeID}}</td>
+                                    <td>{{details.kraname}}</td>
+                                    <td>{{details.kpiname}}</td>
+                                </tr>
+                            </thead>
+                        </table>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-10"></div>
+                            <div class="col-lg-2">
+                                <button class="form-control cancel" (click)="InsertDetails()">Save</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-lg-2">
-                        <button class="form-control Add" > Cancel</button>
-                    </div>
+                    <br>
+    
                 </div>
             </div>
-        
-        </div>
+           
+        </form>
     </div>

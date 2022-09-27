@@ -171,11 +171,11 @@ export class HrDashComponent implements OnInit {
         this.count = this.EmployeeKradash.length;
 
         this.EmployeeKradashSubmitted = data.filter(x => x.approver2 == sessionStorage.getItem('EmaployedID') && x.selfScores != null
-          && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null && x.sbuSubmittedDate != null && x.hrSubmittedDate != null&& x.filnalize==null);
+          && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null && x.sbuSubmittedDate != null && x.hrSubmittedDate != null&& x.finalize==null);
         this.count = this.EmployeeKradash.length;
 
         this.EmployeeKradashCompleted = data.filter(x => x.approver2 == sessionStorage.getItem('EmaployedID') && x.selfScores != null
-          && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null && x.sbuSubmittedDate != null && x.hrSubmittedDate != null &&x.filnalize==1);
+          && x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null && x.managerSubmittedDate != null && x.sbuSubmittedDate != null && x.hrSubmittedDate != null &&x.finalize==1);
         this.count = this.EmployeeKradash.length;
 
       }, error: (err: { error: { message: any; }; }) => {
