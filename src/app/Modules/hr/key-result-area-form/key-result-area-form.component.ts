@@ -126,7 +126,8 @@ export class KeyResultAreaFormComponent implements OnInit {
         "KRAName": this.keyresultArray[i].KRAName,
         "KraTypeID": this.keyresultArray[i].KraTypeID,
         "Role": this.keyresultArray[i].Role,
-        "Description": this.keyresultArray[i].Description
+        "Description": this.keyresultArray[i].Description,
+        "StaffId":sessionStorage.getItem('EmaployedID')
       };
       this.PerformanceManagementService.InsertKeyResultArea(entity).subscribe(
         data => {

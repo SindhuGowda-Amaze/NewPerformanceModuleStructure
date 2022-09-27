@@ -47,8 +47,8 @@ export class MyApprasailComponent implements OnInit {
   AppraisalSubmitionDate: any;
   sDate: any;
   eDate: any;
-  kraname:any;
-  kpiName:any;
+  kraname: any;
+  kpiName: any;
   constructor(private PerformanceManagementService: PerformancemanagementService) { }
 
 
@@ -147,7 +147,7 @@ export class MyApprasailComponent implements OnInit {
           this.EmployeeKradash = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate == null && x.employeeacceptgoal != 1);
           this.EmployeeKradashAccepted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate == null && x.employeeacceptgoal == 1);
           this.EmployeeKradashSubmitted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate != null);
-          this.EmployeeKradashCompleted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate != null &&x.finalize==1);
+          this.EmployeeKradashCompleted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate != null && x.finalize == 1);
         }, error: (err) => {
           Swal.fire('Issue in Getting ConductappraisalStaffList');
           // Insert error in Db Here//
@@ -413,11 +413,6 @@ export class MyApprasailComponent implements OnInit {
         this.appraisalid = event.target.value;
         this.AppraisalClose = temp[0].appraisalClose;
 
-
-
-
-
-
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting AppraisalCycle');
         // Insert error in Db Here//
@@ -488,28 +483,28 @@ export class MyApprasailComponent implements OnInit {
       }
     })
   }
-public getkpi(event:any){
+  public getkpi(event: any) {
 
-}
+  }
 
   tablecount: any;
   keyresultArray: any = [];
 
   public SaveDetails() {
     debugger
-    if (this.Apprisalcycle==""||this.kraname==undefined||this.kpiName==undefined||this.kratypeid=="") {
+    if (this.Apprisalcycle == "" || this.kraname == undefined || this.kpiName == undefined || this.kratypeid == "") {
       Swal.fire("Please Enter Mandatory Fields")
     }
     else {
       this.tablecount = 1;
-        var json = {
-        "AppraisalCycleID":this.Apprisalcycle,
-          "kraname": this.kraname,
-          "kpiname": this.kpiName,
-          'KraTypeID': this.kratypeid
-        };
-        debugger
-        this.keyresultArray.push(json)
+      var json = {
+        "AppraisalCycleID": this.Apprisalcycle,
+        "kraname": this.kraname,
+        "kpiname": this.kpiName,
+        'KraTypeID': this.kratypeid
+      };
+      debugger
+      this.keyresultArray.push(json)
     }
   }
 
@@ -520,61 +515,82 @@ public getkpi(event:any){
     // }
     // else{
 
-  
-      debugger
-      for (let i = 0; i < this.keyresultArray.length; i++) {
-        if (this.keyresultArray.length == 0) {
-          Swal.fire('Please Select Goals For Staff')
-        }
-        else {
-          var Entity = {
-            'StaffTypeID': 1,
-            'StaffName': sessionStorage.getItem('EmaployedID'),
-            'Approver1': this.Approver1,
-            'Approver2': this.Approver2,
-            'Approver3': this.Approver3,
-            'AppraisalSubmitionDate': this.AppraisalSubmitionDate,
-            'CycleStartDate': this.sDate,
-            'CycleEndDate': this.eDate,
-            'KraID': this.keyresultArray[i].kraname,
-            'kpiid': this.keyresultArray[i].kpiName,
-            'AppraiselID': this.Apprisalcycle
-          }
-          this.PerformanceManagementService.InsertEmployeeKraMap(Entity).subscribe({
-            next: data => {
-              debugger
-              if (data == 0) {
-                Swal.fire("Already exist!!")
-              }
-            }, error: (err: { error: { message: any; }; }) => {
-              Swal.fire('Issue in Inserting EmployeeKraMap');
-              // Insert error in Db Here//
-              var obj = {
-                'PageName': this.currentUrl,
-                'ErrorMessage': err.error.message
-              }
-              this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-                data => {
-                  debugger
-                },
-              )
-            }
-          })
 
-
-        }
-        // }
+    debugger
+    for (let i = 0; i < this.keyresultArray.length; i++) {
+      if (this.keyresultArray.length == 0) {
+        Swal.fire('Please Select Goals For Staff')
       }
+      // else {
+      //   var Entity = {
+      //     'StaffTypeID': 1,
+      //     'StaffName': sessionStorage.getItem('EmaployedID'),
+      //     'Approver1': this.Approver1,
+      //     'Approver2': this.Approver2,
+      //     'Approver3': this.Approver3,
+      //     'AppraisalSubmitionDate': this.AppraisalSubmitionDate,
+      //     'CycleStartDate': this.sDate,
+      //     'CycleEndDate': this.eDate,
+      //     'KraID': this.keyresultArray[i].kraname,
+      //     'kpiid': this.keyresultArray[i].kpiName,
+      //     'AppraiselID': this.Apprisalcycle
+      //   }
+      //   this.PerformanceManagementService.InsertEmployeeKraMap(Entity).subscribe({
+      //     next: data => {
+      //       debugger
+      //       if (data == 0) {
+      //         Swal.fire("Already exist!!")
+      //       }
+      //     }, error: (err: { error: { message: any; }; }) => {
+      //       Swal.fire('Issue in Inserting EmployeeKraMap');
+      //       // Insert error in Db Here//
+      //       var obj = {
+      //         'PageName': this.currentUrl,
+      //         'ErrorMessage': err.error.message
+      //       }
+      //       this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+      //         data => {
+      //           debugger
+      //         },
+      //       )
+      //     }
+      //   })
+      var entity = {
+        "KRAName": this.keyresultArray[i].kraname,
+        "KraTypeID": this.keyresultArray[i].KraTypeID,
+        "Role": 6,
+        "Description": 'Employee',
+        "StaffId":sessionStorage.getItem('EmaployedID')
+      };
+      this.PerformanceManagementService.InsertKeyResultArea(entity).subscribe(
+        data => {
+          debugger
+          let kratypelist = data;
+          Swal.fire("Goal Added Successfully");
+          this.tablecount = 0;
+          location.href = "#/hr/KeyResultArea";
+          console.log("kralist", this.kratypelist);
+        })
+      // location.href = "#/manager/EmployeeKraMappingdashboard";
+    }
 
-      // this.InsertNotification();
-      Swal.fire('Goal Setting Done Successfully.');
-      location.href = "#/manager/EmployeeKraMappingdashboard";
-      // location.reload();
 
+
+
+
+
+    // }
   }
 
+  // this.InsertNotification();
+  // Swal.fire('Goal Setting Done Successfully.');
 
-  
+  // location.reload();
+
 }
+
+
+
+
 
 
