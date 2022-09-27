@@ -184,12 +184,12 @@ export class StaffScoreFullDetailsComponent implements OnInit {
   AllAttachments(Scores: any) {
     debugger
     this.empID = Scores.empID;
-    this.kpiID=Scores.performaceIndicatorID
+    this.kpiID=Scores.kpiID
 
     this.PerformanceManagementService.GetKRAByStaffID(this.StaffID).subscribe(data => {
       debugger
       this.ResultAreaList = data.filter((x: {
-        performaceIndicatorID: boolean;  staffName: any; }) =>x.staffName == this.empID );
+        kpiid: any;staffName: any; }) =>x.staffName == this.empID && x.kpiid==this.kpiID);
 
 
       this.employeeattachment = this.ResultAreaList[0].photo
