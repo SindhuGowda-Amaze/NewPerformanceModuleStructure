@@ -39,7 +39,8 @@ export class ApprasialReportComponent implements OnInit {
   departmentAppraisalList: any;
   departmentid: any;
   count1: any = 10;
-  currentUrl: any
+  currentUrl: any;
+  viewMode = 'tab1';
 
   ngOnInit(): void {
     //Variable Initialisation and Default Method Calls//
@@ -169,7 +170,7 @@ export class ApprasialReportComponent implements OnInit {
     })
   }
 
-
+  StaffAppraisalListFinalized:any;
   //Method to get Employee Appraisal Details for HR and Manager//
   public ConductappraisalStaffList() {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
@@ -179,12 +180,15 @@ export class ApprasialReportComponent implements OnInit {
         if (this.roleid == 3) {
           this.StaffAppraisalList = temp;
           this.dumpmanagerList = this.StaffAppraisalList
+          this.StaffAppraisalList = this.dumpmanagerList.filter((x: { finalize:any; }) =>  x.finalize !=1)
+          this.StaffAppraisalListFinalized = this.dumpmanagerList.filter((x: { finalize:any; }) =>  x.finalize ==1)
         }
         else if (this.roleid == 4) {
           this.StaffAppraisalList = temp;
           this.dumpmanagerList = this.StaffAppraisalList
           //  this.StaffAppraisalList = this.dumpmanagerList.filter((x: { cioScores: null;approver1:any }) => x.cioScores != null && x.approver1==this.StaffID)
-          this.StaffAppraisalList = this.dumpmanagerList.filter((x: { approver1: any }) => x.approver1 == this.StaffID)
+          this.StaffAppraisalList = this.dumpmanagerList.filter((x: { approver1: any; finalize:any; }) => x.approver1 == this.StaffID && x.finalize !=1)
+          this.StaffAppraisalListFinalized = this.dumpmanagerList.filter((x: { approver1: any; finalize:any; }) => x.approver1 == this.StaffID && x.finalize ==1)
         }
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting Conduct appraisal StaffList');

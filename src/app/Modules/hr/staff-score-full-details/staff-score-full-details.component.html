@@ -175,13 +175,16 @@
                                     data-target="#exampleModal1">View</button>
                                 <p *ngIf="Scores.groupHeadScores==null">NA</p>
                             </td>
-                            <td *ngIf="Scores.divisionScores!=null">{{Scores.divisionScores}}</td>
+                            <td>
+                            <p *ngIf="Scores.divisionScores!=null">{{Scores.divisionScores}}</p>
+                            <p *ngIf="Scores.divisionScores==null">NA</p>
+                        </td>
                             <td>
                                 <button *ngIf="Scores.divisionScores!=null" class="form-control edit"
                                     (click)="sbu(Scores)" data-toggle="modal"
                                     data-target="#exampleModal11">View</button>
                                 <p *ngIf="Scores.divisionScores==null">NA</p>
-
+</td>
                                 <!-- <td *ngIf="Scores.groupHeadScores!=null">{{Scores.groupHeadComments}}</td> -->
                             <td>
                                 <p class="align" *ngIf="Scores.cscores!=null">{{Scores.cscores}}</p>
@@ -201,6 +204,7 @@
                                     data-target="#exampleModal5">View
                                 </button>
                                 <p *ngIf="Scores.cscores==null">Attachments</p>
+                            </td>
                         </tr>
                     </thead>
                 </table>

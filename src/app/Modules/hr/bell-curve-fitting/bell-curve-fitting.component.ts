@@ -185,7 +185,7 @@ export class BellCurveFittingComponent implements OnInit {
         this.AppraisalCycleID = this.StaffAppraisalList[0].appraiselID
         this.Finalize = this.StaffAppraisalList[0].finalize
         this.appraisalClose = this.StaffAppraisalList1[0].appraisalClose
-        this.FilteredStaffAppraisalList = this.StaffAppraisalList.filter((x: { cioScores: null; }) => x.cioScores != null)
+        this.FilteredStaffAppraisalList = this.StaffAppraisalList.filter((x: { cioScores: null;}) => x.cioScores != null)
         this.count = this.FilteredStaffAppraisalList.length;
         this.managerList = this.dumpmanagerList.filter((x: { manager: any; }) => x.manager == this.manager);
 
@@ -515,7 +515,7 @@ export class BellCurveFittingComponent implements OnInit {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
         debugger
-        this.FilteredStaffAppraisalList = data.filter(x => x.appraisalCycleName == this.appraisalCycleName)
+        this.FilteredStaffAppraisalList = data.filter(x => x.appraisalCycleName == this.appraisalCycleName && x.finalize != 1)
 
         this.appraisalcount = this.FilteredStaffAppraisalList.length;
         this.appraisalClose = this.FilteredStaffAppraisalList[0].appraisalClose
@@ -656,7 +656,8 @@ export class BellCurveFittingComponent implements OnInit {
           this.PerformanceManagementService.UpdateFinalizeRating(id).subscribe({
             next: data => {
               debugger
-              Swal.fire('Finalised Rating Successfully!!')
+              Swal.fire('Finalised Rating Successfully!!');
+              location.reload();
             }, error: (err: { error: { message: any; }; }) => {
               Swal.fire('Issue in Updating Finalize Rating');
               // Insert error in Db Here//
