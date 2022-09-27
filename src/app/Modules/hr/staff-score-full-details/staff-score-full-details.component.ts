@@ -13,6 +13,11 @@ export class StaffScoreFullDetailsComponent implements OnInit {
   hrAttachment: any;
   empID: any;
   employeeattachment: any;
+  SbuAttachmentType: any;
+  hrAttachmentType: any;
+  ManagerAttachmentType: any;
+  SelfAttachmentType: any;
+  kpiID: any;
 
   constructor(private PerformanceManagementService: PerformancemanagementService, private route: ActivatedRoute) { }
 
@@ -179,15 +184,23 @@ export class StaffScoreFullDetailsComponent implements OnInit {
   AllAttachments(Scores: any) {
     debugger
     this.empID = Scores.empID;
-
+    this.kpiID=Scores.performaceIndicatorID
 
     this.PerformanceManagementService.GetKRAByStaffID(this.StaffID).subscribe(data => {
       debugger
-      this.ResultAreaList = data.filter((x: {  staffName: any; }) =>x.staffName == this.empID);
+      this.ResultAreaList = data.filter((x: {
+        performaceIndicatorID: boolean;  staffName: any; }) =>x.staffName == this.empID );
+
+
       this.employeeattachment = this.ResultAreaList[0].photo
       this.managerattachment = this.ResultAreaList[0].mPhoto
       this.sbuAttachment = this.ResultAreaList[0].sbuPhoto
       this.hrAttachment = this.ResultAreaList[0].hPhoto
+
+      this.SbuAttachmentType = this.ResultAreaList[0].sbuAttachmentType;
+      this.hrAttachmentType = this.ResultAreaList[0].hrAttachmentType;
+      this.ManagerAttachmentType = this.ResultAreaList[0].managerAttachmentType;
+      this.SelfAttachmentType=this.ResultAreaList[0].selfAttachmentType
 
       console.log("resultarea", this.ResultAreaList)
 
