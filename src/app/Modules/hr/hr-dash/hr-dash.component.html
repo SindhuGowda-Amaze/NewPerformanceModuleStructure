@@ -96,6 +96,7 @@
                                 <tr *ngIf="(EmployeeKradash | filter: search).length > 0; else noResults">
 
                                     <th>Action </th>
+                                    <th>Assigned By</th>
                                     <th>Employee Name</th>
                                     <th>Department</th>
                                     <th>Position</th>
@@ -133,6 +134,7 @@
                                         <!-- <button class="button btn-xs" data-toggle="modal" (click)="GetStaffKraDetails(details)"
                                                 data-target="#myModal">View</button>&nbsp; -->
                                     </td>
+                                    <td>Manager</td>
                                     <td>{{details.name}}</td>
                                     <td>{{details.departmentName}}</td>
                                     <td>{{details.role}}</td>
@@ -186,6 +188,7 @@
                             <thead>
                                 <tr>
                                     <th>Action </th>
+                                    <th>Assigned By</th>
                                     <th>Employee Name</th>
                                     <th>Department</th>
                                     <th>Appraisal Cycle</th>
@@ -222,6 +225,7 @@
                                         <!-- <button class="button btn-xs" data-toggle="modal" (click)="GetStaffKraDetails(details)"
                                                 data-target="#myModal">View</button>&nbsp; -->
                                     </td>
+                                    <td>Manager</td>
                                     <td>{{details.name}}</td>
                                     <td>{{details.departmentName}}</td>
                                     <td>{{details.appraisalCycleName}}</td>
@@ -270,6 +274,7 @@
                                 <tr *ngIf="(EmployeeKradashSubmitted | filter: search).length > 0; else noResults">
 
                                     <th>Action </th>
+                                    <th>Assigned By</th>
                                     <th>Employee Name</th>
                                     <th>Department</th>
                                     <th>Position</th>
@@ -314,6 +319,7 @@
                                         <!-- <button class="button btn-xs" data-toggle="modal" (click)="GetStaffKraDetails(details)"
                                                 data-target="#myModal">View</button>&nbsp; -->
                                     </td>
+                                    <td>Manager</td>
                                     <td>{{details.name}}</td>
                                     <td>{{details.departmentName}}</td>
                                     <td>{{details.role}}</td>
@@ -368,6 +374,7 @@
                             <thead>
                                 <tr>
                                     <th>Action </th>
+                                    <th>Assigned By</th>
                                     <th>Employee Name</th>
                                     <th>Department</th>
                                     <th>Appraisal Cycle</th>
@@ -403,6 +410,7 @@
                                         <!-- <button class="button btn-xs" data-toggle="modal" (click)="GetStaffKraDetails(details)"
                                                 data-target="#myModal">View</button>&nbsp; -->
                                     </td>
+                                    <td>Manager</td>
                                     <td>{{details.name}}</td>
                                     <td>{{details.departmentName}}</td>
                                     <td>{{details.appraisalCycleName}}</td>

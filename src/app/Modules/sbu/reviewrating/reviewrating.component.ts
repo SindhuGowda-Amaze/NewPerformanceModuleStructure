@@ -117,7 +117,7 @@ export class ReviewratingComponent implements OnInit {
         this.stafflistCopy = this.stafflist;
       },
       error: (err) => {
-        Swal.fire('Issue in Getting My Details For ReiewRating');
+        // Swal.fire('Issue in Getting My Details For ReiewRating');
         // Insert error in Db Here//
         var obj = {
           PageName: this.currentUrl,

@@ -139,6 +139,7 @@
                             <th>SBU Rating</th>
                             <th>HR Rating</th>
                             <th>Total Average</th>
+                            <th>Assigned By</th>
                             <th>Action </th>
                         </tr>
                     </thead>
@@ -176,6 +177,7 @@
                                 <p *ngIf="details.bellcurveScore!=null">{{details.bellcurveScore}}</p>
                                 <p *ngIf="details.avgCIOScores==null || details.hrSubmittedDate==null">NA</p>
                             </td>
+                            <td>Manager</td>
                             <!-- <td>{{details.appraisalSubmitionDate|date}}</td>
                             <td>{{details.cycleStartDate|date}}</td>    
                             <td>{{details.cycleEndDate|date}}</td> -->

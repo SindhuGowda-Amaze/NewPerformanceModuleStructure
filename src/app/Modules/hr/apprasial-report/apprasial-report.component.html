@@ -75,6 +75,7 @@
                             <th>Department</th>
                             <th *ngIf="roleid==3">Manager Name</th>
                             <th>Final Rating </th>
+                            <th>Assigned By</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -92,12 +93,14 @@
                                 <p *ngIf="details.bellcurveScore!=null">{{details.bellcurveScore}}</p>
                                 <p *ngIf="details.hrSubmittedDate==null">NA</p>
                             </td>
+                            <td>Manager</td>
                             <td>
                                 <p *ngIf="details.employeeSubmittedDate==null" style="color: red;">Employee pending</p>
                                 <p *ngIf="details.managerSubmittedDate==null" style="color: red;">Manager pending</p>
                                 <p *ngIf="details.sbuSubmittedDate==null" style="color: red;">SBU pending</p>
                                 <p *ngIf="details.hrSubmittedDate==null" style="color: red;">HR Pending</p>
                                 <p *ngIf="details.hrSubmittedDate!=null" style="color: green;"><b>HR Completed</b></p>
+                                <p *ngIf="details.finalize==1" >Finalized</p>
 
                             </td>
 

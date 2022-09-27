@@ -169,7 +169,7 @@ public GetMyDetailsForReiewRating(){
       this.stafflist1 = data.filter(x => x.salaryIncrement == 1);
       this.stafflistCopy = this.stafflist
     }, error: (err: { error: { message: any; }; }) => {
-      Swal.fire('Issue in Getting MyDetailsForReiewRating');
+      // Swal.fire('Issue in Getting MyDetailsForReiewRating');
       // Insert error in Db Here//
       var obj = {
         'PageName': this.currentUrl,
