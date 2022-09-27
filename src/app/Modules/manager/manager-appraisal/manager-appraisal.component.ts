@@ -20,6 +20,7 @@ import Swal from 'sweetalert2';
 })
 export class ManagerAppraisalComponent implements OnInit {
   ManagerAttachmentType: any;
+  SelfAttachmentType: any;
 
 
   constructor(private PerformanceManagementService: PerformancemanagementService, private router: Router, private route: ActivatedRoute, private datepipe: DatePipe) { }
@@ -346,7 +347,10 @@ export class ManagerAppraisalComponent implements OnInit {
         this.SelfComments = temp[0].managercomments;
         // this.attachment=details.photo;
         this.managerattachment = details.mPhoto;
+        this.selfAttachment = details.photo;
+
         this.ManagerAttachmentType = details.managerAttachmentType;
+        this.SelfAttachmentType=details.selfAttachmentType
         this.id = temp[0].id;
         this.kpiid = temp[0].kpiid;
         this.ResultAreaID = temp[0].resultAreaID;

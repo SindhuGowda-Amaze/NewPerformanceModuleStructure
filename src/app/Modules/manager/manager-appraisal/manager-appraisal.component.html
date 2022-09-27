@@ -63,7 +63,7 @@
                             </td>
                             <td [ngClass]="{'bggreen':details.managerupdate==1 }">
                                 <button class=" btn btn-primary action" data-toggle="modal" data-target="#exampleModal2"
-                                    (click)="getattachment(details)"  *ngIf="details.selfattachment!='0'&&details.selfattachment!=''">View Attachments</button>
+                                (click)="GetKPIIDetails(details)"  *ngIf="details.selfattachment!='0'&&details.selfattachment!=''">View Attachments</button>
                                     <p *ngIf="details.selfattachment=='0'||details.selfattachment==null||details.selfattachment==''">No Attachment</p>
                             </td>   
                             <td  [ngClass]="{'bg-warning':details.managerupdate==1 }" style="text-align: center;">
@@ -284,19 +284,19 @@
                     <div class="col-lg-1">
                     </div>
                     <div class="col-lg-3">
-                        <p *ngIf="selfAttachment==0">No Attachments</p>
+                        <p *ngIf="attachment==0">No Attachments</p>
                     </div>
                     <div class="col-lg-3">
 
                         <a href="{{selfAttachment}}" target="blank">
                             
-                            <img *ngIf="ManagerAttachmentType=='Document'"  width="220" height="250" border="0" align="center" src="assets/Images/word.png"/>
+                            <img *ngIf="SelfAttachmentType=='Document'"  width="220" height="250" border="0" align="center" src="assets/Images/word.png"/>
 
-                            <img *ngIf="ManagerAttachmentType=='video'"  width="220" height="250" border="0" align="center" class="image" src="assets/Images/youtube.png">&nbsp;&nbsp;
+                            <img *ngIf="SelfAttachmentType=='video'"  width="220" height="250" border="0" align="center" class="image" src="assets/Images/youtube.png">&nbsp;&nbsp;
     
-                            <img *ngIf="ManagerAttachmentType=='Pdf'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/pdf.png">&nbsp;&nbsp;
+                            <img *ngIf="SelfAttachmentType=='Pdf'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/pdf.png">&nbsp;&nbsp;
     
-                            <img *ngIf="ManagerAttachmentType=='Image'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/image.png">&nbsp;&nbsp;
+                            <img *ngIf="SelfAttachmentType=='Image'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/image.png">&nbsp;&nbsp;
     
                             <!-- <img *ngIf="SelfAttachmentType=='Document'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/files.png">&nbsp;&nbsp; -->
                         
@@ -338,7 +338,22 @@
                         <p *ngIf="managerattachment==null">No Attachments</p>
                     </div>
                     <div class="col-lg-3">
-                        <img src="{{managerattachment}}" style="width:400px;">
+                        <a href="{{managerattachment}}" target="blank">
+                            
+                            <img *ngIf="ManagerAttachmentType=='Document'"  width="220" height="250" border="0" align="center" src="assets/Images/word.png"/>
+
+                            <img *ngIf="ManagerAttachmentType=='video'"  width="220" height="250" border="0" align="center" class="image" src="assets/Images/youtube.png">&nbsp;&nbsp;
+    
+                            <img *ngIf="ManagerAttachmentType=='Pdf'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/pdf.png">&nbsp;&nbsp;
+    
+                            <img *ngIf="ManagerAttachmentType=='Image'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/image.png">&nbsp;&nbsp;
+    
+                            <!-- <img *ngIf="SelfAttachmentType=='Document'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/files.png">&nbsp;&nbsp; -->
+                        
+                        </a>
+
+
+                        <!-- <img src="{{managerattachment}}" style="width:400px;"> -->
                         <!-- <img src="http://103.133.214.197/digiofficeapi\Images\ProjectAttachments\AmazeLogo-20220214160917-20220228163117.jpg"> -->
                     </div>
                 </div>
