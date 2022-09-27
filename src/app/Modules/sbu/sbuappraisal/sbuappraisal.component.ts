@@ -64,6 +64,10 @@ export class SbuappraisalComponent implements OnInit {
   empcommnts: any;
   photoid: any;
   show: any;
+  SbuAttachmentType: any;
+  hrAttachmentType: any;
+  ManagerAttachmentType: any;
+  SelfAttachmentType: any;
 
   constructor(
     private PerformanceManagementService: PerformancemanagementService,
@@ -327,9 +331,17 @@ export class SbuappraisalComponent implements OnInit {
       let temp: any = data.filter((x) => x.id == details.id);
       this.Score = temp[0].sbuRating;
       this.SelfComments = temp[0].sbuComments;
+      
+
+      this.SbuAttachmentType = details.sbuAttachmentType;
+      this.hrAttachmentType = details.hrAttachmentType;
+      this.ManagerAttachmentType = details.managerAttachmentType;
+      this.SelfAttachmentType=details.selfAttachmentType
+
       this.sbuAttachment = details.sbuPhoto;
       this.managerattachment = details.mPhoto;
-      this.attachment = details.sbuAttachment;
+      this.attachment = details.photo;
+      // this.attachment = details.sbuAttachment;
     });
     this.photoid = details.id;
     this.id = details.id;

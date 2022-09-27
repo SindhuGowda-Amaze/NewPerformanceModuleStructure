@@ -335,25 +335,73 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <a href="{{employeeattachment}}" target="blank"><img style="width: 40%;" *ngIf="employeeattachment!=0" src="assets/Images/image.png"></a>
+                                                <a href="{{employeeattachment}}" target="blank">
+
+                            
+                                                    <img *ngIf="SelfAttachmentType=='Document' && employeeattachment!=0" style="width: 40%;" src="assets/Images/word.png"/>
+                        
+                                                    <img *ngIf="SelfAttachmentType=='video'&& employeeattachment!=0"  style="width: 40%;" class="image" src="assets/Images/youtube.png">&nbsp;&nbsp;
+                            
+                                                    <img *ngIf="SelfAttachmentType=='Pdf'&& employeeattachment!=0"style="width: 40%;" class="image" src="assets/Images/pdf.png">&nbsp;&nbsp;
+                            
+                                                    <img *ngIf="SelfAttachmentType=='Image'&& employeeattachment!=0" style="width: 40%;" class="image" src="assets/Images/image.png">&nbsp;&nbsp;
+                            
+                                                    <!-- <img *ngIf="SelfAttachmentType=='Document'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/files.png">&nbsp;&nbsp; -->
+                                                
+                                                </a>
   
                                                 <p *ngIf="employeeattachment==0">No Attachments</p>
                                             </td>
                                             <td>
-                                        
-                                                <a href="{{managerattachment}}" target="blank"><img style="width: 40%;" *ngIf="managerattachment!=0" src="assets/Images/image.png"></a>
+                                                <a href="{{managerattachment}}" target="blank">
+
+                            
+                                                    <img *ngIf="ManagerAttachmentType=='Document' && managerattachment!=0" style="width: 40%;" src="assets/Images/word.png"/>
+                        
+                                                    <img *ngIf="ManagerAttachmentType=='video'&& managerattachment!=0"  style="width: 40%;" class="image" src="assets/Images/youtube.png">&nbsp;&nbsp;
+                            
+                                                    <img *ngIf="ManagerAttachmentType=='Pdf'&& managerattachment!=0"style="width: 40%;" class="image" src="assets/Images/pdf.png">&nbsp;&nbsp;
+                            
+                                                    <img *ngIf="ManagerAttachmentType=='Image'&& managerattachment!=0" style="width: 40%;" class="image" src="assets/Images/image.png">&nbsp;&nbsp;
+                            
+                                                    <!-- <img *ngIf="SelfAttachmentType=='Document'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/files.png">&nbsp;&nbsp; -->
+                                                
+                                                </a>
 
                                                 <p *ngIf="managerattachment==0">No Attachments</p>
                                             </td>
                                             <td>
-                                                <a href="{{sbuAttachment}}" target="blank"><img style="width: 40%;" *ngIf="sbuAttachment!=0" src="assets/Images/image.png"></a>
+                                                <a href="{{sbuAttachment}}" target="blank">
+
+                            
+                                                    <img *ngIf="SbuAttachmentType=='Document' && sbuAttachment!=0" style="width: 40%;" src="assets/Images/word.png"/>
+                        
+                                                    <img *ngIf="SbuAttachmentType=='video'&& sbuAttachment!=0"  style="width: 40%;" class="image" src="assets/Images/youtube.png">&nbsp;&nbsp;
+                            
+                                                    <img *ngIf="SbuAttachmentType=='Pdf'&& sbuAttachment!=0"style="width: 40%;" class="image" src="assets/Images/pdf.png">&nbsp;&nbsp;
+                            
+                                                    <img *ngIf="SbuAttachmentType=='Image'&& sbuAttachment!=0" style="width: 40%;" class="image" src="assets/Images/image.png">&nbsp;&nbsp;
+                            
+                                                    <!-- <img *ngIf="SelfAttachmentType=='Document'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/files.png">&nbsp;&nbsp; -->
+                                                
+                                                </a>
 
                                               
                                                 <p *ngIf="sbuAttachment==0">No Attachments</p>
                                             </td>
                                             <td>
-                                                <a href="{{hrAttachment}}" target="blank"><img style="width: 40%;" *ngIf="hrAttachment!=0" src="assets/Images/image.png"></a>
+                                                <a href="{{hrAttachment}}" target="blank">
 
+                                                    <img *ngIf="hrAttachmentType=='Document' && hrAttachment!=0" style="width: 40%;" src="assets/Images/word.png"/>
+                        
+                                                    <img *ngIf="hrAttachmentType=='video'&& hrAttachment!=0"  style="width: 40%;" class="image" src="assets/Images/youtube.png">&nbsp;&nbsp;
+                            
+                                                    <img *ngIf="hrAttachmentType=='Pdf'&& hrAttachment!=0"style="width: 40%;" class="image" src="assets/Images/pdf.png">&nbsp;&nbsp;
+                            
+                                                    <img *ngIf="hrAttachmentType=='Image'&& hrAttachment!=0" style="width: 40%;" class="image" src="assets/Images/image.png">&nbsp;&nbsp;
+                            
+                                                    <!-- <img *ngIf="SelfAttachmentType=='Document'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/files.png">&nbsp;&nbsp; -->                                          
+                                                </a>
                                                 <p *ngIf="hrAttachment==0">No Attachments</p>
                                             </td>
                                         </tr>

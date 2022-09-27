@@ -18,6 +18,10 @@ import Swal from 'sweetalert2';
   styleUrls: ['./hrratingnew.component.css']
 })
 export class HrratingnewComponent implements OnInit {
+  ManagerAttachmentType: any;
+  hrAttachmentType: any;
+  SbuAttachmentType: any;
+  SelfAttachmentType: any;
 
 
   constructor(private PerformanceManagementService: PerformancemanagementService, private router: Router, private route: ActivatedRoute, private datepipe: DatePipe) { }
@@ -224,6 +228,12 @@ export class HrratingnewComponent implements OnInit {
       this.managerattachment = details.mPhoto;
       this.sbuattachment = details.sbuPhoto;
       this.attachment = details.hrattachment
+      this.attachment = details.photo;
+
+      this.SbuAttachmentType = details.sbuAttachmentType;
+      this.hrAttachmentType = details.hrAttachmentType;
+      this.ManagerAttachmentType = details.managerAttachmentType;
+      this.SelfAttachmentType=details.selfAttachmentType
     })
     this.photoid = details.id;
     this.id = details.id;
