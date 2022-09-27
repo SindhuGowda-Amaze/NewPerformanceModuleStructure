@@ -295,7 +295,7 @@
                                         <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal!=1">
                                             Pending for Acceptance</p>
                                         <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal==1">
-                                            Open</p>
+                                            Goals Accepted</p>
                                         <p *ngIf="details.employeeSubmittedDate!=null">Submitted</p>
                                     </td>
                                 </tr>
@@ -376,8 +376,9 @@
                                         <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal!=1">
                                             Pending for Acceptance</p>
                                         <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal==1">
-                                            Open</p>
+                                            Goals Accepted</p>
                                         <p *ngIf="details.employeeSubmittedDate!=null">Submitted</p>
+                                        <p *ngIf="details.finalize==1" ><b style="color: dark green;">Finalized</b></p>
                                     </td>
                                 </tr>
                             </tbody>
