@@ -306,7 +306,9 @@
                             <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal!=1">Pending for Acceptance</p>
                             <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal==1">Goal Accepted</p>
                             <p *ngIf="details.employeeSubmittedDate!=null && details.managerSubmittedDate==null">Appraisal Submitted By Employee</p>
-                            <p *ngIf="details.managerSubmittedDate!=null">Appraisal Submitted By Manager</p>
+                            <p *ngIf="details.managerSubmittedDate!=null && details.finalize!=1">Appraisal Submitted By Manager</p>
+                            <p *ngIf="details.sbuSubmittedDate!=null && details.finalize!=1">Appraisal Submitted By HR</p>
+                            <p *ngIf="details.finalize==1" ><b style="color: dark green;">Finalized</b></p>
                         </td>
                         <td>
                             <button [routerLink]="['/manager/ManagerAppraisal', details.id,details.appraiselID ]"

@@ -498,8 +498,8 @@ export class StaffScoreReportComponent implements OnInit {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
         debugger
-        this.FilteredStaffAppraisalList = data.filter(x => x.appraisalCycleName == this.appraisalCycleName && x.Finalize == 1)
-        this.finalize = this.FilteredStaffAppraisalList[0].finalize
+        this.FilteredStaffAppraisalList = data.filter(x => x.appraisalCycleName == this.appraisalCycleName && x.finalize == 1)
+      
 
 
         this.appraisalcount = this.FilteredStaffAppraisalList.length;
@@ -549,6 +549,7 @@ export class StaffScoreReportComponent implements OnInit {
         debugger
 
         this.StaffAppraisalList = res;
+        this.finalize = this.StaffAppraisalList[0].finalize
         this.appraisalcount = this.StaffAppraisalList.length;
         var list = res.filter(x => x.employeeSubmittedDate != null && x.selfScores != null &&
           x.cycleStartDate != null && x.cycleEndDate != null && x.appraisalSubmitionDate != null && x.employeeSubmittedDate != null)

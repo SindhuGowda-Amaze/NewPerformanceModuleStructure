@@ -304,7 +304,7 @@
                                             class="btn btn-primary editable-table-button btn-xs Add"
                                             (click)="FinalizeAppraisal(details.staffid)">Finalize Rating
                                         </button>
-                                        <p *ngIf="details.finalize==1" style="margin-top: -58%;">Finalized</p>
+                                        <p *ngIf="details.finalize==1" >Finalized</p>
 
                                         <!-- <button *ngIf="details.cioComments!=null"
                                                 class=" btn btn-primary editable-table-button btn-xs">Completed</button> -->
@@ -394,6 +394,7 @@
                                             class=" btn btn-primary editable-table-button btn-xs btncolor">View
                                             Appraisal</button>
 
+                                      
                                         <!-- <button *ngIf="details.cioComments!=null"
                                                 class=" btn btn-primary editable-table-button btn-xs">Completed</button> -->
                                         <!-- <button class="button btn-xs"
@@ -426,7 +427,9 @@
                                             Appraisal Submitted By Employee</p>
                                         <p *ngIf="details.managerSubmittedDate!=null && details.sbuSubmittedDate==null">
                                             Appraisal Submitted By Manager</p>
-                                        <p *ngIf="details.sbuSubmittedDate!=null">Appraisal Submitted By HR</p>
+                                        <p *ngIf="details.sbuSubmittedDate!=null && details.finalize!=1">Appraisal Submitted By HR</p>
+                                        <p *ngIf="details.finalize==1" ><b style="color: dark green;">Finalized</b></p>
+
                                     </td>
                                 </tr>
                             </tbody>

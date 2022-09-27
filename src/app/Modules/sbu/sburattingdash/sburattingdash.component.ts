@@ -152,7 +152,7 @@ export class SburattingdashComponent implements OnInit {
             (x) =>
               x.approver3 == sessionStorage.getItem('EmaployedID') &&
               x.selfScores != null &&
-              x.employeeSubmittedDate != null&&x.sbuSubmittedDate!=null&&x.filnalize==1
+              x.employeeSubmittedDate != null&&x.sbuSubmittedDate!=null&&x.finalize==1
           );
           this.count = this.EmployeeKradash.length;
         }
