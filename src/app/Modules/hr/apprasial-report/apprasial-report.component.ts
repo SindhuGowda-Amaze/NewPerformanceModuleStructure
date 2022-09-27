@@ -19,6 +19,8 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./apprasial-report.component.css']
 })
 export class ApprasialReportComponent implements OnInit {
+  StaffAppraisalListInprogress: any;
+  finalize: any;
   //Variable Declerations//
   constructor(private PerformanceManagementService: PerformancemanagementService) { }
   count: any;
@@ -176,15 +178,16 @@ export class ApprasialReportComponent implements OnInit {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: res => {
         debugger
-        let temp: any = res
+     
         if (this.roleid == 3) {
-          this.StaffAppraisalList = temp;
-          this.dumpmanagerList = this.StaffAppraisalList
-          this.StaffAppraisalList = this.dumpmanagerList.filter((x: { finalize:any; }) =>  x.finalize !=1)
-          this.StaffAppraisalListFinalized = this.dumpmanagerList.filter((x: { finalize:any; }) =>  x.finalize ==1)
+          this.StaffAppraisalList = res;
+        
+          this.StaffAppraisalListInprogress = this.StaffAppraisalList.filter((x: { finalize:any; }) =>  x.finalize ==null)
+          this.StaffAppraisalListFinalized = this.StaffAppraisalList.filter((x: { finalize:any; }) =>  x.finalize ==1)
+        
         }
         else if (this.roleid == 4) {
-          this.StaffAppraisalList = temp;
+          this.StaffAppraisalList = res;
           this.dumpmanagerList = this.StaffAppraisalList
           //  this.StaffAppraisalList = this.dumpmanagerList.filter((x: { cioScores: null;approver1:any }) => x.cioScores != null && x.approver1==this.StaffID)
           this.StaffAppraisalList = this.dumpmanagerList.filter((x: { approver1: any; finalize:any; }) => x.approver1 == this.StaffID && x.finalize !=1)
