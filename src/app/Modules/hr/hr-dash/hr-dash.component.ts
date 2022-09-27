@@ -395,6 +395,7 @@ export class HrDashComponent implements OnInit {
             next: data => {
               debugger
               Swal.fire('Finalised Rating Successfully!!')
+              location.reload();
             }, error: (err: { error: { message: any; }; }) => {
               Swal.fire('Issue in Updating Finalize Rating');
               // Insert error in Db Here//

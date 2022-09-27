@@ -95,7 +95,7 @@
                             <thead>
                                 <tr *ngIf="(EmployeeKradash | filter: search).length > 0; else noResults">
 
-                                    <th>Action </th>
+                                    <!-- <th>Action </th> -->
                                     <th>Assigned By</th>
                                     <th>Employee Name</th>
                                     <th>Department</th>
@@ -115,7 +115,7 @@
                             <tbody>
                                 <tr
                                     *ngFor="let details of EmployeeKradash |paginate: { itemsPerPage: count1, currentPage: p}|filter:search|filter:status">
-                                    <td>
+                                    <!-- <td>
                                         <button [routerLink]="['/hr/hrratingnew', details.id,details.appraiselID ] "
                                             *ngIf="details.hrSubmittedDate==null"
                                             class=" btn btn-primary editable-table-button btn-xs">Conduct
@@ -126,14 +126,8 @@
                                             class=" btn btn-primary editable-table-button btn-xs btncolor">View
                                             Appraisal</button>
 
-                                        <!-- <button *ngIf="details.cioComments!=null"
-                                                class=" btn btn-primary editable-table-button btn-xs">Completed</button> -->
-                                        <!-- <button class="button btn-xs"
-                                                routerLink]="['/SelfRatingPage', details.id,details.id ]">Self
-                                                Apprisal</button>&nbsp; -->
-                                        <!-- <button class="button btn-xs" data-toggle="modal" (click)="GetStaffKraDetails(details)"
-                                                data-target="#myModal">View</button>&nbsp; -->
-                                    </td>
+                                
+                                    </td> -->
                                     <td>Manager</td>
                                     <td>{{details.name}}</td>
                                     <td>{{details.departmentName}}</td>
@@ -197,6 +191,7 @@
                                     <th>Last Submission Date </th>
                                     <th>Employee Submitted Date</th>
                                     <th>Manager Submitted Date </th>
+                                    <th>SBU Submitted Date</th>
                                     <th>Status</th>
 
                                 </tr>
@@ -238,6 +233,7 @@
                                     <td *ngIf="details.managerSubmittedDate==null">
                                         <p>NA</p>
                                     </td>
+                                    <td>{{details.sbuSubmittedDate|date}}</td>
 
                                     <td>
 
@@ -250,7 +246,8 @@
                                             Appraisal Submitted By Employee</p>
                                         <p *ngIf="details.managerSubmittedDate!=null && details.sbuSubmittedDate==null">
                                             Appraisal Submitted By Manager</p>
-                                        <p *ngIf="details.sbuSubmittedDate!=null">Appraisal Submitted By HR</p>
+                                        <p *ngIf="details.sbuSubmittedDate!=null">Appraisal Submitted By SBU</p>
+                                        <p *ngIf="details.hrSubmittedDate!=null">Appraisal Submitted By HR</p>
                                     </td>
                                 </tr>
                             </tbody>

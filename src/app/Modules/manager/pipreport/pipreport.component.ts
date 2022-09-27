@@ -143,7 +143,7 @@ export class PIPReportComponent implements OnInit {
     this.PerformanceManagementService.GetPiPActionItemsForStaff().subscribe({
       next: res => {
         debugger
-        this.RemovedFromPIPList = res.filter(x => x.removeFromPIP == 1)
+         this.RemovedFromPIPList = res.filter(x => x.hidden == 1)
         let temp: any = res.filter(x => x.staffID == this.StaffID)
         this.StaffPIPActionItemList = temp
       }, error: (err: { error: { message: any; }; }) => {

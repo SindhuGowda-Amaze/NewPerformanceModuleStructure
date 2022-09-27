@@ -148,7 +148,7 @@ export class PipComponent implements OnInit {
     this.PerformanceManagementService.GetPiPActionItemsForStaff().subscribe({
       next: res => {
         debugger
-        let temp: any = res.filter(x => x.staffID == this.StaffID)
+        let temp: any = res.filter(x => x.staffID == this.StaffID && x.hidden==0)
         this.StaffPIPActionItemList = temp
 
         this.StaffPIPActionItemList1 = res
@@ -191,6 +191,26 @@ export class PipComponent implements OnInit {
           this.ngOnInit();
         }, error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in Updating ReAppraisalHRrating');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+
+      this.PerformanceManagementService.UpdateRemovefromPIPbyHR(this.staffID).subscribe({
+        next: data => {
+          debugger
+          Swal.fire("Removed From PIP Successfully");
+          this.ngOnInit();
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Updating PIP');
           // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,
@@ -293,7 +313,7 @@ export class PipComponent implements OnInit {
         debugger
         this.Attachment = res;
         Swal.fire('ATTACHMENT UPLOADED');
-        location.reload();
+      
 
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Project Attachments');
@@ -328,6 +348,7 @@ export class PipComponent implements OnInit {
         next: data => {
           debugger
           Swal.fire("Submitted Successfully");
+          location.reload();
         }, error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in Updating PipEmployeeCommentsb');
           // Insert error in Db Here//

@@ -270,6 +270,12 @@ public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
    return this.http.post(this.url, data);
  }
 
+ public UpdateRemovefromPIPbyHR(ID: any) {
+  return this.http.get<any[]>(
+    this.baseURL + "/Master/DeletePiPActionItemsForStaff?ID=" + ID);
+}
+
+
  public UpdateReAppraisalHRrating(data: any) {
    debugger;
    this.url = this.baseURL + '/Master/UpdateReAppraisalHRrating';
