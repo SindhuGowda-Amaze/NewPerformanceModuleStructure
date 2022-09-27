@@ -64,6 +64,7 @@ export class SbuappraisalComponent implements OnInit {
   empcommnts: any;
   photoid: any;
   show: any;
+  SbuAttachmentType: any;
 
   constructor(
     private PerformanceManagementService: PerformancemanagementService,
@@ -328,6 +329,7 @@ export class SbuappraisalComponent implements OnInit {
       this.Score = temp[0].sbuRating;
       this.SelfComments = temp[0].sbuComments;
       this.sbuAttachment = details.sbuPhoto;
+      this.SbuAttachmentType = details.sbuAttachmentType;
       this.managerattachment = details.mPhoto;
       this.attachment = details.sbuAttachment;
     });

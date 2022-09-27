@@ -156,7 +156,10 @@
                         <td>{{details.cycleStartDate|date}}</td>
                         <td>{{details.cycleEndDate|date}}</td>
                         <td>{{details.appraisalSubmitionDate|date}}</td>
-                        <td>{{details.employeeSubmittedDate}}</td>
+                        <td>
+                            <p *ngIf="details.employeeSubmittedDate!=null && details.employeeacceptgoal==1">{{details.employeeSubmittedDate}}</p>
+                            <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal==1">Pending</p>
+                        </td>
                         <td *ngIf="details.managerSubmittedDate!=null">{{details.managerSubmittedDate}}
                         </td>
                         <td *ngIf="details.managerSubmittedDate==null">
@@ -176,7 +179,7 @@
 
                             <button [routerLink]="['/manager/ManagerAppraisal', details.id,details.appraiselID ]"
                                 class=" btn btn-primary editable-table-button btn-xs Add"
-                                *ngIf="details.managerSubmittedDate==null">Conduct Appraisal</button>
+                                *ngIf="details.managerSubmittedDate==null && details.employeeSubmittedDate != null">Conduct Appraisal</button>
 
                             <button [routerLink]="['/manager/ManagerAppraisal', details.id,details.appraiselID ]"
                                 class=" btn btn-primary editable-table-button btn-xs btncolor"

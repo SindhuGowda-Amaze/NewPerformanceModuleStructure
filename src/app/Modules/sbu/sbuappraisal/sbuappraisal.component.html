@@ -349,7 +349,25 @@
                         <p *ngIf="attachment==null">No Attachments</p>
                     </div>
                     <div class="col-lg-3">
-                        <img src="{{attachment}}" style="width:400px;">
+
+                        <a href="{{attachment}}" target="blank">
+                            
+                            <img *ngIf="SbuAttachmentType=='Document'"  width="220" height="250" border="0" align="center" src="assets/Images/word.png"/>
+
+                            <img *ngIf="SbuAttachmentType=='video'"  width="220" height="250" border="0" align="center" class="image" src="assets/Images/youtube.png">&nbsp;&nbsp;
+    
+                            <img *ngIf="SbuAttachmentType=='Pdf'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/pdf.png">&nbsp;&nbsp;
+    
+                            <img *ngIf="SbuAttachmentType=='Image'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/image.png">&nbsp;&nbsp;
+    
+                            <!-- <img *ngIf="SelfAttachmentType=='Document'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/files.png">&nbsp;&nbsp; -->
+                        
+                        </a>
+
+
+
+
+                        <!-- <img src="{{attachment}}" style="width:400px;"> -->
                         <!-- <img src="http://103.133.214.197/digiofficeapi\Images\ProjectAttachments\AmazeLogo-20220214160917-20220228163117.jpg"> -->
                     </div>
                 </div>

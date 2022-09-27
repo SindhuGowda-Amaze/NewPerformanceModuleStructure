@@ -168,7 +168,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" id="close" class="btn btn-secondary" data-dismiss="modal" (click)="close()">Close</button>
+                <button type="button" id="close" class="btn btn-secondary" data-dismiss="modal"
+                    (click)="close()">Close</button>
                 <button type="button" class="btn btn-primary" [disabled]="selfrateform.form.invalid"
                     (click)="SaveDetails()">Save </button>
             </div>
@@ -198,7 +199,7 @@
                             Rating <span style="color: red;">*</span> </p>
                     </div>
                     <div class="col-lg-7">
-                        <select  class="dropdown form-control" id="Score" name="Score" [(ngModel)]="Score" required>
+                        <select class="dropdown form-control" id="Score" name="Score" [(ngModel)]="Score" required>
                             <option value="0">Select Rating</option>
                             <option *ngFor="let value of list" value="{{value.id}}">{{value.score}} - {{value.answers}}
                             </option>
@@ -217,7 +218,7 @@
                         <ckeditor id="SelfComments" name="SelfComments" [(ngModel)]="SelfComments" required
                             data="<p>Enter Answer Here !</p>"></ckeditor>
 
-                       
+
                     </div>
                 </div>
                 <br>
@@ -261,7 +262,25 @@
                         <p *ngIf="attachment==null">No Attachments</p>
                     </div>
                     <div class="col-lg-3">
-                        <img src="{{attachment}}" style="width:400px;">
+    
+
+                          <a href="{{attachment}}" target="blank">
+                            
+                            <img *ngIf="SelfAttachmentType=='Document'"  width="220" height="250" border="0" align="center" src="assets/Images/word.png"/>
+
+                            <img *ngIf="SelfAttachmentType=='video'"  width="220" height="250" border="0" align="center" class="image" src="assets/Images/youtube.png">&nbsp;&nbsp;
+    
+                            <img *ngIf="SelfAttachmentType=='Pdf'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/pdf.png">&nbsp;&nbsp;
+    
+                            <img *ngIf="SelfAttachmentType=='Image'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/image.png">&nbsp;&nbsp;
+    
+                            <!-- <img *ngIf="SelfAttachmentType=='Document'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/files.png">&nbsp;&nbsp; -->
+                        
+                        </a>
+                          
+                        <!-- <img class="image" src="assets/Images/word.png">&nbsp;&nbsp; -->
+
+
                         <!-- <img src="http://103.133.214.197/digiofficeapi\Images\ProjectAttachments\AmazeLogo-20220214160917-20220228163117.jpg"> -->
                     </div>
                 </div>

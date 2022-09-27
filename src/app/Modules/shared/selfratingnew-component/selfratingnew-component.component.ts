@@ -63,6 +63,7 @@ export class SelfratingnewComponentComponent implements OnInit {
   id: any;
   files: File[] = [];
   attachmentsurl: any = [];
+  SelfAttachmentType: any;
 
   constructor(
     private PerformanceManagementService: PerformancemanagementService,
@@ -108,6 +109,9 @@ export class SelfratingnewComponentComponent implements OnInit {
           this.ResultAreaList[0].employeeSubmittedDate;
         this.ManagerID = this.ResultAreaList[0].approver1;
         this.StaffName = this.ResultAreaList[0].name;
+        this.SelfAttachmentType=this.ResultAreaList[0].selfAttachmentType
+
+
 
         console.log('result', this.ResultAreaList);
         this.ResultAreaList.forEach((element: { empupdate: any }) => {
@@ -192,7 +196,7 @@ export class SelfratingnewComponentComponent implements OnInit {
       },
     });
   }
-
+  mappingID:any;
   //Method to Displaying the Data from GetEmployeeKraMap Table//
 
   public GetStaffKraDetails(details: any) {
@@ -201,6 +205,7 @@ export class SelfratingnewComponentComponent implements OnInit {
       next: (data) => {
         debugger;
         this.Staffkra = data.filter((x) => x.staffName == details.staffid);
+        this.mappingID= this.Staffkra[0].id
       },
       error: (err: { error: { message: any } }) => {
         Swal.fire('Issue in Getting EmployeeKraMap');
@@ -262,7 +267,7 @@ export class SelfratingnewComponentComponent implements OnInit {
     else{
       var entity = {
         SatffID: this.StaffID,
-        StaffType: this.StaffID,
+        StaffType: this.StaffID ,
         Supervisor: this.id,
         ResultAreaID: this.ResultAreaID,
         PerformaceIndicatorID: this.kpiid,
@@ -304,6 +309,12 @@ export class SelfratingnewComponentComponent implements OnInit {
   
   }
 
+  openAttchments(photo: any) {
+
+    window.open(photo, "_blank")
+
+  }
+
   //Method to Displaying the Data from GetEmployeeKraMap Table//
   public GetKPIIDetails(details: any) {
     debugger;
@@ -329,6 +340,7 @@ export class SelfratingnewComponentComponent implements OnInit {
       },
     });
     this.attachment = details.photo;
+    this.SelfAttachmentType=details.selfAttachmentType
     // this.attachmentNew=details.selfattachment;
     this.photoid = details.id;
     // this.attachmentsurl[0] = details.selfattachment;

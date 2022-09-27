@@ -573,12 +573,6 @@ export class MyApprasailComponent implements OnInit {
         })
       // location.href = "#/manager/EmployeeKraMappingdashboard";
     }
-
-
-
-
-
-
     // }
   }
 
