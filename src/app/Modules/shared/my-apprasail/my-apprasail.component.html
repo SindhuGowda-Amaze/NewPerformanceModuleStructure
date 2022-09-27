@@ -66,7 +66,7 @@
                                     <th *ngIf="roleid==3">Position</th>
                                     <th>Appraisal Cycle Start Date </th>
                                     <th>Appraisal Cycle End Date </th>
-                                    <th>Appraisal Cycle Type</th>
+                                    <th *ngIf="roleid==2">Appraisal Cycle Type</th>
                                     <th>Employee Submission Last Date </th>
                                     <th>Assigned By</th>
                                     <th>Action </th>
@@ -89,7 +89,7 @@
                                         <button
                                             *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
                                             class=" btn btn-primary editable-table-button btn-xs Add"
-                                            (click)="accept(details.mappingID)">Accept</button>
+                                            (click)="accept(details.kraid)">Accept</button>
 
                                         <button
                                             *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
@@ -156,7 +156,7 @@
                                     <th *ngIf="roleid==3">Position</th>
                                     <th>Appraisal Cycle Start Date </th>
                                     <th>Appraisal Cycle End Date </th>
-                                    <th>Appraisal Cycle Type</th>
+                                    <th *ngIf="roleid==2">Appraisal Cycle Type</th>
                                     <th>Employee Submission Last Date </th>
                                     <th>Assigned By</th>
                                     <th>Action </th>
@@ -205,7 +205,7 @@
                                         <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal!=1">
                                             Pending for Acceptance</p>
                                         <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal==1">
-                                            Open</p>
+                                            Goals Accepted</p>
                                         <p *ngIf="details.employeeSubmittedDate!=null">Submitted</p>
                                     </td>
                                 </tr>
@@ -236,7 +236,7 @@
                                     <th *ngIf="roleid==3">Position</th>
                                     <th>Appraisal Cycle Start Date </th>
                                     <th>Appraisal Cycle End Date </th>
-                                    <th>Appraisal Cycle Type</th>
+                                    <th *ngIf="roleid==2">Appraisal Cycle Type</th>
                                     <th>Employee Submission Last Date </th>
                                     <th>Assigned By</th>
                                     <th>Action </th>
@@ -327,7 +327,7 @@
                                     <th *ngIf="roleid==3">Position</th>
                                     <th>Appraisal Cycle Start Date </th>
                                     <th>Appraisal Cycle End Date </th>
-                                    <th>Appraisal Cycle Type</th>
+                                    <th *ngIf="roleid==2">Appraisal Cycle Type</th>
                                     <th>Employee Submission Last Date </th>
                                     <th>Assigned By</th>
                                     <th>Action </th>
@@ -452,7 +452,7 @@
                                     <th>Goal Type</th>
                                     <th>Goals</th>
                                     <th>KPI</th>
-                                    <th>Actions</th>
+                                    <!-- <th>Actions</th> -->
                                 </tr>
                             </thead>
                             <tbody>
