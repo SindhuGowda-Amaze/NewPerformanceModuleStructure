@@ -110,7 +110,7 @@ export class SelfratingnewComponentComponent implements OnInit {
         this.ManagerID = this.ResultAreaList[0].approver1;
         this.StaffName = this.ResultAreaList[0].name;
         this.SelfAttachmentType=this.ResultAreaList[0].selfAttachmentType
-
+        this.attachment = this.ResultAreaList[0].photo;
 
 
         console.log('result', this.ResultAreaList);

@@ -16,6 +16,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./pip.component.css']
 })
 export class PipComponent implements OnInit {
+  EmployeePIPSubmittedDate: any;
+  showbtn: any;
 
   constructor(private PerformanceManagementService: PerformancemanagementService) { }
   //variable Declaration
@@ -118,6 +120,7 @@ export class PipComponent implements OnInit {
         else {
           let temp: any = res
           this.StaffAppraisalList = temp.filter((x: { hrSubmittedDate: null; }) => x.hrSubmittedDate != null);
+          this.EmployeePIPSubmittedDate=this.StaffAppraisalList[0].employeePIPSubmittedDate
         }
 
 
@@ -156,6 +159,14 @@ export class PipComponent implements OnInit {
         this.PipAttachment = this.StaffPIPActionItemList1[0].attachment
         this.ManagerPIPComments = this.StaffPIPActionItemList1[0].pipManagerComments
         this.MangerPIPAttachment = this.StaffPIPActionItemList1[0].mangerPIPAttachment
+
+        this.StaffPIPActionItemList.forEach((element: { empupdate: any }) => {
+          if (element.empupdate != 1) {
+            this.showbtn = false;
+          } else {
+            this.showbtn = true;
+          }
+        });
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting PiPActionItemsForStaff');
         // Insert error in Db Here//
@@ -408,4 +419,30 @@ export class PipComponent implements OnInit {
 
   }
 
+
+  public UpdatePipEmployeeSubmit() {
+    debugger
+   
+     
+      this.PerformanceManagementService.UpdatePipEmployeeSubmit(this.StaffID).subscribe({
+        next: data => {
+          debugger
+          Swal.fire("Submitted Successfully");
+          location.reload();
+        }, error: (err: { error: { message: any; }; }) => {
+          Swal.fire('Issue in Updating PipEmployeeCommentsb');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })  
+    this.show();
+  }
 }

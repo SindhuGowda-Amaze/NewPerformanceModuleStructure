@@ -97,6 +97,7 @@ export class ManagerAppraisalComponent implements OnInit {
         this.departmentName = this.ResultAreaList[0].departmentName
         this.managerSubmittedDate = this.ResultAreaList[0].managerSubmittedDate
         this.selfAttachment = this.ResultAreaList[0].Photo
+        this.managerattachment = this.ResultAreaList[0].mPhoto;
         this.ResultAreaList.forEach((element: { managerupdate: any; }) => {
           if (element.managerupdate != 1) {
             this.showbtn = false
@@ -303,7 +304,7 @@ export class ManagerAppraisalComponent implements OnInit {
       'PerformaceIndicatorID': this.kpiid,
       'SelfScores': this.Score,
       'SelfComments': this.SelfComments,
-      'Attachment': this.attchmentss
+      'Attachment': this.managerattachment
     }
     this.PerformanceManagementService.InsertStaffScoresByManager(entity).subscribe({
       next: data => {

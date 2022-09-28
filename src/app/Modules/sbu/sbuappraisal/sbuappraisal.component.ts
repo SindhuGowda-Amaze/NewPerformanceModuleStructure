@@ -125,6 +125,7 @@ export class SbuappraisalComponent implements OnInit {
         this.departmentName = this.ResultAreaList[0].departmentName;
         this.SbuSubmittedDate = this.ResultAreaList[0].sbuSubmittedDate;
         this.managerattachment = this.ResultAreaList[0].mPhoto;
+        this.sbuAttachment = this.ResultAreaList[0].sbuPhoto;
 
         console.log('resultarea', this.ResultAreaList);
 
@@ -397,14 +398,14 @@ export class SbuappraisalComponent implements OnInit {
       PerformaceIndicatorID: this.kpiid,
       SelfScores: this.Score,
       SelfComments: this.SelfComments,
-      Attachment: this.attchmentss,
+      Attachment:   this.sbuAttachment,
     };
     this.PerformanceManagementService.InsertStaffScoresBySBU(entity).subscribe(
       (data) => {
         debugger;
         Swal.fire('Updated Successfully');
-        this.attchmentss = '';
-        this.attchmentss = 0;
+        this.sbuAttachment = '';
+        this.sbuAttachment = 0;
         const element1 = document.getElementById('close');
         this.files.length = 0;
         if (element1 !== null) {
