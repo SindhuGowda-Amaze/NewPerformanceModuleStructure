@@ -13,8 +13,11 @@ export class PerformancemanagementService {
 //  public hoet2 = "http://103.133.214.197/LearningandDevelopment/";
 
 
-baseURL = "http://23.101.22.93/CoreDigiPerformanceManagementAPI";
-public host = "https://23.101.22.93/DigiOfficeCoreHRAPI"
+//baseURL = "http://23.101.22.93/CoreDigiPerformanceManagementAPI";
+baseURL = "http://103.12.1.103/CoreDigiPerformanceManagementAPI";
+// public host = "https://23.101.22.93/DigiOfficeCoreHRAPI"
+public host = "https://103.12.1.103/DigiOfficeCoreHRAPI"
+
 public host1=" https://asticom.digiofficeapp.com/SupportAPI/"
 public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
 
