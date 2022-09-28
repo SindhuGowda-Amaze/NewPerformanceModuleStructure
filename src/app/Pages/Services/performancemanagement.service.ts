@@ -479,6 +479,10 @@ public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
    return this.http.post<any[]>(APIURL, json);
  }
 
+ public UpdatePipEmployeeSubmit(ID: any) {
+  return this.http.get<any[]>(
+    this.host1 + "/Master/UpdatePipEmployeeSubmit?ID=" + ID);
+}
 
 public GetPiPActionItemsForStaff() {
 

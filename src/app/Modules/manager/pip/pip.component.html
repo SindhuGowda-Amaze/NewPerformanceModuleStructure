@@ -137,23 +137,25 @@
                             </button>
                             <!-- *ngIf="details.employeePIPSubmittedDate!=null" -->
 
-                            <button class=" btn-primary editable-table-button btn-xs" style="margin: 5px;"   
-                            data-toggle="modal" *ngIf="details.employeePIPSubmittedDate!=null && details.pipStatus=='Manager Reviewd' && (roleid=='3'||roleid=='4')"
-                            data-target="#viewMangercomments" (click)="ViewScores(details)">View Manager Comments
-                        </button>
+                            <button class=" btn-primary editable-table-button btn-xs" style="margin: 5px;"
+                                data-toggle="modal"
+                                *ngIf="details.employeePIPSubmittedDate!=null && details.pipStatus=='Manager Reviewd' && (roleid=='3'||roleid=='4')"
+                                data-target="#viewMangercomments" (click)="ViewScores(details)">View Manager Comments
+                            </button>
                         </td>
-                        <td >
-                            <button class=" btn-primary editable-table-button btn-xs" style="margin: 5px;"*ngIf="roleid=='4'"
-                                [routerLink]="['/manager/AddEmployeetoPip',details.staffid]">Add to PIP
+                        <td>
+                            <button class=" btn-primary editable-table-button btn-xs" style="margin: 5px;"
+                                *ngIf="roleid=='4'" [routerLink]="['/manager/AddEmployeetoPip',details.staffid]">Add to
+                                PIP
                             </button>
                             <!-- <button class=" btn-primary editable-table-button btn-xs" style="margin: 5px;"
                             (click)="InsertPIP()">Add to PIP
                         </button> -->
-                          
+
                             <button class=" btn-primary editable-table-button btn-xs" style="margin: 5px;"
-                            *ngIf="roleid=='4' && details.pipStatus=='Employee Submitted'" data-toggle="modal" data-target="#exampleModal4"
-                            (click)="getpipActionID(details)">Add Comments
-                        </button>
+                                *ngIf="roleid=='4' && details.pipStatus=='Employee Submitted'" data-toggle="modal"
+                                data-target="#exampleModal4" (click)="getpipActionID(details)">Add Comments
+                            </button>
 
                             <button class=" btn-primary editable-table-button btn-xs" style="margin: 5px;"
                                 *ngIf="roleid=='3'" data-toggle="modal" data-target="#exampleModal"
@@ -180,7 +182,19 @@
         </div>
     </div>
 
+    <div class="row" *ngIf="roleid=='2'">
+        <div class="col-lg-10"></div>
+        <div class="col-lg-2">
 
+            <button type="button" class="btn btn-primary" *ngIf="showbtn && EmployeePIPSubmittedDate==null"
+                (click)="UpdatePipEmployeeSubmit()">Submit
+                PIP Action</button>
+            <p *ngIf="showbtn && EmployeePIPSubmittedDate!=null" style="color:green">PIP Submitted!!</p>
+            <button type="button" *ngIf="!showbtn" class="btn btn-primary" disabled>Submit
+                PIP</button>
+        </div>
+    </div>
+    <br>
     <div class="row" *ngIf="roleid=='2'">
         <div class="col-lg-12">
             <table class="table" id="download">

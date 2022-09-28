@@ -395,7 +395,7 @@
 
                             <img *ngIf="SelfAttachmentType=='video'"  width="220" height="250" border="0" align="center" class="image" src="assets/Images/youtube.png">&nbsp;&nbsp;
     
-                            <img *ngIf="SelfAttachmentType=='Pdf'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/pdf.png">&nbsp;&nbsp;
+                            <img *ngIf="SelfAttachmentType=='Pdf'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/pdf.jpg">&nbsp;&nbsp;
     
                             <img *ngIf="SelfAttachmentType=='Image'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/image.png">&nbsp;&nbsp;
     
@@ -439,7 +439,7 @@
 
                             <img *ngIf="ManagerAttachmentType=='video'"  width="220" height="250" border="0" align="center" class="image" src="assets/Images/youtube.png">&nbsp;&nbsp;
     
-                            <img *ngIf="ManagerAttachmentType=='Pdf'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/pdf.png">&nbsp;&nbsp;
+                            <img *ngIf="ManagerAttachmentType=='Pdf'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/pdf.jpg">&nbsp;&nbsp;
     
                             <img *ngIf="ManagerAttachmentType=='Image'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/image.png">&nbsp;&nbsp;
     
@@ -484,7 +484,7 @@
 
                             <img *ngIf="SbuAttachmentType=='video'"  width="220" height="250" border="0" align="center" class="image" src="assets/Images/youtube.png">&nbsp;&nbsp;
     
-                            <img *ngIf="SbuAttachmentType=='Pdf'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/pdf.png">&nbsp;&nbsp;
+                            <img *ngIf="SbuAttachmentType=='Pdf'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/pdf.jpg">&nbsp;&nbsp;
     
                             <img *ngIf="SbuAttachmentType=='Image'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/image.png">&nbsp;&nbsp;
     
@@ -523,6 +523,24 @@
                         <p *ngIf="hrattachment==null">No Attachments</p>
                     </div>
                     <div class="col-lg-3">
+                        <a href="{{hrattachment}}" target="blank">
+                            
+                            <img *ngIf="SbuAttachmentType=='Document'"  width="220" height="250" border="0" align="center" src="assets/Images/word.png"/>
+
+                            <img *ngIf="SbuAttachmentType=='video'"  width="220" height="250" border="0" align="center" class="image" src="assets/Images/youtube.png">&nbsp;&nbsp;
+    
+                            <img *ngIf="SbuAttachmentType=='Pdf'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/pdf.jpg">&nbsp;&nbsp;
+    
+                            <img *ngIf="SbuAttachmentType=='Image'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/image.png">&nbsp;&nbsp;
+    
+                            <!-- <img *ngIf="SelfAttachmentType=='Document'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/files.png">&nbsp;&nbsp; -->
+                        
+                        </a>
+
+
+
+
+
                         <img src="{{hrattachment}}" style="width:400px;">
                         <!-- <img src="http://103.133.214.197/digiofficeapi\Images\ProjectAttachments\AmazeLogo-20220214160917-20220228163117.jpg"> -->
                     </div>
