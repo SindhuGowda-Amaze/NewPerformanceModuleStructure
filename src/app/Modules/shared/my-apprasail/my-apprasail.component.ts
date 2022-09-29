@@ -66,7 +66,7 @@ export class MyApprasailComponent implements OnInit {
     this.GetAppraisalCycle()
     this.GetKeyResultArea();
     this.GetEmployeeGoals();
-
+this.GetStaffKraDetailsEmployee();
     this.Apprisalcycle = ""
     this.kratypeid = ""
     this.kraid = ""
@@ -259,8 +259,65 @@ export class MyApprasailComponent implements OnInit {
 
   }
 
-
+  StaffkraEmp:any;
   //Method to Displaying the Data from GetEmployeeKraMap Table//
+
+  public GetStaffKraDetailsEmployee() {
+    debugger
+    this.PerformanceManagementService.GetEmployeeKPI().subscribe({
+        next: data => {
+          debugger
+          this.StaffkraEmp = data
+          // this.StaffkraEmp = data.filter(x => x.staffName == details.staffID);
+          this.count = this.StaffkraEmp.length;
+          console.log("this.StaffkraEmp",this.StaffkraEmp)
+        }, error: (err) => {
+          Swal.fire('Issue in Getting EmployeeKraMap');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+
+  } 
+
+  EmplGoalsList:any;
+  goalID:any;
+  
+  public GetEmployeeGoalList(details:any) {
+    this.goalID=details.id
+    debugger
+    this.PerformanceManagementService.GetEmployeeKPI().subscribe({
+        next: data => {
+          debugger
+          this.StaffkraEmp = data
+          this.EmplGoalsList = data.filter(x=>x.goalID== this.goalID)
+          // this.StaffkraEmp = data.filter(x => x.staffName == details.staffID);
+          this.count = this.StaffkraEmp.length;
+          console.log("this.StaffkraEmp",this.StaffkraEmp)
+        }, error: (err) => {
+          Swal.fire('Issue in Getting EmployeeKraMap');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+
+  } 
 
   public GetStaffKraDetails(details: any) {
     debugger
@@ -270,11 +327,11 @@ export class MyApprasailComponent implements OnInit {
       .subscribe({
         next: data => {
           debugger
-          this.Staffkra = data.filter(x => x.staffName == details.staffid);
+          this.Staffkra = data.filter(x => x.staffName == details.staffID);
           this.count = this.Staffkra.length;
+          console.log("this.Staffkra",this.Staffkra)
         }, error: (err) => {
           Swal.fire('Issue in Getting EmployeeKraMap');
-          // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,
             'ErrorMessage': err.error.message
@@ -547,7 +604,8 @@ export class MyApprasailComponent implements OnInit {
               'KraTypeID': this.kratypeid
             };
             debugger
-            this.keyresultArray.push(json)
+            this.keyresultArray.push(json);
+            
 
           }
         })

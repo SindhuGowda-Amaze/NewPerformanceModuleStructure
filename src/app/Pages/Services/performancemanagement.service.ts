@@ -576,4 +576,10 @@ public InsertEmployeeKPI(data: any) {
   return this.http.post(this.url, data);
 }
 
+public GetEmployeeKPI() {
+  return this.http.get<any[]>(
+    this.baseURL + "/Master/GetEmployeeKPI"
+  );
+}
+
 }

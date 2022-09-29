@@ -93,7 +93,7 @@
                                         <button
                                             *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
                                             class=" btn btn-primary editable-table-button btn-xs Add"
-                                            data-toggle="modal" (click)="GetStaffKraDetails(details)"
+                                            data-toggle="modal" (click)="GetStaffKraDetailsEmployee()"
                                             data-target="#viewgoal">View Goals</button>
                                         <!-- 
                                         <button
@@ -160,7 +160,7 @@
                                         <button
                                             *ngIf="details.managerAcceptgoal==null"
                                             class=" btn btn-primary editable-table-button btn-xs Add"
-                                            data-toggle="modal" (click)="GetStaffKraDetails(details)"
+                                            data-toggle="modal" (click)="GetEmployeeGoalList(details)"
                                             data-target="#viewgoal">View Goals</button>
                                         <button
                                             *ngIf="details.managerAcceptgoal==null"
@@ -223,7 +223,7 @@
                                         <button
                                             *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
                                             class=" btn btn-primary editable-table-button btn-xs Add"
-                                            data-toggle="modal" (click)="GetStaffKraDetails(details)"
+                                            data-toggle="modal" (click)="GetStaffKraDetailsEmployee()"
                                             data-target="#viewgoal">View Goals</button>
 
                                         <button
@@ -502,10 +502,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let details of Staffkra index as i">
+                                <tr *ngFor="let details of EmplGoalsList index as i">
                                     <td>{{i+1}}</td>
-                                    <td>{{details.kraTypeID}}</td>
-                                    <td>{{details.kraName}}</td>
+                                    <td>{{details.type}}</td>
+                                    <td>{{details.goalName}}</td>
                                     <td>{{details.kpiName}}</td>
 
                                 </tr>
