@@ -557,5 +557,23 @@ public DeleteEmployeeKraMap(ID: any) {
     this.baseURL + "/Master/DeleteEmployeeKraMap?ID=" + ID);
 }
 
+public InsertEmployeeGoalMaster(data: any) {
+  debugger;
+  this.url = this.baseURL + '/Master/InsertEmployeeGoalMaster';
+  return this.http.post(this.url, data);
+
+}
+
+public GetEmployeeGoalMaster() {
+  return this.http.get<any[]>(
+    this.baseURL + "/Master/GetEmployeeGoalMaster"
+  );
+}
+
+public InsertEmployeeKPI(data: any) {
+  debugger;
+  this.url = this.baseURL + '/Master/InsertEmployeeKPI';
+  return this.http.post(this.url, data);
+}
 
 }

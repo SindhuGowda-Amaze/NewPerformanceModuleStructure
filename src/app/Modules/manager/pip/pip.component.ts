@@ -98,7 +98,6 @@ export class PipComponent implements OnInit {
     //       this.department=this.StaffAppraisalList[0].departmentName
     //       this.rate=this.StaffAppraisalList[0].finalrating
     //       this.StaffAppraisalList = temp
-
     //   }
     // )
   }

@@ -17,6 +17,7 @@ import Swal from 'sweetalert2';
 })
 export class ManagerratingdashComponent implements OnInit {
   Approver1: any;
+  Employeegoal: any;
   constructor(private PerformanceManagementService: PerformancemanagementService) { }
   //variable Declaration 
   stafflist: any;
@@ -131,6 +132,31 @@ export class ManagerratingdashComponent implements OnInit {
         )
       }
     })
+
+    this.PerformanceManagementService.GetEmployeeGoalMaster()
+    .subscribe({
+      next: data => {
+        debugger
+        this.Employeegoal = data.filter(x => x.managerAcceptgoal ==null);
+        this.EmployeeKradashAccepted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate == null && x.employeeacceptgoal == 1);
+        this.EmployeeKradashSubmitted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate != null);
+        this.EmployeeKradashCompleted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate != null && x.finalize == 1);
+      }, error: (err) => {
+        Swal.fire('Issue in Getting ConductappraisalStaffList');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+    
+
   }
 
   //Method to get AppraisalCycle from AppraisalCycle table

@@ -7,6 +7,7 @@
         <div class="col-lg-1">
             <br>
             <p class="count">Count:{{EmployeeKradash.length}}</p>
+
         </div>
     </div>
     <br>
@@ -85,20 +86,15 @@
                                     <td>{{details.employeeSubmissionLastDate|date}}</td>
                                     <td>Manager</td>
                                     <td>
-
                                         <button
                                             *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
                                             class=" btn btn-primary editable-table-button btn-xs Add"
                                             (click)="accept(details.kraid)">Accept</button>
-
                                         <button
                                             *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
                                             class=" btn btn-primary editable-table-button btn-xs Add"
                                             data-toggle="modal" (click)="GetStaffKraDetails(details)"
                                             data-target="#viewgoal">View Goals</button>
-
-
-
                                         <!-- 
                                         <button
                                             [routerLink]="['/shared/SelfRatingPagenew', details.id,details.appraiselID ]"
@@ -131,6 +127,55 @@
                                 </tr>
                             </tbody>
                         </table>
+
+                        <table class="table">
+                            <thead>
+                                <tr *ngIf="(Employeegoal | filter: search).length > 0; else noResults">
+                                    <th *ngIf="roleid==2">Appraisal Cycle </th>
+                                    <!-- <th *ngIf="roleid==3 ">Employee Name</th> -->
+                                    <th *ngIf="roleid==3">Position</th>
+                                    <th>Appraisal Cycle Start Date </th>
+                                    <th>Appraisal Cycle End Date </th>
+                                    <th>Goal</th>
+                                    <!-- <th *ngIf="roleid==2">Appraisal Cycle Type</th> -->
+                                    <!-- <th>Employee Submission Last Date </th> -->
+                                    <th>Assigned By</th>
+                                    <th>Action</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    *ngFor="let details of Employeegoal |paginate: { itemsPerPage: count1, currentPage: p} |filter:search">
+                                    <td *ngIf="roleid==2">{{details.appraisalCycleName}}</td>
+                                    <!-- <td *ngIf="roleid==3">{{details.name}}</td> -->
+                                    <td *ngIf="roleid==3">{{details.departmentName}}</td>
+                                    <td>{{details.cycleStartDate|date}}</td>
+                                    <td>{{details.cycleEndDate|date}}</td>
+                                    <td>{{details.goalName}}</td>
+                                    <!-- <td *ngIf="roleid==2">{{details.frequencyName}}</td> -->
+                                    <!-- <td>{{details.employeeSubmissionLastDate|date}}</td> -->
+                                    <td>Employee</td>
+                                    <td>
+                                        <button
+                                            *ngIf="details.managerAcceptgoal==null"
+                                            class=" btn btn-primary editable-table-button btn-xs Add"
+                                            data-toggle="modal" (click)="GetStaffKraDetails(details)"
+                                            data-target="#viewgoal">View Goals</button>
+                                        <button
+                                            *ngIf="details.managerAcceptgoal==null"
+                                            class=" btn btn-primary editable-table-button btn-xs Add"
+                                            (click)="GetStaffKraDetails(details)">Send Request</button>
+                                    </td>
+                                    <td>
+                                        <p *ngIf="details.managerAcceptgoal==null">
+                                            Pending</p>
+                                        <p *ngIf="details.managerAcceptgoal!=null">Accepted</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
                         <!-- <span *ngIf="EmployeeKradash.length==0">No data Found</span> -->
                         <ng-template #noResults>
 
@@ -378,7 +423,7 @@
                                         <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal==1">
                                             Goals Accepted</p>
                                         <p *ngIf="details.employeeSubmittedDate!=null">Submitted</p>
-                                        <p *ngIf="details.finalize==1" ><b style="color: dark green;">Finalized</b></p>
+                                        <p *ngIf="details.finalize==1"><b style="color: dark green;">Finalized</b></p>
                                     </td>
                                 </tr>
                             </tbody>
@@ -479,28 +524,30 @@
 <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <form #Ekramap="ngForm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Goals</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body scroll">
-                    <div>
 
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Goals</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body scroll">
+                <div>
+                    <form #Ekramap="ngForm">
                         <div class="row column">
-                            <div class="col-lg-4">
+                            <div class="col-lg-3">
                                 <p>Appraisal Cycle <span style="color:red">*</span> </p>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-3">
                                 <p>Goal Type <span style="color:red">*</span> </p>
                             </div>
-
+                            <div class="col-lg-6">
+                                <p>Goal <span style="color:red">*</span></p>
+                            </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-4">
+                            <div class="col-lg-3">
                                 <select class="form-control" id="Apprisalcycle" (change)="GetApprisalcycle($event)"
                                     name="Apprisalcycle" required [(ngModel)]="Apprisalcycle">
                                     <option value="">Select Cycle</option>
@@ -509,81 +556,89 @@
                                     </option>
                                 </select>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-3">
                                 <select class="form-control" (change)="getkratypeid($event)" [(ngModel)]="kratypeid"
                                     name="kratypeid" required>
                                     <option value="">Select Goal Type</option>
-                                    <option *ngFor="let details of kratypelist" value="{{details.kraType}}">
+                                    <option *ngFor="let details of kratypelist" value="{{details.id}}">
                                         {{details.kraType}}
                                     </option>
                                 </select>
                             </div>
-
+                            <div class="col-lg-6">
+                                <textarea class="form-control search" type="text" placeholder="Goal.." id="kraname"
+                                    required name="kraname" [(ngModel)]="kraname" rows="4"></textarea>
+                            </div>
                         </div><br>
-                        <div class="row column">
-
-                            <div class="col-lg-6">
-                                <p>Goal <span style="color:red">*</span></p>
-                            </div>
-                            <div class="col-lg-6">
-                                <p>KPI <span style="color:red">*</span></p>
-                            </div>
-                        </div>
-                        <div class="row">
-
-                            <div class="col-lg-6">
-                                <textarea class="form-control search" type="text" placeholder="Goal.." id="kraname" name="kraname"
-                                [(ngModel)]="kraname"   rows="4"></textarea>
-                            </div>
-
-                            <div class="col-lg-6">
-                                <textarea class="form-control search" type="text" placeholder="KPI.." id="kpiName" name="kpiName"
-                                [(ngModel)]="kpiName" (click)="getkpi($event)"
-                                    rows="4"></textarea>
-                            </div>
-
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-8"></div>
-                        <div class="col-lg-2">
-                            <button class="form-control Add" (click)="SaveDetails()"
-                                [disabled]="Ekramap.form.invalid">ADD</button>
-                        </div>
-                        <div class="col-lg-2">
-                            <button class="form-control Add"> Cancel</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="row" *ngIf="tablecount==1">
-                    <div class="col-lg-12">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Goal Type</th>
-                                    <th>Goal Name</th>
-                                    <th>KPI </th>
-                                </tr>
-                                <tr *ngFor="let details of keyresultArray">
-                                    <td>{{details.KraTypeID}}</td>
-                                    <td>{{details.kraname}}</td>
-                                    <td>{{details.kpiname}}</td>
-                                </tr>
-                            </thead>
-                        </table>
-                        <br>
                         <div class="row">
                             <div class="col-lg-10"></div>
                             <div class="col-lg-2">
-                                <button class="form-control cancel" (click)="InsertDetails()">Save</button>
+                                <button class="form-control cancel" (click)="saveemloyeegoals()"
+                                    [disabled]="Ekramap.form.invalid">Save Goals</button>
                             </div>
                         </div>
+                    </form>
+                    <hr>
+
+                    <p><b>Add KPI for the goals</b></p>
+                    <div class="row column">
+                        <div class="col-lg-3">
+                            <p>Goal <span style="color:red">*</span></p>
+                        </div>
+                        <div class="col-lg-3">
+                            <p>KPI <span style="color:red">*</span></p>
+                        </div>
                     </div>
-                    <br>
-    
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <select class="form-control columnname" [(ngModel)]="kraid" name="kraid" required>
+                                <option value="0">Select Goal</option>
+                                <option *ngFor="let details of employeeGoalList" value="{{details.id}}">
+                                    {{details.goalName}}</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6">
+                            <textarea class="form-control search" type="text" placeholder="KPI.." id="kpiName"
+                                name="kpiName" [(ngModel)]="kpiName" (click)="getkpi($event)" rows="4"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-8"></div>
+                    <div class="col-lg-2">
+                        <button class="form-control Add" (click)="SaveDetails()">ADD</button>
+                    </div>
+                    <div class="col-lg-2">
+                        <button class="form-control Add"> Cancel</button>
+                    </div>
                 </div>
             </div>
-           
-        </form>
+            <div class="row" *ngIf="tablecount==1">
+                <div class="col-lg-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <!-- <th>Goal Type</th> -->
+                                <th>Goal Name</th>
+                                <th>KPI </th>
+                            </tr>
+                            <tr *ngFor="let details of keyresultArray">
+                                <!-- <td>{{details.KraTypeID}}</td> -->
+                                <td>{{details.kraid}}</td>
+                                <td>{{details.kpiName}}</td>
+                            </tr>
+                        </thead>
+                    </table>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-10"></div>
+                        <div class="col-lg-2">
+                            <button class="form-control cancel" (click)="InsertDetails()">Save</button>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
     </div>
