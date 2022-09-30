@@ -123,7 +123,7 @@
                                     <p *ngIf="details.bellcurveScore!=null">{{details.bellcurveScore}}</p>
                                     <p *ngIf="details.hrSubmittedDate==null">NA</p>
                                 </td>
-                                <td>Manager</td>
+                                <td>{{details.assignedBy}}</td>
                                 <td>
                                     <p *ngIf="details.employeeSubmittedDate==null" style="color: red;">Employee pending
                                     </p>
@@ -190,7 +190,7 @@
                                     <p *ngIf="details.bellcurveScore!=null">{{details.bellcurveScore}}</p>
                                     <p *ngIf="details.hrSubmittedDate==null">NA</p>
                                 </td>
-                                <td>Manager</td>
+                                <td>{{details.assignedBy}}</td>
                                 <td>
                                     <p *ngIf="details.employeeSubmittedDate==null" style="color: red;">Employee pending
                                     </p>

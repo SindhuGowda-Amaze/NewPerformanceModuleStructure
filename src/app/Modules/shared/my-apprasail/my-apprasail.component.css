@@ -16,7 +16,16 @@
     color:white;
     border-radius: 5px;
     border:none;
+   
+    margin: 2px;
+  }
 
+  .AddCancel{
+    background-color: #3247D5;
+    color:white;
+    border-radius: 5px;
+    border:none;
+    width:0%;
     margin: 2px;
   }
   
@@ -95,5 +104,18 @@
   
   .tab-slider--body {
     margin-bottom: 20px;
+  }
+
+  .editcancel {
+    width: 100%;
+    border: none;
+    background: #3247D5;
+    text-align: center;
+    border-radius: 6px;
+    color: white;
+    margin-top: 6px;
+    padding: 5px;
+    margin-bottom: 5px;
+    height:70%;
   }
   

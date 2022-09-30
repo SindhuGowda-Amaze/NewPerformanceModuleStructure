@@ -85,7 +85,7 @@ export class MyApprasailComponent implements OnInit {
     this.GetStaffKraDetailsEmployee();
     this.Apprisalcycle = ""
     this.kratypeid = ""
-    this.kraid = ""
+    this.kraid = "0"
     this.currentUrl = window.location.href;
     this.Department = "";
     this.RoleType = "";
@@ -247,7 +247,6 @@ export class MyApprasailComponent implements OnInit {
         }
       })
   }
-
 
   //Method to Displaying the Data from GetEmployeeKraMap Table//
 
@@ -572,6 +571,7 @@ export class MyApprasailComponent implements OnInit {
               'KraTypeID': this.kratypeid
             };
             debugger
+
             this.keyresultArray.push(json);
           }
         })
@@ -823,13 +823,13 @@ export class MyApprasailComponent implements OnInit {
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.value == true) {
-        this.PerformanceManagementService.DeleteEmployeeKraMap(ID).subscribe({
+        this.PerformanceManagementService.DeleteEmployeeGoalMaster(ID).subscribe({
           next: data => {
             debugger
             Swal.fire('Deleted Successfully')
-            this.GetKeyResultArea();
+            // this.GetKeyResultArea();
           }, error: (err: { error: { message: any; }; }) => {
-            Swal.fire('Issue in Deleting KeyResultArea');
+            Swal.fire('Issue in Deleting Employee Goal Master');
             // Insert error in Db Here//
             var obj = {
               'PageName': this.currentUrl,
@@ -845,11 +845,8 @@ export class MyApprasailComponent implements OnInit {
       }
     })
   }
+
+  cancelAppraisal() {
+    location.href = "#/shared/MyAppraisal";
+  }
 }
-
-
-
-
-
-
-
