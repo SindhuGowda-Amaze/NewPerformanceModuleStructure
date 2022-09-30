@@ -310,7 +310,7 @@ export class ManagerratingdashComponent implements OnInit {
               this.Approver1 = temp[0].supervisor;
             });
             
-            this.InsertNotification();
+            this.InsertNotification1();
             this.ngOnInit();
           }, error: (err) => {
             Swal.fire('Issue in Accept Goal');
@@ -330,6 +330,28 @@ export class ManagerratingdashComponent implements OnInit {
   }
 
   
+  public InsertNotification1() {
+    debugger
+
+    var entity = {
+      'Date': new Date(),
+      'Event': 'Apprisal Request',
+      'FromUser': 'Admin',
+      'ToUser': sessionStorage.getItem('EmaployedID'),
+      'Message':"Your Employee" + this.loginName+'Accepted Goal!!',
+      'Photo': 'Null',
+      'Building': 'Dynamics 1',
+      'UserID': this.Approver1,
+      'NotificationTypeID': 17,
+      'VendorID': 0
+
+
+    }
+    this.PerformanceManagementService.InsertNotification(entity).subscribe(data => {
+      if (data != 0) {
+      }
+    })
+  }
 
   public InsertNotification() {
     debugger
@@ -350,6 +372,43 @@ export class ManagerratingdashComponent implements OnInit {
     }
     this.PerformanceManagementService.InsertNotification(entity).subscribe(data => {
       if (data != 0) {
+      }
+    })
+  }
+
+
+  public Mangeraccept(id: any) {
+    debugger
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You Want to Accept it.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, Accept it!',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.value == true) {
+        this.PerformanceManagementService.UpdateManagerAcceptGoal(id)
+          .subscribe({
+            next: data => {
+              debugger
+              Swal.fire('Accepted Successfully')
+              this.InsertNotification();
+              this.ngOnInit();
+            }, error: (err) => {
+              Swal.fire('Issue in Accept Goal');
+              // Insert error in Db Here//
+              var obj = {
+                'PageName': this.currentUrl,
+                'ErrorMessage': err.error.message
+              }
+              this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+                data => {
+                  debugger
+                },
+              )
+            }
+          })
       }
     })
   }

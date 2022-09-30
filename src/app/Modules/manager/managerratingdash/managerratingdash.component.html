@@ -101,6 +101,17 @@
                                         Accepted</p>
                                     <p *ngIf="details.employeeSubmittedDate!=null">Appraisal Submitted By Employee</p>
                                     <p *ngIf="details.managerSubmittedDate!=null">Appraisal Submitted By Manager</p>
+
+
+                                    <button
+                                    *ngIf="details.assignedBy=='Employee'"
+                                    class=" btn btn-primary editable-table-button btn-xs Add"
+                                    (click)="Mangeraccept(details.kraid)">Accept</button>
+                                <button
+                                    *ngIf="details.assignedBy=='Employee'"
+                                    class=" btn btn-primary editable-table-button btn-xs Add"
+                                    data-toggle="modal"
+                                    data-target="#viewgoal">View Goals</button>
                                 </td>
                                 <!-- <td>
                                     <button
