@@ -82,7 +82,6 @@ export class MyApprasailComponent implements OnInit {
     this.GetAppraisalCycle()
     this.GetKeyResultArea();
     this.GetEmployeeGoals();
-    this.GetStaffKraDetailsEmployee();
     this.Apprisalcycle = ""
     this.kratypeid = ""
     this.kraid = "0"
@@ -257,31 +256,7 @@ export class MyApprasailComponent implements OnInit {
 
   //Method to Displaying the Data from GetEmployeeKraMap Table//
 
-  public GetStaffKraDetailsEmployee() {
-    debugger
-    this.PerformanceManagementService.GetEmployeeKPI().subscribe({
-      next: data => {
-        debugger
-        this.StaffkraEmp = data
-        // this.StaffkraEmp = data.filter(x => x.staffName == details.staffID);
-        this.count = this.StaffkraEmp.length;
-        console.log("this.StaffkraEmp", this.StaffkraEmp)
-      }, error: (err) => {
-        Swal.fire('Issue in Getting EmployeeKraMap');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
-
-  }
+ 
 
   public GetEmployeeGoalList(details: any) {
     this.goalID = details.id
@@ -289,11 +264,7 @@ export class MyApprasailComponent implements OnInit {
     this.PerformanceManagementService.GetEmployeeKPI().subscribe({
       next: data => {
         debugger
-        this.StaffkraEmp = data
         this.EmplGoalsList = data.filter(x => x.goalID == this.goalID)
-        // this.StaffkraEmp = data.filter(x => x.staffName == details.staffID);
-        this.count = this.StaffkraEmp.length;
-        console.log("this.StaffkraEmp", this.StaffkraEmp)
       }, error: (err) => {
         Swal.fire('Issue in Getting EmployeeKraMap');
         // Insert error in Db Here//
@@ -318,7 +289,32 @@ export class MyApprasailComponent implements OnInit {
           debugger
           this.Staffkra = data.filter(x => x.staffName == details.staffID);
           this.count = this.Staffkra.length;
-          console.log("this.Staffkra", this.Staffkra)
+        }, error: (err) => {
+          Swal.fire('Issue in Getting EmployeeKraMap');
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+  }
+
+  public GetManagerKraDetails(details: any) {
+    debugger
+    this.PerformanceManagementService.GetEmployeeKraMap()
+      .subscribe({
+        next: data => {
+          debugger
+          // this.Staffkra = data.filter(x => x.staffName == details.staffID);
+          // this.Staffkra = data.filter(x => x.supervisor ==  sessionStorage.getItem('EmaployedID')  && x.managerRequest == 1);
+          this.Staffkra = data.filter(x => x.supervisor ==  sessionStorage.getItem('EmaployedID'));
+          this.count = this.Staffkra.length;
+          console.log(this.Staffkra)
         }, error: (err) => {
           Swal.fire('Issue in Getting EmployeeKraMap');
           var obj = {

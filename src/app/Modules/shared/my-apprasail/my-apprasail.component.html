@@ -101,7 +101,7 @@
                                             *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
                                             class=" btn btn-primary editable-table-button btn-xs Add"
                                             data-toggle="modal"
-                                            data-target="#viewManagergoal">View Goals</button>
+                                            data-target="#viewManagergoal" (click)="GetManagerKraDetails(details)">View Goals</button>
                                         <!-- 
                                         <button
                                             [routerLink]="['/shared/SelfRatingPagenew', details.id,details.appraiselID ]"
@@ -238,7 +238,7 @@
                                         <button
                                             *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
                                             class=" btn btn-primary editable-table-button btn-xs Add"
-                                            data-toggle="modal" (click)="GetStaffKraDetailsEmployee()"
+                                            data-toggle="modal" (click)="GetStaffKraDetails(details)"
                                             data-target="#viewgoal">View Goals</button>
 
                                         <button

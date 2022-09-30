@@ -115,8 +115,6 @@ export class ManagerratingdashComponent implements OnInit {
         this.EmployeeKradashAccepted = data.filter(x => x.approver1 == sessionStorage.getItem('EmaployedID') && x.selfScores != null && x.employeeSubmittedDate == null && x.managerSubmittedDate==null && x.employeeacceptgoal==1);
         this.EmployeeKradashSubmitted = data.filter(x => x.approver1 == sessionStorage.getItem('EmaployedID') && x.selfScores != null && x.employeeSubmittedDate != null  &&x.finalize!=1);
         this.EmployeeKradashCompleted = data.filter(x => x.approver1 == sessionStorage.getItem('EmaployedID') && x.selfScores != null && x.employeeSubmittedDate != null && x.managerSubmittedDate!=null  &&x.finalize==1);
-
-     
         this.count = this.EmployeeKradash.length;
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting ConductappraisalStaffList');
