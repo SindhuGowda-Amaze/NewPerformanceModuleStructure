@@ -12,7 +12,7 @@ export class PerformancemanagementService {
 //  public host1="https://support.amazeone.co/SupportAPI/";
 //  public hoet2 = "http://103.133.214.197/LearningandDevelopment/";
 
-// baseURL = "http://103.12.1.103/CoreDigiPerformanceManagementAPI";
+// public baseURL = "http://103.12.1.103/CoreDigiPerformanceManagementAPI";
 // public host = "http://103.12.1.103/DigiOfficeCoreHRAPI"
 
 
@@ -244,6 +244,12 @@ public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
    this.url = this.baseURL + '/Master/InsertEmployeeKraMap';
    return this.http.post(this.url, data);
  }
+
+ public InsertEmployeeGoalRequest(data: any) {
+  debugger;
+  this.url = this.baseURL + '/Master/InsertEmployeeGoalRequest';
+  return this.http.post(this.url, data);
+}
 
  public GetKRAByStaffID(id: any) {
    debugger;

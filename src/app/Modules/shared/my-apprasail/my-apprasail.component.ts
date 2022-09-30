@@ -54,6 +54,22 @@ export class MyApprasailComponent implements OnInit {
   Departmentid: any
   employeeGoalList: any;
   Employeegoal: any;
+  StaffkraEmp: any;
+  EmplGoalsList: any;
+  goalID: any;
+  kralist: any;
+  Apprisalcyclelist: any
+  goalSettingDate: any
+  appraisalid: any
+  AppraisalClose: any
+  selectedstaff: any
+  selectedstaffapprover1: any
+  Approver2: any
+  Approver3: any
+  dropdownList1: any
+  kraid: any;
+  employeeSubmissionDate: any;
+
   constructor(private PerformanceManagementService: PerformancemanagementService) { }
   ngOnInit(): void {
 
@@ -74,19 +90,13 @@ export class MyApprasailComponent implements OnInit {
     this.Department = "";
     this.RoleType = "";
     this.roleid = sessionStorage.getItem('roleid');
-
     this.loginName = sessionStorage.getItem('loginName');
-
-
   }
-
 
   //Method to Displaying the Data & Count from GetMyDetails Table//
 
   public GetMyDetails() {
-
     this.PerformanceManagementService.GetMyDetails()
-
       .subscribe({
         next: data => {
           debugger
@@ -107,16 +117,12 @@ export class MyApprasailComponent implements OnInit {
           )
         }
       })
-
   }
 
   //Method to Displaying the Data from GetDepartment Table//
 
   public GetDepartment() {
-
     this.PerformanceManagementService.GetDepartment()
-
-
       .subscribe({
         next: data => {
           debugger
@@ -135,10 +141,8 @@ export class MyApprasailComponent implements OnInit {
           )
         }
       })
-
-
   }
-  EmployeeKradash2: any
+
   //Method to Displaying the Data from GetConductappraisalStaffList Table//
 
   public GetConductappraisalStaffList() {
@@ -146,7 +150,7 @@ export class MyApprasailComponent implements OnInit {
       .subscribe({
         next: data => {
           debugger
-          this.EmployeeKradash = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate == null && x.employeeacceptgoal != 1);
+          this.EmployeeKradash = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate == null && x.employeeacceptgoal ==null);
           this.EmployeeKradashAccepted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate == null && x.employeeacceptgoal == 1);
           this.EmployeeKradashSubmitted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate != null);
           this.EmployeeKradashCompleted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate != null && x.finalize == 1);
@@ -170,10 +174,7 @@ export class MyApprasailComponent implements OnInit {
         next: data => {
           debugger
           this.Employeegoal = data.filter(x => x.staffID == sessionStorage.getItem('EmaployedID') && x.managerAcceptgoal == null);
-          this.EmployeeKradashAccepted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate == null && x.employeeacceptgoal == 1);
-          this.EmployeeKradashSubmitted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate != null);
-          this.EmployeeKradashCompleted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate != null && x.finalize == 1);
-        }, error: (err) => {
+             }, error: (err) => {
           Swal.fire('Issue in Getting ConductappraisalStaffList');
           // Insert error in Db Here//
           var obj = {
@@ -187,12 +188,7 @@ export class MyApprasailComponent implements OnInit {
           )
         }
       })
-
-
-
-
   }
-
 
 
   public getRoleType(event: any) {
@@ -205,8 +201,6 @@ export class MyApprasailComponent implements OnInit {
   public FilterRoleType() {
     debugger
     this.PerformanceManagementService.GetMyDetails()
-
-
       .subscribe({
         next: data => {
           debugger
@@ -226,8 +220,6 @@ export class MyApprasailComponent implements OnInit {
           )
         }
       })
-
-
   }
 
   //Method to Displaying the Data from GetMyDetails Table//
@@ -235,7 +227,6 @@ export class MyApprasailComponent implements OnInit {
   public filterByDepartment() {
     debugger
     this.PerformanceManagementService.GetMyDetails()
-
       .subscribe({
         next: data => {
           debugger
@@ -255,11 +246,8 @@ export class MyApprasailComponent implements OnInit {
           )
         }
       })
-
-
   }
 
-  StaffkraEmp: any;
   //Method to Displaying the Data from GetEmployeeKraMap Table//
 
   public GetStaffKraDetailsEmployee() {
@@ -285,11 +273,7 @@ export class MyApprasailComponent implements OnInit {
         )
       }
     })
-
   }
-
-  EmplGoalsList: any;
-  goalID: any;
 
   public GetEmployeeGoalList(details: any) {
     this.goalID = details.id
@@ -316,14 +300,11 @@ export class MyApprasailComponent implements OnInit {
         )
       }
     })
-
   }
 
   public GetStaffKraDetails(details: any) {
     debugger
     this.PerformanceManagementService.GetEmployeeKraMap()
-
-
       .subscribe({
         next: data => {
           debugger
@@ -343,10 +324,7 @@ export class MyApprasailComponent implements OnInit {
           )
         }
       })
-
   }
-
-
 
 
   public accept(id: any) {
@@ -394,7 +372,6 @@ export class MyApprasailComponent implements OnInit {
 
   public InsertNotification() {
     debugger
-
     var entity = {
       'Date': new Date(),
       'Event': 'Apprisal Request',
@@ -415,12 +392,10 @@ export class MyApprasailComponent implements OnInit {
 
   public GetEmployeeKraMap() {
     this.PerformanceManagementService.GetKraMaster()
-
       .subscribe({
         next: data => {
           debugger
           this.kratypelist = data;
-
         }, error: (err: { error: { message: any; }; }) => {
           Swal.fire('Issue in Getting KraMasterb');
           // Insert error in Db Here//
@@ -436,7 +411,8 @@ export class MyApprasailComponent implements OnInit {
         }
       })
   }
-  kralist: any;
+
+
   public GetKeyResultArea() {
     this.PerformanceManagementService.GetKeyResultArea()
 
@@ -460,7 +436,7 @@ export class MyApprasailComponent implements OnInit {
         }
       })
   }
-  Apprisalcyclelist: any
+
   public GetAppraisalCycle() {
     this.PerformanceManagementService.GetAppraisalCycle().subscribe({
       next: data => {
@@ -488,15 +464,6 @@ export class MyApprasailComponent implements OnInit {
     })
 
   }
-  goalSettingDate: any
-  appraisalid: any
-  AppraisalClose: any
-  selectedstaff: any
-  selectedstaffapprover1: any
-  Approver2: any
-  Approver3: any
-  dropdownList1: any
-  kraid: any;
 
   public GetApprisalcycle(event: any) {
     debugger
@@ -606,10 +573,6 @@ export class MyApprasailComponent implements OnInit {
             debugger
 
             this.keyresultArray.push(json);
-            // this.kraid == "";
-            // this.kpiName == "";
-
-
           }
         })
     }
@@ -725,6 +688,128 @@ export class MyApprasailComponent implements OnInit {
         }
       })
 
+  }
+
+
+  goalID12: any;
+  approver1: any;
+  employeeKpiList: any;
+  empgoalID: any;
+  empkpiID: any;
+  empAppSdate: any;
+  empAppEdate: any;
+  empAppID: any;
+
+
+  public RequestManagerKRAMapping(details: any) {
+    this.goalID12 = details.id
+    debugger
+    this.PerformanceManagementService.GetEmployeeKPI()
+      .subscribe({
+        next: data => {
+          debugger
+          this.employeeKpiList = data.filter(x => x.staffID == sessionStorage.getItem('EmaployedID'));
+          this.empgoalID = this.employeeKpiList[0].goalID
+          this.empkpiID = this.employeeKpiList[0].id
+          this.empAppSdate = this.employeeKpiList[0].cycleStartDate
+          this.empAppEdate = this.employeeKpiList[0].cycleEndDate
+          this.empAppID = this.employeeKpiList[0].appraisalCycleID
+          this.employeeSubmissionDate = this.employeeKpiList[0].employeeSubmissionDate
+        }, error: (err) => {
+          Swal.fire('Issue in Getting MyDetails');
+          // Insert error in Db Here//
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
+
+    this.PerformanceManagementService.GetMyDetails().subscribe({
+      next: data => {
+        debugger
+        let temp: any = data.filter(x => x.id == sessionStorage.getItem('EmaployedID'));
+        this.approver1 = temp[0].supervisor;
+        //this.Approver1 = temp[0].supervisor;
+        this.Approver2 = 10422;
+        this.Approver3 = 49518;
+      }, error: (err) => {
+        Swal.fire('Issue in Getting MyDetails');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You want to Send Goal Request.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, Send it!',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.value == true) {
+
+        for (let i = 0; i < this.employeeKpiList.length; i++) {
+          if (this.employeeKpiList.length == 0) {
+            Swal.fire('Please Add Goals')
+          }
+          else {
+            var Entity = {
+              'StaffTypeID': 1,
+              'StaffName': sessionStorage.getItem('EmaployedID'),
+              'Approver1': this.approver1,
+              'Approver2': this.Approver2,
+              'Approver3': this.Approver3,
+              'AppraisalSubmitionDate': this.employeeSubmissionDate,
+              'CycleStartDate': this.empAppSdate,
+              'CycleEndDate': this.empAppEdate,
+              'KraID': this.empgoalID,
+              'kpiid': this.empkpiID,
+              'AppraiselID': this.empAppID
+            }
+            this.PerformanceManagementService.InsertEmployeeGoalRequest(Entity).subscribe({
+              next: data => {
+                debugger
+                if (data == 0) {
+                  Swal.fire("Already exist!!")
+                }
+              }, error: (err: { error: { message: any; }; }) => {
+                Swal.fire('Issue in Inserting EmployeeKraMap');
+                // Insert error in Db Here//
+                var obj = {
+                  'PageName': this.currentUrl,
+                  'ErrorMessage': err.error.message
+                }
+                this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+                  data => {
+                    debugger
+                  },
+                )
+              }
+            })
+          }
+          // }
+        }
+
+        // this.InsertNotification();
+        Swal.fire('Goal Request Sent Successfully.');
+        // location.href = "#/manager/EmployeeKraMappingdashboard";
+        // location.reload();
+      }
+    })
   }
 
   public cancel(ID: any) {

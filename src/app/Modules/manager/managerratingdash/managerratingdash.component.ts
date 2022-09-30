@@ -111,7 +111,7 @@ export class ManagerratingdashComponent implements OnInit {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
         debugger
-        this.EmployeeKradash = data.filter(x => x.approver1 == sessionStorage.getItem('EmaployedID') && x.selfScores == null && x.employeeSubmittedDate == null && x.managerSubmittedDate==null && x.employeeacceptgoal!=1);
+        this.EmployeeKradash = data.filter(x => x.approver1 == sessionStorage.getItem('EmaployedID') && x.selfScores == null && x.employeeSubmittedDate == null && x.managerSubmittedDate==null &&( x.employeeacceptgoal==null ||x.employeeacceptgoal==2));
         this.EmployeeKradashAccepted = data.filter(x => x.approver1 == sessionStorage.getItem('EmaployedID') && x.selfScores != null && x.employeeSubmittedDate == null && x.managerSubmittedDate==null && x.employeeacceptgoal==1);
         this.EmployeeKradashSubmitted = data.filter(x => x.approver1 == sessionStorage.getItem('EmaployedID') && x.selfScores != null && x.employeeSubmittedDate != null  &&x.finalize!=1);
         this.EmployeeKradashCompleted = data.filter(x => x.approver1 == sessionStorage.getItem('EmaployedID') && x.selfScores != null && x.employeeSubmittedDate != null && x.managerSubmittedDate!=null  &&x.finalize==1);
@@ -132,30 +132,6 @@ export class ManagerratingdashComponent implements OnInit {
         )
       }
     })
-
-    this.PerformanceManagementService.GetEmployeeGoalMaster()
-    .subscribe({
-      next: data => {
-        debugger
-        this.Employeegoal = data.filter(x => x.managerAcceptgoal ==null);
-        this.EmployeeKradashAccepted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate == null && x.employeeacceptgoal == 1);
-        this.EmployeeKradashSubmitted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate != null);
-        this.EmployeeKradashCompleted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate != null && x.finalize == 1);
-      }, error: (err) => {
-        Swal.fire('Issue in Getting ConductappraisalStaffList');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
-    
 
   }
 
