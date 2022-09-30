@@ -77,6 +77,7 @@
                                     <th *ngIf="roleid==2">Appraisal Cycle Type</th>
                                     <th>Employee Submission Last Date </th>
                                     <th>Assigned By</th>
+                                    <th>Goal Name</th>
                                     <th>Action </th>
                                     <th>Status</th>
                                 </tr>
@@ -92,6 +93,7 @@
                                     <td *ngIf="roleid==2">{{details.frequencyName}}</td>
                                     <td>{{details.employeeSubmissionLastDate|date}}</td>
                                     <td>{{details.assignedBy}}</td>
+                                    <td>{{details.kraName}}</td>
                                     <td>
                                         <button
                                             *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
@@ -101,7 +103,7 @@
                                             *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
                                             class=" btn btn-primary editable-table-button btn-xs Add"
                                             data-toggle="modal"
-                                            data-target="#viewManagergoal" (click)="GetManagerKraDetails(details)">View Goals</button>
+                                            data-target="#viewManagergoal" (click)="GetStaffKraDetails(details)">View Goals</button>
                                         <!-- 
                                         <button
                                             [routerLink]="['/shared/SelfRatingPagenew', details.id,details.appraiselID ]"
@@ -165,21 +167,18 @@
                                     <!-- <td>{{details.assignedBy}}</td> -->
                                     <!-- <td *ngIf="details.managerRequest==null || details.managerRequest== 0"> -->
                                     <td>Employee</td>
-                                    <td *ngIf="details.managerRequest==null || details.managerRequest== 0">
-                                        <button
+                                    <td  colspan="2">
+                                        <button *ngIf="details.managerRequest==null || details.managerRequest== 0"
                                         
                                             class=" btn btn-primary editable-table-button btn-xs Add"
                                             data-toggle="modal" (click)="GetEmployeeGoalList(details)"
                                             data-target="#viewgoal">View Goals</button>
-                                        <button
-                                            
-                                            class=" btn btn-primary editable-table-button btn-xs Add"
+                                        <button *ngIf="details.managerRequest == null" class=" btn btn-primary editable-table-button btn-xs Add"
                                             (click)="RequestManagerKRAMapping(details)">Send Request</button>
+
+                                            <p *ngIf="details.managerRequest==1">Pending</p>
                                     </td>
-                                    <td>
-                                        <p *ngIf="details.managerRequest==null">Pending</p>
-                                        <p *ngIf="details.managerRequest!=null">Accepted</p>
-                                    </td>
+                                   
                                 </tr>
                             </tbody>
                         </table>
@@ -580,8 +579,8 @@
                             <tbody>
                                 <tr *ngFor="let details of Staffkra index as i">
                                     <td>{{i+1}}</td>
-                                    <td>{{details.type}}</td>
-                                    <td>{{details.goalName}}</td>
+                                    <td>{{details.kraType}}</td>
+                                    <td>{{details.kraName}}</td>
                                     <td>{{details.kpiName}}</td>
 
                                 </tr>
