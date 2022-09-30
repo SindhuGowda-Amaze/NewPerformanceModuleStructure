@@ -108,7 +108,7 @@
                                     class=" btn btn-primary editable-table-button btn-xs Add"
                                     (click)="Mangeraccept(details.kraid)">Accept</button>
                                 <button
-                                    *ngIf="details.assignedBy=='Employee'"
+                                    *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
                                     class=" btn btn-primary editable-table-button btn-xs Add"
                                     data-toggle="modal"
                                     data-target="#viewgoal">View Goals</button>
@@ -138,58 +138,7 @@
                         </tbody>
                     </table>
 
-                    <table class="table">
-                        <thead>
-                            <tr *ngIf="(Employeegoal | filter: search).length > 0; else noResults">
-                                <th>Appraisal Cycle </th>
-                                <!-- <th *ngIf="roleid==3 ">Employee Name</th> -->
-                                <!-- <th>Position</th> -->
-                                <th>Appraisal Cycle Start Date </th>
-                                <th>Appraisal Cycle End Date </th>
-                                <th>Goal</th>
-                                <!-- <th *ngIf="roleid==2">Appraisal Cycle Type</th> -->
-                                <!-- <th>Employee Submission Last Date </th> -->
-                                <th>Assigned By</th>
-                                <th>Action</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr
-                                *ngFor="let details of Employeegoal |paginate: { itemsPerPage: count1, currentPage: p} |filter:search">
-                                <td>{{details.appraisalCycleName}}</td>
-                                <!-- <td *ngIf="roleid==3">{{details.name}}</td> -->
-                                <!-- <td>{{details.departmentName}}</td> -->
-                                <td>{{details.cycleStartDate|date}}</td>
-                                <td>{{details.cycleEndDate|date}}</td>
-                                <td>{{details.goalName}}</td>
-                                <!-- <td *ngIf="roleid==2">{{details.frequencyName}}</td> -->
-                                <!-- <td>{{details.employeeSubmissionLastDate|date}}</td> -->
-                                <td>{{details.assignedBy}}</td>
-                                <td>
-                                    <button *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
-                                        class=" btn btn-primary editable-table-button btn-xs Add" data-toggle="modal"
-                                        (click)="GetStaffKraDetails(details)" data-target="#viewgoal">View
-                                        Goals</button><br>
-                                        <br>
-
-
-                                    <button *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
-                                        class=" btn btn-primary editable-table-button btn-xs Add"
-                                        (click)="accept(details.kraid)">Accept</button>
-
-                                </td>
-
-                                <td>
-                                    <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal!=1">
-                                        Pending for Acceptance</p>
-                                    <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal==1">
-                                        Open</p>
-                                    <p *ngIf="details.employeeSubmittedDate!=null">Submitted</p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+            
                     <ng-template #noResults>
 
                         <p class="NoResultShow"> No results found </p>
