@@ -58,10 +58,17 @@
         <div class="tab-slider--container" [ngSwitch]="viewMode">
             <div *ngSwitchCase="'tab1'" id="tab1">
                 <div class="row">
+                    <div class="col-md-8">
+                        <p class="show3res">SHOWING <span>{{EmployeeKradash?.length}} </span>RESULTS</p>
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-lg-12">
                         <table class="table">
                             <thead>
-                                <tr *ngIf="(EmployeeKradash | filter: search).length > 0; else noResults">
+                                <tr *ngIf="(EmployeeKradash | filter: search).length > 0;">
                                     <th *ngIf="roleid==2">Appraisal Cycle </th>
                                     <!-- <th *ngIf="roleid==3 ">Employee Name</th> -->
                                     <th *ngIf="roleid==3">Position</th>
@@ -84,7 +91,7 @@
                                     <td>{{details.cycleEndDate|date}}</td>
                                     <td *ngIf="roleid==2">{{details.frequencyName}}</td>
                                     <td>{{details.employeeSubmissionLastDate|date}}</td>
-                                    <td>Manager</td>
+                                    <td>{{details.assignedBy}}</td>
                                     <td>
                                         <button
                                             *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
@@ -155,7 +162,7 @@
                                     <td>{{details.goalName}}</td>
                                     <!-- <td *ngIf="roleid==2">{{details.frequencyName}}</td> -->
                                     <!-- <td>{{details.employeeSubmissionLastDate|date}}</td> -->
-                                    <td>Employee</td>
+                                    <td>{{details.assignedBy}}</td>
                                     <td>
                                         <button
                                             *ngIf="details.managerAcceptgoal==null"
@@ -192,10 +199,17 @@
 
             <div *ngSwitchCase="'tab2'" id="tab2">
                 <div class="row">
+                    <div class="col-md-8">
+                        <p class="show3res">SHOWING <span>{{EmployeeKradashAccepted?.length}} </span>RESULTS</p>
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-lg-12">
                         <table class="table">
                             <thead>
-                                <tr *ngIf="(EmployeeKradashAccepted | filter: search).length > 0; else noResults">
+                                <tr *ngIf="(EmployeeKradashAccepted | filter: search).length > 0; else noResults1">
                                     <th *ngIf="roleid==2">Appraisal Cycle </th>
                                     <!-- <th *ngIf="roleid==3 ">Employee Name</th> -->
                                     <th *ngIf="roleid==3">Position</th>
@@ -218,7 +232,7 @@
                                     <td>{{details.cycleEndDate|date}}</td>
                                     <td *ngIf="roleid==2">{{details.frequencyName}}</td>
                                     <td>{{details.employeeSubmissionLastDate|date}}</td>
-                                    <td>Manager</td>
+                                    <td>{{details.assignedBy}}</td>
                                     <td>
                                         <button
                                             *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
@@ -257,7 +271,7 @@
                             </tbody>
                         </table>
                         <!-- <span *ngIf="EmployeeKradash.length==0">No data Found</span> -->
-                        <ng-template #noResults>
+                        <ng-template #noResults1>
 
                             <p class="NoResultShow"> No results found </p>
 
@@ -272,10 +286,18 @@
 
             <div *ngSwitchCase="'tab3'" id="tab3">
                 <div class="row">
+                    <div class="col-md-8">
+                        <p class="show3res">SHOWING <span>{{EmployeeKradashSubmitted?.length}} </span>RESULTS</p>
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-lg-12">
+                       
                         <table class="table">
                             <thead>
-                                <tr *ngIf="(EmployeeKradashSubmitted | filter: search).length > 0; else noResults">
+                                <tr *ngIf="(EmployeeKradashSubmitted | filter: search).length > 0; else noResults3">
                                     <th *ngIf="roleid==2">Appraisal Cycle </th>
                                     <!-- <th *ngIf="roleid==3 ">Employee Name</th> -->
                                     <th *ngIf="roleid==3">Position</th>
@@ -298,7 +320,7 @@
                                     <td>{{details.cycleEndDate|date}}</td>
                                     <td *ngIf="roleid==2">{{details.frequencyName}}</td>
                                     <td>{{details.employeeSubmissionLastDate|date}}</td>
-                                    <td>Manager</td>
+                                    <td>{{details.assignedBy}}</td>
                                     <td>
 
                                         <!-- <button
@@ -347,7 +369,7 @@
                             </tbody>
                         </table>
                         <!-- <span *ngIf="EmployeeKradash.length==0">No data Found</span> -->
-                        <ng-template #noResults>
+                        <ng-template #noResults3>
 
                             <p class="NoResultShow"> No results found </p>
 
@@ -361,12 +383,18 @@
             </div>
 
             <div *ngSwitchCase="'tab4'" id="tab4">
-
+                <div class="row">
+                    <div class="col-md-8">
+                        <p class="show3res">SHOWING <span>{{EmployeeKradashSubmitted?.length}} </span>RESULTS</p>
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-lg-12">
                         <table class="table">
                             <thead>
-                                <tr *ngIf="(EmployeeKradashCompleted | filter: search).length > 0; else noResults">
+                                <tr *ngIf="(EmployeeKradashCompleted | filter: search).length > 0; else noResults5">
                                     <th *ngIf="roleid==2">Appraisal Cycle </th>
                                     <!-- <th *ngIf="roleid==3 ">Employee Name</th> -->
                                     <th *ngIf="roleid==3">Position</th>
@@ -389,7 +417,7 @@
                                     <td>{{details.cycleEndDate|date}}</td>
                                     <td *ngIf="roleid==2">{{details.frequencyName}}</td>
                                     <td>{{details.employeeSubmissionLastDate|date}}</td>
-                                    <td>Manager</td>
+                                    <td>{{details.assignedBy}}</td>
                                     <td>
 
                                         <button *ngIf="details.employeeSubmittedDate==null"
@@ -429,13 +457,13 @@
                             </tbody>
                         </table>
                         <!-- <span *ngIf="EmployeeKradash.length==0">No data Found</span> -->
-                        <ng-template #noResults>
+                        <ng-template #noResults5>
                             <p class="NoResultShow"> No results found </p>
                         </ng-template>
-                        <!-- <div class="text-right">
+                        <div class="text-right">
                             <br>
                             <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -511,6 +539,11 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <!-- <ng-template #noResults>
+                            <div class="card">
+                                <p class="NoResultShow"> No results found </p>
+                            </div>
+                        </ng-template> -->
                         <!-- <span *ngIf="EmplGoalsList.length==0">No data Found</span> -->
                     </div>
                 </div>
@@ -596,7 +629,7 @@
                                 <td>{{details.goalName}}</td>
                                 <td>
                                     <div class="col-lg-1">
-                                        <button class="form-control edit" (click)="cancel(details.id)">Cancel</button>
+                                        <button type="button" class="btn btn-primary" (click)="cancel(details.id)" >Cancel</button>
                                     </div>
                                 </td>
                             </tr>
@@ -635,7 +668,7 @@
                         <button class="form-control Add" (click)="SaveDetails()">ADD</button>
                     </div>
                     <div class="col-lg-2">
-                        <button class="form-control Add"> Cancel</button>
+                        <button class="form-control Add" (click)="cancelAppraisal()"> Cancel</button>
                     </div>
                 </div>
             </div>

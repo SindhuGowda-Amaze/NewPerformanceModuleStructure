@@ -66,10 +66,10 @@ export class MyApprasailComponent implements OnInit {
     this.GetAppraisalCycle()
     this.GetKeyResultArea();
     this.GetEmployeeGoals();
-this.GetStaffKraDetailsEmployee();
+    this.GetStaffKraDetailsEmployee();
     this.Apprisalcycle = ""
     this.kratypeid = ""
-    this.kraid = ""
+    this.kraid = "0"
     this.currentUrl = window.location.href;
     this.Department = "";
     this.RoleType = "";
@@ -165,11 +165,11 @@ this.GetStaffKraDetailsEmployee();
         }
       })
 
-      this.PerformanceManagementService.GetEmployeeGoalMaster()
+    this.PerformanceManagementService.GetEmployeeGoalMaster()
       .subscribe({
         next: data => {
           debugger
-          this.Employeegoal = data.filter(x => x.staffID == sessionStorage.getItem('EmaployedID') && x.managerAcceptgoal ==null);
+          this.Employeegoal = data.filter(x => x.staffID == sessionStorage.getItem('EmaployedID') && x.managerAcceptgoal == null);
           this.EmployeeKradashAccepted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate == null && x.employeeacceptgoal == 1);
           this.EmployeeKradashSubmitted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate != null);
           this.EmployeeKradashCompleted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate != null && x.finalize == 1);
@@ -187,7 +187,7 @@ this.GetStaffKraDetailsEmployee();
           )
         }
       })
-      
+
 
 
 
@@ -259,65 +259,65 @@ this.GetStaffKraDetailsEmployee();
 
   }
 
-  StaffkraEmp:any;
+  StaffkraEmp: any;
   //Method to Displaying the Data from GetEmployeeKraMap Table//
 
   public GetStaffKraDetailsEmployee() {
     debugger
     this.PerformanceManagementService.GetEmployeeKPI().subscribe({
-        next: data => {
-          debugger
-          this.StaffkraEmp = data
-          // this.StaffkraEmp = data.filter(x => x.staffName == details.staffID);
-          this.count = this.StaffkraEmp.length;
-          console.log("this.StaffkraEmp",this.StaffkraEmp)
-        }, error: (err) => {
-          Swal.fire('Issue in Getting EmployeeKraMap');
-          // Insert error in Db Here//
-          var obj = {
-            'PageName': this.currentUrl,
-            'ErrorMessage': err.error.message
-          }
-          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-            data => {
-              debugger
-            },
-          )
+      next: data => {
+        debugger
+        this.StaffkraEmp = data
+        // this.StaffkraEmp = data.filter(x => x.staffName == details.staffID);
+        this.count = this.StaffkraEmp.length;
+        console.log("this.StaffkraEmp", this.StaffkraEmp)
+      }, error: (err) => {
+        Swal.fire('Issue in Getting EmployeeKraMap');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
         }
-      })
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
 
-  } 
+  }
 
-  EmplGoalsList:any;
-  goalID:any;
-  
-  public GetEmployeeGoalList(details:any) {
-    this.goalID=details.id
+  EmplGoalsList: any;
+  goalID: any;
+
+  public GetEmployeeGoalList(details: any) {
+    this.goalID = details.id
     debugger
     this.PerformanceManagementService.GetEmployeeKPI().subscribe({
-        next: data => {
-          debugger
-          this.StaffkraEmp = data
-          this.EmplGoalsList = data.filter(x=>x.goalID== this.goalID)
-          // this.StaffkraEmp = data.filter(x => x.staffName == details.staffID);
-          this.count = this.StaffkraEmp.length;
-          console.log("this.StaffkraEmp",this.StaffkraEmp)
-        }, error: (err) => {
-          Swal.fire('Issue in Getting EmployeeKraMap');
-          // Insert error in Db Here//
-          var obj = {
-            'PageName': this.currentUrl,
-            'ErrorMessage': err.error.message
-          }
-          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-            data => {
-              debugger
-            },
-          )
+      next: data => {
+        debugger
+        this.StaffkraEmp = data
+        this.EmplGoalsList = data.filter(x => x.goalID == this.goalID)
+        // this.StaffkraEmp = data.filter(x => x.staffName == details.staffID);
+        this.count = this.StaffkraEmp.length;
+        console.log("this.StaffkraEmp", this.StaffkraEmp)
+      }, error: (err) => {
+        Swal.fire('Issue in Getting EmployeeKraMap');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
         }
-      })
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
 
-  } 
+  }
 
   public GetStaffKraDetails(details: any) {
     debugger
@@ -329,7 +329,7 @@ this.GetStaffKraDetailsEmployee();
           debugger
           this.Staffkra = data.filter(x => x.staffName == details.staffID);
           this.count = this.Staffkra.length;
-          console.log("this.Staffkra",this.Staffkra)
+          console.log("this.Staffkra", this.Staffkra)
         }, error: (err) => {
           Swal.fire('Issue in Getting EmployeeKraMap');
           var obj = {
@@ -604,13 +604,16 @@ this.GetStaffKraDetailsEmployee();
               'KraTypeID': this.kratypeid
             };
             debugger
+
             this.keyresultArray.push(json);
-            
+            // this.kraid == "";
+            // this.kpiName == "";
+
 
           }
         })
     }
-     
+
 
   }
 
@@ -735,13 +738,13 @@ this.GetStaffKraDetailsEmployee();
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.value == true) {
-        this.PerformanceManagementService.DeleteEmployeeKraMap(ID).subscribe({
+        this.PerformanceManagementService.DeleteEmployeeGoalMaster(ID).subscribe({
           next: data => {
             debugger
             Swal.fire('Deleted Successfully')
-            this.GetKeyResultArea();
+            // this.GetKeyResultArea();
           }, error: (err: { error: { message: any; }; }) => {
-            Swal.fire('Issue in Deleting KeyResultArea');
+            Swal.fire('Issue in Deleting Employee Goal Master');
             // Insert error in Db Here//
             var obj = {
               'PageName': this.currentUrl,
@@ -757,11 +760,8 @@ this.GetStaffKraDetailsEmployee();
       }
     })
   }
+
+  cancelAppraisal() {
+    location.href = "#/shared/MyAppraisal";
+  }
 }
-
-
-
-
-
-
-

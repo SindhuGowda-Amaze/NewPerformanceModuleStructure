@@ -582,4 +582,10 @@ public GetEmployeeKPI() {
   );
 }
 
+public DeleteEmployeeGoalMaster(ID: any) {
+  return this.http.get<any[]>(
+    this.baseURL + "/Master/DeleteEmployeeGoalMaster?ID=" + ID);
+}
+
+
 }
