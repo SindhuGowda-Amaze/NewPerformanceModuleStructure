@@ -69,20 +69,14 @@ export class MyApprasailComponent implements OnInit {
   dropdownList1: any
   kraid: any;
   employeeSubmissionDate: any;
+  empID: any;
 
   constructor(private PerformanceManagementService: PerformancemanagementService) { }
   ngOnInit(): void {
 
     //Variable Initialisation and Default Method Calls//
 
-    this.GetMyDetails();
-    this.GetDepartment();
-    this.GetConductappraisalStaffList();
-    this.GetEmployeeKraMap();
-    this.GetAppraisalCycle()
-    this.GetKeyResultArea();
-    this.GetEmployeeGoals();
-    this.GetStaffKraDetailsEmployee();
+   
     this.Apprisalcycle = ""
     this.kratypeid = ""
     this.kraid = "0"
@@ -91,6 +85,15 @@ export class MyApprasailComponent implements OnInit {
     this.RoleType = "";
     this.roleid = sessionStorage.getItem('roleid');
     this.loginName = sessionStorage.getItem('loginName');
+    this.GetMyDetails();
+    this.GetDepartment();
+    this.GetConductappraisalStaffList();
+    this.GetEmployeeKraMap();
+    this.GetAppraisalCycle()
+    this.GetKeyResultArea();
+    this.GetEmployeeGoals();
+    this.GetStaffKraDetailsEmployee();
+   
   }
 
   //Method to Displaying the Data & Count from GetMyDetails Table//
@@ -304,28 +307,56 @@ export class MyApprasailComponent implements OnInit {
 
   public GetStaffKraDetails(details: any) {
     debugger
-    this.PerformanceManagementService.GetEmployeeKraMap()
-      .subscribe({
-        next: data => {
-          debugger
-          this.Staffkra = data.filter(x => x.staffName == details.staffID);
-          this.count = this.Staffkra.length;
-          console.log("this.Staffkra", this.Staffkra)
-        }, error: (err) => {
-          Swal.fire('Issue in Getting EmployeeKraMap');
-          var obj = {
-            'PageName': this.currentUrl,
-            'ErrorMessage': err.error.message
-          }
-          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-            data => {
-              debugger
-            },
-          )
-        }
-      })
+    this.empID=details.staffid
+    this.getgoalforemp();
+    // this.PerformanceManagementService.GetEmployeeKraMap()
+    //   .subscribe({
+    //     next: data => {
+    //       debugger
+    //       this.Staffkra = data.filter(x => x.staffName == details.staffID);
+    //       this.count = this.Staffkra.length;
+    //       console.log("this.Staffkra", this.Staffkra)
+    //     }, error: (err) => {
+    //       Swal.fire('Issue in Getting EmployeeKraMap');
+    //       var obj = {
+    //         'PageName': this.currentUrl,
+    //         'ErrorMessage': err.error.message
+    //       }
+    //       this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+    //         data => {
+    //           debugger
+    //         },
+    //       )
+    //     }
+    //   })
   }
 
+  public getgoalforemp(){
+    debugger
+    this.PerformanceManagementService.GetEmployeeKraMap()
+
+    .subscribe({
+      next: data => {
+        debugger
+        this.Staffkra = data.filter(x => x.staffName ==  this.empID);
+        this.count = this.Staffkra.length;
+        console.log("this.Staffkra", this.Staffkra)
+      }, error: (err) => {
+        Swal.fire('Issue in Getting EmployeeKraMap');
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
+   
+  }
+  
 
   public accept(id: any) {
     debugger

@@ -12,15 +12,15 @@ export class PerformancemanagementService {
 //  public host1="https://support.amazeone.co/SupportAPI/";
 //  public hoet2 = "http://103.133.214.197/LearningandDevelopment/";
 
-// public baseURL = "http://103.12.1.103/CoreDigiPerformanceManagementAPI";
-// public host = "http://103.12.1.103/DigiOfficeCoreHRAPI"
+public baseURL = "http://103.12.1.103/CorePerformanceManagementAPI";
+public host = "http://103.12.1.103/DigiOfficeCoreHRAPI"
 
 
-baseURL = "http://23.101.22.93/CoreDigiPerformanceManagementAPI";
+// baseURL = "http://23.101.22.93/CoreDigiPerformanceManagementAPI";
 
-public host = "https://23.101.22.93/DigiOfficeCoreHRAPI"
+// public host = "https://23.101.22.93/DigiOfficeCoreHRAPI"
 
-
+  
 public host1=" https://asticom.digiofficeapp.com/SupportAPI/"
 public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
 
@@ -152,6 +152,7 @@ public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
 
 
  public GetKPI() {
+  debugger
    return this.http.get<any[]>(
      this.baseURL + "/Master/GetKPI"
    );
