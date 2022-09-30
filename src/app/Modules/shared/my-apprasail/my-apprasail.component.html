@@ -167,21 +167,18 @@
                                     <!-- <td>{{details.assignedBy}}</td> -->
                                     <!-- <td *ngIf="details.managerRequest==null || details.managerRequest== 0"> -->
                                     <td>Employee</td>
-                                    <td *ngIf="details.managerRequest==null || details.managerRequest== 0">
-                                        <button
+                                    <td  colspan="2">
+                                        <button *ngIf="details.managerRequest==null || details.managerRequest== 0"
                                         
                                             class=" btn btn-primary editable-table-button btn-xs Add"
                                             data-toggle="modal" (click)="GetEmployeeGoalList(details)"
                                             data-target="#viewgoal">View Goals</button>
-                                        <button
-                                            
-                                            class=" btn btn-primary editable-table-button btn-xs Add"
+                                        <button *ngIf="details.managerRequest == null" class=" btn btn-primary editable-table-button btn-xs Add"
                                             (click)="RequestManagerKRAMapping(details)">Send Request</button>
+
+                                            <p *ngIf="details.managerRequest==1">Pending</p>
                                     </td>
-                                    <td>
-                                        <p *ngIf="details.managerRequest==null">Pending</p>
-                                        <p *ngIf="details.managerRequest!=null">Accepted</p>
-                                    </td>
+                                   
                                 </tr>
                             </tbody>
                         </table>

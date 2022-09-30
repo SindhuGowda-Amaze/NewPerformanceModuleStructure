@@ -176,11 +176,8 @@ export class MyApprasailComponent implements OnInit {
       .subscribe({
         next: data => {
           debugger
-          this.Employeegoal = data.filter(x => x.staffID == sessionStorage.getItem('EmaployedID') && x.managerRequest == null);
-          this.EmployeeKradashAccepted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate == null && x.employeeacceptgoal == 1);
-          this.EmployeeKradashSubmitted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate != null);
-          this.EmployeeKradashCompleted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate != null && x.finalize == 1);
-        }, error: (err) => {
+          this.Employeegoal = data.filter(x => x.staffID == sessionStorage.getItem('EmaployedID') && x.managerRequest !=2);
+          }, error: (err) => {
           Swal.fire('Issue in Getting ConductappraisalStaffList');
           // Insert error in Db Here//
           var obj = {
