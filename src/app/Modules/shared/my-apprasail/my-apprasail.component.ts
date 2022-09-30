@@ -173,8 +173,11 @@ export class MyApprasailComponent implements OnInit {
       .subscribe({
         next: data => {
           debugger
-          this.Employeegoal = data.filter(x => x.staffID == sessionStorage.getItem('EmaployedID') && x.managerAcceptgoal == null);
-             }, error: (err) => {
+          this.Employeegoal = data.filter(x => x.staffID == sessionStorage.getItem('EmaployedID') && x.managerRequest == null);
+          this.EmployeeKradashAccepted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate == null && x.employeeacceptgoal == 1);
+          this.EmployeeKradashSubmitted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate != null);
+          this.EmployeeKradashCompleted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate != null && x.finalize == 1);
+        }, error: (err) => {
           Swal.fire('Issue in Getting ConductappraisalStaffList');
           // Insert error in Db Here//
           var obj = {
@@ -188,6 +191,10 @@ export class MyApprasailComponent implements OnInit {
           )
         }
       })
+
+
+
+
   }
 
 
@@ -273,6 +280,7 @@ export class MyApprasailComponent implements OnInit {
         )
       }
     })
+
   }
 
   public GetEmployeeGoalList(details: any) {
@@ -573,6 +581,10 @@ export class MyApprasailComponent implements OnInit {
             debugger
 
             this.keyresultArray.push(json);
+            // this.kraid == "";
+            // this.kpiName == "";
+
+
           }
         })
     }
@@ -716,7 +728,7 @@ export class MyApprasailComponent implements OnInit {
           this.empAppID = this.employeeKpiList[0].appraisalCycleID
           this.employeeSubmissionDate = this.employeeKpiList[0].employeeSubmissionDate
         }, error: (err) => {
-          Swal.fire('Issue in Getting MyDetails');
+          Swal.fire('Issue in Getting Employee KPI');
           // Insert error in Db Here//
           var obj = {
             'PageName': this.currentUrl,

@@ -152,7 +152,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr
+                                <tr 
                                     *ngFor="let details of Employeegoal |paginate: { itemsPerPage: count1, currentPage: p} |filter:search">
                                     <td *ngIf="roleid==2">{{details.appraisalCycleName}}</td>
                                     <!-- <td *ngIf="roleid==3">{{details.name}}</td> -->
@@ -163,21 +163,20 @@
                                     <!-- <td *ngIf="roleid==2">{{details.frequencyName}}</td> -->
                                     <!-- <td>{{details.employeeSubmissionLastDate|date}}</td> -->
                                     <td>{{details.assignedBy}}</td>
-                                    <td>
+                                    <td *ngIf="details.managerRequest==null || details.managerRequest== 0">
                                         <button
-                                            *ngIf="details.managerAcceptgoal==null"
+                                        
                                             class=" btn btn-primary editable-table-button btn-xs Add"
                                             data-toggle="modal" (click)="GetEmployeeGoalList(details)"
                                             data-target="#viewgoal">View Goals</button>
                                         <button
-                                            *ngIf="details.managerAcceptgoal==null"
+                                            
                                             class=" btn btn-primary editable-table-button btn-xs Add"
                                             (click)="RequestManagerKRAMapping(details)">Send Request</button>
                                     </td>
                                     <td>
-                                        <p *ngIf="details.managerAcceptgoal==null">
-                                            Pending</p>
-                                        <p *ngIf="details.managerAcceptgoal!=null">Accepted</p>
+                                        <p *ngIf="details.managerRequest==null">Pending</p>
+                                        <p *ngIf="details.managerRequest!=null">Accepted</p>
                                     </td>
                                 </tr>
                             </tbody>
