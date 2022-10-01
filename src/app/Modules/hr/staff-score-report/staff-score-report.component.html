@@ -15,7 +15,8 @@
 
         <div class="row FilterClass ">
             <div class="col-lg-1">
-                <p class="filter">Filter By</p>
+                <img src="assets/Images/filter.svg" class="filter-img">
+                <p class="filter">Filter By:</p>
             </div>
 
             <div class="col-lg-3">
@@ -156,14 +157,16 @@
                             </td>
 
                             <td>
-                                <p  *ngIf="details.managerSubmittedDate!=null">{{details.avgGroupHeadScores}}</p>
-                            
-                                <p *ngIf="details.avgGroupHeadScores==null || details.managerSubmittedDate==null" style="color: red;">Pending</p>
+                                <p *ngIf="details.managerSubmittedDate!=null">{{details.avgGroupHeadScores}}</p>
+
+                                <p *ngIf="details.avgGroupHeadScores==null || details.managerSubmittedDate==null"
+                                    style="color: red;">Pending</p>
                             </td>
                             <td>
-                                <p  *ngIf="details.sbuSubmittedDate!=null">{{details.avgDivisionScores}}</p>
-                             
-                                <p *ngIf="details.avgDivisionScores==null || details.sbuSubmittedDate==null" style="color: red;">Pending</p>
+                                <p *ngIf="details.sbuSubmittedDate!=null">{{details.avgDivisionScores}}</p>
+
+                                <p *ngIf="details.avgDivisionScores==null || details.sbuSubmittedDate==null"
+                                    style="color: red;">Pending</p>
                             </td>
                             <td>
                                 <p *ngIf="details.hrSubmittedDate!=null">{{details.avgCIOScores}}</p>

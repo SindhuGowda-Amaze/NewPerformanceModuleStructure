@@ -62,14 +62,16 @@
 
             </div> <br>
             <div class="row">
-                <div class="col-lg-9"></div>
-                <div class="col-lg-1">
-                    <button class="form-control edit" *ngIf="id==undefined" [disabled]="kpiform.form.invalid"
-                        (click)="save()">Save</button>
-                    <button class="form-control edit" *ngIf="id!= undefined" (click)="Update()">Update</button>
+                <div class="col-lg-8"></div>
+                <div class="col-lg-2">
+                    <button class="edit" (click)="cancel()">Cancel</button>
                 </div>
-                <div class="col-lg-1">
-                    <button class="form-control edit" (click)="cancel()">Cancel</button>
+                <div class="col-lg-2">
+                   
+
+                    <button class="save" *ngIf="id==undefined" [disabled]="kpiform.form.invalid"
+                        (click)="save()">Save</button>
+                    <button class="save" *ngIf="id!= undefined" (click)="Update()">Update</button>
                 </div>
             </div>
             <br>

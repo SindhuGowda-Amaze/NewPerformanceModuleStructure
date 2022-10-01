@@ -13,7 +13,8 @@
     <div class="card">
         <div class="row FilterClass ">
             <div class="col-lg-1">
-                <p class="filter">Filter By</p>
+                <img src="assets/Images/filter.svg" class="filter-img">
+                <p class="filter">Filter By:</p>
             </div>
 
             <div class="col-lg-3">
@@ -99,9 +100,10 @@
         Closed</span><br><br>
     <span *ngIf="appraisalcount==0" style="color: red;">Appraisal Cycle Not Started</span><br><br> -->
 
-    <span *ngIf="appraisalPendingCount==0 && appraisalClose==0 && appraisalcount!=0"><button class="btn btn-success" 
-        (click)="CloseAppraisal()">Complete Appraisal</button></span><br>
-    <span *ngIf="appraisalPendingCount==0 && appraisalClose==1 && appraisalcount!=0" style="color: red;">Appraisal Cycle is
+    <span *ngIf="appraisalPendingCount==0 && appraisalClose==0 && appraisalcount!=0"><button class="btn btn-success"
+            (click)="CloseAppraisal()">Complete Appraisal</button></span><br>
+    <span *ngIf="appraisalPendingCount==0 && appraisalClose==1 && appraisalcount!=0" style="color: red;">Appraisal Cycle
+        is
         Closed</span><br><br>
     <span *ngIf="appraisalcount==0" style="color: red;">Appraisal Cycle Not Started</span><br><br>
 
@@ -144,14 +146,16 @@
                             </td>
 
                             <td>
-                                <p  *ngIf="details.managerSubmittedDate!=null">{{details.avgGroupHeadScores}}</p>
-                            
-                                <p *ngIf="details.avgGroupHeadScores==null || details.managerSubmittedDate==null" style="color: red;">Pending</p>
+                                <p *ngIf="details.managerSubmittedDate!=null">{{details.avgGroupHeadScores}}</p>
+
+                                <p *ngIf="details.avgGroupHeadScores==null || details.managerSubmittedDate==null"
+                                    style="color: red;">Pending</p>
                             </td>
                             <td>
-                                <p  *ngIf="details.sbuSubmittedDate!=null">{{details.avgDivisionScores}}</p>
-                             
-                                <p *ngIf="details.avgDivisionScores==null || details.sbuSubmittedDate==null" style="color: red;">Pending</p>
+                                <p *ngIf="details.sbuSubmittedDate!=null">{{details.avgDivisionScores}}</p>
+
+                                <p *ngIf="details.avgDivisionScores==null || details.sbuSubmittedDate==null"
+                                    style="color: red;">Pending</p>
                             </td>
                             <td>
                                 <p *ngIf="details.hrSubmittedDate!=null ">{{details.avgCIOScores}}</p>
@@ -159,8 +163,9 @@
                                     style="color: red;">Pending</p>
                             </td>
                             <td>
-                                <p *ngIf="details.bellcurveScore==null && details.avgCIOScores!=null && details.hrSubmittedDate!=null">
-                                {{((details.avgGroupHeadScores+details.avgCIOScores)/2)|number:"1.0-0"}}
+                                <p
+                                    *ngIf="details.bellcurveScore==null && details.avgCIOScores!=null && details.hrSubmittedDate!=null">
+                                    {{((details.avgGroupHeadScores+details.avgCIOScores)/2)|number:"1.0-0"}}
                                 <p *ngIf="details.bellcurveScore!=null">{{details.bellcurveScore}}</p>
                                 <p *ngIf="details.avgCIOScores==null || details.hrSubmittedDate==null">NA</p>
                             </td>
@@ -171,12 +176,15 @@
                             <td>{{details.assignedBy}}</td>
                             <!--  <td>{{details.cycleStartDate|date}}</td>
                             <td>{{details.cycleEndDate|date}}</td> -->
-                            <td >
-                                <button *ngIf="details.finalize==null" class="btn btn-primary editable-table-button btn-xs Add" data-toggle="modal"
+                            <td>
+                                <button *ngIf="details.finalize==null"
+                                    class="btn btn-primary editable-table-button btn-xs Add" data-toggle="modal"
                                     data-target="#viewbellcurve" [disabled]="details.appraisalClose=='1'"
                                     (click)="ViewScores(details)">Change Rating
                                 </button><br><br>
-                                <button *ngIf="details.finalize==null&&details.avgCIOScores!=null || details.hrSubmittedDate!=null " class="btn btn-primary editable-table-button btn-xs Add"
+                                <button
+                                    *ngIf="details.finalize==null&&details.avgCIOScores!=null || details.hrSubmittedDate!=null "
+                                    class="btn btn-primary editable-table-button btn-xs Add"
                                     (click)="FinalizeAppraisal(details.staffid)">Finalize Rating
                                 </button>
                                 <!-- <p *ngIf="details.finalize==1" >Finalized</p> -->

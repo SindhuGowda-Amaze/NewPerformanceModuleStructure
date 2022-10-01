@@ -20,48 +20,49 @@
             </div>
             <div class="col-lg-3">
                 <p>Priority</p>
-            </div>          
+            </div>
         </div>
-        
+
         <div class="row header">
             <div class="col-lg-3">
                 <input class="form-control" type="date" name="date" id="date" [(ngModel)]="date" disabled>
             </div>
             <div class="col-lg-3">
-              <input class="form-control" type="time"  name="time" id="time" [(ngModel)]="time" >
+                <input class="form-control" type="time" name="time" id="time" [(ngModel)]="time">
             </div>
-            <div class="col-lg-3">       
+            <div class="col-lg-3">
                 <select class="form-control" name="typeofiisue" id="typeofissue" [(ngModel)]="typeofissue">
                     <option value="0">Select Issue</option>
-                    <option  value="UI Issue">UI Issue</option>
-                    <option  value="Data Issue">Data Issue</option>
-                    <option  value="Functionality Issue">Functionality Issue</option>
+                    <option value="UI Issue">UI Issue</option>
+                    <option value="Data Issue">Data Issue</option>
+                    <option value="Functionality Issue">Functionality Issue</option>
                 </select>
             </div>
-            <div class="col-lg-3">       
-                <select class="form-control" name="prority" id="prority" [(ngModel)]="prority" >
+            <div class="col-lg-3">
+                <select class="form-control" name="prority" id="prority" [(ngModel)]="prority">
                     <option value="0">Select Priority Type</option>
-                    <option  value="P1">P1</option>
-                    <option  value="P2">P2</option>
-                    <option  value="P3">P3</option>
+                    <option value="P1">P1</option>
+                    <option value="P2">P2</option>
+                    <option value="P3">P3</option>
                 </select>
-            </div>         
+            </div>
         </div> <br><br>
         <div class="row">
-            <div class="col-lg-3" *ngIf="id==null || id==undefined" >
+            <div class="col-lg-3" *ngIf="id==null || id==undefined">
                 <p>Upload Issue Images</p>
             </div>
             <div class="col-lg-4">
                 <p>Comments</p>
             </div>
-           <!-- <div class="col-lg-3">
+            <!-- <div class="col-lg-3">
                <p>Status</p>
            </div> -->
-         
+
         </div>
         <div class="row">
-            <div class="col-lg-3" *ngIf="id==null || id==undefined" >
-                <ngx-dropzone (change)="onSelect($event)" [(ngModel)]="screenShot" style="width:100% ;height: auto; text-align: center;">
+            <div class="col-lg-3" *ngIf="id==null || id==undefined">
+                <ngx-dropzone (change)="onSelect($event)" [(ngModel)]="screenShot" class="attachment">
+                    <img src="assets/Images/upload.png" *ngIf="files.length==0" class="img-set dropdowning">
                     <ngx-dropzone-label>Please Attach Photo!</ngx-dropzone-label>
                     <ngx-dropzone-preview *ngFor="let f of files1" [removable]="true" (removed)="onRemove(f)">
                         <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
@@ -69,15 +70,16 @@
                 </ngx-dropzone>
             </div>
             <div class="col-lg-4">
-                <textarea class="form-control" placeholder="Comments" rows="5" name="comments" id="comments" [(ngModel)]="comments"></textarea>
+                <textarea class="form-control" placeholder="Comments" rows="5" name="comments" id="comments"
+                    [(ngModel)]="comments"></textarea>
             </div>
             <!-- <div class="col-lg-3">
                 <input class="form-control" placeholder="Status"  name="status" id="status" [(ngModel)]="status">
             </div> -->
-            
-              
+
+
         </div><br>
-         
+
         <!-- <div class="row">
             <div class="col-lg-3">
                 <p>Company Name</p>
@@ -86,7 +88,7 @@
                 <p>Application Name </p>
             </div>
         </div> -->
-       
+
         <div class="row">
             <!-- <div class="col-lg-3">
                 <input class="form-control" placeholder="Company Name" name="companyname" id="companyname" [(ngModel)]="companyname">
@@ -94,20 +96,19 @@
             <div class="col-lg-3">
                 <input class="form-control" placeholder="Application Name" name="applicationName" id="applicationName" [(ngModel)]="applicationName">
             </div> -->
-           
+
         </div>
-        
+
         <div class="row">
-            <div class="col-lg-10"></div>
-            <div class="col-lg-1">
-                <!-- <button class="form-control button1">Save</button> -->
-                <button class="form-control cancel" *ngIf="id==null || id==undefined" (click)="save()">Save</button>
-                <button class="form-control cancel" *ngIf="id!=null || id!=undefined" (click)="Update()">Update</button>
+            <div class="col-lg-8"></div>
+            <div class="col-lg-2">
+                <button class="edit" (click)="cancel()">Cancel</button>
+
             </div>
-            <div class="col-lg-1">
-                <button class="form-control  cancel " (click)="cancel()">Cancel</button>
+            <div class="col-lg-2">
+                <button class="save" *ngIf="id==null || id==undefined" (click)="save()">Save</button>
+                <button class="save" *ngIf="id!=null || id!=undefined" (click)="Update()">Update</button>
             </div>
         </div>
 
     </div>
-

@@ -14,7 +14,8 @@
         <br>
         <div class="row FilterClass ">
             <div class="col-lg-1">
-                <p class="filter">Filter By</p>
+                <img src="assets/Images/filter.svg" class="filter-img">
+                <p class="filter">Filter By:</p>
             </div>
             <div class="col-lg-4">
                 <input type="search" class="form-control search" placeholder="Search for Name.." [(ngModel)]="search">
@@ -36,7 +37,7 @@
     <div class="row">
         <div class="col-lg-11"></div>
         <div class="col-lg-1">
-            <button class="form-control Add" routerLink="/manager/EmployeeKraMapping">Add</button>
+            <button class="Addbutton" routerLink="/manager/EmployeeKraMapping"><img src="assets/Images/plus.svg" class="plus-icon">Add Goal</button>
         </div>
     </div> <br>
 
@@ -81,7 +82,7 @@
                         <td>{{details.hrReviewLastDate|date}}</td>
                         <!-- <td>{{details.appraisalSubmitionDate|date}}</td> -->
                         <td>
-                            <button class="form-control button1" data-toggle="modal"
+                            <button class="edit-btn" data-toggle="modal"
                                 (click)="GetStaffKraDetails(details)" data-target="#myModal">View Goals</button>&nbsp;
                         </td>
                     </tr>
@@ -143,10 +144,11 @@
                                     <td *ngIf="Employeeacceptgoal!=1">Pending</td> -->
                                     <td>
                                         <button class="edit" data-toggle="modal" data-target="#exampleModal"
-                                         *ngIf="details.employeeacceptgoal!=1"   data-dismiss="modal" (click)="edit(details)">Edit</button>
-                                            <button class="edit" 
-                                            (click)="delete(details.id)"   *ngIf="details.employeeacceptgoal!=1" >Delete</button>
-                                            <p  *ngIf="details.employeeacceptgoal==1"><b>Accepted</b></p>
+                                            *ngIf="details.employeeacceptgoal!=1" data-dismiss="modal"
+                                            (click)="edit(details)">Edit</button>
+                                        <button class="edit" (click)="delete(details.id)"
+                                            *ngIf="details.employeeacceptgoal!=1">Delete</button>
+                                        <p *ngIf="details.employeeacceptgoal==1"><b>Accepted</b></p>
                                     </td>
                                 </tr>
                             </tbody>

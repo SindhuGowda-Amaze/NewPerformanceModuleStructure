@@ -15,7 +15,8 @@
         <br>
         <div class="row FilterClass ">
             <div class="col-lg-1">
-                <p class="filter">Filter By</p>
+                <img src="assets/Images/filter.svg" class="filter-img">
+                            <p class="filter">Filter By:</p>
             </div>
             <div class="col-lg-3">
                 <input type="search" class="form-control search" [(ngModel)]="search" placeholder="Search for Name..">
@@ -50,7 +51,7 @@
     <div class="row">
         <div class="col-lg-11"></div>
         <div class="col-lg-1">
-            <button class="form-control edit1" routerLink="/hr/KeyResultAreaForm">Add</button>
+            <button class="Addbutton" routerLink="/hr/KeyResultAreaForm"><img src="assets/Images/plus.svg" class="plus-icon">Add Goal</button>
         </div>
     </div> <br>
 
@@ -73,9 +74,9 @@
                         <td>{{details.short}}</td>
                         <td>{{details.description}}</td>
                         <td>
-                            <button class="form-control edit"
-                                [routerLink]="['/hr/KeyResultAreaForm', details.id]">Edit</button>
-                            <button class="form-control edit" (click)="delete(details.id)">Delete</button>
+                            <button class="edit-btn"
+                                [routerLink]="['/hr/KeyResultAreaForm', details.id]">Edit</button><br><br>
+                            <button class="edit-btn" (click)="delete(details.id)">Delete</button>
                         </td>
                     </tr>
                 </tbody>

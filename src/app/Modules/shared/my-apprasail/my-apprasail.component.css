@@ -1,121 +1,133 @@
-.Dashboard{
-    color:#3247D5;
-    font-size: 19px;
-  }
-  .card{
+.Dashboard {
+  color: #3247D5;
+  font-size: 19px;
+}
+
+.card {
   background: #FFFFFF;
   box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
   border-radius: 12px;
-  }
-  .filter{
-    margin-left: 15px;
-    font-size: 13px;
-  }
-  .Add{
-    background-color: #3247D5;
-    color:white;
-    border-radius: 5px;
-    border:none;
-   
-    margin: 2px;
-  }
+}
 
-  .AddCancel{
-    background-color: #3247D5;
-    color:white;
-    border-radius: 5px;
-    border:none;
-    width:0%;
-    margin: 2px;
-  }
-  
-  .Add1{
-    background-color: green;
-    color:white;
-    border-radius: 5px;
-    border:none;
-    width:100%;
-  }
-  .table {
-    padding: 35px;
-  }
-  
-  .tab-slider--nav {
-    width: 100%;
-  }
-  
-  .tab-slider--tabs {
-    display: block;
-    float: left;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    position: relative;
-    border-radius: 35px;
-    overflow: hidden;
-    background: #fff;
-    height: 35px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-  
-  .tab-slider--tabs:after {
-    content: "";
-    width: 50%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    -webkit-transition: all 250ms ease-in-out;
-    transition: all 250ms ease-in-out;
-    border-radius: 35px;
-  }
-  
-  .tab-slider--tabs.slide:after {
-    left: 50%;
-  }
-  
-  .tab-slider--trigger {
-    font-size: 12px;
-    line-height: 1;
-    font-weight: bold;
-    color: #2E3C4E;
-    text-transform: uppercase;
-    text-align: center;
-    padding: 11px 20px;
-    position: relative;
-    z-index: 2;
-    cursor: pointer;
-    display: inline-block;
-    -webkit-transition: color 250ms ease-in-out;
-    transition: color 250ms ease-in-out;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-  
-  .tab-slider--trigger.active {
-    color: #fff;
-    background: #2E3C4E;
-  }
-  
-  .tab-slider--body {
-    margin-bottom: 20px;
-  }
+/* .filter {
+  margin-left: 15px;
+  font-size: 13px;
+}
+ */
+.Add {
+  background-color: #3247D5;
+  color: white;
+  border-radius: 5px;
+  border: none;
 
-  .editcancel {
-    width: 100%;
-    border: none;
-    background: #3247D5;
-    text-align: center;
-    border-radius: 6px;
-    color: white;
-    margin-top: 6px;
-    padding: 5px;
-    margin-bottom: 5px;
-    height:70%;
-  }
-  
+  margin: 2px;
+}
+
+.AddCancel {
+  background-color: #3247D5;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  width: 0%;
+  margin: 2px;
+}
+
+.Add1 {
+  background-color: green;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+}
+
+.table {
+  padding: 35px;
+  width: 1275px;
+}
+
+/* .tab-slider--nav {
+  width: 100%;
+}
+
+.tab-slider--tabs {
+  display: block;
+  float: left;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+  border-radius: 35px;
+  overflow: hidden;
+  background: #fff;
+  height: 35px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.tab-slider--tabs:after {
+  content: "";
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transition: all 250ms ease-in-out;
+  transition: all 250ms ease-in-out;
+  border-radius: 35px;
+}
+
+.tab-slider--tabs.slide:after {
+  left: 50%;
+}
+
+.tab-slider--trigger {
+  font-size: 12px;
+  line-height: 1;
+  font-weight: bold;
+  color: #2E3C4E;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 11px 20px;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+  display: inline-block;
+  -webkit-transition: color 250ms ease-in-out;
+  transition: color 250ms ease-in-out;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.tab-slider--trigger.active {
+  color: #fff;
+  background: #2E3C4E;
+}
+
+.tab-slider--body {
+  margin-bottom: 20px;
+}
+ */
+.editcancel {
+  width: 100%;
+  border: none;
+  background: #3247D5;
+  text-align: center;
+  border-radius: 6px;
+  color: white;
+  margin-top: 6px;
+  padding: 5px;
+  margin-bottom: 5px;
+  height: 70%;
+}
+
+.edit-btn {
+  width: 115px;
+}
+
+.save {
+  margin-top: 6px;
+}

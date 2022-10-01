@@ -12,7 +12,8 @@
     <div class="card">
         <div class="row FilterClass ">
             <div class="col-lg-1">
-                <p class="filter">Filter By</p>
+                <img src="assets/Images/filter.svg" class="filter-img">
+                <p class="filter">Filter By:</p>
             </div>
             <div class="col-lg-6">
                 <input type="search" class="form-control search" placeholder="Search for Name.." [(ngModel)]="search">
@@ -40,7 +41,7 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <table class="table" >
+            <table class="table">
                 <thead>
                     <tr *ngIf="(stafflist | filter: search).length > 0; else noResults">
                         <th>Employee Name</th>
@@ -80,27 +81,29 @@
                         <td *ngIf="roleid==3">5.5</td>
                         <td *ngIf="roleid==3">
                             <p *ngIf="details.baseSal==null">10000</p>
-                            {{details.baseSal}}</td>
+                            {{details.baseSal}}
+                        </td>
                         <td *ngIf="roleid==3">{{details.level}}</td>
                         <td *ngIf="roleid==3">NA</td>
                         <td *ngIf="roleid==3">NA</td>
 
 
                         <td>
-                            <button class="button btn-xs" data-toggle="modal" *ngIf="roleid==5" data-target="#myModal"
+                            <button class="edit-btn" data-toggle="modal" *ngIf="roleid==5" data-target="#myModal"
                                 (click)="getstaffid(details)">Approve</button>&nbsp;
 
-                            <button class="button btn-xs" data-toggle="modal" *ngIf="roleid==3"   (click)="getstaffid(details)" (click)="approveforIncrement()">Approve</button>&nbsp;
+                            <button class="edit-btn" data-toggle="modal" *ngIf="roleid==3" (click)="getstaffid(details)"
+                                (click)="approveforIncrement()">Approve</button>&nbsp;
                         </td>
                     </tr>
                 </tbody>
             </table>
             <!-- <span *ngIf="stafflist1.length==0">No data Found</span> -->
-                <ng-template #noResults>
-                    <div class="card">
-                        <p class="NoResultShow"> No results found </p>
-                    </div>
-                </ng-template>
+            <ng-template #noResults>
+                <div class="card">
+                    <p class="NoResultShow"> No results found </p>
+                </div>
+            </ng-template>
             <div class="text-right">
                 <pagination-controls (pageChange)="p = $event" class="poppinns"></pagination-controls>
             </div>
@@ -208,8 +211,8 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal"
+                        <button type="button" class="edit" data-dismiss="modal">Close</button>
+                        <button type="button" class="save" data-dismiss="modal"
                             (click)="approve()">Approve</button>
                     </div>
                 </div>

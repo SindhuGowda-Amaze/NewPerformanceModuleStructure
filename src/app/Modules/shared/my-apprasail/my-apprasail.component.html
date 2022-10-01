@@ -12,16 +12,16 @@
     </div>
     <br>
     <div class="card">
-        <br>
         <div class="row FilterClass ">
             <div class="col-lg-1">
-                <p class="filter">Filter By</p>
+                <img src="assets/Images/filter.svg" class="filter-img">
+                <p class="filter">Filter By:</p>
             </div>
-            <div class="col-lg-5">
+            <div class="col-lg-4">
                 <input type="search" class="form-control search" [(ngModel)]="search" placeholder="Search for Name..">
             </div>
             <div class="col-lg-1"></div>
-        </div><br>
+        </div>
     </div> <br>
     <div class="row">
         <div class="col-lg-10"></div>
@@ -48,7 +48,8 @@
             </div>
         </div>
         <div class="col-lg-2">
-            <button class="form-control Add" data-toggle="modal" data-target="#exampleModal2">Add Goal
+            <button class="Addbutton" data-toggle="modal" data-target="#exampleModal2"><img src="assets/Images/plus.svg"
+                    class="plus-icon">Add Goal
             </button>
         </div>
     </div>
@@ -97,13 +98,11 @@
                                     <td>
                                         <button
                                             *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
-                                            class=" btn btn-primary editable-table-button btn-xs Add"
-                                            (click)="accept(details.kraid)">Accept</button>
+                                            class="edit-btn" (click)="accept(details.kraid)">Accept</button><br><br>
                                         <button
                                             *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
-                                            class=" btn btn-primary editable-table-button btn-xs Add"
-                                            data-toggle="modal"
-                                            data-target="#viewManagergoal" (click)="GetStaffKraDetails(details)">View Goals</button>
+                                            class="edit-btn" data-toggle="modal" data-target="#viewManagergoal"
+                                            (click)="GetStaffKraDetails(details)">View Goals</button>
                                         <!-- 
                                         <button
                                             [routerLink]="['/shared/SelfRatingPagenew', details.id,details.appraiselID ]"
@@ -154,7 +153,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr 
+                                <tr
                                     *ngFor="let details of Employeegoal |paginate: { itemsPerPage: count1, currentPage: p} |filter:search">
                                     <td *ngIf="roleid==2">{{details.appraisalCycleName}}</td>
                                     <!-- <td *ngIf="roleid==3">{{details.name}}</td> -->
@@ -167,18 +166,16 @@
                                     <!-- <td>{{details.assignedBy}}</td> -->
                                     <!-- <td *ngIf="details.managerRequest==null || details.managerRequest== 0"> -->
                                     <td>Employee</td>
-                                    <td  colspan="2">
+                                    <td colspan="2">
                                         <button *ngIf="details.managerRequest==null || details.managerRequest== 0"
-                                        
-                                            class=" btn btn-primary editable-table-button btn-xs Add"
-                                            data-toggle="modal" (click)="GetEmployeeGoalList(details)"
-                                            data-target="#viewgoal">View Goals</button>
-                                        <button *ngIf="details.managerRequest == null" class=" btn btn-primary editable-table-button btn-xs Add"
+                                            class="edit-btn" data-toggle="modal" (click)="GetEmployeeGoalList(details)"
+                                            data-target="#viewgoal">View Goals</button><br><br>
+                                        <button *ngIf="details.managerRequest == null" class="edit-btn"
                                             (click)="RequestManagerKRAMapping(details)">Send Request</button>
 
-                                            <p *ngIf="details.managerRequest==1">Pending</p>
+                                        <p *ngIf="details.managerRequest==1">Pending</p>
                                     </td>
-                                   
+
                                 </tr>
                             </tbody>
                         </table>
@@ -236,14 +233,13 @@
                                     <td>
                                         <button
                                             *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
-                                            class=" btn btn-primary editable-table-button btn-xs Add"
-                                            data-toggle="modal" (click)="GetStaffKraDetails(details)"
+                                            class="edit-btn" data-toggle="modal" (click)="GetStaffKraDetails(details)"
                                             data-target="#viewgoal">View Goals</button>
-
+                                        <br><br>
                                         <button
                                             [routerLink]="['/shared/SelfRatingPagenew', details.id,details.appraiselID ]"
                                             *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal==1"
-                                            class=" btn btn-primary editable-table-button btn-xs Add">Self
+                                            class="edit-btn">Self
                                             Appraisal</button>
 
                                         <button
@@ -294,7 +290,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                       
+
                         <table class="table">
                             <thead>
                                 <tr *ngIf="(EmployeeKradashSubmitted | filter: search).length > 0; else noResults3">
@@ -671,7 +667,8 @@
                                 <td>{{details.goalName}}</td>
                                 <td>
                                     <div class="col-lg-1">
-                                        <button type="button" class="btn btn-primary" (click)="cancel(details.id)" >Cancel</button>
+                                        <button type="button" class="edit-btn"
+                                            (click)="cancel(details.id)">Cancel</button>
                                     </div>
                                 </td>
                             </tr>
@@ -705,12 +702,13 @@
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-lg-8"></div>
-                    <div class="col-lg-2">
-                        <button class="form-control Add" (click)="SaveDetails()">ADD</button>
+                    <div class="col-lg-6"></div>
+                    <div class="col-lg-3">
+                        <button class="edit" (click)="cancelAppraisal()"> Cancel</button>
+
                     </div>
                     <div class="col-lg-2">
-                        <button class="form-control Add" (click)="cancelAppraisal()"> Cancel</button>
+                        <button class="save" (click)="SaveDetails()">ADD</button>
                     </div>
                 </div>
             </div>

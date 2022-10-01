@@ -39,31 +39,36 @@
         <div class="col-lg-3">
             <img src="assets/Images/Logo_digiOffice_White.png" class="logo" alt="logo" routerLink="/CompanyDashboard">
         </div>
-  
+
         <div class="col-lg-2" style="display: flex;align-items: center;
         flex-wrap: nowrap;justify-content: start;">
-      <div class="time">
-      <p class="time1">{{hh}} </p> 
-      </div>     
-      <div class="time">
-      <p class="time1">{{mm}}</p>
-       </div>
-   <div class="time">
-      <p class="time1">{{ampm}}</p> 
-     </div>
-     </div>
-        <div class="col-lg-3"></div>  
-        
+            <div class="time">
+                <p class="time1">{{hh}} </p>
+            </div>
+            <div class="time">
+                <p class="time1">{{mm}}</p>
+            </div>
+            <div class="time">
+                <p class="time1">{{ampm}}</p>
+            </div>
+        </div>
+        <div class="col-lg-3"></div>
+
         <div class="col-lg-4" style="display: flex;
         /* align-content: stretch; */
         justify-content: flex-end;">
-            <div class="d-flex align-items-center" style="margin-right:10px">
+            <div class="d-flex align-items-center" style="margin-right:30px">
                 <a data-toggle="dropdown">
-                    <img src="assets/Images/notification.png" style="width: 30px;">
-                  
+                    <img src="assets/Images/notification.png" style="width: 25px;margin-right: -7px; margin-top: 8px">
+
                 </a>
-                <span style="color: red;padding-bottom: 30px;padding-right: 20px;">
-                    <div class="card" style="padding: 3px;border-radius: 20px;"><b>{{notificationCount}}</b></div></span>
+                <span style="color: red;
+                padding-bottom: 30px;
+                padding-right: 40px;
+                padding: 10px;
+                padding-bottom: 40px;">
+                    <div class="card" style="padding: 0px 3px 0px 3px;"><b>{{notificationCount}}</b></div>
+                </span>
                 <ul class="dropdown dropdown-menu" style="overflow-y: auto;
         width: 330px;
         height: 304px;
@@ -74,21 +79,22 @@
         top: 0px;
         left: 0px;
         transform: translate3d(15px, -5px, 0px);">
-                  
+
                     <button style="margin-left: 235px;" (click)="ClearNotification()" type="button"
                         class="btn-sm btn-danger ">Clear
                         All</button>
-<br>
+                    <br>
                     <div class="container-fluid contain" style="font-family: 'Poppins';">
                         <!-- <h6>No Notification Today !</h6> -->
-                        <div class="row" *ngFor="let item of notificationslist" [style.background]="item.seenColorCode" (click)="seennotification(item.id)">
-                            <div class="col-lg-4" >
-                           
+                        <div class="row" *ngFor="let item of notificationslist" [style.background]="item.seenColorCode"
+                            (click)="seennotification(item.id)">
+                            <div class="col-lg-4">
+
                                 {{item.date|date}}{{item.time}} <br><br><br>
 
                             </div>
                             <div class="col-lg-8">
-                                <h6 *ngIf="unseen!=1"  (click)="seen()">{{item.message}}</h6>
+                                <h6 *ngIf="unseen!=1" (click)="seen()">{{item.message}}</h6>
                                 <h6 *ngIf="unseen==1">{{item.message}}</h6>
 
                             </div>
@@ -106,14 +112,14 @@
                 <div style="width: 160px;
                 display: flex;
                 align-items: center;
-                justify-content: space-evenly; ">      
-                    <img src="assets/Images/usr.png">
+                justify-content: space-evenly; ">
+                    <img src="assets/Images/profileimg.png" style="width: 28px; margin-top: 8px" />
                     <p class="user">Hi {{userName}} </p>
-                    <img src="assets/Images/Logo_out.1.png" class="logout" (click)="logout()" >
+                    <img src="assets/Images/Logo_out.1.png" class="logout" (click)="logout()">
                 </div>
             </div>
         </div>
-      <!-- 
+        <!-- 
         <div class="col-lg-1">
             <img  class="notification" src="assets/Images/notification.png">        
         </div>
