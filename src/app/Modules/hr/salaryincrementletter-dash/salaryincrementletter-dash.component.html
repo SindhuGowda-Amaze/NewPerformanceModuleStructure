@@ -13,7 +13,8 @@
         <br>
         <div class="row FilterClass ">
             <div class="col-lg-1">
-                <p class="filter">Filter By</p>
+                <img src="assets/Images/filter.svg" class="filter-img">
+                <p class="filter">Filter By:</p>
             </div>
             <div class="col-lg-6">
                 <input type="search" class="form-control search" placeholder="Search for Name.." [(ngModel)]="search">
@@ -82,7 +83,8 @@
                         <td *ngIf="roleid==3">5.5</td>
                         <td *ngIf="roleid==3">
                             <p *ngIf="details.baseSal==null">10000</p>
-                            {{details.baseSal}}</td>
+                            {{details.baseSal}}
+                        </td>
                         <td *ngIf="roleid==3">{{details.level}}</td>
                         <td *ngIf="roleid==3">NA</td>
                         <td *ngIf="roleid==3">NA</td>

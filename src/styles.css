@@ -6,29 +6,31 @@
 @import '~ng-wizard/themes/ng_wizard_theme_dots.min.css'; */
 
 
-body{
-    font-family: "Poppins" !important;
-  }
-  .button {
-    font-family: "Poppins" !important;
-    text-transform: uppercase;
-    font-weight: initial;
-    font-family: 'Poppins';
-    text-shadow: initial;
-    letter-spacing: 0.5px;
-    background-color: #3247d5;
-    color: #ffffff;
-    border-radius: 5px;
-    border: none;
-    padding: 5px;
-    width: 105px;
-    float: right;
-    margin-right: 15px;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  /* 
+body {
+  font-family: "Poppins" !important;
+}
+
+.button {
+  font-family: "Poppins" !important;
+  text-transform: uppercase;
+  font-weight: initial;
+  font-family: 'Poppins';
+  text-shadow: initial;
+  letter-spacing: 0.5px;
+  background-color: #3247d5;
+  color: #ffffff;
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+  width: 105px;
+  float: right;
+  margin-right: 15px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* 
   th {
     background-color: #02CFFF;
     color: white;
@@ -53,8 +55,8 @@ body{
     border-bottom-right-radius: 10px;
   
   } */
-  
-  /* table,
+
+/* table,
   tr,
   td {
     border: none !important;
@@ -64,9 +66,9 @@ body{
     font-size: 13px;
     color: #0C275A;
     /* height: 92%; */
-    
-  /* } */ 
-  /* 
+
+/* } */
+/* 
   tr:nth-child(odd) {
   
     background-color: #FFFFFF !important
@@ -80,129 +82,129 @@ body{
   table {
     width: 100%;
   } */
-  
-  .actionbuttons {
-    width: 60%;
-    border: none;
-    background: #3247D5;
-    text-align: center;
-    border-radius: 6px;
-    color: white;
-    margin-top: 6px;
-    padding: 5px;
-  }
-  
-  .addbtn {
-    padding: 5px;
-    border-radius: 5px;
-    color: white;
-    background-color: #3247D5;
-    border: none;
-    width: 92%;
-  }
-  
-  .card {
-    padding: 20px;
-    background: #ffffff;
-    box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
-    border-radius: 12px;
-    width: 100%;
-  }
-  
-  .cancel {
-    border: none;
-    background: #3247D5;
-    text-align: center;
-    border-radius: 6px;
-    color: white;
-    margin-top: 6px;
-    padding: 5px;
-    font-weight: bold;
-  }
-  
-  .edit {
-    width: 100%;
-    border: none;
-    background: #3247D5;
-    text-align: center;
-    border-radius: 6px;
-    color: white;
-    margin-top: 6px;
-    padding: 5px;
-    margin-bottom: 5px;
-    height:70%;
-  }
-  
-  .headings {
-    height: 15px;
-    left: 221px;
-    top: 100px;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 19px;
-    line-height: 15px;
-    letter-spacing: 0.5px;
-    color: #3247D5;
-    font-family: "Poppins" !important;
-  }
-  
-  .count {
-    height: 15px;
-  
-    top: 100px;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 17px;
-    color: #0C275A;
-    font-family: "Poppins" !important;
-  }
-  
-  .filter {
-    margin-top: 10px;
-    height: 13px;
-    left: calc(50% - 56px/2 - 441px);
-    top: 180px;
-    font-weight: 600;
-    font-size: 13px;
-    line-height: 13px;
-    color: #0C275A;
-  }
-  
-  .filter2 {
-    margin-top: 10px;
-    height: 13px;
-    float: right;
-    top: 180px;
-    font-weight: 600;
-    font-size: 13px;
-    line-height: 13px;
-    color: #0C275A;
-  }
-  
-  .search {
-    left: 0%;
-    right: 0%;
-    top: 35.59%;
-    bottom: 0%;
-    background: #FFFFFF;
-    border: 1px solid #BBBBBB;
-    box-sizing: border-box;
-    border-radius: 5px;
-  }
-  
-  .addnew {
-    width: 116px;
-    height: 37px;
-    background: #3247D5;
-    border-radius: 5px;
-    color: white;
-    text-align: center;
-    border: none;
-    float: right;
-    margin-right: 10px;
-  }
-  
-  /* .tableheader {
+
+.actionbuttons {
+  width: 60%;
+  border: none;
+  background: #3247D5;
+  text-align: center;
+  border-radius: 6px;
+  color: white;
+  margin-top: 6px;
+  padding: 5px;
+}
+
+.addbtn {
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  background-color: #3247D5;
+  border: none;
+  width: 92%;
+}
+
+.card {
+  padding: 20px;
+  background: #ffffff;
+  box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  width: 100%;
+}
+
+.cancel {
+  border: none;
+  background: #3247D5;
+  text-align: center;
+  border-radius: 6px;
+  color: white;
+  margin-top: 6px;
+  padding: 5px;
+  font-weight: bold;
+}
+
+.edit {
+  width: 100%;
+  border: none;
+  background: #3247D5;
+  text-align: center;
+  border-radius: 6px;
+  color: white;
+  margin-top: 6px;
+  padding: 5px;
+  margin-bottom: 5px;
+  height: 70%;
+}
+
+.headings {
+  height: 15px;
+  left: 221px;
+  top: 100px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 19px;
+  line-height: 15px;
+  letter-spacing: 0.5px;
+  color: #3247D5;
+  font-family: "Poppins" !important;
+}
+
+.count {
+  height: 15px;
+
+  top: 100px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 17px;
+  color: #0C275A;
+  font-family: "Poppins" !important;
+}
+
+.filter {
+  margin-top: 10px;
+  height: 13px;
+  left: calc(50% - 56px/2 - 441px);
+  top: 180px;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 13px;
+  color: #0C275A;
+}
+
+.filter2 {
+  margin-top: 10px;
+  height: 13px;
+  float: right;
+  top: 180px;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 13px;
+  color: #0C275A;
+}
+
+.search {
+  left: 0%;
+  right: 0%;
+  top: 35.59%;
+  bottom: 0%;
+  background: #FFFFFF;
+  border: 1px solid #BBBBBB;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.addnew {
+  width: 116px;
+  height: 37px;
+  background: #3247D5;
+  border-radius: 5px;
+  color: white;
+  text-align: center;
+  border: none;
+  float: right;
+  margin-right: 10px;
+}
+
+/* .tableheader {
     width: 1199px;
     height: 50px;
     right: 20px;
@@ -223,117 +225,328 @@ body{
     line-height: 17px;
     color: #0C275A;
   } */
-  
-  
-  
-  
-  table thead tr {
-    font-family: "Poppins" !important;
-    font-style: normal !important;
-    font-weight: bold !important;
-    font-size: 14px !important;
-    line-height: 17px !important;
-    /* identical to box height, or 121% */
-    color: #ffffff !important;
-  }
-  
-  table thead tr td {
-    font-family: "Poppins" !important;
-    font-style: normal !important;
-    font-weight: normal !important;
-    font-size: 13px !important;
-    line-height: 17px !important;
-    /* identical to box height, or 131% */
-    color: #0c275a !important;
-  }
-  
-  table thead th {
-    font-family: "Poppins" !important;
-    background: #02cfff !important;
-    font-weight: 700;
-    font-size: 14px;
-    font-style: normal;
-    line-height: 17px;
-  }
-  
-  
-  tr:nth-child(odd) {
-    background-color: #FFFFFF !important
-  }
-  
-  tr:nth-child(even) {
-    background-color: #F2F2F2 !important
-  }
-  
-  th:first-of-type {
-    border-top-left-radius: 10px;
-  }
-  
-  th:last-of-type {
-    border-top-right-radius: 10px;
-  }
-  
-  tr:last-of-type td:first-of-type {
-    border-bottom-left-radius: 10px;
-  
-  }
-  
-  tr:last-of-type td:last-of-type {
-    border-bottom-right-radius: 10px;
-  }
-  
-  table,
-  tr,
-  td {
-    border: none !important;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 13px;
-    line-height: 17px;
-    /* identical to box height, or 131% */
-  
-  
-    color: #0C275A;
-  }
-  
-  
-  th:first-of-type {
-    border-top-left-radius: 10px;
-  }
-  
-  th:last-of-type {
-    border-top-right-radius: 10px;
-  }
-  
-  tr:last-of-type td:first-of-type {
-    border-bottom-left-radius: 10px;
-  
-  }
-  
-  tr:last-of-type td:last-of-type {
-    border-bottom-right-radius: 10px;
-  }
-  body,p {
-    font-family: 'Poppins';
-  }
-  
-  i {
-    color: #3247d5;
-  
-  }
-  input,textarea{
-    font-size: 12px;
-  }
-  /* .container-fluid{
+
+
+
+
+table thead tr {
+  font-family: "Poppins" !important;
+  font-style: normal !important;
+  font-weight: bold !important;
+  font-size: 14px !important;
+  line-height: 17px !important;
+  /* identical to box height, or 121% */
+  color: #ffffff !important;
+}
+
+table thead tr td {
+  font-family: "Poppins" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-size: 13px !important;
+  line-height: 17px !important;
+  /* identical to box height, or 131% */
+  color: #0c275a !important;
+}
+
+table thead th {
+  font-family: "Poppins" !important;
+  background: #02cfff !important;
+  font-weight: 700;
+  font-size: 14px;
+  font-style: normal;
+  line-height: 17px;
+}
+
+
+tr:nth-child(odd) {
+  background-color: #FFFFFF !important
+}
+
+tr:nth-child(even) {
+  background-color: #F2F2F2 !important
+}
+
+th:first-of-type {
+  border-top-left-radius: 10px;
+}
+
+th:last-of-type {
+  border-top-right-radius: 10px;
+}
+
+tr:last-of-type td:first-of-type {
+  border-bottom-left-radius: 10px;
+
+}
+
+tr:last-of-type td:last-of-type {
+  border-bottom-right-radius: 10px;
+}
+
+table,
+tr,
+td {
+  border: none !important;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 17px;
+  /* identical to box height, or 131% */
+
+
+  color: #0C275A;
+}
+
+
+th:first-of-type {
+  border-top-left-radius: 10px;
+}
+
+th:last-of-type {
+  border-top-right-radius: 10px;
+}
+
+tr:last-of-type td:first-of-type {
+  border-bottom-left-radius: 10px;
+
+}
+
+tr:last-of-type td:last-of-type {
+  border-bottom-right-radius: 10px;
+}
+
+body,
+p {
+  font-family: 'Poppins';
+}
+
+i {
+  color: #3247d5;
+
+}
+
+input,
+textarea {
+  font-size: 12px;
+}
+
+/* .container-fluid{
     padding: 10px;
   } */
-  
-  .show3res {
-    font-size: 12px!important;
-    font-weight: bold!important;
-    letter-spacing: 0.5!important;
-    color: #3247d5!important;
-    text-transform: uppercase!important;
-    padding: 10px 25px 15px!important;
-  }
+
+.show3res {
+  font-size: 12px !important;
+  font-weight: bold !important;
+  letter-spacing: 0.5 !important;
+  color: #3247d5 !important;
+  text-transform: uppercase !important;
+  padding: 10px 25px 15px !important;
+}
+
+
+.Addbutton {
+  text-transform: uppercase;
+  font-weight: initial;
+  text-shadow: initial;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+  width: 40%;
+  float: right;
+  margin-right: 15px;
+  font-size: 15px;
+  width: 166px;
+  font-weight: bold;
+  background: #3247D5;
+  box-shadow: 1px 1px 17px 1px rgb(50 71 213 / 60%);
+  border-radius: 5px solid #3247D5;
+  border: 5px solid #3247D5;
+}
+
+.close-btn {
+  box-sizing: border-box;
+  position: absolute;
+  width: 162px;
+  height: 38px;
+  border-radius: 5px;
+  font-family: 'Poppins';
+  font-style: normal;
+  letter-spacing: 0.658333px;
+  color: #3247D5;
+  background: #FFFFFF;
+  border-radius: 5px solid #3247D5;
+  border: 2px solid #3247D5;
+  text-transform: uppercase;
+}
+
+.tab-slider--tabs {
+  display: block;
+  float: left;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+  background: #fff;
+  border-radius: 5px;
+  border: 2px solid #3247D5;
+  border-left: 1px !important;
+}
+
+.tab-slider--trigger {
+  font-size: 12px;
+  line-height: 1;
+  font-weight: bold;
+  color: #3247D5;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 11px 20px;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+  display: inline-block;
+  transition: color 250ms ease-in-out;
+  user-select: none;
+  border-left: 2px solid #3247D5;
+
+}
+
+.tab-slider--trigger.active {
+  color: #fff;
+  background: #3247D5;
+}
+
+
+.plus-icon {
+  padding-right: 8px;
+  margin-top: -4px;
+}
+
+
+.edit-btn {
+  box-sizing: border-box;
+  width: 90px;
+  height: 29px;
+  left: 0px;
+  border-radius: 5px;
+  font-family: 'Poppins';
+  font-style: normal;
+  letter-spacing: 0.658333px;
+  color: #3247D5;
+  border-radius: 5px solid #3247D5;
+  border: 2px solid #3247D5;
+  color: #3247D5;
+  border-radius: 5px solid #3247D5;
+  border: 2px solid #3247D5;
+  box-sizing: border-box;
+  /* position: absolute; */
+  width: 66px;
+  height: 28px;
+  /* left: 1209px; */
+  top: 560px;
+  background: #FFFFFF;
+  border: 2px solid #3247D5;
+  border-radius: 5px;
+}
+
+.filter-img {
+  position: absolute;
+  height: 18px;
+  left: 13.43%;
+  right: 81.6%;
+  top: 9px;
+}
+
+
+.filter {
+  position: absolute;
+  width: 56px;
+  height: 13px;
+  top: 1px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 13px;
+  color: #0C275A;
+  left: 45px;
+}
+
+.attachment,
+.dropfiles,
+.dropFile {
+  height: 130px;
+  box-sizing: border-box;
+  /* position: absolute; */
+  /*  width: 310px; */
+  height: 74px;
+  left: 190px;
+  top: 455px;
+  background: #E2DEFF;
+  border: 2px dashed #3247D5 !important;
+  border-radius: 5px !important;
+  color: #3247D5;
+}
+
+.dropdowning {
+  position: relative;
+  top: -30px;
+  left: -125px;
+}
+
+ngx-dropzone-preview {
+  max-width: 300px !important;
+}
+
+ngx-dropzone-label {
+  color: #3247D5 !important;
+}
+
+.inputfield {
+  background-color: #f2f2f2;
+  font-size: 13px;
+}
+
+.edit {
+  text-transform: uppercase;
+  font-weight: initial;
+  text-shadow: initial;
+  letter-spacing: 0.5px;
+  background-color: #FFFFFF;
+  color: #3247D5;
+  border: 2px solid #3247D5 !important;
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+  width: 100%;
+  margin-right: 15px;
+  font-size: 12px;
+  font-weight: bold;
+  width: 162px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.save {
+  text-transform: uppercase;
+  font-weight: initial;
+  text-shadow: initial;
+  height: 35px;
+  letter-spacing: 0.5px;
+  background-color: #3247D5;
+  color: #FFFFFF;
+  border: 2px solid #3247D5 !important;
+  box-shadow: 1px 1px 17px 1px rgb(50 71 213 / 60%);
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+  width: 100%;
+  margin-right: 15px;
+  font-size: 12px;
+  font-weight: bold;
+  width: 162px;
+  cursor: pointer;
+}

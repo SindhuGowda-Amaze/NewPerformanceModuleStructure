@@ -7,10 +7,10 @@
   box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
   border-radius: 12px;
   }
-  .filter{
+/*   .filter{
     margin-left: 15px;
     font-size: 13px;
-  }
+  } */
   .Add{
     background-color: #3247D5;
     color:white;
@@ -31,7 +31,7 @@
     width: 100%;
   }
   
-  .tab-slider--tabs {
+/*   .tab-slider--tabs {
     display: block;
     float: left;
     margin: 0;
@@ -92,4 +92,4 @@
   .tab-slider--body {
     margin-bottom: 20px;
   }
-  
+   */

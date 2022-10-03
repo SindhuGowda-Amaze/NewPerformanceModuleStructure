@@ -12,7 +12,8 @@
     <div class="card">
         <div class="row FilterClass ">
             <div class="col-lg-1">
-                <p class="filter">Filter By</p>
+                <img src="assets/Images/filter.svg" class="filter-img">
+                <p class="filter">Filter By:</p>
             </div>
             <div class="col-lg-3">
                 <input type="search" class="form-control search" placeholder="Search for Name.." [(ngModel)]="search">
@@ -69,7 +70,8 @@
             <div *ngSwitchCase="'tab1'" id="tab1">
                 <div class="row">
                     <div class="col-md-10">
-                        <p class="show3res">SHOWING <span>{{(EmployeeKradash| filter: search).length}}</span> RESULTS</p>
+                        <p class="show3res">SHOWING <span>{{(EmployeeKradash| filter: search).length}}</span> RESULTS
+                        </p>
                     </div>
                     <!-- <div class="col-md-2">
                         <button class="form-control requestbtn" routerLink="/ApplyOT">Apply</button>
@@ -146,9 +148,9 @@
                         </table>
                         <!-- <span *ngIf="EmployeeKradash.length==0">No data Found</span> -->
                         <ng-template #noResults>
-                          
-                                <p class="NoResultShow"> No results found </p>
-                          
+
+                            <p class="NoResultShow"> No results found </p>
+
                         </ng-template>
                         <div class="text-right">
                             <br>
@@ -161,13 +163,14 @@
             <div *ngSwitchCase="'tab2'" id="tab2">
                 <div class="row">
                     <div class="col-md-10">
-                        <p class="show3res">SHOWING <span>{{(EmployeeKradash2| filter: search).length}}</span> RESULTS</p>
+                        <p class="show3res">SHOWING <span>{{(EmployeeKradash2| filter: search).length}}</span> RESULTS
+                        </p>
                     </div>
                     <!-- <div class="col-md-2">
                         <button class="form-control requestbtn" routerLink="/ApplyOT">Apply</button>
                     </div> -->
                 </div>
-                <div class="row" >
+                <div class="row">
                     <div class="col-lg-12">
                         <table class="table">
                             <thead>
@@ -237,9 +240,9 @@
                         </table>
                         <!-- <span *ngIf="EmployeeKradash.length==0">No data Found</span> -->
                         <ng-template #noResults>
-                          
-                                <p class="NoResultShow"> No results found </p>
-                          
+
+                            <p class="NoResultShow"> No results found </p>
+
                         </ng-template>
                         <div class="text-right">
                             <br>

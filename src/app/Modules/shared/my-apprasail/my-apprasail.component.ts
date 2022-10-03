@@ -76,7 +76,13 @@ export class MyApprasailComponent implements OnInit {
 
     //Variable Initialisation and Default Method Calls//
 
-   
+    this.GetMyDetails();
+    this.GetDepartment();
+    this.GetConductappraisalStaffList();
+    this.GetEmployeeKraMap();
+    this.GetAppraisalCycle()
+    this.GetKeyResultArea();
+    this.GetEmployeeGoals();
     this.Apprisalcycle = ""
     this.kratypeid = ""
     this.kraid = "0"
@@ -92,7 +98,7 @@ export class MyApprasailComponent implements OnInit {
     this.GetAppraisalCycle()
     this.GetKeyResultArea();
     this.GetEmployeeGoals();
-    this.GetStaffKraDetailsEmployee();
+    // this.GetStaffKraDetailsEmployee();
    
   }
 
@@ -257,31 +263,7 @@ export class MyApprasailComponent implements OnInit {
 
   //Method to Displaying the Data from GetEmployeeKraMap Table//
 
-  public GetStaffKraDetailsEmployee() {
-    debugger
-    this.PerformanceManagementService.GetEmployeeKPI().subscribe({
-      next: data => {
-        debugger
-        this.StaffkraEmp = data
-        // this.StaffkraEmp = data.filter(x => x.staffName == details.staffID);
-        this.count = this.StaffkraEmp.length;
-        console.log("this.StaffkraEmp", this.StaffkraEmp)
-      }, error: (err) => {
-        Swal.fire('Issue in Getting EmployeeKraMap');
-        // Insert error in Db Here//
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
-        }
-        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
-
-  }
+ 
 
   public GetEmployeeGoalList(details: any) {
     this.goalID = details.id
@@ -289,11 +271,7 @@ export class MyApprasailComponent implements OnInit {
     this.PerformanceManagementService.GetEmployeeKPI().subscribe({
       next: data => {
         debugger
-        this.StaffkraEmp = data
         this.EmplGoalsList = data.filter(x => x.goalID == this.goalID)
-        // this.StaffkraEmp = data.filter(x => x.staffName == details.staffID);
-        this.count = this.StaffkraEmp.length;
-        console.log("this.StaffkraEmp", this.StaffkraEmp)
       }, error: (err) => {
         Swal.fire('Issue in Getting EmployeeKraMap');
         // Insert error in Db Here//

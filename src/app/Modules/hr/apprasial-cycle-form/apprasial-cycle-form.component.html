@@ -98,15 +98,16 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-9"></div>
-                <div class="col-lg-1">
-                    <button class="form-control cancel" *ngIf="id==undefined" 
-                        (click)="Save()">Save</button>
-                        <!-- [disabled]="appraisalform.form.invalid" -->
-                    <button class="form-control cancel" *ngIf="id!= undefined" (click)="Update()">Update</button>
+                <div class="col-lg-8"></div>
+                <div class="col-lg-2">
+                    <button class="edit" (click)="Cancel()">Cancel</button>
+                  
                 </div>
-                <div class="col-lg-1">
-                    <button class="form-control cancel" (click)="Cancel()">Cancel</button>
+                <div class="col-lg-2">
+                    <button class="save" *ngIf="id==undefined" 
+                    (click)="Save()">Save</button>
+                    <!-- [disabled]="appraisalform.form.invalid" -->
+                <button class="save" *ngIf="id!= undefined" (click)="Update()">Update</button>
                 </div>
             </div>
         <!-- </form> -->
