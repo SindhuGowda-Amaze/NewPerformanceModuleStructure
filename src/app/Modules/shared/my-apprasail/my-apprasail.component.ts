@@ -865,6 +865,8 @@ export class MyApprasailComponent implements OnInit {
   }
 
   cancelAppraisal() {
-    location.href = "#/shared/MyAppraisal";
+    debugger
+    // location.href = "#/shared/MyAppraisal";
+    location.reload()
   }
 }

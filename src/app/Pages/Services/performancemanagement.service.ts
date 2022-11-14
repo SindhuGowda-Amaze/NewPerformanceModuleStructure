@@ -6,23 +6,38 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 })
 export class PerformancemanagementService {
 
-   public baseURL4 = "http://localhost:4199/";
- //  public baseURL = "http://103.133.214.197/PerformanceManagement/";
- // public host = "https://digioffice.amazeone.co/DigiOfficeAsticomAPI";
-//  public host1="https://support.amazeone.co/SupportAPI/";
-//  public hoet2 = "http://103.133.214.197/LearningandDevelopment/";
+  public baseURL4 = "http://localhost:4199/";
 
-public baseURL = "http://103.12.1.103/CorePerformanceManagementAPI";
-public host = "http://103.12.1.103/DigiOfficeCoreHRAPI"
-
-
-// baseURL = "http://23.101.22.93/CoreDigiPerformanceManagementAPI";
-
-// public host = "https://23.101.22.93/DigiOfficeCoreHRAPI"
-
+  //  public baseURL = "http://103.133.214.197/PerformanceManagement/";
+ 
+  // public host = "https://digioffice.amazeone.co/DigiOfficeAsticomAPI";
+ 
+ //  public host1="https://support.amazeone.co/SupportAPI/";
+ 
+ //  public hoet2 = "http://103.133.214.197/LearningandDevelopment/";
+ 
+ 
+ 
+ public baseURL = "https://103.12.1.103/CorePerformanceManagementAPI";
+ 
+ public host = "https://103.12.1.103/DigiOfficeCoreHRAPI"
+ 
+ 
+ 
+ 
+ // baseURL = "http://23.101.22.93/CoreDigiPerformanceManagementAPI";
+ 
+ 
+ 
+ // public host = "https://23.101.22.93/DigiOfficeCoreHRAPI"
+ 
+ 
+ 
   
-public host1=" https://asticom.digiofficeapp.com/SupportAPI/"
-public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
+ 
+ public host1=" https://asticom.digiofficeapp.com/SupportAPI/"
+ 
+ public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
 
  url: any;
  constructor(private http: HttpClient) {
@@ -160,6 +175,7 @@ public hoet2 = "http://23.101.22.93/LearningandDevelopmentdemo/";
 
  public GetMyDetails() {
    return this.http.get<any[]>(
+
      this.host + "/Announcement/GetMyDetails"
    );
  }
@@ -597,6 +613,12 @@ public GetEmployeeKPI() {
 public DeleteEmployeeGoalMaster(ID: any) {
   return this.http.get<any[]>(
     this.baseURL + "/Master/DeleteEmployeeGoalMaster?ID=" + ID);
+}
+public Authenicate(data: any) {
+  debugger;
+  // this.url = this.host + "/Master/Verifyotp";
+  this.url = this.baseURL + '/Master/Authenicate';
+  return this.http.post(this.url, data);
 }
 
 
