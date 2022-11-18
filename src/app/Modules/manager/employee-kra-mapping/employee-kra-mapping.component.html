@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <select class="form-control " name="Department"  id="departmentName" name="departmentName" required [(ngModel)]="departmentName" required>
-                        <option value="">Select Department</option>
+                        <option value="" disabled selected>Select Department</option>
                         <option *ngFor="let details of Departmentlist" value="{{details.id}}">{{details.departmentName}}
                         </option>
                     </select>
@@ -33,7 +33,7 @@
 
                 <div class="col-lg-3">
                     <select class="form-control" id="RoleID" name="RoleID" required [(ngModel)]="RoleID" (change)="GetRoleID()">
-                        <option value="">Select Position</option>
+                        <option value="" disabled selected>Select Position</option>
                         <option *ngFor="let item of RoleTypeList" value="{{item.id}}">{{item.short}}
                         </option>
                     </select>
@@ -47,7 +47,7 @@
                 <div class="col-lg-3">
                     <select class="form-control" id="Apprisalcycle" (change)="GetApprisalcycle($event)"
                         name="Apprisalcycle" required [(ngModel)]="Apprisalcycle">
-                        <option value="">Select Cycle</option>
+                        <option value=""disabled selected>Select Cycle</option>
                         <option *ngFor="let item of Apprisalcyclelist" value="{{item.id}}">
                             {{item.appraisalCycleName}}
                         </option>
@@ -70,7 +70,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <select class="form-control"  (change)="getkratypeid($event)"  [(ngModel)]="kratypeid" name="kratypeid"  required>
-                        <option value="">Select Goal Type</option>
+                        <option value="" disabled selected>Select Goal Type</option>
                         <option *ngFor="let details of kratypelist" value="{{details.kraType}}">{{details.kraType}}
                         </option>
                     </select>
@@ -95,7 +95,7 @@
                 </div>
 
                 <div class="col-lg-2">
-                    <button class="save" (click)="SaveDetails()"  [disabled]="Ekramap.form.invalid">Save</button>
+                    <button class="save" (click)="SaveDetails()"  [disabled]="Ekramap.form.invalid">Add</button>
                 </div>
             </div>
             <br>

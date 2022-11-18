@@ -183,7 +183,7 @@
                     <div class="col-lg-9">
                         <select class="form-control" (change)="getkratypeid($event)" [(ngModel)]="kratypeid"
                             name="kratypeid" required>
-                            <option value="">Select Goal Type</option>
+                            <option value="" disabled selected>Select Goal Type</option>
                             <option *ngFor="let details of GoalTypelist" value="{{details.kraType}}">{{details.kraType}}
                             </option>
                         </select>
@@ -197,7 +197,7 @@
                     <div class="col-lg-9">
                         <select class="form-control columnname" (change)="getgoaltype($event)" id="kraid"
                             [(ngModel)]="kraid" name="kraid" required>
-                            <option value="">Select Goal</option>
+                            <option value="" disabled selected>Select Goal</option>
                             <option *ngFor="let details of kratypelist" value="{{details.id}}">{{details.kraName}}
                             </option>
                         </select>
@@ -210,7 +210,7 @@
                     <div class="col-lg-9">
                         <select class="form-control columnname" (change)="getkpiid($event)" [(ngModel)]="kpiid"
                             name="kpiid" id="kpiid">
-                            <option value="">Select KPI</option>
+                            <option value="" disabled selected>Select KPI</option>
                             <option *ngFor="let details of kpitypelist" value="{{details.id}}">{{details.kpiName}}
                             </option>
                         </select>

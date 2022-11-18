@@ -313,7 +313,6 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
   public GetStaffKraDetails(details: any) {
     debugger
     this.PerformanceManagementService.GetEmployeeKraMap()
-
       .subscribe({
         next: data => {
           debugger

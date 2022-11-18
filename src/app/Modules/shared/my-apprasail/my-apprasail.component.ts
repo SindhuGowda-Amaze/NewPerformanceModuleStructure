@@ -98,7 +98,8 @@ export class MyApprasailComponent implements OnInit {
     this.GetAppraisalCycle()
     this.GetKeyResultArea();
     this.GetEmployeeGoals();
-    // this.GetStaffKraDetailsEmployee();
+    this.GetStaffKraDetails;
+    //this.GetStaffKraDetailsEmployee();
    
   }
 
@@ -271,7 +272,8 @@ export class MyApprasailComponent implements OnInit {
     this.PerformanceManagementService.GetEmployeeKPI().subscribe({
       next: data => {
         debugger
-        this.EmplGoalsList = data.filter(x => x.goalID == this.goalID)
+        //this.EmplGoalsList = data.filter(x => x.goalID == this.goalID)
+        this.EmplGoalsList = data
       }, error: (err) => {
         Swal.fire('Issue in Getting EmployeeKraMap');
         // Insert error in Db Here//
@@ -292,26 +294,26 @@ export class MyApprasailComponent implements OnInit {
     debugger
     this.empID=details.staffid
     this.getgoalforemp();
-    // this.PerformanceManagementService.GetEmployeeKraMap()
-    //   .subscribe({
-    //     next: data => {
-    //       debugger
-    //       this.Staffkra = data.filter(x => x.staffName == details.staffID);
-    //       this.count = this.Staffkra.length;
-    //       console.log("this.Staffkra", this.Staffkra)
-    //     }, error: (err) => {
-    //       Swal.fire('Issue in Getting EmployeeKraMap');
-    //       var obj = {
-    //         'PageName': this.currentUrl,
-    //         'ErrorMessage': err.error.message
-    //       }
-    //       this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-    //         data => {
-    //           debugger
-    //         },
-    //       )
-    //     }
-    //   })
+    this.PerformanceManagementService.GetEmployeeKraMap()
+      .subscribe({
+        next: data => {
+          debugger
+          this.Staffkra = data.filter(x => x.staffName == details.staffID);
+          this.count = this.Staffkra.length;
+          console.log("this.Staffkra", this.Staffkra)
+        }, error: (err) => {
+          Swal.fire('Issue in Getting EmployeeKraMap');
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
+        }
+      })
   }
 
   public getgoalforemp(){

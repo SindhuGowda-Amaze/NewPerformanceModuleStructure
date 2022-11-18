@@ -27,7 +27,7 @@
             <div class="row header">
                 <div class="col-lg-2">
                     <select class="form-control"  [(ngModel)]="kratypeid" name="kratypeid"  (change)="getkratypeid($event)"  required>
-                        <option value="">Select Goal Type</option>
+                        <option value="" disabled selected>Select Goal Type</option>
                         <option *ngFor="let details of kratypelist" value="{{details.kraType}}">{{details.kraType}}
                         </option>
                     </select>
@@ -38,7 +38,7 @@
                 <div class="col-lg-2">
                     <select class="form-control" id="roleTypeid" name="roleTypeid" required [(ngModel)]="roleTypeid"
                         (change)="getRoleID($event)">
-                        <option value="">Select Position</option>
+                        <option value="" disabled selected>Select Position</option>
                         <option *ngFor="let details of roleTypeList" value="{{details.id}}">{{details.short}}
                         </option>
                     </select>

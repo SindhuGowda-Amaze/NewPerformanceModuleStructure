@@ -439,15 +439,19 @@ export class EmployeeKraMappingComponent implements OnInit {
           "kpiid": this.selectedItems4[i].id,
           "kraname": this.selectedItems2[0].kraName,
           "kpiname": this.selectedItems4[i].kpiName,
-          'KraTypeID': this.kratypeid
+          'KraTypeID': this.kratypeid,
+          'DepartmentName' : this.selectedstaff
         };
         debugger
         this.keyresultArray.push(json)
       }
       this.selectedItems1.length = 0;
-
+      this.selectedItems2[0]=0
+      this.selectedItems4[0]=0
       this.selectedItems2 = [];
+      this.kratypeid=0
       this.selectedItems3.length = 0;
+      this.selectedstaff.length = 0
     }
   }
 

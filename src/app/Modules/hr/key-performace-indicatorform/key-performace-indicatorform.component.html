@@ -31,14 +31,14 @@
                 <div class="col-lg-2">
                     <select class="form-control columnname" [(ngModel)]="goaltypeid" name="goaltypeid" id="goaltypeid" required
                         (change)="getgoaltype($event)">
-                        <option value="">Select Goal Type</option>
+                        <option value="" disabled selected>Select Goal Type</option>
                         <option *ngFor="let details of goaltypelist" value="{{details.kraType}}">{{details.kraType}}</option>
                     </select>
                 </div>
                 <div class="col-lg-2">
                     <select class="form-control columnname" [(ngModel)]="kraid" name="kraid" required
                         (change)="getkraid($event)">
-                        <option value="0">Select Goal</option>
+                        <option value="0" disabled selected>Select Goal</option>
                         <option *ngFor="let details of kratypelist" value="{{details.id}}">{{details.kraName}}</option>
                     </select>
                 </div>

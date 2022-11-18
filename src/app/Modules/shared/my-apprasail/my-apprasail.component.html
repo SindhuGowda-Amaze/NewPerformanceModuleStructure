@@ -622,7 +622,7 @@
                             <div class="col-lg-3">
                                 <select class="form-control" id="Apprisalcycle" (change)="GetApprisalcycle($event)"
                                     name="Apprisalcycle" required [(ngModel)]="Apprisalcycle">
-                                    <option value="">Select Cycle</option>
+                                    <option value="" disabled selected>Select Cycle</option>
                                     <option *ngFor="let item of Apprisalcyclelist" value="{{item.id}}">
                                         {{item.appraisalCycleName}}
                                     </option>
@@ -631,7 +631,7 @@
                             <div class="col-lg-3">
                                 <select class="form-control" (change)="getkratypeid($event)" [(ngModel)]="kratypeid"
                                     name="kratypeid" required>
-                                    <option value="">Select Goal Type</option>
+                                    <option value="" disabled selected>Select Goal Type</option>
                                     <option *ngFor="let details of kratypelist" value="{{details.id}}">
                                         {{details.kraType}}
                                     </option>

@@ -31,7 +31,7 @@
                 </select> -->
                 <select class="form-control" id="departmentid" name="departmentid" [(ngModel)]="departmentid"
                     (change)='getdepartmentID($event)' (change)="GetFilteredDepartment()">
-                    <option value="0">Select Department</option>
+                    <option value="0" disabled selected>Select Department</option>
                     <option *ngFor="let details of departmentList" value="{{details.id}}">{{details.departmentName}}
                     </option>
                 </select>
@@ -39,7 +39,7 @@
             <div class="col-lg-2">
                 <select class="form-control" id="roleTypeid" name="roleTypeid" [(ngModel)]="roleTypeid"
                     (change)="getRoleID($event)" (change)="GetFilteredRoleType()">
-                    <option value="0">Select Position</option>
+                    <option value="0" disabled selected>Select Position</option>
                     <option *ngFor="let details of roleTypeList" value="{{details.id}}">{{details.short}}
                     </option>
                 </select>
@@ -47,7 +47,7 @@
             <div class="col-lg-2 ">
                 <select class="form-control" id="manager" name="manager" [(ngModel)]="manager"
                     (change)="getManager($event)" (change)="GetFilteredManager()">
-                    <option value="0">Select Manager</option>
+                    <option value="0"disabled selected>Select Manager</option>
                     <option *ngFor="let details of managerList1" value="{{details.name}}">{{details.name}}
                     </option>
                 </select>
@@ -70,7 +70,7 @@
             <div class="col-lg-3">
                 <select class="form-control" id="appraisalCycleName" name="appraisalCycleName"
                     [(ngModel)]="appraisalCycleName" (change)="GetApprisalcycle($event)">
-                    <option value="0">Select Appraisal Cycle</option>
+                    <option value="0" disabled selected>Select Appraisal Cycle</option>
                     <option *ngFor="let item of Apprisalcyclelist" value="{{item.appraisalCycleName}}">
                         {{item.appraisalCycleName}}
                     </option>
