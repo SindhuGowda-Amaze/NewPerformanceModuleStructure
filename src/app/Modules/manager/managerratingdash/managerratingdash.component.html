@@ -76,6 +76,7 @@
                                 <th>Last Submission Date </th>
                                 <th>Employee Submitted Date</th>
                                 <th>Manager Submitted Date </th>
+                                <th>Assigned By</th>
                                 <th>Status</th>
                                 <!-- <th>Action </th> -->
                             </tr>
@@ -89,12 +90,17 @@
                                 <td>{{details.cycleStartDate|date}}</td>
                                 <td>{{details.cycleEndDate|date}}</td>
                                 <td>{{details.appraisalSubmitionDate|date}}</td>
-                                <td>{{details.employeeSubmittedDate|date}}</td>
+                                <td>
+                                    <p *ngIf="details.employeeSubmittedDate==null">Pending</p>
+                                    <p *ngIf="details.employeeSubmittedDate!=null">{{details.employeeSubmittedDate|date}}</p>
+                                    
+                                </td>
                                 <td *ngIf="details.managerSubmittedDate!=null">{{details.managerSubmittedDate|date}}
                                 </td>
                                 <td *ngIf="details.managerSubmittedDate==null">
                                     <p>NA</p>
                                 </td>
+                                <td>{{details.assignedBy}}</td>
                                 <td>
                                     <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal!=1">
                                         Pending for Acceptance</p>
@@ -104,15 +110,14 @@
                                     <p *ngIf="details.managerSubmittedDate!=null">Appraisal Submitted By Manager</p>
 
 
-                                    <button
-                                    *ngIf="details.assignedBy=='Employee'"
-                                    class=" btn btn-primary editable-table-button btn-xs Add"
-                                    (click)="Mangeraccept(details.kraid)">Accept</button>
-                                <button
-                                    *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
-                                    class=" btn btn-primary editable-table-button btn-xs Add"
-                                    data-toggle="modal"
-                                    data-target="#viewgoal">View Goals</button>
+                                    <button *ngIf="details.assignedBy=='Employee'"
+                                        class=" btn btn-primary editable-table-button btn-xs Add"
+                                        (click)="Mangeraccept(details.kraid)">Accept</button>
+
+                                    <button *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
+                                        class="edit-btn" data-toggle="modal" (click)="GetStaffKraDetails(details)"
+                                        data-target="#myModal">View Goals</button>
+                                        
                                 </td>
                                 <!-- <td>
                                     <button
@@ -139,7 +144,7 @@
                         </tbody>
                     </table>
 
-            
+              
                     <ng-template #noResults>
 
                         <p class="NoResultShow"> No results found </p>
@@ -393,34 +398,51 @@
 
 
 </div>
+
+
 <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Assigned Kra</h5>
+                <h5 class="modal-title headings">Assigned Goals</h5>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
 
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="height: 400px; overflow-y: scroll;">
                 <div class="row">
                     <div class="col-lg-12">
-                        <table>
+                        <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Kra</th>
+                                    <th>Sl No.</th>
+                                    <th>Goal Type</th>
+                                    <th>Goals</th>
+                                    <th>KPI</th>
+                                    <!-- <th>Status</th> -->
+                                    
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let details of Staffkra">
+                                <tr *ngFor="let details of Staffkra index as i">
+                                    <td>{{i+1}}</td>
+                                    <td>{{details.kraTypeID}}</td>
                                     <td>{{details.kraName}}</td>
+                                    <td>{{details.kpiName}}</td>
+                                    <!-- <td>
+                                        <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal!=1">
+                                            Pending for Acceptance</p>
+                                        <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal==1">
+                                            Accepted</p>
+                                    </td> -->
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+            </div>
         </div>
     </div>
 </div>

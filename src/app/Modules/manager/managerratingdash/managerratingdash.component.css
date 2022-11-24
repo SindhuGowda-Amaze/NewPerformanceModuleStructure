@@ -24,10 +24,16 @@
   .table {
     padding: 35px;
   }
+
+  .edit-btn{
+    width: 95px;
+  }
   /* 
   .tab-slider--nav {
     width: 100%;
   }
+
+  
   
   .tab-slider--tabs {
     display: block;

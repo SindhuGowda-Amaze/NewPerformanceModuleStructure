@@ -219,7 +219,7 @@ export class EmployeeKraMappingComponent implements OnInit {
     console.log(item);
 
     this.selectedstaff.push(item.id)
-    //this.EmployeeId = item.id;
+    this.EmployeeId = item.id;
   }
   onItemSelect2(item1: any) {
     debugger
@@ -451,7 +451,7 @@ export class EmployeeKraMappingComponent implements OnInit {
       this.selectedItems2 = [];
       this.kratypeid=0
       this.selectedItems3.length = 0;
-      this.selectedstaff.length = 0
+ 
     }
   }
 
