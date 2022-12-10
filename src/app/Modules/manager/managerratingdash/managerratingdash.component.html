@@ -77,8 +77,8 @@
                                 <th>Employee Submitted Date</th>
                                 <th>Manager Submitted Date </th>
                                 <th>Assigned By</th>
-                                <th>Status</th>
-                                <!-- <th>Action </th> -->
+                                <!-- <th>Status</th> -->
+                                <th>Action </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -102,16 +102,16 @@
                                 </td>
                                 <td>{{details.assignedBy}}</td>
                                 <td>
-                                    <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal!=1">
+                                    <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal!=1&& details.assignedBy=='Manager'">
                                         Pending for Acceptance</p>
-                                    <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal==1">Goal
+                                    <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal==1&& details.assignedBy=='Manager'" >Goal
                                         Accepted</p>
                                     <p *ngIf="details.employeeSubmittedDate!=null">Appraisal Submitted By Employee</p>
                                     <p *ngIf="details.managerSubmittedDate!=null">Appraisal Submitted By Manager</p>
 
 
                                     <button *ngIf="details.assignedBy=='Employee'"
-                                        class=" btn btn-primary editable-table-button btn-xs Add"
+                                        class="edit-btn"
                                         (click)="Mangeraccept(details.kraid)">Accept</button>
 
                                     <button *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
@@ -170,6 +170,7 @@
                                 <th>Last Submission Date </th>
                                 <th>Employee Submitted Date</th>
                                 <th>Manager Submitted Date </th>
+                                <th>Assigned By</th>
                                 <th>Status</th>
                                 <th>Action </th>
                             </tr>
@@ -186,18 +187,18 @@
                                 <td>
                                     <p *ngIf="details.employeeSubmittedDate!=null && details.employeeacceptgoal==1">
                                         {{details.employeeSubmittedDate}}</p>
-                                    <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal==1"
-                                        style="color:red ;">
-                                        Pending</p>
+                                    <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal!=1"
+                                        style="color:red ;">Pending</p>
                                 </td>
                                 <td *ngIf="details.managerSubmittedDate!=null">{{details.managerSubmittedDate}}
                                 </td>
                                 <td *ngIf="details.managerSubmittedDate==null">
                                     <p>NA</p>
                                 </td>
+                                <td>{{details.assignedBy}}</td>
                                 <td>
                                     <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal!=1">
-                                        Pending for Acceptance</p>
+                                        Pending for Appraisal</p>
                                     <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal==1">Goal
                                         Accepted</p>
                                     <p
@@ -206,9 +207,9 @@
                                     <p *ngIf="details.managerSubmittedDate!=null">Appraisal Submitted By Manager</p>
                                 </td>
                                 <td>
-                                    <button *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
+                                    <!-- <button *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
                                         class=" btn btn-primary editable-table-button btn-xs Add"
-                                        (click)="accept(details.mappingID)">Accept</button>
+                                        (click)="accept(details.mappingID)">Accept</button> -->
 
                                     <button
                                         [routerLink]="['/manager/ManagerAppraisal', details.id,details.appraiselID ]"

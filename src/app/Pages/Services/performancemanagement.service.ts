@@ -392,7 +392,7 @@ export class PerformancemanagementService {
   
  public UpdateManagerSelfAttachment(data: any) {
    debugger;
-   this.url = this.baseURL + 'Master/UpdateManagerSelfAttachment';
+   this.url = this.baseURL + '/Master/UpdateManagerSelfAttachment';
    return this.http.post(this.url, data);
  }
 

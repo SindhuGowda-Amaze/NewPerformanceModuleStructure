@@ -98,7 +98,7 @@
                                     <td>
                                         <button
                                             *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
-                                            class="edit-btn" (click)="accept(details.kraid)">Accept</button><br><br>
+                                            class="edit-btn" (click)="accept(details)">Accept</button><br><br>
                                         <button
                                             *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
                                             class="edit-btn" data-toggle="modal" data-target="#viewManagergoal"
@@ -149,7 +149,7 @@
                                     <!-- <th>Employee Submission Last Date </th> -->
                                     <th>Assigned By</th>
                                     <th>Action</th>
-                                    <th>Status</th>
+                                    <!-- <th>Status</th> -->
                                 </tr>
                             </thead>
                             <tbody>

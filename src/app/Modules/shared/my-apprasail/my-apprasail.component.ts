@@ -160,7 +160,7 @@ export class MyApprasailComponent implements OnInit {
       .subscribe({
         next: data => {
           debugger
-          this.EmployeeKradash = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate == null && (x.employeeacceptgoal ==null||x.employeeacceptgoal ==2));
+          this.EmployeeKradash = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate == null &&(x.employeeacceptgoal ==null||x.employeeacceptgoal ==2));
           this.EmployeeKradashAccepted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate == null && x.employeeacceptgoal == 1);
           this.EmployeeKradashSubmitted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate != null);
           this.EmployeeKradashCompleted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate != null && x.finalize == 1);
@@ -183,7 +183,7 @@ export class MyApprasailComponent implements OnInit {
       .subscribe({
         next: data => {
           debugger
-          this.Employeegoal = data.filter(x => x.staffID == sessionStorage.getItem('EmaployedID') && x.managerRequest !=2);
+          this.Employeegoal = data.filter(x => x.staffID == sessionStorage.getItem('EmaployedID') && x.managerRequest !=0);
           }, error: (err) => {
           Swal.fire('Issue in Getting ConductappraisalStaffList');
           // Insert error in Db Here//
@@ -267,13 +267,14 @@ export class MyApprasailComponent implements OnInit {
  
 
   public GetEmployeeGoalList(details: any) {
+    debugger
     this.goalID = details.id
     debugger
     this.PerformanceManagementService.GetEmployeeKPI().subscribe({
       next: data => {
         debugger
-        //this.EmplGoalsList = data.filter(x => x.goalID == this.goalID)
-        this.EmplGoalsList = data
+        this.EmplGoalsList = data.filter(x => x.goalID == this.goalID)
+        //this.EmplGoalsList = data
       }, error: (err) => {
         Swal.fire('Issue in Getting EmployeeKraMap');
         // Insert error in Db Here//
@@ -343,7 +344,11 @@ export class MyApprasailComponent implements OnInit {
   }
   
 
-  public accept(id: any) {
+  public accept(details: any) {
+    var entity = {
+    id:details.kraid,
+    staffID:details.staffName
+    }
     debugger
     Swal.fire({
       title: 'Are you sure?',
@@ -354,7 +359,7 @@ export class MyApprasailComponent implements OnInit {
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.value == true) {
-        this.PerformanceManagementService.UpdateEmployeeAcceptGoal(id)
+        this.PerformanceManagementService.UpdateEmployeeAcceptGoal(entity)
           .subscribe({
             next: data => {
               debugger
@@ -827,7 +832,7 @@ export class MyApprasailComponent implements OnInit {
         // this.InsertNotification();
         Swal.fire('Goal Request Sent Successfully.');
         // location.href = "#/manager/EmployeeKraMappingdashboard";
-        // location.reload();
+         location.reload();
       }
     })
   }
