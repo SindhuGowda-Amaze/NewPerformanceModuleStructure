@@ -70,12 +70,20 @@ export class HrratingnewComponent implements OnInit {
   show: any;
   selfattachment: any;
   sbuAttachment: any;
+  StaffAppraisalList:any;
+  currentUrl:any;
+  AvgSelfScore:any;
+  AvgGroupHeadScores:any;
+  AvgDivisionScores:any;
 
   ngOnInit(): void {
     //Variable Initialisation and Default Method Calls//
+
+    this.currentUrl = window.location.href
     this.Score = 0;
     this.showbtn = false;
     this.HighScore();
+    this.GetConductAppraisal();
 
     this.route.params.subscribe(params => {
       debugger;
@@ -111,6 +119,36 @@ export class HrratingnewComponent implements OnInit {
       }
     }
     );
+  }
+
+
+  public GetConductAppraisal(){
+    this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
+      next: data => {
+        debugger
+        // this.FilteredStaffAppraisalList = data.filter(x => x.appraisalCycleName == this.appraisalCycleName && x.finalize == 1)
+       this.StaffAppraisalList = data.filter(x => x.appraiselID == this.appraislid  && x.staffid==this.StaffID)
+      
+        this.AvgSelfScore = this.StaffAppraisalList[0].avgSelfScore
+        this.AvgGroupHeadScores = this.StaffAppraisalList[0].avgGroupHeadScores
+        this.AvgDivisionScores = this.StaffAppraisalList[0].avgDivisionScores
+
+       
+
+      }, error: (err: { error: { message: any; }; }) => {
+        Swal.fire('Issue in Getting ConductappraisalStaffList');
+        // Insert error in Db Here//
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
   }
 
 

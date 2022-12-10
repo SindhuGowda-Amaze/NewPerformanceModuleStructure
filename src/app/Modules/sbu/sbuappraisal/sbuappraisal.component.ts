@@ -435,11 +435,12 @@ export class SbuappraisalComponent implements OnInit {
         };
         this.PerformanceManagementService.UpdateSbuSubmitted(entity).subscribe(
           (data) => {
-            debugger;
             Swal.fire('Appraisal Submitted Successfully');
-            this.ngOnInit();
+            location.reload();
           }
         );
+        Swal.fire('Appraisal Submitted Successfully');
+        location.reload();
       }
     });
   }

@@ -12,6 +12,7 @@ import { PerformancemanagementService } from 'src/app/Pages/Services/performance
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import Swal from 'sweetalert2';
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-selfratingnew-component',
   templateUrl: './selfratingnew-component.component.html',
@@ -69,7 +70,8 @@ export class SelfratingnewComponentComponent implements OnInit {
     private PerformanceManagementService: PerformancemanagementService,
     private router: Router,
     private route: ActivatedRoute,
-    private datepipe: DatePipe
+    private datepipe: DatePipe,
+    public sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
@@ -362,6 +364,7 @@ export class SelfratingnewComponentComponent implements OnInit {
           // alert('Attachment uploaded')
           //  this.files.length = 0;
           Swal.fire('Attachment Uploaded Successfully');
+        
         }
         debugger;
       },
@@ -622,5 +625,20 @@ export class SelfratingnewComponentComponent implements OnInit {
 
   cancel() {
     location.href = '/shared/Selfratingnew';
+  }
+
+  public getwordDoc(){
+    debugger
+    //window.open(this.attachment, '_blank');
+    //  location.href = this.attachment
+    // let url= this.sanitizer.bypassSecurityTrustResourceUrl(this.attachment);
+    // location.href =url;
+
+    //let blob = new Blob([this.attachment], { type: 'text/json; charset=utf-8' });
+    console.log('attachment',this.attachment)
+    //const url= window.URL.createObjectURL(blob);
+   // window.open(this.attachment, '_blank');
+    window.location=this.attachment;
+
   }
 }

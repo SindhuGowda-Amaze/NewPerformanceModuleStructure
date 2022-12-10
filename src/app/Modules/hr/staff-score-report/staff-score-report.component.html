@@ -47,7 +47,7 @@
             <div class="col-lg-2 ">
                 <select class="form-control" id="manager" name="manager" [(ngModel)]="manager"
                     (change)="getManager($event)" (change)="GetFilteredManager()">
-                    <option value="0"disabled selected>Select Manager</option>
+                    <option value="0" disabled selected>Select Manager</option>
                     <option *ngFor="let details of managerList1" value="{{details.name}}">{{details.name}}
                     </option>
                 </select>
@@ -65,9 +65,10 @@
 
         <div class="row">
             <div class="col-lg-2">
-                <p class="filter">Select Appraisal Cycle:</p>
+                <p >Select Appraisal Cycle:</p>
             </div>
             <div class="col-lg-3">
+                
                 <select class="form-control" id="appraisalCycleName" name="appraisalCycleName"
                     [(ngModel)]="appraisalCycleName" (change)="GetApprisalcycle($event)">
                     <option value="0" disabled selected>Select Appraisal Cycle</option>
@@ -118,8 +119,9 @@
     <span *ngIf="appraisalPendingCount==0 && appraisalClose==1 && appraisalcount!=0" style="color: red;">Appraisal Cycle
         is
         Closed</span><br><br>
-    <span *ngIf="appraisalcount==0" style="color: red;">Appraisal Cycle Not Started</span><br>
-    <!-- <span *ngIf="finalize==null" style="color: red;">Appraisal Cycle Not Finalized</span> -->
+    <span *ngIf="appraisalcount==0 && finalize==null" style="color: red;">Appraisal Cycle Not Started</span><br><br>
+
+    <span *ngIf="finalize==null && appraisalcount!=0" style="color: red;">Appraisals Not Yet Finalized</span>
 
     <div class="container-fluid" id="demo" class="collapse" *ngIf="appraisalCycleName!=0">
         <div class="row">

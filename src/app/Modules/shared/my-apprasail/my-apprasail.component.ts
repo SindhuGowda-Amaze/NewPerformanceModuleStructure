@@ -11,6 +11,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PerformancemanagementService } from 'src/app/Pages/Services/performancemanagement.service';
 import Swal from 'sweetalert2';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-my-apprasail',
@@ -71,7 +72,7 @@ export class MyApprasailComponent implements OnInit {
   employeeSubmissionDate: any;
   empID: any;
 
-  constructor(private PerformanceManagementService: PerformancemanagementService) { }
+  constructor(private PerformanceManagementService: PerformancemanagementService,public sanitizer: DomSanitizer) { }
   ngOnInit(): void {
 
     //Variable Initialisation and Default Method Calls//
@@ -299,7 +300,7 @@ export class MyApprasailComponent implements OnInit {
       .subscribe({
         next: data => {
           debugger
-          this.Staffkra = data.filter(x => x.staffName == details.staffID);
+          this.Staffkra = data.filter(x => x.staffName ==   this.empID);
           this.count = this.Staffkra.length;
           console.log("this.Staffkra", this.Staffkra)
         }, error: (err) => {
@@ -345,10 +346,10 @@ export class MyApprasailComponent implements OnInit {
   
 
   public accept(details: any) {
-    var entity = {
-    id:details.kraid,
-    staffID:details.staffName
-    }
+    // var entity = {
+    // id:details.kraid,
+    //  staffID:details.staffName
+    // }
     debugger
     Swal.fire({
       title: 'Are you sure?',
@@ -359,7 +360,7 @@ export class MyApprasailComponent implements OnInit {
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.value == true) {
-        this.PerformanceManagementService.UpdateEmployeeAcceptGoal(entity)
+        this.PerformanceManagementService.UpdateEmployeeAcceptGoal(details)
           .subscribe({
             next: data => {
               debugger

@@ -185,7 +185,9 @@ export class BellCurveFittingComponent implements OnInit {
         this.AppraisalCycleID = this.StaffAppraisalList[0].appraiselID
         this.Finalize = this.StaffAppraisalList[0].finalize
         this.appraisalClose = this.StaffAppraisalList1[0].appraisalClose
+
         this.FilteredStaffAppraisalList = this.StaffAppraisalList.filter((x: { cioScores: null;}) => x.cioScores != null)
+        
         this.count = this.FilteredStaffAppraisalList.length;
         this.managerList = this.dumpmanagerList.filter((x: { manager: any; }) => x.manager == this.manager);
 

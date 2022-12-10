@@ -498,7 +498,8 @@ export class StaffScoreReportComponent implements OnInit {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
         debugger
-        this.FilteredStaffAppraisalList = data.filter(x => x.appraisalCycleName == this.appraisalCycleName && x.finalize == 1)
+         this.FilteredStaffAppraisalList = data.filter(x => x.appraisalCycleName == this.appraisalCycleName && x.finalize == 1)
+       // this.FilteredStaffAppraisalList = data.filter(x => x.appraisalCycleName == this.appraisalCycleName && x.finalize == null)
       
 
 
