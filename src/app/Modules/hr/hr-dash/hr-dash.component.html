@@ -75,7 +75,7 @@
                         (click)="viewMode ='tab1'">
                         Assigned</li> -->
                     <li class="tab-slider--trigger" [class.active]="viewMode == 'tab2'" rel="tab2"
-                        (click)="viewMode ='tab2'">SBU Submitted</li>
+                        (click)="viewMode ='tab2'">Manager/SBU Submitted</li>
                     <li class="tab-slider--trigger" [class.active]="viewMode == 'tab3'" rel="tab3"
                         (click)="viewMode ='tab3'">HR Submitted</li>
                     <li class="tab-slider--trigger" [class.active]="viewMode == 'tab4'" rel="tab4"
@@ -265,7 +265,7 @@
             </div>
             <div *ngSwitchCase="'tab3'" id="tab3">
 
-                <div class="row" style="width: 1270px; overflow:auto">
+                <div class="row" style="width: 1210px; overflow-x:scroll">
                     <div class="col-lg-12">
                         <table class="table">
                             <thead>

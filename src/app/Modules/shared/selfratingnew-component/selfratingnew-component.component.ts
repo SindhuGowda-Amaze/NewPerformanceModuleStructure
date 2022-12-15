@@ -409,10 +409,9 @@ export class SelfratingnewComponentComponent implements OnInit {
         debugger;
         var entity = {
           StaffID: this.StaffID,
+          AppraisalID:this.appraislid
         };
-        this.PerformanceManagementService.SubmitEmployeeAppraisal(
-          entity
-        ).subscribe({
+        this.PerformanceManagementService.SubmitEmployeeAppraisal(entity).subscribe({
           next: (data) => {
             debugger;
             this.InsertNotification();

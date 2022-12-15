@@ -1,0 +1,130 @@
+<!-- Product : DigiCorePerformance System 1.0 
+Date : 28 Jan, 2022
+Author : Praveen,Sindhu,Anusha,Madhava
+Description :this procedure Deletes the data in ClientMaster Table
+Last Modified Date : 25 July , 2022
+Last Modified Changes :   Added comments
+Last Modified By : Madhava
+Copyrights : AmazeINC-Bangalore-2022 -->
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-lg-11">
+                    <br />
+                    <p class="headings">APPRAISAL LEVEL CONFIGURATION</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-11">
+                    <div class="row leavereq">
+                        <div class="col-lg-3">
+                            <select class="form-control" id="appraisalCycleID" name="appraisalCycleID"
+                                [(ngModel)]="appraisalCycleID">
+                                <option value="0">Select Appraisal Cycle</option>
+                                <option *ngFor="let item of appraisallist" value="{{item.id}}">
+                                    {{item.appraisalCycleName}}
+                                </option>
+                            </select>
+                        </div>
+                        <!-- <div class="col-lg-4">
+                            <input type="checkbox" id="AutoApproval" name="AutoApproval" [(ngModel)]="AutoApproval"
+                                value="Auto Approval"  [checked]="true"  [disabled]="AutoApproval">
+                            <p class="check-box">1st Level Appraisal(Manager):</p>
+
+                        </div> -->
+                        <div class="col-lg-4">
+                            <p class="check-box">Exclude BU Head Rating</p>
+                            <input type="checkbox" id="AutoApproval1" name="AutoApproval1" [(ngModel)]="AutoApproval1"
+                                value="AutoApproval1" [checked]="true" >
+
+                        </div>
+                        <!-- <div class="col-lg-4">
+                            <input type="checkbox" id="AutoApproval1" name="AutoApproval2" [(ngModel)]="AutoApproval2"
+                                value="Manager Approval" [checked]="true" [disabled]="AutoApproval2">
+                            <p class="check-box">2rd Level Appraisal(HR):</p>
+
+                        </div> -->
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-10"></div>
+                    <div class="col-lg-2">
+                        <!-- <button type="button" class="button" *ngIf="ID!=undefined"
+                        (click)="UpdateHolidays()">Update</button> -->
+                        <button class="button" (click)="update()">Update</button>
+                    </div>
+                    
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table">
+                        <thead>
+                            <tr *ngIf="(appraisallist).length > 0; else noResults">
+                                <th>Appraisal Cycle Name</th>
+                                <th>SBU Rating</th>
+                                <!-- <th>Frequency Type</th>
+                                <th>Cycle Start Date</th>
+                                <th>Cycle End Date</th>
+                                <th>Goal Setting Last Date</th>
+                                <th>Employee Submission Last Date</th>
+                                <th>Manager Review Last Date</th>
+                                <th>SBU Review Last Date</th>
+                                <th>HR Review Last Date</th>
+                                <th>Appraisal Closing Last Date</th> -->
+                                <!-- <th>Actions</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let details of appraisallist ">
+                                <td>{{details.appraisalCycleName}}</td>
+                                <td>
+                                    <p *ngIf="details.includeSBURating==true">Excluded</p>
+                                    <p *ngIf="details.includeSBURating!=true">Included</p>
+                                </td>
+                                <!-- <td>{{details.frequencyName}}</td>
+                                <td>{{details.cycleStartDate|date}}</td>
+                                <td>{{details.cycleEndDate|date}}</td>
+                                <td>{{details.goalSettingDate|date}}</td>
+                                <td>{{details.employeeSubmissionDate|date}}</td>
+                                <td>{{details.managerReviewLastDate|date}}</td>
+                                <td>{{details.sbuReviewLastDate|date}}</td>
+                                <td>{{details.hrReviewLastDate|date}}</td>
+                                <td>{{details.appraisalClosingLastDate|date}}</td> -->
+                                <!-- <td>
+                                    <br>
+                                    <button class="edit-btn"
+                                        [routerLink]="['/hr/ApprasialCycleForm', details.id]">Edit</button><br><br>
+                                    <button class="edit-btn" (click)="delete(details.id)">Delete</button>
+                                </td> -->
+                            </tr>
+                        </tbody>
+                    </table>
+                    <span *ngIf="appraisallist.length==0">No data Found</span>
+                    <ng-template #noResults>
+                        <div class="card">
+                            <p class="NoResultShow"> No results found </p>
+                        </div>
+                    </ng-template>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

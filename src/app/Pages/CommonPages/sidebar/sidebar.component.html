@@ -246,6 +246,16 @@
             <span [ngClass]="active == 'salaryIncrement' ? 'Active1' : 'Active3'">Salary Increment Letter</span>
         </a>
 
+        <a class="togglebtn button" *ngIf="roleid=='3'" routerLink="/hr/ApraisalLevelConfiguration" class="tablinks"
+        (click)="highlight($event)" (click)="configuration()">
+        <img src="assets/Images/64/Staff.png" style="width:13% ;margin-right: 15px;"
+            [ngClass]="active != 'config' ? 'Active1' : 'Active2'" />
+        <img [ngClass]="active == 'config' ? 'Active1' : 'Active2'" src="assets/Images/64 Blue/Staff.png"
+            style="width:13%; margin-right: 17px;">
+        &nbsp;
+        <span [ngClass]="active == 'config' ? 'Active1' : 'Active3'">CONFIGURATION</span>
+    </a>
+
         <a routerLink="/shared/Help" class="tablinks" (click)="highlight($event)" (click)="help()">
             <img src="assets/Images/64 Blue/ATTENDANCE/POLICIES.png" style="width:13% ;margin-right: 17px;"
                 [ngClass]="active == 'help' ? 'Active1' : 'Active2'" />

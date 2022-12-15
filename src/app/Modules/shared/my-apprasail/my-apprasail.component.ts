@@ -71,19 +71,15 @@ export class MyApprasailComponent implements OnInit {
   kraid: any;
   employeeSubmissionDate: any;
   empID: any;
-
-  constructor(private PerformanceManagementService: PerformancemanagementService,public sanitizer: DomSanitizer) { }
+  showbtn: any;
+  employeeAcceptGoal: any;
+  EmaployedID:any;
+  constructor(private PerformanceManagementService: PerformancemanagementService, public sanitizer: DomSanitizer) { }
   ngOnInit(): void {
 
     //Variable Initialisation and Default Method Calls//
+    this.showbtn = false;
 
-    this.GetMyDetails();
-    this.GetDepartment();
-    this.GetConductappraisalStaffList();
-    this.GetEmployeeKraMap();
-    this.GetAppraisalCycle()
-    this.GetKeyResultArea();
-    this.GetEmployeeGoals();
     this.Apprisalcycle = ""
     this.kratypeid = ""
     this.kraid = "0"
@@ -92,6 +88,7 @@ export class MyApprasailComponent implements OnInit {
     this.RoleType = "";
     this.roleid = sessionStorage.getItem('roleid');
     this.loginName = sessionStorage.getItem('loginName');
+    this.EmaployedID = sessionStorage.getItem('EmaployedID');
     this.GetMyDetails();
     this.GetDepartment();
     this.GetConductappraisalStaffList();
@@ -99,9 +96,46 @@ export class MyApprasailComponent implements OnInit {
     this.GetAppraisalCycle()
     this.GetKeyResultArea();
     this.GetEmployeeGoals();
+    this.GetMyDetails();
+    this.GetKraMaster();
+
     this.GetStaffKraDetails;
     //this.GetStaffKraDetailsEmployee();
-   
+
+  }
+
+  kra:any;
+  public GetEmployeeKraMap(){
+    this.PerformanceManagementService.GetEmployeeKraMap()
+    .subscribe({
+      next: data => {
+        debugger
+        this.Staffkra = data.filter(x => x.staffName == this.EmaployedID);
+        this.kra=this.Staffkra[0].kraid
+        this.count = this.Staffkra.length;
+        console.log("this.Staffkra", this.Staffkra)
+
+        this.Staffkra.forEach((element: { empAcceptKPI: any }) => {
+          if (element.empAcceptKPI != 1) {
+            this.showbtn = false;
+          } else {
+            this.showbtn = true;
+          }
+        });
+        console.log('Result area', this.Staffkra);
+      }, error: (err) => {
+        Swal.fire('Issue in Getting EmployeeKraMap');
+        var obj = {
+          'PageName': this.currentUrl,
+          'ErrorMessage': err.error.message
+        }
+        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+          data => {
+            debugger
+          },
+        )
+      }
+    })
   }
 
   //Method to Displaying the Data & Count from GetMyDetails Table//
@@ -161,7 +195,7 @@ export class MyApprasailComponent implements OnInit {
       .subscribe({
         next: data => {
           debugger
-          this.EmployeeKradash = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate == null &&(x.employeeacceptgoal ==null||x.employeeacceptgoal ==2));
+          this.EmployeeKradash = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate == null && (x.employeeacceptgoal == null || x.employeeacceptgoal == 2));
           this.EmployeeKradashAccepted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate == null && x.employeeacceptgoal == 1);
           this.EmployeeKradashSubmitted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate != null);
           this.EmployeeKradashCompleted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID') && x.employeeSubmittedDate != null && x.finalize == 1);
@@ -184,8 +218,8 @@ export class MyApprasailComponent implements OnInit {
       .subscribe({
         next: data => {
           debugger
-          this.Employeegoal = data.filter(x => x.staffID == sessionStorage.getItem('EmaployedID') && x.managerRequest !=0);
-          }, error: (err) => {
+          this.Employeegoal = data.filter(x => x.staffID == sessionStorage.getItem('EmaployedID') && x.managerRequest != 0);
+        }, error: (err) => {
           Swal.fire('Issue in Getting ConductappraisalStaffList');
           // Insert error in Db Here//
           var obj = {
@@ -265,7 +299,7 @@ export class MyApprasailComponent implements OnInit {
 
   //Method to Displaying the Data from GetEmployeeKraMap Table//
 
- 
+
 
   public GetEmployeeGoalList(details: any) {
     debugger
@@ -294,15 +328,24 @@ export class MyApprasailComponent implements OnInit {
 
   public GetStaffKraDetails(details: any) {
     debugger
-    this.empID=details.staffid
+    this.empID = details.staffid
     this.getgoalforemp();
     this.PerformanceManagementService.GetEmployeeKraMap()
       .subscribe({
         next: data => {
           debugger
-          this.Staffkra = data.filter(x => x.staffName ==   this.empID);
+          this.Staffkra = data.filter(x => x.staffName == this.empID);
           this.count = this.Staffkra.length;
           console.log("this.Staffkra", this.Staffkra)
+
+          this.Staffkra.forEach((element: { empAcceptKPI: any }) => {
+            if (element.empAcceptKPI != 1) {
+              this.showbtn = false;
+            } else {
+              this.showbtn = true;
+            }
+          });
+          console.log('Result area', this.Staffkra);
         }, error: (err) => {
           Swal.fire('Issue in Getting EmployeeKraMap');
           var obj = {
@@ -318,32 +361,32 @@ export class MyApprasailComponent implements OnInit {
       })
   }
 
-  public getgoalforemp(){
+  public getgoalforemp() {
     debugger
     this.PerformanceManagementService.GetEmployeeKraMap()
 
-    .subscribe({
-      next: data => {
-        debugger
-        this.Staffkra = data.filter(x => x.staffName ==  this.empID);
-        this.count = this.Staffkra.length;
-        console.log("this.Staffkra", this.Staffkra)
-      }, error: (err) => {
-        Swal.fire('Issue in Getting EmployeeKraMap');
-        var obj = {
-          'PageName': this.currentUrl,
-          'ErrorMessage': err.error.message
+      .subscribe({
+        next: data => {
+          debugger
+          this.Staffkra = data.filter(x => x.staffName == this.empID);
+          this.count = this.Staffkra.length;
+          console.log("this.Staffkra", this.Staffkra)
+        }, error: (err) => {
+          Swal.fire('Issue in Getting EmployeeKraMap');
+          var obj = {
+            'PageName': this.currentUrl,
+            'ErrorMessage': err.error.message
+          }
+          this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+            data => {
+              debugger
+            },
+          )
         }
-        this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
-          data => {
-            debugger
-          },
-        )
-      }
-    })
-   
+      })
+
   }
-  
+
 
   public accept(details: any) {
     // var entity = {
@@ -360,12 +403,58 @@ export class MyApprasailComponent implements OnInit {
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.value == true) {
-        this.PerformanceManagementService.UpdateEmployeeAcceptGoal(details)
+        this.PerformanceManagementService.UpdateEmployeeAcceptKPI(details.kpiid)
           .subscribe({
             next: data => {
               debugger
               Swal.fire('Accepted Successfully')
 
+              this.PerformanceManagementService.GetMyDetails().subscribe(data => {
+                debugger
+                let temp: any = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID'));
+                this.Approver1 = temp[0].supervisor;
+              });
+
+              this.InsertNotification();
+              this.ngOnInit();
+            }, error: (err) => {
+              Swal.fire('Issue in Accept Goal');
+              // Insert error in Db Here//
+              var obj = {
+                'PageName': this.currentUrl,
+                'ErrorMessage': err.error.message
+              }
+              this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+                data => {
+                  debugger
+                },
+              )
+            }
+          })
+      }
+    })
+  }
+  public SubmitAcceptedGoals() {
+    debugger
+    // var entity = {
+    //   id: this.kra,
+    //   staffID: this.staff
+    // }
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You Want to Submit it.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, Submit it!',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.value == true) {
+        this.PerformanceManagementService.UpdateEmployeeAcceptGoal( this.kra,this.EmaployedID)
+          .subscribe({
+            next: data => {
+              debugger
+              Swal.fire('Acceptance Submitted Successfully')
+              this.ngOnInit();
               this.PerformanceManagementService.GetMyDetails().subscribe(data => {
                 debugger
                 let temp: any = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID'));
@@ -412,7 +501,7 @@ export class MyApprasailComponent implements OnInit {
     })
   }
 
-  public GetEmployeeKraMap() {
+  public GetKraMaster() {
     this.PerformanceManagementService.GetKraMaster()
       .subscribe({
         next: data => {
@@ -833,7 +922,7 @@ export class MyApprasailComponent implements OnInit {
         // this.InsertNotification();
         Swal.fire('Goal Request Sent Successfully.');
         // location.href = "#/manager/EmployeeKraMappingdashboard";
-         location.reload();
+        location.reload();
       }
     })
   }
@@ -876,5 +965,39 @@ export class MyApprasailComponent implements OnInit {
     debugger
     // location.href = "#/shared/MyAppraisal";
     location.reload()
+  }
+
+  public delete(ID: any) {
+    debugger
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You Want to delete it.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, Delete it!',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.value == true) {
+        this.PerformanceManagementService.DeleteEmployeeKraMap(ID).subscribe({
+          next: data => {
+            debugger
+            Swal.fire('Deleted Successfully')
+            this.GetKeyResultArea();
+          }, error: (err: { error: { message: any; }; }) => {
+            Swal.fire('Issue in Deleting KeyResultArea');
+            // Insert error in Db Here//
+            var obj = {
+              'PageName': this.currentUrl,
+              'ErrorMessage': err.error.message
+            }
+            this.PerformanceManagementService.InsertExceptionLogs(obj).subscribe(
+              data => {
+                debugger
+              },
+            )
+          }
+        })
+      }
+    })
   }
 }

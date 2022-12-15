@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ApprasialCycleFormComponent } from './apprasial-cycle-form/apprasial-cycle-form.component';
 import { ApprasialCycleComponent } from './apprasial-cycle/apprasial-cycle.component';
 import { ApprasialReportComponent } from './apprasial-report/apprasial-report.component';
+import { ApraisalLevelConfigurationComponent } from './apraisal-level-configuration/apraisal-level-configuration.component';
 import { BellCurveFittingComponent } from './bell-curve-fitting/bell-curve-fitting.component';
 import { HrDashComponent } from './hr-dash/hr-dash.component';
 import { HrDashboardComponent } from './hr-dashboard/hr-dashboard.component';
@@ -42,7 +43,8 @@ const routes: Routes = [{ path: '', component: HrComponent },
 {path:'SalaryincrementletterDash',component:SalaryincrementletterDashComponent},
 {path:'StaffScoreReport',component:StaffScoreReportComponent},
 { path: 'StaffScoreFullDetails/:StaffTypeID/:StaffID', component: StaffScoreFullDetailsComponent },
-{ path: 'hrratingnew/:id/:StaffID', component: HrratingnewComponent },
+{ path: 'hrratingnew/:id/:appraiselID', component: HrratingnewComponent },
+{ path: 'ApraisalLevelConfiguration', component: ApraisalLevelConfigurationComponent },
 
 ];
 

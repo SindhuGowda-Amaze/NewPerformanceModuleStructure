@@ -19,6 +19,7 @@ export class PerformancemanagementService {
  
  
  public baseURL = "https://103.12.1.103/CorePerformanceManagementAPI";
+//  public baseURL = "https://103.12.1.103/CorePerformanceManagementAPIDemo";
  
  public host = "https://103.12.1.103/DigiOfficeCoreHRAPI"
  
@@ -561,11 +562,20 @@ public GetExceptionLogs() {
 
 
  
- public UpdateEmployeeAcceptGoal(ID: any) {
+ public UpdateEmployeeAcceptGoal(ID: any,staffID:any) {
+  return this.http.get<any[]>(
+    this.baseURL + "/Master/UpdateEmployeeAcceptGoal?ID=" + ID+ '&StaffID=' + staffID);
+}
+
+public UpdateEmployeeAcceptKPI(ID: any) {
+  return this.http.get<any[]>(
+    this.baseURL + "/Master/UpdateEmployeeAcceptKPI?ID=" + ID);
+}
+
+public UpdateEmployeeAcceptGoal1(ID: any) {
   return this.http.get<any[]>(
     this.baseURL + "/Master/UpdateEmployeeAcceptGoal?ID=" + ID);
 }
-
 public UpdateManagerAcceptGoal(ID: any) {
   return this.http.get<any[]>(
     this.baseURL + "/Master/UpdateManagerAcceptGoal?ID=" + ID);
@@ -621,5 +631,10 @@ public Authenicate(data: any) {
   return this.http.post(this.url, data);
 }
 
+public UpdateIncludeSBUStaffScore(data: any) {
+  debugger;
+  this.url = this.baseURL + '/Master/UpdateIncludeSBUStaffScore';
+  return this.http.post(this.url, data);
+}
 
 }

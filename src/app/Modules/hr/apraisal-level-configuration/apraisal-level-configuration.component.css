@@ -1,0 +1,52 @@
+input[type=radio] {
+    border: 1px solid #39395f;
+    padding: 0.5em;
+    -webkit-appearance: none;
+  }
+  
+  input[type=radio]:checked {
+    background: #39395f;
+    background-size: 9px 9px;
+  }
+  
+  input[type=radio]:focus {
+    outline-color: transparent;
+  }
+  .requestbtn{
+    background-color: #3247D5;
+    color: white;
+  }
+  .check-box{
+    position: absolute;
+    top: -2px;
+    left: 44px;
+  }
+
+  .Dashboard{
+    color:#3247D5;
+    font-size: 19px;
+  }
+  .card{
+  background: #FFFFFF;
+  box-shadow: 1px 1px 15px 3px rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  }
+/*   .filter{
+    margin-left: 15px;
+    font-size: 13px;
+  } */
+  .Add{
+    background-color: #3247D5;
+    color:white;
+    border-radius: 5px;
+    border:none;
+    width:50%;
+  }
+  .manager{
+    margin-left: 20px;
+  }
+
+  .table {
+    padding: 35px;
+  }
+  

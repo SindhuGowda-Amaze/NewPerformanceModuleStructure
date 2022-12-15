@@ -19,6 +19,7 @@ import { SalaryincrementletterDashComponent } from './salaryincrementletter-dash
 import { StaffScoreFullDetailsComponent } from './staff-score-full-details/staff-score-full-details.component';
 import { HrratingnewComponent } from './hrratingnew/hrratingnew.component';
 import { KeyResultAreaFormComponent } from './key-result-area-form/key-result-area-form.component';
+import { ApraisalLevelConfigurationComponent } from './apraisal-level-configuration/apraisal-level-configuration.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { KeyResultAreaFormComponent } from './key-result-area-form/key-result-ar
     HrDashboardComponent,
     SalaryincrementletterDashComponent,
     StaffScoreFullDetailsComponent,
-    HrratingnewComponent
+    HrratingnewComponent,
+    ApraisalLevelConfigurationComponent
   ],
   imports: [
     CommonModule,

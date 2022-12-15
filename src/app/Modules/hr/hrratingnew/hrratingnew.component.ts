@@ -70,11 +70,17 @@ export class HrratingnewComponent implements OnInit {
   show: any;
   selfattachment: any;
   sbuAttachment: any;
-  StaffAppraisalList:any;
-  currentUrl:any;
-  AvgSelfScore:any;
-  AvgGroupHeadScores:any;
-  AvgDivisionScores:any;
+  StaffAppraisalList: any;
+  currentUrl: any;
+  AvgSelfScore: any;
+  AvgGroupHeadScores: any;
+  AvgDivisionScores: any;
+  hrupdate: any;
+  managerupdate: any;
+  hrattachment1: any;
+  hrcomments: any;
+  hrrrating: any;
+  hrresultAreaID: any;
 
   ngOnInit(): void {
     //Variable Initialisation and Default Method Calls//
@@ -90,7 +96,7 @@ export class HrratingnewComponent implements OnInit {
       this.ParamID = params['id'];
       if (params['id'] != undefined) {
         // this.StaffType = params['StaffID'];
-        this.appraislid = params['StaffID'];
+        this.appraislid = params['appraiselID'];
         this.StaffID = params['id'];
         this.StaffTypeID = this.StaffType;
 
@@ -104,6 +110,16 @@ export class HrratingnewComponent implements OnInit {
           this.HrSubmittedDate = this.ResultAreaList[0].hrSubmittedDate
           this.managerattachment = this.ResultAreaList[0].mPhoto
           this.sbuAttachment = this.ResultAreaList[0].sbuPhoto
+          this.hrupdate = this.ResultAreaList[0].hrupdate
+          this.managerupdate = this.ResultAreaList[0].managerupdate
+          this.hrattachment1 = this.ResultAreaList[0].hrattachment
+          // this.hrcomments = this.ResultAreaList[0].hrcomments
+          // this.hrrrating = this.ResultAreaList[0].hrrrating
+          this.hrresultAreaID = this.ResultAreaList[0].resultAreaID
+          this.Score = this.ResultAreaList[0].hrrrating
+          this.SelfComments = this.ResultAreaList[0].hrcomments
+
+
           console.log("resultarea", this.ResultAreaList)
 
           this.ResultAreaList.forEach((element: { hrupdate: any; }) => {
@@ -122,18 +138,18 @@ export class HrratingnewComponent implements OnInit {
   }
 
 
-  public GetConductAppraisal(){
+  public GetConductAppraisal() {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
         debugger
         // this.FilteredStaffAppraisalList = data.filter(x => x.appraisalCycleName == this.appraisalCycleName && x.finalize == 1)
-       this.StaffAppraisalList = data.filter(x => x.appraiselID == this.appraislid  && x.staffid==this.StaffID)
-      
+        this.StaffAppraisalList = data.filter(x => x.appraiselID == this.appraislid && x.staffid == this.StaffID)
+
         this.AvgSelfScore = this.StaffAppraisalList[0].avgSelfScore
         this.AvgGroupHeadScores = this.StaffAppraisalList[0].avgGroupHeadScores
         this.AvgDivisionScores = this.StaffAppraisalList[0].avgDivisionScores
 
-       
+
 
       }, error: (err: { error: { message: any; }; }) => {
         Swal.fire('Issue in Getting ConductappraisalStaffList');
@@ -218,8 +234,10 @@ export class HrratingnewComponent implements OnInit {
       var entity = {
         'SatffID': this.StaffID,
         'StaffType': this.StaffID,
-        'Supervisor': this.id,
-        'ResultAreaID': this.ResultAreaID,
+        // 'Supervisor': this.id,
+        Supervisor: 1,
+        // 'ResultAreaID': this.ResultAreaID,  (One time HR Rating for One goal)
+        'ResultAreaID': this.hrresultAreaID,
         'PerformaceIndicatorID': this.kpiid,
         'SelfScores': this.Score,
         'SelfComments': this.SelfComments,
@@ -271,7 +289,7 @@ export class HrratingnewComponent implements OnInit {
       this.SbuAttachmentType = details.sbuAttachmentType;
       this.hrAttachmentType = details.hrAttachmentType;
       this.ManagerAttachmentType = details.managerAttachmentType;
-      this.SelfAttachmentType=details.selfAttachmentType
+      this.SelfAttachmentType = details.selfAttachmentType
     })
     this.photoid = details.id;
     this.id = details.id;
@@ -301,7 +319,7 @@ export class HrratingnewComponent implements OnInit {
     this.files.splice(this.files.indexOf(event), 1);
   }
 
-//Methods to get Comments
+  //Methods to get Comments
 
   public GetEmpComments(detials: any) {
     this.empcommnts = detials.empcomments
@@ -335,7 +353,7 @@ export class HrratingnewComponent implements OnInit {
       this.attachment = "";
       const element1 = document.getElementById('close');
       this.files.length = 0;
-   
+
       if (element1 !== null) {
         element1.click();
       }

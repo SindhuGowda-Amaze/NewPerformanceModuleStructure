@@ -98,7 +98,8 @@
                                     <td>
                                         <button
                                             *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
-                                            class="edit-btn" (click)="accept(details.kraid)">Accept</button><br><br>
+                                            class="edit-btn" data-toggle="modal" data-target="#acceptRejectGoal"
+                                            (click)="GetStaffKraDetails(details)">Accept</button><br><br>
                                         <button
                                             *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
                                             class="edit-btn" data-toggle="modal" data-target="#viewManagergoal"
@@ -231,11 +232,7 @@
                                     <td>{{details.employeeSubmissionLastDate|date}}</td>
                                     <td>{{details.assignedBy}}</td>
                                     <td>
-                                        <button
-                                            *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
-                                            class="edit-btn" data-toggle="modal" (click)="GetStaffKraDetails(details)"
-                                            data-target="#viewgoal">View Goals</button>
-                                        <br><br>
+
                                         <button
                                             [routerLink]="['/shared/SelfRatingPagenew', details.id,details.appraiselID ]"
                                             *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal==1"
@@ -247,6 +244,12 @@
                                             *ngIf="details.employeeSubmittedDate!=null"
                                             class=" btn btn-primary editable-table-button btn-xs Add1">View
                                             Appraisal</button>
+                                            
+                                        <button
+                                            *ngIf="details.employeeSubmittedDate==null&& details.employeeacceptgoal!=1"
+                                            class="edit-btn" data-toggle="modal" (click)="GetStaffKraDetails(details)"
+                                            data-target="#viewgoal">View Goals</button>
+
 
                                         <!-- <button *ngIf="details.selfScores!=null"
                                             class=" btn btn-primary editable-table-button btn-xs">Completed</button> -->
@@ -469,6 +472,69 @@
 
 
 
+<div class="modal fade" id="acceptRejectGoal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title headings">Assigned Goals</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            </div>
+            <div class="modal-body" style="height: 400px; overflow-y: scroll;">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Sl No.</th>
+                                    <th>Goal Type</th>
+                                    <th>Goals</th>
+                                    <th>KPI</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let details of Staffkra index as i">
+                                    <td>{{i+1}}</td>
+                                    <td>{{details.kraTypeID}}</td>
+                                    <td>{{details.kraName}}</td>
+                                    <td>{{details.kpiName}}</td>
+                                    <td>
+                                        <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal!=1">
+                                            Pending for Acceptance</p>
+                                        <p *ngIf="details.employeeSubmittedDate==null && details.employeeacceptgoal==1">
+                                            Accepted</p>
+                                    </td>
+                                    <!-- <td *ngIf="Employeeacceptgoal==1">Accepted</td>
+                                    <td *ngIf="Employeeacceptgoal!=1">Pending</td> -->
+                                    <td>
+                                        <!-- <button class="edit" (click)="delete(details.id)"
+                                            *ngIf="details.employeeacceptgoal!=1">Reject</button> -->
+                                        <button class="edit" (click)="accept(details)" *ngIf="details.empAcceptKPI!=1"
+                                            data-dismiss="modal">Accept</button>
+                                        <p *ngIf="details.empAcceptKPI==1" style="color:green">Accepted</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+
+                <button type="button" class="edit" *ngIf="showbtn && employeeAcceptGoal==null"
+                    (click)="SubmitAcceptedGoals()" data-dismiss="modal">Submit Acceptance</button>
+
+                <p *ngIf="showbtn && employeeAcceptGoal!=null" style="color:green">Submitted!!</p>
+
+                <button type="button" *ngIf="!showbtn" class="btn btn-primary" disabled>Submit Acceptance</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

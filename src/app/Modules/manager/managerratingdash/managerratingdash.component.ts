@@ -111,7 +111,7 @@ export class ManagerratingdashComponent implements OnInit {
     this.PerformanceManagementService.GetConductappraisalStaffList().subscribe({
       next: data => {
         debugger
-         this.EmployeeKradash = data.filter(x => x.approver1 == sessionStorage.getItem('EmaployedID') && x.selfScores == null && x.employeeSubmittedDate == null && x.managerSubmittedDate==null &&( x.employeeacceptgoal==2)&& x.manageracceptgoal!=1);
+         this.EmployeeKradash = data.filter(x => x.approver1 == sessionStorage.getItem('EmaployedID') && x.selfScores == null && x.employeeSubmittedDate == null && x.managerSubmittedDate==null &&(x.employeeacceptgoal ==null||x.employeeacceptgoal ==2));
        // this.EmployeeKradash = data.filter(x =>(x.employeeacceptgoal==2));
 
         this.EmployeeKradashAccepted = data.filter(x => x.approver1 == sessionStorage.getItem('EmaployedID') && x.selfScores == null && x.employeeSubmittedDate == null && x.managerSubmittedDate==null && (x.employeeacceptgoal==1|| x.manageracceptgoal==1));
@@ -298,7 +298,7 @@ export class ManagerratingdashComponent implements OnInit {
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.value == true) {
-        this.PerformanceManagementService.UpdateEmployeeAcceptGoal(id)
+        this.PerformanceManagementService.UpdateEmployeeAcceptGoal1(id)
         .subscribe({
           next: data => {
             debugger

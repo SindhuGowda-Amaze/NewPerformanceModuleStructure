@@ -6,44 +6,64 @@
         </div>
         <div class="col-lg-2">
             <br>
-
         </div>
     </div>
     <br>
-    <div class="row">
-        <div class="col-lg-10">
-            <p>Employee Name: <b>{{Name}}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span>Department:
-                    <b>{{departmentName}}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Position: <b>{{role}}</b></span>
-        </div>
-        <div class="col-lg-2">
-            <button type="button" *ngIf="showbtn && HrSubmittedDate==null" class="btn btn-primary"
-                (click)="SubmitHrAppraisal()">Submit
-                Appraisal</button>
-            <p *ngIf="showbtn && HrSubmittedDate!=null" style="color:green">Appraisal Submitted!!</p>
-            <button type="button" *ngIf="!showbtn" class="btn btn-primary" disabled>Submit
-                Appraisal</button>
-        </div>
+    <div class="card">
+        <div class="row">
+            <div class="col-lg-9">
+                <p>Employee Name:
+                    <b>{{Name}}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span>Department:
+                        <b>{{departmentName}}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        Position: <b>{{role}}</b></span>
+            </div>
+            <div class="col-lg-3">
+                <!-- Single Rating By HR -->
 
-    </div>
-    <div class="row">
-        <div class="col-lg-10">
-            <p>Employee Avg: <b>{{AvgSelfScore}}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span>Manager Avg:
-                    <b>{{AvgGroupHeadScores}}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    SBU Avg: <b>{{AvgDivisionScores}}</b></span>
+              
+
+                <button *ngIf="hrupdate==1" type="button" class="btn btn-success" data-toggle="modal"
+                    data-target="#exampleModal1">View
+                    Details</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                <p *ngIf="hrupdate==1 && (hrattachment1==null||hrattachment1=='')">No Attachments</p>
+
+                <button class=" btn btn-primary action" data-toggle="modal" data-target="#exampleModal4"
+                    *ngIf="hrattachment1!=null&&hrattachment1!='0'&&hrattachment1!='' ">View
+                    Attachments</button>
+                <!-- <p *ngIf="details.hrattachment==null and details.hrrrating!=null" >No Attachments</p> -->
+                <button *ngIf="hrupdate!=1 && managerupdate==1" type="button" class="btn btn-primary"
+                data-toggle="modal" data-target="#exampleModal">Provide Rating</button>  
+            </div>
+
         </div>
-    
+        <div class="row">
+            <div class="col-lg-9">
+                <p>Employee Avg Rating:
+                    <b>{{AvgSelfScore}}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span>Manager Avg Rating:
+                        <b>{{AvgGroupHeadScores}}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        SBU Avg Rating: <b>{{AvgDivisionScores}}</b></span>
+            </div>
+            <div class="col-lg-3">
+                <button type="button" *ngIf="showbtn && HrSubmittedDate==null" class="btn btn-primary"
+                    (click)="SubmitHrAppraisal()">Submit
+                    Appraisal</button><br>
+                <p *ngIf="showbtn && HrSubmittedDate!=null" style="color:green">Appraisal Submitted!!</p>
+                <button type="button" *ngIf="!showbtn" class="btn btn-primary" disabled>Submit
+                    Appraisal</button>
+            </div>
+        </div>
     </div>
+
     <br>
     <div>
         <div class="row" style=" overflow-x: scroll;">
             <div class="col-lg-12">
-                <table class="table "style="width: 1260px; overflow-x: scroll;">
+                <table class="table table-bordered" style="width: 1260px; overflow-x: scroll;">
                     <thead>
                         <tr>
-                            <th>Action </th>
+                            <!-- <th>Action </th> -->
                             <th>Sr.No.</th>
                             <th>Goal</th>
                             <th>KPI</th>
@@ -57,13 +77,13 @@
                             <th>SBU Comments</th>
                             <th>SBU Attachment</th>
                             <th>HR Rating</th>
-                           
+
                         </tr>
                     </thead>
                     <tbody>
                         <tr
                             *ngFor="let details of ResultAreaList |paginate: { itemsPerPage: count1, currentPage: p} index as i">
-                            <td [ngClass]="{'bggreen':details.hrupdate==1 }">
+                            <!-- <td [ngClass]="{'bggreen':details.hrupdate==1 }" >  // KPI wise Rating
 
                                 <button *ngIf="details.hrupdate!=1 &&details.managerupdate==1" type="button"
                                     class="btn btn-primary" data-toggle="modal" (click)="GetKPIID(details)"
@@ -79,8 +99,8 @@
                                     (click)="GetKPIIDetails(details)"
                                     *ngIf="details.hrattachment!=null&&details.hrattachment!='0'&&details.hrattachment!='' ">View
                                     Attachments</button>
-                                <!-- <p *ngIf="details.hrattachment==null and details.hrrrating!=null" >No Attachments</p> -->
-                            </td>
+                                 <p *ngIf="details.hrattachment==null and details.hrrrating!=null" >No Attachments</p> 
+                            </td> -->
                             <td [ngClass]="{'bggreen':details.hrupdate==1 }">
                                 {{i+1}}</td>
                             <td [ngClass]="{'bggreen':details.hrupdate==1 }">{{details.kraName}}
@@ -94,13 +114,13 @@
                                 </button>
                             </td>
                             <td [ngClass]="{'bggreen':details.hrupdate==1 }">
-                                <button class=" btn btn-primary action" data-toggle="modal" data-target="#emplAttacment"(click)="GetKPIIDetails(details)"
-                                (click)="getattachment(details)"
-                                *ngIf="details.selfattachment!=null&&details.selfattachment!='0'&&details.selfattachment!=''">View
-                                Attachments</button>
-                            <p
-                                *ngIf="details.selfattachment==null||details.selfattachment=='0'||details.selfattachment==''">
-                                No Attachments</p>
+                                <button class=" btn btn-primary action" data-toggle="modal" data-target="#emplAttacment"
+                                    (click)="GetKPIIDetails(details)" (click)="getattachment(details)"
+                                    *ngIf="details.selfattachment!=null&&details.selfattachment!='0'&&details.selfattachment!=''">View
+                                    Attachments</button>
+                                <p
+                                    *ngIf="details.selfattachment==null||details.selfattachment=='0'||details.selfattachment==''">
+                                    No Attachments</p>
 
                             </td>
                             <td [ngClass]="{'bg-warning':details.hrupdate==1 }" style="text-align: center;">
@@ -111,13 +131,16 @@
                                 </button>
                             </td>
                             <td [ngClass]="{'bggreen':details.hrupdate==1 }">
-                                <button class=" btn btn-primary action" data-toggle="modal" data-target="#ManagerAttachment"
-                                (click)="GetKPIIDetails(details)" *ngIf="details.managerattachment!=null&&details.managerattachment!='0'&&details.managerattachment!=''">View
+                                <button class=" btn btn-primary action" data-toggle="modal"
+                                    data-target="#ManagerAttachment" (click)="GetKPIIDetails(details)"
+                                    *ngIf="details.managerattachment!=null&&details.managerattachment!='0'&&details.managerattachment!=''">View
                                     Attachments</button>
-                                <p *ngIf="details.managerattachment=='0'||details.managerattachment==null||details.managerattachment==''">No
+                                <p
+                                    *ngIf="details.managerattachment=='0'||details.managerattachment==null||details.managerattachment==''">
+                                    No
                                     Attachments</p>
                             </td>
-<!-- sbu rating -->
+                            <!-- sbu rating -->
 
                             <td [ngClass]="{'bg-warning':details.hrupdate==1 }" style="text-align: center;">
                                 {{details.sbuRating}}</td>
@@ -127,10 +150,13 @@
                                 </button>
                             </td>
                             <td [ngClass]="{'bggreen':details.hrupdate==1 }">
-                                <button class=" btn btn-primary action" data-toggle="modal" data-target="#exampleModal36"
-                                (click)="GetKPIIDetails(details)" *ngIf="details.sbuAttachment!=null&&details.sbuAttachment!='0' && details.sbuAttachment!=''">View
+                                <button class=" btn btn-primary action" data-toggle="modal"
+                                    data-target="#exampleModal36" (click)="GetKPIIDetails(details)"
+                                    *ngIf="details.sbuAttachment!=null&&details.sbuAttachment!='0' && details.sbuAttachment!=''">View
                                     Attachments</button>
-                                <p *ngIf="details.sbuAttachment=='0'||details.sbuAttachment==null||details.sbuAttachment==''">No
+                                <p
+                                    *ngIf="details.sbuAttachment=='0'||details.sbuAttachment==null||details.sbuAttachment==''">
+                                    No
                                     Attachments</p>
                             </td>
 
@@ -138,7 +164,7 @@
                                 {{details.hrrrating}}
                                 <p *ngIf="details.hrupdate!=1">NA</p>
                             </td>
-                           
+
                         </tr>
                     </tbody>
                 </table>
@@ -206,8 +232,8 @@
                         <div class="col-lg-7">
                             <ngx-dropzone (change)="onSelect($event)" style="width:100% ;height: auto;">
                                 <ngx-dropzone-label>Drag or Click to Upload</ngx-dropzone-label>
-                                <ngx-dropzone-preview *ngFor="let f of files" [removable]="true"
-                                    (removed)="onRemove(f)" required>
+                                <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)"
+                                    required>
                                     <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                                 </ngx-dropzone-preview>
                             </ngx-dropzone>
@@ -218,7 +244,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" id="close" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" (click)="SaveDetails()" [disabled]="empratingform.invalid">Save</button>
+                <button type="button" class="btn btn-primary" (click)="SaveDetails()"
+                    [disabled]="empratingform.invalid">Save</button>
             </div>
         </div>
     </div>
@@ -236,36 +263,37 @@
             </div>
             <div class="modal-body">
                 <form #selfratingform="ngForm">
-                <div class="row">
-                    <div class="col-lg-1">
+                    <div class="row">
+                        <div class="col-lg-1">
+                        </div>
+                        <div class="col-lg-3">
+                            <p style="padding:5px">
+                                Rating <span style="color: red;">*</span> </p>
+                        </div>
+                        <div class="col-lg-7">
+                            <select class="dropdown form-control" id="Score" name="Score" [(ngModel)]="Score" required>
+                                <option value="0">Select Rating</option>
+                                <option *ngFor="let value of list" value="{{value.id}}">{{value.score}} -
+                                    {{value.answers}}
+                                </option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="col-lg-3">
-                        <p style="padding:5px" >
-                            Rating <span style="color: red;">*</span> </p>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-1">
+                        </div>
+                        <div class="col-lg-3">
+                            <p style="padding:5px">
+                                Comments <span style="color: red;">*</span> </p>
+                        </div>
+                        <div class="col-lg-7">
+                            <ckeditor id="SelfComments" name="SelfComments" [(ngModel)]="SelfComments" required
+                                data="<p>Enter Answer Here !</p>"></ckeditor>
+                        </div>
                     </div>
-                    <div class="col-lg-7">
-                        <select  class="dropdown form-control" id="Score" name="Score" [(ngModel)]="Score" required>
-                            <option value="0">Select Rating</option>
-                            <option *ngFor="let value of list" value="{{value.id}}">{{value.score}} - {{value.answers}}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-lg-1">
-                    </div>
-                    <div class="col-lg-3">
-                        <p style="padding:5px">
-                            Comments <span style="color: red;">*</span> </p>
-                    </div>
-                    <div class="col-lg-7">
-                        <ckeditor id="SelfComments" name="SelfComments" [(ngModel)]="SelfComments" required
-                            data="<p>Enter Answer Here !</p>"></ckeditor>
-                    </div>
-                </div>
-                <br>
-                <!-- <div class="row">
+                    <br>
+                    <!-- <div class="row">
                     <div class="col-lg-1">
                     </div>
                     <div class="col-lg-3">
@@ -277,7 +305,7 @@
                             Attachments</button>
                     </div>
                 </div> -->
-            </form>
+                </form>
             </div>
             <div class="modal-footer" *ngIf="HrSubmittedDate==null">
                 <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
@@ -399,17 +427,21 @@
                         <!-- <img src="{{attachment}}" style="width:400px;"> -->
 
                         <a href="{{attachment}}" target="blank">
-                            
-                            <img *ngIf="SelfAttachmentType=='Document'"  width="220" height="250" border="0" align="center" src="assets/Images/word.png"/>
 
-                            <img *ngIf="SelfAttachmentType=='video'"  width="220" height="250" border="0" align="center" class="image" src="assets/Images/youtube.png">&nbsp;&nbsp;
-    
-                            <img *ngIf="SelfAttachmentType=='Pdf'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/pdf.jpg">&nbsp;&nbsp;
-    
-                            <img *ngIf="SelfAttachmentType=='Image'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/image.png">&nbsp;&nbsp;
-    
+                            <img *ngIf="SelfAttachmentType=='Document'" width="220" height="250" border="0"
+                                align="center" src="assets/Images/word.png" />
+
+                            <img *ngIf="SelfAttachmentType=='video'" width="220" height="250" border="0" align="center"
+                                class="image" src="assets/Images/youtube.png">&nbsp;&nbsp;
+
+                            <img *ngIf="SelfAttachmentType=='Pdf'" width="220" height="250" border="0" align="center"
+                                class="image" src="assets/Images/pdf.jpg">&nbsp;&nbsp;
+
+                            <img *ngIf="SelfAttachmentType=='Image'" width="220" height="250" border="0" align="center"
+                                class="image" src="assets/Images/image.png">&nbsp;&nbsp;
+
                             <!-- <img *ngIf="SelfAttachmentType=='Document'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/files.png">&nbsp;&nbsp; -->
-                        
+
                         </a>
                         <!-- <img src="http://103.133.214.197/digiofficeapi\Images\ProjectAttachments\AmazeLogo-20220214160917-20220228163117.jpg"> -->
                     </div>
@@ -443,17 +475,21 @@
                     <div class="col-lg-3">
 
                         <a href="{{managerattachment}}" target="blank">
-                            
-                            <img *ngIf="ManagerAttachmentType=='Document'"  width="220" height="250" border="0" align="center" src="assets/Images/word.png"/>
 
-                            <img *ngIf="ManagerAttachmentType=='video'"  width="220" height="250" border="0" align="center" class="image" src="assets/Images/youtube.png">&nbsp;&nbsp;
-    
-                            <img *ngIf="ManagerAttachmentType=='Pdf'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/pdf.jpg">&nbsp;&nbsp;
-    
-                            <img *ngIf="ManagerAttachmentType=='Image'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/image.png">&nbsp;&nbsp;
-    
+                            <img *ngIf="ManagerAttachmentType=='Document'" width="220" height="250" border="0"
+                                align="center" src="assets/Images/word.png" />
+
+                            <img *ngIf="ManagerAttachmentType=='video'" width="220" height="250" border="0"
+                                align="center" class="image" src="assets/Images/youtube.png">&nbsp;&nbsp;
+
+                            <img *ngIf="ManagerAttachmentType=='Pdf'" width="220" height="250" border="0" align="center"
+                                class="image" src="assets/Images/pdf.jpg">&nbsp;&nbsp;
+
+                            <img *ngIf="ManagerAttachmentType=='Image'" width="220" height="250" border="0"
+                                align="center" class="image" src="assets/Images/image.png">&nbsp;&nbsp;
+
                             <!-- <img *ngIf="SelfAttachmentType=='Document'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/files.png">&nbsp;&nbsp; -->
-                        
+
                         </a>
 
                         <!-- <img src="{{managerattachment}}" style="width:400px;"> -->
@@ -488,17 +524,21 @@
                     </div>
                     <div class="col-lg-3">
                         <a href="{{sbuAttachment}}" target="blank">
-                            
-                            <img *ngIf="SbuAttachmentType=='Document'"  width="220" height="250" border="0" align="center" src="assets/Images/word.png"/>
 
-                            <img *ngIf="SbuAttachmentType=='video'"  width="220" height="250" border="0" align="center" class="image" src="assets/Images/youtube.png">&nbsp;&nbsp;
-    
-                            <img *ngIf="SbuAttachmentType=='Pdf'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/pdf.jpg">&nbsp;&nbsp;
-    
-                            <img *ngIf="SbuAttachmentType=='Image'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/image.png">&nbsp;&nbsp;
-    
+                            <img *ngIf="SbuAttachmentType=='Document'" width="220" height="250" border="0"
+                                align="center" src="assets/Images/word.png" />
+
+                            <img *ngIf="SbuAttachmentType=='video'" width="220" height="250" border="0" align="center"
+                                class="image" src="assets/Images/youtube.png">&nbsp;&nbsp;
+
+                            <img *ngIf="SbuAttachmentType=='Pdf'" width="220" height="250" border="0" align="center"
+                                class="image" src="assets/Images/pdf.jpg">&nbsp;&nbsp;
+
+                            <img *ngIf="SbuAttachmentType=='Image'" width="220" height="250" border="0" align="center"
+                                class="image" src="assets/Images/image.png">&nbsp;&nbsp;
+
                             <!-- <img *ngIf="SelfAttachmentType=='Document'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/files.png">&nbsp;&nbsp; -->
-                        
+
                         </a>
 
 
@@ -529,21 +569,25 @@
                     <div class="col-lg-1">
                     </div>
                     <div class="col-lg-3">
-                        <p *ngIf="hrattachment==null">No Attachments</p>
+                        <p *ngIf="hrattachment1==null">No Attachments</p>
                     </div>
                     <div class="col-lg-3">
-                        <a href="{{hrattachment}}" target="blank">
-                            
-                            <img *ngIf="SbuAttachmentType=='Document'"  width="220" height="250" border="0" align="center" src="assets/Images/word.png"/>
+                        <a href="{{hrattachment1}}" target="blank">
 
-                            <img *ngIf="SbuAttachmentType=='video'"  width="220" height="250" border="0" align="center" class="image" src="assets/Images/youtube.png">&nbsp;&nbsp;
-    
-                            <img *ngIf="SbuAttachmentType=='Pdf'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/pdf.jpg">&nbsp;&nbsp;
-    
-                            <img *ngIf="SbuAttachmentType=='Image'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/image.png">&nbsp;&nbsp;
-    
+                            <img *ngIf="SbuAttachmentType=='Document'" width="220" height="250" border="0"
+                                align="center" src="assets/Images/word.png" />
+
+                            <img *ngIf="SbuAttachmentType=='video'" width="220" height="250" border="0" align="center"
+                                class="image" src="assets/Images/youtube.png">&nbsp;&nbsp;
+
+                            <img *ngIf="SbuAttachmentType=='Pdf'" width="220" height="250" border="0" align="center"
+                                class="image" src="assets/Images/pdf.jpg">&nbsp;&nbsp;
+
+                            <img *ngIf="SbuAttachmentType=='Image'" width="220" height="250" border="0" align="center"
+                                class="image" src="assets/Images/image.png">&nbsp;&nbsp;
+
                             <!-- <img *ngIf="SelfAttachmentType=='Document'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/files.png">&nbsp;&nbsp; -->
-                        
+
                         </a>
 
 

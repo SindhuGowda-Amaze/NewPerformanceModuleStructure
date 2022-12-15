@@ -101,6 +101,11 @@ export class SidebarComponent implements OnInit {
     localStorage.setItem("clickname", "Review Rating")
   }
 
+  configuration() {
+    this.active = 'configuration';
+    localStorage.setItem("clickname", "Salary Increment Letter")
+  }
+
   salaryIncrement() {
     this.active = 'salaryIncrement';
     localStorage.setItem("clickname", "Salary Increment Letter")
