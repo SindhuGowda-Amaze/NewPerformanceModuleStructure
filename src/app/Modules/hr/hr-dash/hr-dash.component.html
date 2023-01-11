@@ -305,7 +305,7 @@
 
                                         <button *ngIf="details.finalize==null && details.hrSubmittedDate!=null"
                                             class="btn btn-primary editable-table-button btn-xs Add"
-                                            (click)="FinalizeAppraisal(details.staffid)">Finalize Rating
+                                            (click)="FinalizeAppraisal(details)">Finalize Rating
                                         </button>
                                         <p *ngIf="details.finalize==1" >Finalized</p>
 

@@ -584,9 +584,9 @@ public UpdateManagerAcceptGoal(ID: any) {
 
 
  
-public UpdateFinalizeRating(ID: any) {
+public UpdateFinalizeRating(ID: any, AppraiselID:any) {
   return this.http.get<any[]>(
-    this.baseURL + "/Master/UpdateFinalizeRating?ID=" + ID);
+    this.baseURL + "/Master/UpdateFinalizeRating?ID=" + ID +'&AppraiselID=' + AppraiselID);
 }
 
  

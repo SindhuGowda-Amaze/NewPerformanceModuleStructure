@@ -378,8 +378,9 @@ export class HrDashComponent implements OnInit {
       })
   }
 
-  public FinalizeAppraisal(id:any) {
+  public FinalizeAppraisal(details:any) {
     debugger
+    
     Swal.fire({
       title: 'Are you sure?',
       text: "You want to Finalize the Rating.You won't be able to revert this!",
@@ -391,7 +392,7 @@ export class HrDashComponent implements OnInit {
       if (result.value == true) {
        
        
-          this.PerformanceManagementService.UpdateFinalizeRating(id).subscribe({
+          this.PerformanceManagementService.UpdateFinalizeRating(details.staffid,details.appraiselID ).subscribe({
             next: data => {
               debugger
               Swal.fire('Finalised Rating Successfully!!')

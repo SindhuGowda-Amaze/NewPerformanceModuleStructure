@@ -316,7 +316,7 @@ export class EmployeeKraMappingdashboardComponent implements OnInit {
       .subscribe({
         next: data => {
           debugger
-          this.Staffkra = data.filter(x => x.kpiName != null && x.staffName == details.staffid);
+          this.Staffkra = data.filter(x => x.kpiName != null && x.staffName == details.staffid && x.appraiselID==details.appraiselID);
           // this.EmployeeKradashAccepted = data.filter(x => x.staffid == sessionStorage.getItem('EmaployedID')&& x.employeeSubmittedDate != null && x.employeeacceptgoal==1);
 
         }, error: (err: { error: { message: any; }; }) => {

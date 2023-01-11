@@ -334,7 +334,7 @@ export class MyApprasailComponent implements OnInit {
       .subscribe({
         next: data => {
           debugger
-          this.Staffkra = data.filter(x => x.staffName == this.empID);
+          this.Staffkra = data.filter(x => x.staffName == this.empID  && x.appraiselID==details.appraiselID);
           this.count = this.Staffkra.length;
           console.log("this.Staffkra", this.Staffkra)
 

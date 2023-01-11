@@ -81,6 +81,8 @@ export class HrratingnewComponent implements OnInit {
   hrcomments: any;
   hrrrating: any;
   hrresultAreaID: any;
+  ExcludeSBU:any;
+  hrattachment12:any;
 
   ngOnInit(): void {
     //Variable Initialisation and Default Method Calls//
@@ -113,6 +115,8 @@ export class HrratingnewComponent implements OnInit {
           this.hrupdate = this.ResultAreaList[0].hrupdate
           this.managerupdate = this.ResultAreaList[0].managerupdate
           this.hrattachment1 = this.ResultAreaList[0].hrattachment
+          this.hrattachment12 = this.ResultAreaList[0].hPhoto
+          this.hrAttachmentType =  this.ResultAreaList[0].hrAttachmentType;
           // this.hrcomments = this.ResultAreaList[0].hrcomments
           // this.hrrrating = this.ResultAreaList[0].hrrrating
           this.hrresultAreaID = this.ResultAreaList[0].resultAreaID
@@ -148,6 +152,7 @@ export class HrratingnewComponent implements OnInit {
         this.AvgSelfScore = this.StaffAppraisalList[0].avgSelfScore
         this.AvgGroupHeadScores = this.StaffAppraisalList[0].avgGroupHeadScores
         this.AvgDivisionScores = this.StaffAppraisalList[0].avgDivisionScores
+        this.ExcludeSBU=this.StaffAppraisalList[0].includeSBURating
 
 
 
@@ -241,7 +246,8 @@ export class HrratingnewComponent implements OnInit {
         'PerformaceIndicatorID': this.kpiid,
         'SelfScores': this.Score,
         'SelfComments': this.SelfComments,
-        'Attachment': this.attachment
+        'Attachment': this.attachment,
+        AppraisalID:this.appraislid
       }
       this.PerformanceManagementService.InsertStaffScoresByHR(entity).subscribe(data => {
         debugger

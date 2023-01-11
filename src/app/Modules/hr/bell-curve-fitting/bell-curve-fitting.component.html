@@ -152,10 +152,12 @@
                                     style="color: red;">Pending</p>
                             </td>
                             <td>
-                                <p *ngIf="details.sbuSubmittedDate!=null">{{details.avgDivisionScores}}</p>
+                                <p *ngIf="details.sbuSubmittedDate!=null && (details.includeSBURating==null||details.includeSBURating==0)">{{details.avgDivisionScores}}</p>
 
-                                <p *ngIf="details.avgDivisionScores==null || details.sbuSubmittedDate==null"
+                                <p *ngIf="(details.avgDivisionScores==null || details.sbuSubmittedDate==null)&& (details.includeSBURating==null||details.includeSBURating==0)"
                                     style="color: red;">Pending</p>
+                                    
+                                    <p  *ngIf="(details.includeSBURating==1)">NA</p>
                             </td>
                             <td>
                                 <p *ngIf="details.hrSubmittedDate!=null ">{{details.avgCIOScores}}</p>
@@ -185,7 +187,7 @@
                                 <button
                                     *ngIf="details.finalize==null&&details.avgCIOScores!=null || details.hrSubmittedDate!=null "
                                     class="btn btn-primary editable-table-button btn-xs Add"
-                                    (click)="FinalizeAppraisal(details.staffid)">Finalize Rating
+                                    (click)="FinalizeAppraisal(details)">Finalize Rating
                                 </button>
                                 <!-- <p *ngIf="details.finalize==1" >Finalized</p> -->
                             </td>

@@ -642,7 +642,7 @@ export class BellCurveFittingComponent implements OnInit {
     })
   }
 
-  public FinalizeAppraisal(id:any) {
+  public FinalizeAppraisal(details:any) {
     debugger
     Swal.fire({
       title: 'Are you sure?',
@@ -655,7 +655,7 @@ export class BellCurveFittingComponent implements OnInit {
       if (result.value == true) {
        
        
-          this.PerformanceManagementService.UpdateFinalizeRating(id).subscribe({
+          this.PerformanceManagementService.UpdateFinalizeRating(details.staffid,details.appraiselID ).subscribe({
             next: data => {
               debugger
               Swal.fire('Finalised Rating Successfully!!');

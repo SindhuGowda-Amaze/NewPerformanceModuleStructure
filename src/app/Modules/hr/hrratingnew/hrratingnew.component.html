@@ -43,7 +43,8 @@
                     <b>{{AvgSelfScore}}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <span>Manager Avg Rating:
                         <b>{{AvgGroupHeadScores}}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        SBU Avg Rating: <b>{{AvgDivisionScores}}</b></span>
+                        <span *ngIf="ExcludeSBU!=1">SBU Avg Rating: </span>
+                        <b *ngIf="ExcludeSBU!=1">{{AvgDivisionScores}}</b></span>
             </div>
             <div class="col-lg-3">
                 <button type="button" *ngIf="showbtn && HrSubmittedDate==null" class="btn btn-primary"
@@ -73,9 +74,9 @@
                             <th>Manager Rating</th>
                             <th>Manager Comments</th>
                             <th>Manager Attachment</th>
-                            <th>SBU Rating</th>
-                            <th>SBU Comments</th>
-                            <th>SBU Attachment</th>
+                            <th *ngIf="ExcludeSBU!=1">SBU Rating</th>
+                            <th *ngIf="ExcludeSBU!=1">SBU Comments</th>
+                            <th *ngIf="ExcludeSBU!=1">SBU Attachment</th>
                             <th>HR Rating</th>
 
                         </tr>
@@ -142,14 +143,14 @@
                             </td>
                             <!-- sbu rating -->
 
-                            <td [ngClass]="{'bg-warning':details.hrupdate==1 }" style="text-align: center;">
+                            <td [ngClass]="{'bg-warning':details.hrupdate==1 }" *ngIf="ExcludeSBU!=1" style="text-align: center;">
                                 {{details.sbuRating}}</td>
-                            <td [ngClass]="{'bggreen':details.hrupdate==1 }">
+                            <td [ngClass]="{'bggreen':details.hrupdate==1 }" *ngIf="ExcludeSBU!=1" >
                                 <button type="button" class="btn btn-success" data-toggle="modal"
                                     (click)="GEtsbucomments(details)" data-target="#viewsbucomments">View
                                 </button>
                             </td>
-                            <td [ngClass]="{'bggreen':details.hrupdate==1 }">
+                            <td [ngClass]="{'bggreen':details.hrupdate==1 }" *ngIf="ExcludeSBU!=1">
                                 <button class=" btn btn-primary action" data-toggle="modal"
                                     data-target="#exampleModal36" (click)="GetKPIIDetails(details)"
                                     *ngIf="details.sbuAttachment!=null&&details.sbuAttachment!='0' && details.sbuAttachment!=''">View
@@ -574,16 +575,16 @@
                     <div class="col-lg-3">
                         <a href="{{hrattachment1}}" target="blank">
 
-                            <img *ngIf="SbuAttachmentType=='Document'" width="220" height="250" border="0"
+                            <img *ngIf="hrAttachmentType=='Document'" width="120px" height="150px" border="0"
                                 align="center" src="assets/Images/word.png" />
 
-                            <img *ngIf="SbuAttachmentType=='video'" width="220" height="250" border="0" align="center"
+                            <img *ngIf="hrAttachmentType=='video'" width="120px" height="150px" border="0" align="center"
                                 class="image" src="assets/Images/youtube.png">&nbsp;&nbsp;
 
-                            <img *ngIf="SbuAttachmentType=='Pdf'" width="220" height="250" border="0" align="center"
+                            <img *ngIf="hrAttachmentType=='Pdf'"width="120px" height="150px" border="0" align="center"
                                 class="image" src="assets/Images/pdf.jpg">&nbsp;&nbsp;
 
-                            <img *ngIf="SbuAttachmentType=='Image'" width="220" height="250" border="0" align="center"
+                            <img *ngIf="hrAttachmentType=='Image'"width="120px" height="150px" border="0" align="center"
                                 class="image" src="assets/Images/image.png">&nbsp;&nbsp;
 
                             <!-- <img *ngIf="SelfAttachmentType=='Document'" width="220" height="250" border="0" align="center" class="image" src="assets/Images/files.png">&nbsp;&nbsp; -->

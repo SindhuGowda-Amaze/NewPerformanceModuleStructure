@@ -445,13 +445,25 @@ export class EmployeeKraMappingComponent implements OnInit {
         debugger
         this.keyresultArray.push(json)
       }
-      this.selectedItems1.length = 0;
-      this.selectedItems2[0]=0
-      this.selectedItems4[0]=0
-      this.selectedItems2 = [];
+      // this.selectedItems1.length = 0;
+      // this.selectedItems2[0]=0
+      // this.selectedItems4[0]=0
+      // this.selectedItems2 = [];
+      // this.selectedItems3.length = 0;
+
       this.kratypeid=0
-      this.selectedItems3.length = 0;
- 
+      this.departmentName="";
+      this.RoleID="";
+      this.Apprisalcycle="";
+
+      //  this.selectedItems.length = null;
+      //  this.selectedItems1.length = 0;
+      //  this.selectedItems3.length = 0;
+
+      // this.selectedItems4.length = 0;
+      // this.selectedItems2.length = 0;
+      // this.selectedstaff.length = null;
+      
     }
   }
 
